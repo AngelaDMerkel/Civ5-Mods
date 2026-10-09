@@ -1,5 +1,55 @@
 # Development and coordination
 
+Player documentation starts at [the mod collection](../README.md) and
+[player guides](GAMEPLAY.md). This page is for contributors.
+
+## Build and verify
+
+Run from the repository root. Packaging uses Python's standard library:
+
+```sh
+python3 tools/build.py
+python3 tools/validate.py
+python3 -m unittest discover -s tests -p 'test_*.py'
+```
+
+For gameplay tests in Lua 5.1:
+
+```sh
+python3 -m venv .venv
+.venv/bin/python -m pip install -r tests/requirements.txt
+.venv/bin/python tools/test.py
+```
+
+Optional checks against installed game databases read the originals and validate
+copies in memory:
+
+```sh
+python3 tools/validate.py --cache "/path/to/Sid Meier's Civilization 5/cache"
+```
+
+Complete ModBuddy projects are generated under `build/`; edit authoritative
+source under `mods/*/src/`. Installable folders and ZIPs go to `dist/`.
+See [the shared tool catalog](../tools/README.md) for art tooling,
+[native testing](TESTING.md), and [Workshop preparation](WORKSHOP.md).
+
+## Documentation audiences
+
+The root and mod READMEs are short introductions for players. Mod player guides
+explain gameplay, units, buildings and actions with captioned project images.
+Follow [the documentation requirements](../shared/requirements/DOCUMENTATION.md).
+
+Ownership, source details and model pipeline status are retained in each mod's
+`docs/DEVELOPMENT.md`. Detailed implementation notes remain in `TRADE.md`,
+`OUTPOSTS.md`, `IRRIGATION.md` and climate `REQUIREMENTS.md`. The former combined
+technical/art guide is preserved in [package notes](technical/PACKAGE-NOTES.md).
+These contributor records are distinct from `GUIDE.md` and `TRADE-GUIDE.md`.
+
+The player guides describe the currently integrated experimental packages. Update
+them when a feature is integrated; keep unmerged experiments and future visual
+plans labeled. During this documentation pass, existing approved illustrations
+and model previews are used because verified gameplay screenshots are not available.
+
 ## Canonical ownership
 
 | Existing chat | Working directory | Scope |

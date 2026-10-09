@@ -1,15 +1,15 @@
 # Climate Change
 
-Owned by the **Climate Change Mod** chat. This project is in requirements and
-research. `src/` and `tests/` are reserved for implementation; there is no playable
-mod, manifest, release identity or verified native experiment yet.
+A planned Civilization V: Brave New World mod in which the landscape changes over
+the course of a game. Each game follows one lasting direction—**warming or cooling**—
+with natural change and the influence of industrial activity and city populations.
 
-Confirmed direction: natural change through history, industrial-era human
-activity influenced by city population, and one permanent warming or cooling
-direction per game. Read [requirements and research status](docs/REQUIREMENTS.md)
-before proposing mechanics or adding source.
+The aim is to make long-term settlement and land-use choices matter as conditions
+change around your empire.
 
-Shared UI/art/runtime requirements are under `shared/requirements/`. Experimental
-tools belong in `tools/`, reference notes in `shared/references/`, and throwaway
-outputs in `output/`. Coordinate future terrain changes with irrigation and
-Terrain exposure rules through explicit interfaces.
+**In planning. There is no playable build yet.** Terrain transitions, pacing,
+player controls and balance are still being designed.
+
+**[Read about the planned mod](docs/GUIDE.md)** · [Other mods](../../README.md)
+
+[Development notes](docs/DEVELOPMENT.md)
