@@ -48,3 +48,14 @@ assigns Terrace Farm to `SNAPSHOT` with terrain contouring enabled. Reproduce th
 read-only definition audit with `tools/irrigation_native/audit_native_layout.py`.
 Output remains local. These definitions explain why decoded source meshes and
 invented context do not demonstrate the native in-game farm appearance.
+
+
+Desert provenance clarification: `farm_types.xml` declares regional crop families
+(`Crops_Africa`, `Crops_America`, `Crops_Asia`, `Crops_Europe`) and construction,
+wheat and damage families. It has no desert crop family. The inspected ordinary
+Farm landmark rows likewise have no desert-specific binding. The terrace GR2,
+Africa crop reference, desert terrain DDS and wheat-farm prop extract were
+compared byte-for-byte with their installed archive entries and match. This
+establishes authentic inputs, not that their authored combination reproduces a
+standard desert farm. Which crop family the renderer chooses on a particular
+desert tile and its actual parcel placement still require native observation.

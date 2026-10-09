@@ -1,5 +1,11 @@
 # Native farm irrigation overlays
 
+Current clarification: the native terrace mesh may be modified to make irrigation
+obvious. The unchanged source is a provenance/comparison reference, not an art
+constraint. The existing preservation validators describe the current comparison
+exports; they do not prohibit deliberately revised native-derived candidates.
+The flat fixture is not a verified standard desert-farm tile set.
+
 The user redirected the design on 2026-10-09: retain the default flat and hill
 farm artwork and add conspicuous irrigation. The v1–v3 replacement fields and
 terrain are historical studies, not the current art direction. The earlier v6

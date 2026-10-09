@@ -17,6 +17,12 @@ and the existing aqueduct design. Place channels in selected gaps between crop
 plots, following their existing texture/parcel boundaries and terrace contours;
 keep most plot seams dry. The 2026-10-09 direction selection is recorded
 in `shared/art/irrigated-farm/native-overlay-study/direction-selection.json`.
+The user's later clarification allows modifications to the native terrace mesh
+where needed to make irrigation obvious. An unchanged source is a comparison
+reference, not a constraint on the finished irrigated model. Preserve recognizable
+Civ V farm character and sparse, readable routes; do not enforce byte-identical
+native geometry as an art requirement. This does not approve a particular revised
+mesh or invented flat-field layout.
 Earlier replacement-field meshes are historical studies. Preserve consistent
 tile seams, finished exposed edges, height transitions and source-connected,
 level or descending water flow. Keep mesh tools in `tools/` and

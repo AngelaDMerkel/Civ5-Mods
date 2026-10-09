@@ -99,3 +99,20 @@ the FARM layout handler and terrain contouring, while terraces use SNAPSHOT with
 terrain contouring. Exact regular Farm1/2/3 variants differ from the wheat-resource
 Farm prop used in the fixtures. In-game baselines and preserving those placement
 systems are required before further native-art acceptance.
+
+
+The user clarified that the native terrace source **may be modified** and the
+irrigation should be obvious. Untouched source geometry is retained for comparison
+and provenance, not as a requirement on the finished design. Future revisions may
+change the native-derived terrace to integrate readable channels and aqueducts,
+while retaining recognizable Civ V farm character. This is design direction,
+not acceptance of a particular revised model.
+
+The current reference files are genuine installed game assets, but the assembled
+flat examples are not a verified standard desert-farm tile set. The terrace is
+the Incan Terrace Farm improvement. Flat examples use native `Crops_Africa`
+textures and `afri_desert_d.dds` with authored parcel placement; the prop reference
+is the wheat-resource variant. The inspected farm definitions separate regional
+crop families and era/resource model bindings, with no dedicated desert-farm row.
+Exact farm texture selection and placement on a desert tile remain unverified
+in-game; do not infer that `Crops_Africa` means a desert-specific farm asset.
