@@ -23,22 +23,21 @@ The user rejected an **A monogram** as an unhelpful icon. The earlier dark
 slate/gold/ivory proposal was the assistant's incorrect palette assumption and
 is superseded. Do not reuse it as a WSDLC reference.
 
-## Voice and collection introduction
+## Personality for style proposals
 
-The user's direction is quirky, self-aware and **very moderately condescending**.
-The collection introduction is:
+The user's direction is quirky, self-aware and **very moderately condescending**:
+mods made by a person who wants something but does not want to do it. This is an
+internal creative brief for visual style proposals, **not README copy, a tagline,
+or wording to print in the masthead**. The user clarified this explicitly.
 
-> Quirky, self-aware and very moderately condescending mods, made by a person
-> who wants something but doesn't want to do it.
+Express the personality through imagery, expression and composition: relaxed
+confidence, a restrained raised eyebrow, an armchair planner, or a small visual
+joke about supervising the work. Those motifs are design possibilities, not
+approved assets. Keep the humour understated and readable at icon scale.
 
-Preserve the deliberate contradiction: the author has specific wants and little
-inclination to do the work. Use dry understatement and occasional mild smugness;
-keep the joke mostly at the author's expense. Avoid a grand, earnest product
-pitch or a stream of forced jokes. Keep gameplay instructions clear and factual.
-
-The README carries this introduction as selectable text below the collection
-name. Keep the standalone icon and wordmark concise. This voice direction does
-not select either pending pictorial design.
+Preserve the verified WSDLC palette and exact collection name. Avoid turning the
+brief into a solemn product identity, a loud comedy mascot or additional slogans.
+Public README and guide text should continue to explain the mods clearly.
 
 ## Deliverables and review
 
@@ -48,12 +47,18 @@ not select either pending pictorial design.
 - Editable sources, source hashes and a recorded design selection before
   integration, following [the art rules](ART.md).
 
-The third review contains two original SVG proposals with the verified palette:
-**E — Living map**, a hex tile with mountains, water and cultivated land; and
-**F — Remade world**, a globe with an added tile. Each has separate masthead,
-icon and wordmark files, plus 64 px and 32 px icon examples on its review board.
-Both are awaiting user selection. See the ignored local comparison at
-`output/branding-review/round-3/index.html` and its source/hash manifest.
+The fourth review applies the clarified creative brief through original SVG
+character proposals: **G — Armchair world-builder**, an opinionated globe
+comfortably supervising from its chair; and **H — The discerning tile**, a map
+tile with a raised eyebrow and restrained smirk. The brief itself is not printed
+in either masthead. Both proposals retain WSDLC's exact palette and remain
+unselected. Each has separate masthead, icon and wordmark files, plus 64 px and
+32 px icon examples. See the ignored local comparison at
+`output/branding-review/round-4/index.html` and its source/hash manifest.
+
+Earlier palette studies **E — Living map** and **F — Remade world** remain at
+`output/branding-review/round-3/index.html` as alternatives, also unselected.
+The user's style clarification does not constitute selection of a pictorial design.
 
 Keep the mod overviews, relevant images and links to the four detailed guides
 beneath the shared identity. Each mod retains its own gameplay artwork.
