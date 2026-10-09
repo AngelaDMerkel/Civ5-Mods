@@ -1,0 +1,70 @@
+{
+  "date": "2026-10-09",
+  "status": "Approved by user for mesh production",
+  "selections": [
+    {
+      "era": "Ancient",
+      "eraType": "ERA_ANCIENT",
+      "option": "A",
+      "name": "Timber Watchpost",
+      "concept": "01-ancient-a"
+    },
+    {
+      "era": "Classical",
+      "eraType": "ERA_CLASSICAL",
+      "option": "B",
+      "name": "Frontier Fortlet",
+      "concept": "02-classical-b"
+    },
+    {
+      "era": "Medieval",
+      "eraType": "ERA_MEDIEVAL",
+      "option": "B",
+      "name": "Fortified Courtyard",
+      "concept": "03-medieval-b"
+    },
+    {
+      "era": "Renaissance",
+      "eraType": "ERA_RENAISSANCE",
+      "option": "A",
+      "name": "Bastioned Watchtower",
+      "concept": "04-renaissance-a"
+    },
+    {
+      "era": "Industrial",
+      "eraType": "ERA_INDUSTRIAL",
+      "option": "B",
+      "name": "Brick Blockhouse",
+      "concept": "05-industrial-b"
+    },
+    {
+      "era": "Modern",
+      "eraType": "ERA_MODERN",
+      "option": "A",
+      "name": "Radio Watchpost",
+      "concept": "06-modern-a"
+    },
+    {
+      "era": "Atomic",
+      "eraType": "ERA_POSTMODERN",
+      "option": "A",
+      "name": "Radar Sentry Post",
+      "concept": "07-atomic-a"
+    },
+    {
+      "era": "Information",
+      "eraType": "ERA_FUTURE",
+      "option": "A",
+      "name": "Sensor Mast Outpost",
+      "concept": "08-information-a"
+    }
+  ],
+  "meshApproval": {
+    "date": "2026-10-09",
+    "revision": 2,
+    "status": "Approved by user",
+    "scope": "Eight revised era designs and their presented source meshes",
+    "sourceDirectory": "output/models/outpost-eras-v1",
+    "userMessage": "These are approved."
+  }
+}

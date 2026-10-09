@@ -1,0 +1,180 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectGuid>{D571E16C-BB58-40BF-A81F-A919249E7995}</ProjectGuid>
+    <ModGuid>d571e16c-bb58-40bf-a81f-a919249e7995</ModGuid>
+    <ModVersion>2</ModVersion>
+    <RootNamespace>RealisticTerrain</RootNamespace>
+    <AssemblyName>Realistic Terrain</AssemblyName>
+    <Name>Realistic Terrain</Name>
+    <Stability>Alpha</Stability>
+    <Teaser>Prepare expeditions beyond your borders.</Teaser>
+    <Description>Environmental exposure, cooperative trade logistics and connected desert irrigation. Build Irrigation Works, irrigated farms, the Ministry of Coin, road-connected Caravansaries and patrols. Optional Resource Outposts integration shelters its stationed defenders. Requires Brave New World. Single-player alpha; start a new game.</Description>
+    <Authors>Duffy</Authors>
+    <HideSetupGame>0</HideSetupGame>
+    <AffectsSavedGames>1</AffectsSavedGames>
+    <MinCompatibleSaveVersion>2</MinCompatibleSaveVersion>
+    <SupportsSinglePlayer>1</SupportsSinglePlayer>
+    <SupportsMultiplayer>0</SupportsMultiplayer>
+    <SupportsHotSeat>0</SupportsHotSeat>
+    <SupportsMac>1</SupportsMac>
+    <SupportsLeaderboards>0</SupportsLeaderboards>
+    <ReloadLandmarkSystem>1</ReloadLandmarkSystem>
+    <ReloadStrategicViewSystem>0</ReloadStrategicViewSystem>
+    <ReloadUnitSystem>0</ReloadUnitSystem>
+    <Dependencies>&lt;Dependencies&gt;
+    &lt;Dlc id="6DA07636-4123-4018-B643-6575B4EC336B" minversion="0" maxversion="999" /&gt;
+  &lt;/Dependencies&gt;
+  </Dependencies>
+    <References>&lt;References /&gt;
+  </References>
+    <Blocks>&lt;Blocks /&gt;
+  </Blocks>
+    <Actions>&lt;Actions&gt;
+    &lt;OnModActivated&gt;
+      &lt;UpdateDatabase&gt;Text/RT_Text.xml&lt;/UpdateDatabase&gt;
+      &lt;UpdateDatabase&gt;SQL/RT_Promotions.sql&lt;/UpdateDatabase&gt;
+      &lt;UpdateDatabase&gt;SQL/RT_ReliefStation.sql&lt;/UpdateDatabase&gt;
+      &lt;UpdateDatabase&gt;SQL/RT_MinistryOfCoin.sql&lt;/UpdateDatabase&gt;
+      &lt;UpdateDatabase&gt;SQL/RT_Trade.sql&lt;/UpdateDatabase&gt;
+      &lt;UpdateDatabase&gt;SQL/RT_MotorizedCaravan.sql&lt;/UpdateDatabase&gt;
+      &lt;UpdateDatabase&gt;SQL/RT_Irrigation.sql&lt;/UpdateDatabase&gt;
+      &lt;UpdateDatabase&gt;SQL/RT_Art.sql&lt;/UpdateDatabase&gt;
+    &lt;/OnModActivated&gt;
+  &lt;/Actions&gt;
+  </Actions>
+    <EntryPoints>&lt;EntryPoints&gt;
+    &lt;EntryPoint type="InGameUIAddin" file="UI/RT_Environment.xml"&gt;
+      &lt;Name&gt;Realistic Terrain&lt;/Name&gt;
+      &lt;Description&gt;Environmental exposure, cooperative trade logistics and connected desert irrigation. Build Irrigation Works, irrigated farms, the Ministry of Coin, road-connected Caravansaries and patrols. Optional Resource Outposts integration shelters its stationed defenders. Requires Brave New World. Single-player alpha; start a new game.&lt;/Description&gt;
+    &lt;/EntryPoint&gt;
+  &lt;/EntryPoints&gt;
+</EntryPoints>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <OutputPath>bin\Release\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="Art\RT_CaravansaryAction32.dds">
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\RT_CaravansaryAction45.dds">
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\RT_CaravansaryAction64.dds">
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\RT_MinistryOfCoin_Wonder.dds">
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\RT_Portraits128.dds">
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\RT_Portraits214.dds">
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\RT_Portraits256.dds">
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\RT_Portraits32.dds">
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\RT_Portraits45.dds">
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\RT_Portraits64.dds">
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\RT_Portraits80.dds">
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Lua\RT_Art.lua">
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Lua\RT_Config.lua">
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Lua\RT_Construction.lua">
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Lua\RT_ConstructionOrders.lua">
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Lua\RT_Gameplay.lua">
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Lua\RT_Irrigation.lua">
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Lua\RT_IrrigationAI.lua">
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Lua\RT_OutpostBridge.lua">
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Lua\RT_Rules.lua">
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Lua\RT_Serialize.lua">
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Lua\RT_Supply.lua">
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Lua\RT_Trade.lua">
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Lua\RT_TradeAI.lua">
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Lua\RT_TradeBootstrap.lua">
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Lua\RT_TradeEconomy.lua">
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Lua\RT_TradeMap.lua">
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Lua\RT_TradeRules.lua">
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Lua\RT_TradeUI.lua">
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="SQL\RT_Art.sql">
+      <ImportIntoVFS>False</ImportIntoVFS>
+    </Content>
+    <Content Include="SQL\RT_Irrigation.sql">
+      <ImportIntoVFS>False</ImportIntoVFS>
+    </Content>
+    <Content Include="SQL\RT_MinistryOfCoin.sql">
+      <ImportIntoVFS>False</ImportIntoVFS>
+    </Content>
+    <Content Include="SQL\RT_MotorizedCaravan.sql">
+      <ImportIntoVFS>False</ImportIntoVFS>
+    </Content>
+    <Content Include="SQL\RT_Promotions.sql">
+      <ImportIntoVFS>False</ImportIntoVFS>
+    </Content>
+    <Content Include="SQL\RT_ReliefStation.sql">
+      <ImportIntoVFS>False</ImportIntoVFS>
+    </Content>
+    <Content Include="SQL\RT_Trade.sql">
+      <ImportIntoVFS>False</ImportIntoVFS>
+    </Content>
+    <Content Include="Text\RT_Text.xml">
+      <ImportIntoVFS>False</ImportIntoVFS>
+    </Content>
+    <Content Include="UI\RT_Environment.lua">
+      <ImportIntoVFS>False</ImportIntoVFS>
+    </Content>
+    <Content Include="UI\RT_Environment.xml">
+      <ImportIntoVFS>False</ImportIntoVFS>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Firaxis\ModBuddy\Civ5Mod.targets" />
+</Project>

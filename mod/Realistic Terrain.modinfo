@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Mod id="d571e16c-bb58-40bf-a81f-a919249e7995" version="2">
+  <Properties>
+    <Name>Realistic Terrain</Name>
+    <Stability>Alpha</Stability>
+    <Teaser>Prepare expeditions beyond your borders.</Teaser>
+    <Description>Environmental exposure, cooperative trade logistics and connected desert irrigation. Build Irrigation Works, irrigated farms, the Ministry of Coin, road-connected Caravansaries and patrols. Optional Resource Outposts integration shelters its stationed defenders. Requires Brave New World. Single-player alpha; start a new game.</Description>
+    <Authors>Duffy</Authors>
+    <HideSetupGame>0</HideSetupGame>
+    <AffectsSavedGames>1</AffectsSavedGames>
+    <MinCompatibleSaveVersion>2</MinCompatibleSaveVersion>
+    <SupportsSinglePlayer>1</SupportsSinglePlayer>
+    <SupportsMultiplayer>0</SupportsMultiplayer>
+    <SupportsHotSeat>0</SupportsHotSeat>
+    <SupportsMac>1</SupportsMac>
+    <SupportsLeaderboards>0</SupportsLeaderboards>
+    <ReloadLandmarkSystem>1</ReloadLandmarkSystem>
+    <ReloadStrategicViewSystem>0</ReloadStrategicViewSystem>
+    <ReloadUnitSystem>0</ReloadUnitSystem>
+  </Properties>
+  <Dependencies>
+    <Dlc id="6DA07636-4123-4018-B643-6575B4EC336B" minversion="0" maxversion="999" />
+  </Dependencies>
+  <References />
+  <Blocks />
+  <Files>
+    <File md5="066504423D3B3135E1F85C64B3491C80" import="1">Art/RT_CaravansaryAction32.dds</File>
+    <File md5="E8688D0C159DC7FA047CC0D3B2C7A0AC" import="1">Art/RT_CaravansaryAction45.dds</File>
+    <File md5="889D7E5860664B9A7D93F4895948087E" import="1">Art/RT_CaravansaryAction64.dds</File>
+    <File md5="5115E91CED073FB5D0CFECE5595CCD25" import="1">Art/RT_MinistryOfCoin_Wonder.dds</File>
+    <File md5="BEA12BA58384FE4BBCDDB459FE51AC76" import="1">Art/RT_Portraits128.dds</File>
+    <File md5="D53E6C14D252A54CCC8D27CAF029C207" import="1">Art/RT_Portraits214.dds</File>
+    <File md5="76C9A5B3FF4CDE52BAECE1708F648301" import="1">Art/RT_Portraits256.dds</File>
+    <File md5="9F4F48394928A51B7A3F55FA5E8C009D" import="1">Art/RT_Portraits32.dds</File>
+    <File md5="BD22556C4E06BBA4049C45C71D4C7834" import="1">Art/RT_Portraits45.dds</File>
+    <File md5="4F4DC08BCC290AAA78A832CC234B9A05" import="1">Art/RT_Portraits64.dds</File>
+    <File md5="93EB8F699DBA4C4D7F0C4659963A091C" import="1">Art/RT_Portraits80.dds</File>
+    <File md5="29AA6ABF52296D8F3DB739CB158DE284" import="1">Lua/RT_Art.lua</File>
+    <File md5="10F3CAE507434329E1EE13688A6783AA" import="1">Lua/RT_Config.lua</File>
+    <File md5="6B2FB8431B5C4CD5334AA8BB5464ECAD" import="1">Lua/RT_Construction.lua</File>
+    <File md5="629C5002E45F31F050BCE63EDEF641D6" import="1">Lua/RT_ConstructionOrders.lua</File>
+    <File md5="F37C60F8E554714542B2F68CEE01304E" import="1">Lua/RT_Gameplay.lua</File>
+    <File md5="D0F27D5DA2474B62CCC9B915D2433CF3" import="1">Lua/RT_Irrigation.lua</File>
+    <File md5="897351A05289C3A769F789F31BAC8FAF" import="1">Lua/RT_IrrigationAI.lua</File>
+    <File md5="8F760185A32EC481E004C7DC03781F4E" import="1">Lua/RT_OutpostBridge.lua</File>
+    <File md5="DF28A8C95BEF04F0FB522A01B70E9987" import="1">Lua/RT_Rules.lua</File>
+    <File md5="F4646C60BE0CA134DF49A64237ED69F0" import="1">Lua/RT_Serialize.lua</File>
+    <File md5="9E4364C4C1B2F55596189499B3F18932" import="1">Lua/RT_Supply.lua</File>
+    <File md5="EDB26570E9D0EE4CA665E163187262A7" import="1">Lua/RT_Trade.lua</File>
+    <File md5="567C13D6998ADAB0B48B2AB38D373266" import="1">Lua/RT_TradeAI.lua</File>
+    <File md5="80888475B7A1D13124D9C5F93A5D89E2" import="1">Lua/RT_TradeBootstrap.lua</File>
+    <File md5="AD6B4AF7157972BE5D970A6A3143A775" import="1">Lua/RT_TradeEconomy.lua</File>
+    <File md5="8FA1CE93EC81B338394AE9527CD5F33D" import="1">Lua/RT_TradeMap.lua</File>
+    <File md5="C5C0DF5BEC5DA6B8373301865DAC4D3E" import="1">Lua/RT_TradeRules.lua</File>
+    <File md5="BA56CAC93D85D5ABAA6D1811AE46CE16" import="1">Lua/RT_TradeUI.lua</File>
+    <File md5="7AE67A069D00F0689D93DF43433A83C7" import="0">SQL/RT_Art.sql</File>
+    <File md5="9E2B5E8203595C575B31384D89A130FD" import="0">SQL/RT_Irrigation.sql</File>
+    <File md5="C8615BC5877E5E34B7B79CA165AC463D" import="0">SQL/RT_MinistryOfCoin.sql</File>
+    <File md5="3002C5C987DBA2E11F693C5943B0BB91" import="0">SQL/RT_MotorizedCaravan.sql</File>
+    <File md5="6ABC67D138128F1212E0B3AE4914007D" import="0">SQL/RT_Promotions.sql</File>
+    <File md5="E037DA494B87FB79685CCB7EBE27D4C8" import="0">SQL/RT_ReliefStation.sql</File>
+    <File md5="462CA091BE7638E7163AD9E622B6B0FC" import="0">SQL/RT_Trade.sql</File>
+    <File md5="4D94BE6AD1607E6C26438BEDDCAD5228" import="0">Text/RT_Text.xml</File>
+    <File md5="30C0010473CD1CDFBCC6DFA7A22DEFF6" import="0">UI/RT_Environment.lua</File>
+    <File md5="B082294B456643CC0C1D1E80289EED01" import="0">UI/RT_Environment.xml</File>
+  </Files>
+  <Actions>
+    <OnModActivated>
+      <UpdateDatabase>Text/RT_Text.xml</UpdateDatabase>
+      <UpdateDatabase>SQL/RT_Promotions.sql</UpdateDatabase>
+      <UpdateDatabase>SQL/RT_ReliefStation.sql</UpdateDatabase>
+      <UpdateDatabase>SQL/RT_MinistryOfCoin.sql</UpdateDatabase>
+      <UpdateDatabase>SQL/RT_Trade.sql</UpdateDatabase>
+      <UpdateDatabase>SQL/RT_MotorizedCaravan.sql</UpdateDatabase>
+      <UpdateDatabase>SQL/RT_Irrigation.sql</UpdateDatabase>
+      <UpdateDatabase>SQL/RT_Art.sql</UpdateDatabase>
+    </OnModActivated>
+  </Actions>
+  <EntryPoints>
+    <EntryPoint type="InGameUIAddin" file="UI/RT_Environment.xml">
+      <Name>Realistic Terrain</Name>
+      <Description>Environmental exposure, cooperative trade logistics and connected desert irrigation. Build Irrigation Works, irrigated farms, the Ministry of Coin, road-connected Caravansaries and patrols. Optional Resource Outposts integration shelters its stationed defenders. Requires Brave New World. Single-player alpha; start a new game.</Description>
+    </EntryPoint>
+  </EntryPoints>
+</Mod>

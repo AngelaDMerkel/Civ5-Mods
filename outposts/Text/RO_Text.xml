@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameData>
+  <Language_en_US>
+    <Row Tag="TXT_KEY_RT_RESOURCE_OUTPOST"><Text>Resource Outpost</Text></Row>
+    <Row Tag="TXT_KEY_RT_BUILD_RESOURCE_OUTPOST"><Text>Build Resource Outpost</Text></Row>
+    <Row Tag="TXT_KEY_RT_RESOURCE_OUTPOST_HELP"><Text>Claims the land resource beneath it without expanding borders. Requires Engineering and the resource's normal extraction technology. Build on an unimproved strategic or luxury deposit in unclaimed land. Uses fort construction time and grants +50% defense. A military garrison is optional; no road, supply connection or Ministry is required, even with Realistic Terrain enabled. Base upkeep is 2 gold per turn, including pillaged sites. Abandon unwanted sites through the Resource Outposts control. Pillaging suspends extraction. An enemy military unit entering the neutral outpost captures it. City borders take precedence.</Text></Row>
+    <Row Tag="TXT_KEY_RT_RESOURCE_OUTPOST_PEDIA"><Text>A fortified remote installation secures one strategic or luxury deposit for its civilization. Workers construct it directly on the resource, replacing the need for a separate mine, plantation, pasture, camp, quarry, or well. The deposit's base quantity becomes available for use and trade; it does not accumulate each turn. Surrounding tiles remain neutral. A stationed land military unit defends the outpost under ordinary combat rules. Pillaged outposts can be repaired. When city borders absorb the tile, its territorial owner receives the resource through the ordinary improvement rules. Resource Outposts provide no city yields. With Realistic Terrain enabled, an intact outpost shelters its own stationed defender from exposure, on this tile only. Roads and supply connections are never required for extraction or shelter. Base upkeep is 2 gold per turn; normal building-maintenance modifiers apply.</Text></Row>
+    <Row Tag="TXT_KEY_RT_OUTPOST_SITE"><Text>Requires an unimproved resource tile on unclaimed, passable land.</Text></Row>
+    <Row Tag="TXT_KEY_RT_OUTPOST_RESOURCE"><Text>Requires a revealed strategic or luxury resource and its normal extraction technology.</Text></Row>
+    <Row Tag="TXT_KEY_RT_OUTPOST_CAPTURED_BODY"><Text>{1_Civ} has captured this Resource Outpost. The installation and its resource now belong to that civilization.</Text></Row>
+    <Row Tag="TXT_KEY_RT_OUTPOST_STATUS"><Text>{1_Civ}: {2_Status}</Text></Row>
+    <Row Tag="TXT_KEY_RT_OUTPOST_ACTIVE"><Text>Extracting</Text></Row>
+    <Row Tag="TXT_KEY_RT_OUTPOST_SUSPENDED"><Text>Extraction suspended</Text></Row>
+    <Row Tag="TXT_KEY_RT_OUTPOST_DEPOSIT"><Text>Deposit: {1_Amount} {2_Resource}</Text></Row>
+    <Row Tag="TXT_KEY_RO_BUILD_WORKER"><Text>Select a land worker capable of building Forts.</Text></Row>
+    <Row Tag="TXT_KEY_RO_BUILD_TURN"><Text>Construction is available during your turn.</Text></Row>
+    <Row Tag="TXT_KEY_RO_BUILD_TECH"><Text>Requires Engineering.</Text></Row>
+    <Row Tag="TXT_KEY_RO_BUILD_FEATURE_TECH"><Text>Research the technology required for construction in this feature.</Text></Row>
+    <Row Tag="TXT_KEY_RO_BUILD_BUSY"><Text>Cancel worker automation or the current construction order before working here.</Text></Row>
+    <Row Tag="TXT_KEY_RO_BUILD_MOVES"><Text>This worker has no work or movement remaining this turn.</Text></Row>
+    <Row Tag="TXT_KEY_RO_BUILD_WORK_HELP"><Text>Start construction and use this worker's remaining movement. The worker continues automatically each turn. Click Cancel construction to stop. Moving or assigning other work cancels the order. Progress is saved on this tile.</Text></Row>
+    <Row Tag="TXT_KEY_RO_BUILD_PROGRESS"><Text>Construction: {1_Done} / {2_Total} work</Text></Row>
+    <Row Tag="TXT_KEY_RO_BUILD_CANCEL"><Text>Cancel construction</Text></Row>
+    <Row Tag="TXT_KEY_RO_CHANGE_BODY"><Text>{1_Event} {2_Resource} access change: {3_Amount}. Status: {4_Status}.</Text></Row>
+    <Row Tag="TXT_KEY_RO_ABANDONED"><Text>Outpost abandoned.</Text></Row>
+    <Row Tag="TXT_KEY_RO_ABSORBED"><Text>City borders absorbed the outpost.</Text></Row>
+    <Row Tag="TXT_KEY_RO_CAPTURED"><Text>Outpost ownership changed.</Text></Row>
+    <Row Tag="TXT_KEY_RO_SUPPLY_CHANGED"><Text>Outpost extraction changed.</Text></Row>
+    <Row Tag="TXT_KEY_RO_STATUS_ACTIVE"><Text>Extracting</Text></Row>
+    <Row Tag="TXT_KEY_RO_STATUS_PILLAGED"><Text>Pillaged</Text></Row>
+    <Row Tag="TXT_KEY_RO_STATUS_BLOCKADED"><Text>Occupied by hostiles</Text></Row>
+    <Row Tag="TXT_KEY_RO_STATUS_TECHNOLOGY"><Text>Extraction technology unavailable</Text></Row>
+    <Row Tag="TXT_KEY_RO_STATUS_REMOVED"><Text>Removed</Text></Row>
+    <Row Tag="TXT_KEY_RO_UPKEEP"><Text>Base upkeep: {1_Gold} gold per turn</Text></Row>
+    <Row Tag="TXT_KEY_RO_ESCORT"><Text>Waiting for a military escort before working in danger.</Text></Row>
+    <Row Tag="TXT_KEY_RO_MANAGE"><Text>Resource Outposts</Text></Row>
+    <Row Tag="TXT_KEY_RO_ABANDON"><Text>Abandon outpost</Text></Row>
+    <Row Tag="TXT_KEY_RO_ABANDON_CONFIRM"><Text>Confirm abandonment</Text></Row>
+    <Row Tag="TXT_KEY_RO_PREVIOUS"><Text>Prev</Text></Row>
+    <Row Tag="TXT_KEY_RO_NEXT"><Text>Next</Text></Row>
+    <Row Tag="TXT_KEY_RO_LOCATE"><Text>Locate</Text></Row>
+    <Row Tag="TXT_KEY_RO_CLOSE"><Text>Close</Text></Row>
+    <Row Tag="TXT_KEY_RO_INTEGRATION_HELP"><Text>Optional Realistic Terrain integration: intact outposts shelter their own stationed military unit. No road or supply requirement. Upkeep appears in the treasury under building maintenance; ordinary maintenance modifiers apply.</Text></Row>
+    <Row Tag="TXT_KEY_RO_ABANDON_PREVIEW"><Text>Abandonment removes {1_Amount} {2_Resource} and {3_Gold} base gold/turn upkeep.</Text></Row>
+    <Row Tag="TXT_KEY_RO_AVAILABLE_AFTER"><Text>Available resources: {1_Before} → {2_After}.</Text></Row>
+    <Row Tag="TXT_KEY_RO_LAST_LUXURY"><Text>[COLOR_WARNING_TEXT]This removes your last available copy of this luxury.[ENDCOLOR]</Text></Row>
+    <Row Tag="TXT_KEY_RO_SHORTAGE"><Text>[COLOR_WARNING_TEXT]Strategic resource shortage afterward: {1_Amount}.[ENDCOLOR]</Text></Row>
+    <Row Tag="TXT_KEY_RO_ESTIMATE"><Text>Resource effects are estimated because of quantity rounding.</Text></Row>
+    <Row Tag="TXT_KEY_RO_NO_RESOURCE"><Text>resources</Text></Row>
+    <Row Tag="TXT_KEY_RO_CONVERT"><Text>Convert improvement</Text></Row>
+    <Row Tag="TXT_KEY_RO_CONVERT_CONFIRM"><Text>Confirm conversion</Text></Row>
+    <Row Tag="TXT_KEY_RO_CONVERT_TERRITORY"><Text>Conversion requires this outpost to be inside your cultural borders.</Text></Row>
+    <Row Tag="TXT_KEY_RO_CONVERT_REPAIR"><Text>Repair the outpost and remove hostile occupants before converting it.</Text></Row>
+    <Row Tag="TXT_KEY_RO_CONVERT_TECH"><Text>Research the normal resource improvement and feature-clearing technologies. The ordinary build must be legal here.</Text></Row>
+    <Row Tag="TXT_KEY_RO_CONVERT_HELP"><Text>Replace the outpost with its ordinary resource improvement.</Text></Row>
+    <Row Tag="TXT_KEY_RO_CONVERT_PREVIEW"><Text>Convert instantly to {1_Improvement}. Keep resource access and end {2_Gold} base gold/turn upkeep. Lose the outpost's +50% defense. Normal feature clearing and construction effects apply.</Text></Row>
+    <Row Tag="TXT_KEY_RO_OVERVIEW_SUMMARY"><Text>{1_Count} outposts · Total base upkeep: {2_Gold} gold/turn. Maintenance modifiers apply.</Text></Row>
+    <Row Tag="TXT_KEY_RO_OVERVIEW_SITE"><Text>({1_X}, {2_Y}) · {3_Amount} {4_Resource}</Text></Row>
+    <Row Tag="TXT_KEY_RO_DEFENDER"><Text>{1_Unit} ({2_HP}/{3_MaxHP} HP)</Text></Row>
+    <Row Tag="TXT_KEY_RO_UNGUARDED"><Text>No defender</Text></Row>
+    <Row Tag="TXT_KEY_RO_OVERVIEW_DETAIL"><Text>{1_Status} · {2_Defender}[NEWLINE]Base upkeep: {3_Gold} gold/turn</Text></Row>
+    <Row Tag="TXT_KEY_RO_MANAGE_SITE"><Text>Manage</Text></Row>
+    <Row Tag="TXT_KEY_RO_BACK"><Text>All outposts</Text></Row>
+  </Language_en_US>
+</GameData>

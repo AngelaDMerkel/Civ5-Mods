@@ -1,0 +1,19 @@
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+
+# Reproducible packages, mesh exports, previews, and local research caches.
+/dist/
+/output/
+/build/
+**/bin/
+**/obj/
+
+# Local configuration and proprietary game/reference files.
+.env
+.env.*
+!.env.example
+/shared/references/local/
+*.db
+*.db-journal

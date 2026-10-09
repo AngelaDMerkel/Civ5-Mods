@@ -1,0 +1,8 @@
+include("RT_Serialize");
+include("RT_TradeRules");
+include("RT_TradeEconomy");
+include("RT_TradeMap");
+include("RT_Trade");
+include("RT_TradeAI");
+include("RT_TradeUI");
+RT_Trade.Initialize();

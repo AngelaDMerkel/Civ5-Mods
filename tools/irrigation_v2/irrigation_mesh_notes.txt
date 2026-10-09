@@ -1,0 +1,129 @@
+IRRIGATED FARM — MODULAR SOURCE MESH KIT v1
+Based on the user's approved terraced-terrain concept, 9 October 2026.
+
+DELIVERY
+36 original assets in OBJ/MTL, textured GLB and rigid-root BR2 formats:
+  20 farm meshes: Flat, GentleHill, SteepHill, RockyFoothill, each with Wet,
+     Dry, Construction and Pillaged states, plus a lower-detail Wet version.
+  4 channel pieces: straight, 60-degree bend, downward drop and three-way fork.
+  6 aqueducts: Short, Long and Mountain spans, each at two detail levels.
+  1 mountain intake, 4 vegetation props (two date-palm and two fruit-tree LODs).
+  1 connected six-tile demonstration assembly.
+The assembly includes simple reference rock geometry. It is context only,
+not a proposed replacement for Civ V's native mountains.
+
+Open index.html in a browser. It is self-contained and works offline.
+The viewer reads the same vertex/normal/UV arrays as the GLB exports. It supports
+orbit, zoom, wireframe, untextured geometry, vegetation and water visibility.
+PNG reviews are software renders of the exported GLB triangles and textures,
+not generated concept illustrations. Review both the individual tiles and the
+connected district before converting.
+
+CIV V ART DIRECTION AND REFERENCES
+The design follows the native farm's broad crop patches and the Incan terrace
+farm's angular planted shelves, low retaining walls and subdued materials.
+Crop rows are diffuse texture detail, not individual high-poly plants. Date
+palms use narrow opaque frond ribbons; fruit trees use small faceted canopies.
+The kit has one original 1024x1024 diffuse atlas. It contains no extracted
+Firaxis geometry or pixels. The atlas and renders were made procedurally from
+the actual source meshes. The neutral normal/specular DDS files are source
+placeholders; they do not claim a validated native Civ V shader setup.
+
+Real-game references examined directly:
+  Medieval_Farm.fxsxml in Resource/Common/ImprovementModels.fpk references
+  Ancient_Farm_Decal_D/H, Ancient_Farm_Diff/SREF and Generic_Grey_8.
+  Incan_Terrace_Farm.fxsxml in Resource/Common/ConquestDeluxeModels.fpk
+  references Incan_Terrace_DIFF, Incan_Terrace_SREF and Generic_Grey_8.
+  The installed Incan_Terrace_DIFF is 512x512. Its crop stripe and stone palette
+  informed the original materials, rather than being redistributed.
+  Civ5ArtDefines_Landmarks_DLC_02.xml: terrace farm uses SNAPSHOT,
+  bTerrainContour=True and fScale=1.0. This is a reference, not evidence that a
+  new rigid aqueduct can safely inherit the same contouring behavior.
+
+Reference screenshots:
+  Native terrace farm: https://steamcommunity.com/sharedfiles/filedetails/?id=157241384
+  Desert: https://store.steampowered.com/app/16866/
+  Farms: https://store.steampowered.com/app/99614/
+Native GR2 transfer workflow reference:
+  https://github.com/deliverator23/Civilization-Blender-Scripts
+
+GEOMETRY CONTRACT
+Z-up source coordinates; origin at the hex center on the lowest cultivated
+surface. Hex circumradius = 6.0, apothem = 3*sqrt(3), width across flats =
+6*sqrt(3). These are normalized authoring units, NOT measured Civ V engine
+units. Native scale, placement and height offsets must be calibrated in game.
+
+Edge order is E, NE, NW, W, SW, SE. Each edge's center is a snap anchor, with
+60-degree rotations. Opposite anchors coincide when two tile centers are
+separated by twice the apothem. All connectors use water width 0.24, rim width
+0.085 and water depth 0.07. Open channel ends are deliberate snap interfaces.
+
+The base tiles contain crop overlays, terraces, vegetation and an internal
+downhill distribution chute. They DO NOT contain a sealed hex pedestal or
+perimeter wall. Crop rows use world-aligned parcel coordinates. The district
+assembly regenerates clipped parcels using each tile's world origin, so UV
+phase and crop species match across shared edges. Do not rotate a baked crop
+overlay independently of that common parcel grid.
+
+The 64 possible neighbor masks are listed in connectors.json. They reduce to
+14 rotational classes; mask zero is included. This inventory is a source-art
+connection contract, not 64 automatically functioning native improvement
+models. The span/route builder accepts coordinates and rejects uphill routes.
+All six orientations still require real terrain-height and water-grade data
+when choosing and placing pieces in an engine implementation.
+
+Rigid aqueducts and terrain-adapted farm overlays are separate assets. The
+waterline is straight/graded over a gap; arch supports respond to terrain.
+Do not terrain-warp the whole aqueduct and reintroduce the dip-then-climb
+failure. Slope drops are lined chutes, not large waterfalls. Retaining walls
+have openings at the terrace distribution chute.
+
+The connected assembly has one source and a directed feeder tree to every
+tile's highest inlet. Each tile distributes to lower shelves. Tests sample
+the full outer width of the feeder bed against the terraced surfaces and
+check water elevations for monotonic descent. These checks concern this
+source demonstration, not arbitrary native terrain or a hydraulic simulation.
+
+MODEL ORGANIZATION
+OBJ groups / GLB extras / per-model JSON identify crop surfaces, retaining
+walls, coping, channel beds/rims/water, arch piers/spandrels/intrados/decks,
+vegetation, and state-specific construction or repair props.
+Each BR2 has one World bone, complete rigid weights, UV-derived tangents and
+bitangents. BR2 and OBJ are Z-up. GLB applies a root rotation for standard
+Y-up viewers. Do not apply that GLB root transform twice when round-tripping.
+LOD1 reduces vegetation/frond and arch segmentation while preserving terrace
+boundaries and connector endpoints. These are authoring LODs; native automatic
+LOD selection is not configured.
+
+NATIVE CONVERSION AND LIMITS
+1. Inspect/import OBJ or GLB in a modeler and calibrate the normalized tile
+   scale against an actual native improvement. The binary GR2 meshes were not
+   decoded, so the triangle budgets are chosen design targets, not claimed
+   measurements of Firaxis's meshes.
+2. Import BR2 via the established Nexus Buddy workflow on a supported setup.
+   Bind the material/shader and DDS textures inside the native GR2 asset.
+   Listing a texture in FXSXML alone does not establish native material binding.
+3. Export GR2 and define FXSXML and landmark states. Fit farm surfaces to the
+   terrain separately from the rigid aqueducts. Validate normals, UV origin,
+   shadows, scale and source/connector elevations in Civ V.
+4. Implement/update the improvement placement and art-selection logic. The
+   current playable mod still restricts irrigated farms to flat desert and
+   uses normal Farm art. This source kit makes no changes to that behavior.
+
+No GR2 conversion, game installation, native dynamic adjacency, native terrain
+fitting, or live game testing was performed. The requested terrain family is
+modeled; universal terrain compatibility is not a property a static mesh alone
+can provide. No claim is made of a supported runtime API for arbitrary per-edge
+mesh assembly in unmodified Civ V.
+
+REBUILD
+Requires Python 3, NumPy and Pillow. No Blender installation is required to
+reproduce the sources, viewer, original atlas and review renders.
+In the repository:
+  python tools/build_irrigation_meshes.py
+  python tools/validate_irrigation_meshes.py
+From this kit:
+  python source/build_irrigation_meshes.py --output rebuilt
+  python source/validate_irrigation_meshes.py --output rebuilt
+Use --quick on the builder to skip static renders. Validation output is saved
+as validation.json. Package contents include the exact generator and validator.

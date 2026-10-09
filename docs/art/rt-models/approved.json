@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "art_revision": 3,
+  "approved_on": "2026-10-09",
+  "timezone": "America/New_York",
+  "approved_by": "user",
+  "approval_message": "These are approved.",
+  "scope": "All nine reviewed source models: early and industrial Caravansary with construction and pillaged states, Ministry of Coin, Irrigation Works, and Motorized Caravan.",
+  "review": "output/model-review/approved-art-alignment/index.html",
+  "limitations": "Design approval only. GR2 conversion, unit rigging, native scale/material checks and integration remain pending. No additional 2D art or unrelated assets are approved by this record.",
+  "additional_art_policy": "Additional icons/artwork require multiple options alongside actual Civ V references and user selection before integration.",
+  "models": {
+    "RT_Caravansary_Ancient": {
+      "label": "Caravansary \u00b7 roadside gateway",
+      "state": "Constructed",
+      "sha256": {
+        "RT_Caravansary_Ancient/RT_Caravansary_Ancient.obj": "c57d575501fd1407f8055138c25dabe0276c5bb4352da338f5583b377583ee4b",
+        "RT_Caravansary_Ancient/RT_Caravansary_Ancient.mtl": "e0e01b39df90fd66cb5079a69a66f7f6039f2303dbd971b39d88e8714cbf15ad",
+        "RT_Caravansary_Ancient/RT_Caravansary_Ancient.br2": "2a5389a1bdac985f30fc40b6fef9a69dc73ddeaddf45d73f3d94dda6e498ac3e",
+        "RT_Caravansary_Ancient/RT_Caravansary_Ancient.glb": "80b4ec8e3d9b1e74fb73196e0e23b5347e19f2db766bd0295c15dce94bc4cad3",
+        "RT_Caravansary_Ancient/RT_Caravansary_Ancient_Diffuse.png": "90ce23c70ffb831b2c76a2848db331dd353c3a3e9b36855b9debcd5d382891b9",
+        "RT_Caravansary_Ancient/RT_Caravansary_Ancient_Diffuse.dds": "7f2c38d0d0e58d3594257463eeaa124be114b02a7fee57074e1d1503a0cb79de",
+        "RT_Caravansary_Ancient/RT_Caravansary_Ancient_Normal.png": "062f640354005d901c4d1c379da1640815a8b20bed7441a3f4a9c0be279bb333",
+        "RT_Caravansary_Ancient/RT_Caravansary_Ancient_Normal.dds": "cc12bd7c6e2b6d9eb21e81072abdc84027557a482b229c7e240eb0e553f885b1",
+        "RT_Caravansary_Ancient/RT_Caravansary_Ancient_Specular.png": "ae70de8f9fa0a0ec595752d4ad28d60646996148f86373dcff95de6946a8c404",
+        "RT_Caravansary_Ancient/RT_Caravansary_Ancient_Specular.dds": "789d2cb684c4a254c8395f4d15713594a38036e2974d2821bd3b94461e44b7c9"
+      }
+    },
+    "RT_Caravansary_Ancient_UnderConstruction": {
+      "label": "Caravansary \u00b7 roadside gateway",
+      "state": "UnderConstruction",
+      "sha256": {
+        "RT_Caravansary_Ancient_UnderConstruction/RT_Caravansary_Ancient_UnderConstruction.obj": "19f67c99495c6fb8573fd563d464e34a00f382abc7590df64d678996f5ccb4e2",
+        "RT_Caravansary_Ancient_UnderConstruction/RT_Caravansary_Ancient_UnderConstruction.mtl": "0900c47c2e685e8de2af23b04354a97f1b15e727bf4f976ca41997db5b94ae81",
+        "RT_Caravansary_Ancient_UnderConstruction/RT_Caravansary_Ancient_UnderConstruction.br2": "43f884a371139c291811d875b1d12d863513a08957bc3d29f301ae6e080bba0f",
+        "RT_Caravansary_Ancient_UnderConstruction/RT_Caravansary_Ancient_UnderConstruction.glb": "1f9ca9ee0f5002ad0ca304e249a654a9eeddc9375ec7e6d92486c06216a4a420",
+        "RT_Caravansary_Ancient_UnderConstruction/RT_Caravansary_Ancient_UnderConstruction_Diffuse.png": "e6cab1c261164fedf5c25a126285518777abed179fedce62a33757a91bfd230d",
+        "RT_Caravansary_Ancient_UnderConstruction/RT_Caravansary_Ancient_UnderConstruction_Diffuse.dds": "9e485b5e28d5d633d145fcefeb00eb9de055746c33a060793d9b21d79ed343f8",
+        "RT_Caravansary_Ancient_UnderConstruction/RT_Caravansary_Ancient_UnderConstruction_Normal.png": "09d1eea8f3e1bb67aca89e500bbf3d943f18fae1aa342e7e4524bf5af7f47f52",
+        "RT_Caravansary_Ancient_UnderConstruction/RT_Caravansary_Ancient_UnderConstruction_Normal.dds": "aea4d0ef56eb030044eb761746458e3319ccfa4218d634e40b5b95f0eed83c7e",
+        "RT_Caravansary_Ancient_UnderConstruction/RT_Caravansary_Ancient_UnderConstruction_Specular.png": "a2e7b04ce47969c848946d39e092a5d2e450cc3c33e550e22eb0d1f830723e56",
+        "RT_Caravansary_Ancient_UnderConstruction/RT_Caravansary_Ancient_UnderConstruction_Specular.dds": "f13e8873cb16b990779ed80552ce10b92e52d536e1c78f683402e1e0dc842ae8"
+      }
+    },
+    "RT_Caravansary_Ancient_Pillaged": {
+      "label": "Caravansary \u00b7 roadside gateway",
+      "state": "Pillaged",
+      "sha256": {
+        "RT_Caravansary_Ancient_Pillaged/RT_Caravansary_Ancient_Pillaged.obj": "f54dd00dac0db76ef806e63ac184af804982da48522117614fdfb36e543c2f48",
+        "RT_Caravansary_Ancient_Pillaged/RT_Caravansary_Ancient_Pillaged.mtl": "3907a6e27174b57f46e7f1d2a8f42554c087fd5ab767d82ee09a27d887aceada",
+        "RT_Caravansary_Ancient_Pillaged/RT_Caravansary_Ancient_Pillaged.br2": "b7981e367e55874affc6137ba22ce1db3ea7ac036295fd67a50ec92365740022",
+        "RT_Caravansary_Ancient_Pillaged/RT_Caravansary_Ancient_Pillaged.glb": "2dbec94029e910fbb2d9e7d9fc0ee9b9fefba79bd49e7c53e2a316c0a4e7e779",
+        "RT_Caravansary_Ancient_Pillaged/RT_Caravansary_Ancient_Pillaged_Diffuse.png": "ce94cc6d4fb212c3699846d024e33c9a9f901c8c7638a0de25dd53fa6315fd5f",
+        "RT_Caravansary_Ancient_Pillaged/RT_Caravansary_Ancient_Pillaged_Diffuse.dds": "4716bdc9d013fafb2d88ce5ea8b274cb0d1411c90d4e0f52f346a6c96092939b",
+        "RT_Caravansary_Ancient_Pillaged/RT_Caravansary_Ancient_Pillaged_Normal.png": "a7abe57bb0bb24f1209c6b7e4ebb2ebc1072cfdcc941d40998dc3ef23ef2c325",
+        "RT_Caravansary_Ancient_Pillaged/RT_Caravansary_Ancient_Pillaged_Normal.dds": "37c6ac5ab0190f4e2c17ca32b95b93702fa8dbf9d03d545774061c19fa8a52af",
+        "RT_Caravansary_Ancient_Pillaged/RT_Caravansary_Ancient_Pillaged_Specular.png": "ecf385370fa746beeee778e4e285f80d29dd165e6e9ea9168d7d526b74e9d6df",
+        "RT_Caravansary_Ancient_Pillaged/RT_Caravansary_Ancient_Pillaged_Specular.dds": "0e16736d8962d4f8b9de9993e84fb8e818538800916773e625cb57f726f273ed"
+      }
+    },
+    "RT_Caravansary_Industrial": {
+      "label": "Caravansary \u00b7 industrial depot",
+      "state": "Constructed",
+      "sha256": {
+        "RT_Caravansary_Industrial/RT_Caravansary_Industrial.obj": "7b196158193cb8fb48d7832abe9a7dd6d8cd2fbe4ac6d283413b0ace6bd3692f",
+        "RT_Caravansary_Industrial/RT_Caravansary_Industrial.mtl": "9c707e17ad48fbf6cc8d14a6a03556e838dccce28dea50ae5d8e42c0850497d1",
+        "RT_Caravansary_Industrial/RT_Caravansary_Industrial.br2": "7aab4c08aa4e23ca4970751de6d490e99d809c23c60d1d0b5b01dc9693c7d60e",
+        "RT_Caravansary_Industrial/RT_Caravansary_Industrial.glb": "1a3332d2cd1bfa1ad7d0fe1bb249b9567658a76c325d93c60c200661f2f64007",
+        "RT_Caravansary_Industrial/RT_Caravansary_Industrial_Diffuse.png": "f17b05bf97047f958cd44e3f14004b01d1998654572e46a2ba9d2941f537c5ab",
+        "RT_Caravansary_Industrial/RT_Caravansary_Industrial_Diffuse.dds": "3a79f548be7d71abf79dd8d383b7a232117713aa648bdb9f6ff96c00d3166ea5",
+        "RT_Caravansary_Industrial/RT_Caravansary_Industrial_Normal.png": "5708061ee9de88b8e780f5f83cea73a293eac277bca78580f5109c89e4a91e29",
+        "RT_Caravansary_Industrial/RT_Caravansary_Industrial_Normal.dds": "3de68f4e861d3c9728388b85a801f1dfc6c7406e9bf8e620178504aa64501633",
+        "RT_Caravansary_Industrial/RT_Caravansary_Industrial_Specular.png": "f7e5bb24171d8567b19b3d032a1e54f7c13a9e2e21fc076fc29e0d2689bb3af7",
+        "RT_Caravansary_Industrial/RT_Caravansary_Industrial_Specular.dds": "a1501642b59cd2bbaa454e52b73f56161eefb5c4aa5ad8b38a72952f37e7c75c"
+      }
+    },
+    "RT_Caravansary_Industrial_UnderConstruction": {
+      "label": "Caravansary \u00b7 industrial depot",
+      "state": "UnderConstruction",
+      "sha256": {
+        "RT_Caravansary_Industrial_UnderConstruction/RT_Caravansary_Industrial_UnderConstruction.obj": "0cb44c2ebab27d143397b2a0723fcad0275dbb82402ba2ed3b5b8327a27cdd58",
+        "RT_Caravansary_Industrial_UnderConstruction/RT_Caravansary_Industrial_UnderConstruction.mtl": "b9c2e1742b6d1d9f482bb7bd8d91bacf42983c0e14e361d0a688f9f26a59591d",
+        "RT_Caravansary_Industrial_UnderConstruction/RT_Caravansary_Industrial_UnderConstruction.br2": "37814729525525f93c0d418a6016f086eed69c8a12b623b1ae5ac79cf72ca1ef",
+        "RT_Caravansary_Industrial_UnderConstruction/RT_Caravansary_Industrial_UnderConstruction.glb": "0d92e77529188c35019b027189b6037302f26ff51b79a2eb4fbc8031dddca676",
+        "RT_Caravansary_Industrial_UnderConstruction/RT_Caravansary_Industrial_UnderConstruction_Diffuse.png": "9989238d2fe1d91af882fd9929c96d8ec4ff713264484e9e8e4f11550536900d",
+        "RT_Caravansary_Industrial_UnderConstruction/RT_Caravansary_Industrial_UnderConstruction_Diffuse.dds": "772916791cf510b284f760452c68b65f4f8046f12973585a47a16e30f0f7eea8",
+        "RT_Caravansary_Industrial_UnderConstruction/RT_Caravansary_Industrial_UnderConstruction_Normal.png": "592ae7e2fcdc681dd895bc86552b0051906fa03a2f7f8fd4d344768dad71b480",
+        "RT_Caravansary_Industrial_UnderConstruction/RT_Caravansary_Industrial_UnderConstruction_Normal.dds": "60c6ac80ec854d64365ff004082ed6bc2ee51ad46ba587b5755ba6206fdddb8a",
+        "RT_Caravansary_Industrial_UnderConstruction/RT_Caravansary_Industrial_UnderConstruction_Specular.png": "a2e7b04ce47969c848946d39e092a5d2e450cc3c33e550e22eb0d1f830723e56",
+        "RT_Caravansary_Industrial_UnderConstruction/RT_Caravansary_Industrial_UnderConstruction_Specular.dds": "f13e8873cb16b990779ed80552ce10b92e52d536e1c78f683402e1e0dc842ae8"
+      }
+    },
+    "RT_Caravansary_Industrial_Pillaged": {
+      "label": "Caravansary \u00b7 industrial depot",
+      "state": "Pillaged",
+      "sha256": {
+        "RT_Caravansary_Industrial_Pillaged/RT_Caravansary_Industrial_Pillaged.obj": "6c83f413aab47c252dc82b5cbc6fdb7ecf7fa9c6ff4ac8e6e30a6eacf617707a",
+        "RT_Caravansary_Industrial_Pillaged/RT_Caravansary_Industrial_Pillaged.mtl": "056d9cd5b0143b8ed626381e85cc37eb9eee657ab098e49424d1e3c65ac0368f",
+        "RT_Caravansary_Industrial_Pillaged/RT_Caravansary_Industrial_Pillaged.br2": "076a121236f0b4c98e269e948281da54826f4f3a42e7dbbf412bf4122d39bdb4",
+        "RT_Caravansary_Industrial_Pillaged/RT_Caravansary_Industrial_Pillaged.glb": "c51c3242b5344cd18d96c7b2e6a4b37ab447306242485e157690ebe44cdd67b3",
+        "RT_Caravansary_Industrial_Pillaged/RT_Caravansary_Industrial_Pillaged_Diffuse.png": "16c7b317bb9aa3f138b4e5acfca928d7564881dca0541079e1e13d22d9083472",
+        "RT_Caravansary_Industrial_Pillaged/RT_Caravansary_Industrial_Pillaged_Diffuse.dds": "d68c378f12d0ef1f953e9f5577f27b2066ad4d2fca1030c1c97a313d90a3e5a3",
+        "RT_Caravansary_Industrial_Pillaged/RT_Caravansary_Industrial_Pillaged_Normal.png": "265caf02faa16dd57e7f151d4a012c0f24dfe4a0bb915f909e70bc2a09fdca5f",
+        "RT_Caravansary_Industrial_Pillaged/RT_Caravansary_Industrial_Pillaged_Normal.dds": "93e4d7277e47790bc717ce2a3b1f3ef57660e285041755e0550a18ba5803a5a6",
+        "RT_Caravansary_Industrial_Pillaged/RT_Caravansary_Industrial_Pillaged_Specular.png": "7d8b585f984f8ff298c19a4bf342a503051770654e06113ade524e00cd54f35b",
+        "RT_Caravansary_Industrial_Pillaged/RT_Caravansary_Industrial_Pillaged_Specular.dds": "2914c6fe172cfb2156ffef96de49186f934d897fdd81bb6e06bcd4a0eb16078e"
+      }
+    },
+    "RT_MinistryOfCoin": {
+      "label": "Ministry of Coin",
+      "state": "Constructed",
+      "sha256": {
+        "RT_MinistryOfCoin/RT_MinistryOfCoin.obj": "b6ff14ce5d1ac52cf4e9bc2adbb5fe118b2383c9abf1f5ebf652ef4f63bf93b5",
+        "RT_MinistryOfCoin/RT_MinistryOfCoin.mtl": "d8775607b70b3132e6f20f9e42be94af66c94776362d2729ec443deae926136d",
+        "RT_MinistryOfCoin/RT_MinistryOfCoin.br2": "792de4c84a61199d858e9fd6bfa3ae51e083104003750d82f7200f6a9c8640c4",
+        "RT_MinistryOfCoin/RT_MinistryOfCoin.glb": "532dd7e3a02014755314d8789015af7a19277be80dea13ec2437761317acebf6",
+        "RT_MinistryOfCoin/RT_MinistryOfCoin_Diffuse.png": "ed7be23f002823419087d8afbb20a372c06996dcf787b85171bf563c1be6dcd1",
+        "RT_MinistryOfCoin/RT_MinistryOfCoin_Diffuse.dds": "8a9030e044818742e53d6bf4e7bdf6ef426bd6b510d38563bf8cc34d5e7c7d41",
+        "RT_MinistryOfCoin/RT_MinistryOfCoin_Normal.png": "ea0c4e1f886ab1b518b9ab100e59f01f12e9367cee374d966d0e48fd2b4b676d",
+        "RT_MinistryOfCoin/RT_MinistryOfCoin_Normal.dds": "f51dbda2b1be9d20316b26e0a30d79d4acd6569501adabe257fdcf2b710815bc",
+        "RT_MinistryOfCoin/RT_MinistryOfCoin_Specular.png": "71c72cfde7088be561d8e6a91927757c47c177134ca5db457bb088d14ab2eb08",
+        "RT_MinistryOfCoin/RT_MinistryOfCoin_Specular.dds": "2a51489646495bd0436a2d898498924453c5effd88634754d2ef69c0be796bd3"
+      }
+    },
+    "RT_IrrigationWorks": {
+      "label": "Irrigation Works",
+      "state": "Constructed",
+      "sha256": {
+        "RT_IrrigationWorks/RT_IrrigationWorks.obj": "94fcc858fe0065955e52a0637249339900018088e20f69e40bb7c49978f174c6",
+        "RT_IrrigationWorks/RT_IrrigationWorks.mtl": "852ab0b5807b7e5d1e27659eb4fb63a5b8443096cc4412115bdc89905229f878",
+        "RT_IrrigationWorks/RT_IrrigationWorks.br2": "f4c985e76d569f858472743f55c06c23a218bf167fb1898fbcaad61c40279447",
+        "RT_IrrigationWorks/RT_IrrigationWorks.glb": "5a550a50a9d7fdfa734bc01e6fbc48c5042a4a1705f40d806df477456d8c8faa",
+        "RT_IrrigationWorks/RT_IrrigationWorks_Diffuse.png": "ba7a6c0f5399298fe8890bcf4f0f4f5627600cea054bb778bfc7a0eb254495b5",
+        "RT_IrrigationWorks/RT_IrrigationWorks_Diffuse.dds": "b9d50b17931f18f94699cbf587e2c27e167e7a2317160284f1270a47661e5660",
+        "RT_IrrigationWorks/RT_IrrigationWorks_Normal.png": "862bb6ab5abc7d7a7436e481c09acb674e3939a9a512cd4b8714b493b1ffc72d",
+        "RT_IrrigationWorks/RT_IrrigationWorks_Normal.dds": "b0fa1bf513a64914914c3ccc8dcea199f4940abf83c16968b25c42300e694155",
+        "RT_IrrigationWorks/RT_IrrigationWorks_Specular.png": "24358659d2f44f20a2bf9955871262411880ee9b8db40cec5da8eb8feb0fbfcf",
+        "RT_IrrigationWorks/RT_IrrigationWorks_Specular.dds": "492baeac6db61c83ee800a4fd8bfaf08bbe3ca2a723df8a6b9d4a5c0156930b1"
+      }
+    },
+    "RT_MotorizedCaravan": {
+      "label": "Motorized Caravan",
+      "state": "Constructed",
+      "sha256": {
+        "RT_MotorizedCaravan/RT_MotorizedCaravan.obj": "b72af1aea214a49afecb62cba6103649929c239d7903b470842c06661cfa9229",
+        "RT_MotorizedCaravan/RT_MotorizedCaravan.mtl": "fb6a500e63568ebdb92477b4d2f4780343f8169cd27d5dfe360a8fbf9fd228cf",
+        "RT_MotorizedCaravan/RT_MotorizedCaravan.br2": "a1dc5852a54987af9be97ef89c14580a5e039b01ba34efba859a47227ebfa1b8",
+        "RT_MotorizedCaravan/RT_MotorizedCaravan.glb": "456b19ba11037b2b6c671f97a3cb0d64ed18ccf55115dce14e1aee35654c4d22",
+        "RT_MotorizedCaravan/RT_MotorizedCaravan_Diffuse.png": "7bd9afcb4fc006a767e432d3e5675be4267f4b10b4c14b2c3f190a7bd6f6489f",
+        "RT_MotorizedCaravan/RT_MotorizedCaravan_Diffuse.dds": "ad97e933fdb46217620c9ea049ebec92dda562e22c7eee1ff20124e81b6d426f",
+        "RT_MotorizedCaravan/RT_MotorizedCaravan_Normal.png": "bb08e1305f6bd82851b78deffb9b5771935e414f2670adbd6a554891cf672c1b",
+        "RT_MotorizedCaravan/RT_MotorizedCaravan_Normal.dds": "2f2d66e2420d6cab0da9cb0f3772e60c5845b6eb32e62280030e762c31227066",
+        "RT_MotorizedCaravan/RT_MotorizedCaravan_Specular.png": "8f24cfe54f9a7df3767e782b4acbc46939dbe8e1e4528c72974d46982da92052",
+        "RT_MotorizedCaravan/RT_MotorizedCaravan_Specular.dds": "684d5ad384895a97c1310da1b088b004f62cde46d0b97bff6c91619500325f20"
+      }
+    }
+  }
+}

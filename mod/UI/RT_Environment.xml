@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Context Name="RT_Environment" ColorSet="Beige_Black" Font="TwCenMT16" FontStyle="Shadow">
+  <Instance Name="RTTradeRow">
+    <Grid ID="Root" Size="780,112" Anchor="L,T" Style="Grid9DetailFive140" Padding="8,8">
+      <Label ID="Title" Anchor="L,T" Offset="8,6" Font="TwCenMT18" WrapWidth="585"/>
+      <Label ID="Detail" Anchor="L,T" Offset="8,29" Font="TwCenMT16" WrapWidth="585"/>
+      <GridButton ID="Action" Anchor="R,T" Offset="10,12" Size="155,32" Style="BaseButton"><Label ID="ActionLabel" Anchor="C,C"/></GridButton>
+      <GridButton ID="Locate" Anchor="R,B" Offset="10,12" Size="155,28" Style="BaseButton"><Label Anchor="C,C" String="Locate"/></GridButton>
+    </Grid>
+  </Instance>
+  <Grid ID="ExposurePanel" Anchor="C,T" Offset="0,64" Size="350,66" Style="Grid9DetailFive140" Padding="12,8" Hidden="1" ConsumeMouse="0">
+    <Label ID="ExposureTitle" Anchor="C,T" Offset="0,7" Font="TwCenMT16" String="TXT_KEY_RT_TITLE"/>
+    <Label ID="ExposureStatus" Anchor="C,T" Offset="0,28" Font="TwCenMT16"/>
+  </Grid>
+  <Grid ID="ConstructionPanel" Anchor="C,T" Offset="0,64" Size="350,176" Style="Grid9DetailFive140" Padding="12,8" Hidden="1">
+    <GridButton ID="ConstructionButton" Anchor="C,T" Offset="0,10" Size="310,36" Style="BaseButton">
+      <Image Anchor="L,C" Offset="6,0" Size="32,32" Texture="RT_CaravansaryAction32.dds" ConsumeMouse="0"/>
+      <Label ID="ConstructionButtonLabel" Anchor="C,C" Offset="12,0" Font="TwCenMT16" String="TXT_KEY_RT_BUILD_RELIEF_STATION"/>
+    </GridButton>
+    <Label ID="ConstructionProgress" Anchor="C,T" Offset="0,54" Font="TwCenMT16"/>
+    <GridButton ID="IrrigationButton" Anchor="C,T" Offset="0,86" Size="310,36" Style="BaseButton">
+      <Label ID="IrrigationButtonLabel" Anchor="C,C" Font="TwCenMT16" String="TXT_KEY_RT_BUILD_IRRIGATED_FARM"/>
+    </GridButton>
+    <Label ID="IrrigationProgress" Anchor="C,T" Offset="0,132" Font="TwCenMT16"/>
+  </Grid>
+  <GridButton ID="TradeOpen" Anchor="R,T" Offset="14,68" Size="180,32" Style="BaseButton"><Label Anchor="C,C" String="Trade and logistics"/></GridButton>
+  <Grid ID="TradePanel" Anchor="C,C" Size="840,610" Style="Grid9DetailFive140" Hidden="1" ConsumeMouse="1">
+    <Label ID="TradeTitle" Anchor="C,T" Offset="0,18" Font="TwCenMT22"/>
+    <GridButton ID="TradePlanTab" Anchor="L,T" Offset="24,55" Size="185,32" Style="BaseButton"><Label Anchor="C,C" String="Plan routes"/></GridButton>
+    <GridButton ID="TradeAgreementTab" Anchor="L,T" Offset="222,55" Size="185,32" Style="BaseButton"><Label Anchor="C,C" String="Agreements"/></GridButton>
+    <GridButton ID="TradeRoutesTab" Anchor="L,T" Offset="420,55" Size="185,32" Style="BaseButton"><Label Anchor="C,C" String="Active routes"/></GridButton>
+    <GridButton ID="TradeAccountsTab" Anchor="L,T" Offset="618,55" Size="185,32" Style="BaseButton"><Label Anchor="C,C" String="Accounts"/></GridButton>
+    <Label ID="TradeStatus" Anchor="L,T" Offset="25,96" Font="TwCenMT16" WrapWidth="780"/>
+    <ScrollPanel ID="TradeScroll" Anchor="L,T" Offset="18,128" Size="806,418" Vertical="1" AutoScrollBar="0">
+      <ScrollBar Style="VertSlider" Length="375" Offset="0,18" Anchor="R,T"/>
+      <UpButton Style="ScrollBarUp" Anchor="R,T"/>
+      <DownButton Style="ScrollBarDown" Anchor="R,B"/>
+      <Stack ID="TradeRows" Anchor="L,T" Offset="6,0" StackGrowth="Bottom" Padding="4"/>
+    </ScrollPanel>
+    <GridButton ID="TradeClose" Anchor="C,B" Offset="0,18" Size="180,32" Style="BaseButton"><Label Anchor="C,C" String="Close"/></GridButton>
+  </Grid>
+</Context>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Context Name="RO_UI" ColorSet="Beige_Black" Font="TwCenMT16" FontStyle="Shadow">
+  <Grid ID="ConstructionPanel" Anchor="C,T" Offset="0,64" Size="350,95" Style="Grid9DetailFive140" Hidden="1">
+    <GridButton ID="OutpostButton" Anchor="C,T" Offset="0,10" Size="310,36" Style="BaseButton"><Label ID="OutpostButtonLabel" Anchor="C,C"/></GridButton>
+    <Label ID="OutpostProgress" Anchor="C,T" Offset="0,54"/>
+  </Grid>
+  <GridButton ID="Manage" Anchor="R,T" Offset="14,108" Size="180,32" Style="BaseButton"><Label Anchor="C,C" String="TXT_KEY_RO_MANAGE"/></GridButton>
+  <Instance Name="ROOverviewRow">
+    <Grid ID="Root" Anchor="L,T" Size="740,88" Style="Grid9DetailFive140">
+      <Label ID="Title" Anchor="L,T" Offset="12,9" Font="TwCenMT18" WrapWidth="560"/>
+      <Label ID="Detail" Anchor="L,T" Offset="12,34" WrapWidth="560"/>
+      <GridButton ID="SiteManage" Anchor="R,T" Offset="12,10" Size="130,30" Style="BaseButton"><Label Anchor="C,C" String="TXT_KEY_RO_MANAGE_SITE"/></GridButton>
+      <GridButton ID="Locate" Anchor="R,B" Offset="12,10" Size="130,30" Style="BaseButton"><Label Anchor="C,C" String="TXT_KEY_RO_LOCATE"/></GridButton>
+    </Grid>
+  </Instance>
+  <Grid ID="OverviewPanel" Anchor="C,C" Size="800,560" Style="Grid9DetailFive140" ConsumeMouse="1" Hidden="1">
+    <Label Anchor="C,T" Offset="0,18" Font="TwCenMT22" String="TXT_KEY_RO_MANAGE"/>
+    <Label ID="OverviewSummary" Anchor="C,T" Offset="0,52" WrapWidth="750"/>
+    <ScrollPanel ID="OverviewScroll" Anchor="L,T" Offset="20,86" Size="760,410" Vertical="1" AutoScrollBar="0">
+      <ScrollBar Style="VertSlider" Length="367" Offset="0,18" Anchor="R,T"/>
+      <UpButton Style="ScrollBarUp" Anchor="R,T"/><DownButton Style="ScrollBarDown" Anchor="R,B"/>
+      <Stack ID="OverviewRows" Anchor="L,T" StackGrowth="Bottom" Padding="4"/>
+    </ScrollPanel>
+    <GridButton ID="OverviewClose" Anchor="C,B" Offset="0,16" Size="180,30" Style="BaseButton"><Label Anchor="C,C" String="TXT_KEY_RO_CLOSE"/></GridButton>
+  </Grid>
+  <Grid ID="OutpostPanel" Anchor="R,T" Offset="14,150" Size="350,445" Style="Grid9DetailFive140" Hidden="1">
+    <Label Anchor="C,T" Offset="0,10" String="TXT_KEY_RT_RESOURCE_OUTPOST" Font="TwCenMT18"/>
+    <Label ID="OutpostStatus" Anchor="C,T" Offset="0,40" WrapWidth="320"/>
+    <Label ID="Deposit" Anchor="C,T" Offset="0,82" WrapWidth="320"/>
+    <Label ID="Upkeep" Anchor="C,T" Offset="0,108"/>
+    <GridButton ID="Previous" Anchor="L,T" Offset="15,137" Size="65,30" Style="BaseButton"><Label Anchor="C,C" String="TXT_KEY_RO_PREVIOUS"/></GridButton>
+    <GridButton ID="Locate" Anchor="C,T" Offset="0,137" Size="155,30" Style="BaseButton"><Label Anchor="C,C" String="TXT_KEY_RO_LOCATE"/></GridButton>
+    <GridButton ID="Next" Anchor="R,T" Offset="15,137" Size="65,30" Style="BaseButton"><Label Anchor="C,C" String="TXT_KEY_RO_NEXT"/></GridButton>
+    <Label ID="Impact" Anchor="L,T" Offset="20,182" WrapWidth="310"/>
+    <GridButton ID="Abandon" Anchor="C,T" Offset="0,320" Size="310,30" Style="BaseButton"><Label ID="AbandonLabel" Anchor="C,C"/></GridButton>
+    <GridButton ID="Convert" Anchor="C,T" Offset="0,355" Size="310,30" Style="BaseButton"><Label ID="ConvertLabel" Anchor="C,C"/></GridButton>
+    <GridButton ID="Back" Anchor="L,B" Offset="20,15" Size="170,30" Style="BaseButton"><Label Anchor="C,C" String="TXT_KEY_RO_BACK"/></GridButton>
+    <GridButton ID="Close" Anchor="R,B" Offset="20,15" Size="100,30" Style="BaseButton"><Label Anchor="C,C" String="TXT_KEY_RO_CLOSE"/></GridButton>
+  </Grid>
+</Context>

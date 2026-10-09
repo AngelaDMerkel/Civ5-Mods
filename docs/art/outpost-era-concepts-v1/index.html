@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Resource Outposts — Era Concept Review</title>
+<style>
+:root{--ink:#292d27;--muted:#676d62;--paper:#f3f1e9;--line:#d6d8cb;--green:#365642;--white:#fffefa}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:78px}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.5 system-ui,-apple-system,sans-serif}
+header,main,footer{max-width:1260px;margin:auto;padding:0 36px}header{padding-top:56px;padding-bottom:32px}
+.eyebrow,.option{font-size:11px;letter-spacing:.16em;font-weight:700;color:var(--green)}h1{font:clamp(36px,5vw,62px)/1.08 Georgia,serif;letter-spacing:-.035em;margin:15px 0 18px}header p{max-width:760px;color:var(--muted);margin:0}.subline{font-size:13px;margin-top:12px;color:var(--muted)}
+nav{position:sticky;top:0;z-index:3;background:rgba(243,241,233,.97);border-block:1px solid var(--line);backdrop-filter:blur(12px)}
+.nav-inner{max-width:1260px;margin:auto;padding:13px 36px;display:flex;gap:22px;overflow:auto}nav a{color:var(--ink);font-size:13px;text-decoration:none;white-space:nowrap}nav a:hover{text-decoration:underline}
+section{padding:36px 0 12px}.era-title{display:flex;gap:17px;align-items:baseline;margin-bottom:18px}.number{font:italic 24px Georgia,serif;color:#8c927e}h2{font:30px/1.2 Georgia,serif;margin:0}.era-title p{margin:5px 0 0;color:var(--muted);font-size:14px}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:20px}.concept{background:var(--white);border:1px solid var(--line);border-radius:3px;overflow:hidden}.concept.selected{outline:2px solid var(--green);outline-offset:1px}
+button{font:inherit;cursor:pointer}.image-button{display:block;padding:0;width:100%;border:0;background:#faf9f6;cursor:zoom-in}.image-button img{display:block;width:100%;height:auto;aspect-ratio:1.13;object-fit:contain}
+.caption{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:20px;border-top:1px solid var(--line)}h3{font-size:18px;font-weight:550;line-height:1.3;margin:5px 0 0}.option{font-size:10px}
+.pick{display:flex;align-items:center;gap:7px;white-space:nowrap;font-size:13px;cursor:pointer}.pick input{accent-color:var(--green);width:16px;height:16px}
+.review{margin:36px 0 14px;padding:26px;border:1px solid var(--line);background:#e9eddf}.review p{color:var(--muted);font-size:14px}textarea{width:100%;min-height:104px;border:1px solid #b7c0ae;border-radius:3px;background:var(--white);padding:14px;font:14px/1.7 system-ui;color:var(--ink);resize:vertical}.actions{display:flex;gap:10px;align-items:center;margin-top:12px;flex-wrap:wrap}.action{background:var(--green);color:white;border:1px solid var(--green);padding:10px 15px;border-radius:3px;font-size:13px}.secondary{background:transparent;color:var(--green)}#status{font-size:13px;color:var(--green)}
+footer{padding-top:14px;padding-bottom:42px;color:var(--muted);font-size:13px}footer p{max-width:950px}footer a{color:var(--green)}button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #9a773b;outline-offset:4px}
+dialog{max-width:96vw;width:1050px;max-height:96vh;padding:14px;border:1px solid var(--line);background:var(--white);border-radius:5px}dialog::backdrop{background:#1b211ccc}dialog img{width:100%;height:75vh;object-fit:contain}dialog .dialog-head{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:0 6px 10px}dialog h2{font-size:22px}.close{padding:7px 14px;border:1px solid var(--line);background:var(--paper);border-radius:3px}
+@media(max-width:700px){header,main,footer{padding-left:18px;padding-right:18px}header{padding-top:32px}.nav-inner{padding-left:18px;padding-right:18px;gap:17px}.pair{grid-template-columns:1fr}.caption{padding:16px}section{padding-top:28px}}
+@media print{nav,.pick,.review,.subline{display:none}header{padding-top:0}section{break-inside:avoid;padding:12px 0}h1{font-size:32px}.pair{grid-template-columns:1fr 1fr}.image-button img{height:240px}.caption{padding:10px}}
+</style>
+</head>
+<body>
+<header><div class="eyebrow">RESOURCE OUTPOSTS / CONCEPT REVIEW 01</div><h1>Eight eras.<br>Sixteen directions.</h1>
+<p>Your approved designs are marked below: Ancient A, Classical B, Medieval B, Renaissance A, Industrial B, Modern A, Atomic A, Information A.</p>
+<div class="subline">Approved 9 October 2026 • Garrison space • No connecting road • <a href="approved.json">Saved design selections</a></div></header>
+<nav aria-label="Era navigation"><div class="nav-inner"><a href="#ancient">Ancient</a><a href="#classical">Classical</a><a href="#medieval">Medieval</a><a href="#renaissance">Renaissance</a><a href="#industrial">Industrial</a><a href="#modern">Modern</a><a href="#atomic">Atomic</a><a href="#information">Information</a><a href="#selections">Selections</a></div></nav>
+<main><section id="ancient" aria-labelledby="era-0">
+  <div class="era-title"><span class="number">01</span><div><h2 id="era-0">Ancient</h2><p>Timber, earth and a protected store.</p></div></div>
+  <div class="pair">
+    <article class="concept" data-id="01-ancient-a">
+      <button class="image-button" data-enlarge="01-ancient-a" aria-label="Enlarge Ancient A: Timber Watchpost"><img src="01-ancient-a.png" alt="Ancient option A: Timber Watchpost, isometric outpost concept" loading="eager" width="960" height="840"></button>
+      <div class="caption"><div><span class="option">OPTION A</span><h3>Timber Watchpost</h3></div><label class="pick"><input type="radio" name="Ancient" value="A" data-id="01-ancient-a"><span>Choose A</span></label></div>
+    </article>
+    <article class="concept" data-id="01-ancient-b">
+      <button class="image-button" data-enlarge="01-ancient-b" aria-label="Enlarge Ancient B: Earthwork Redoubt"><img src="01-ancient-b.png" alt="Ancient option B: Earthwork Redoubt, isometric outpost concept" loading="eager" width="960" height="840"></button>
+      <div class="caption"><div><span class="option">OPTION B</span><h3>Earthwork Redoubt</h3></div><label class="pick"><input type="radio" name="Ancient" value="B" data-id="01-ancient-b"><span>Choose B</span></label></div>
+    </article></div>
+</section><section id="classical" aria-labelledby="era-1">
+  <div class="era-title"><span class="number">02</span><div><h2 id="era-1">Classical</h2><p>Cut stone, tiled roofs and frontier masonry.</p></div></div>
+  <div class="pair">
+    <article class="concept" data-id="02-classical-a">
+      <button class="image-button" data-enlarge="02-classical-a" aria-label="Enlarge Classical A: Stone Signal Post"><img src="02-classical-a.png" alt="Classical option A: Stone Signal Post, isometric outpost concept" loading="lazy" width="960" height="840"></button>
+      <div class="caption"><div><span class="option">OPTION A</span><h3>Stone Signal Post</h3></div><label class="pick"><input type="radio" name="Classical" value="A" data-id="02-classical-a"><span>Choose A</span></label></div>
+    </article>
+    <article class="concept" data-id="02-classical-b">
+      <button class="image-button" data-enlarge="02-classical-b" aria-label="Enlarge Classical B: Frontier Fortlet"><img src="02-classical-b.png" alt="Classical option B: Frontier Fortlet, isometric outpost concept" loading="lazy" width="960" height="840"></button>
+      <div class="caption"><div><span class="option">OPTION B</span><h3>Frontier Fortlet</h3></div><label class="pick"><input type="radio" name="Classical" value="B" data-id="02-classical-b"><span>Choose B</span></label></div>
+    </article></div>
+</section><section id="medieval" aria-labelledby="era-2">
+  <div class="era-title"><span class="number">03</span><div><h2 id="era-2">Medieval</h2><p>Stone towers and enclosed defensive courts.</p></div></div>
+  <div class="pair">
+    <article class="concept" data-id="03-medieval-a">
+      <button class="image-button" data-enlarge="03-medieval-a" aria-label="Enlarge Medieval A: Round Keep"><img src="03-medieval-a.png" alt="Medieval option A: Round Keep, isometric outpost concept" loading="lazy" width="960" height="840"></button>
+      <div class="caption"><div><span class="option">OPTION A</span><h3>Round Keep</h3></div><label class="pick"><input type="radio" name="Medieval" value="A" data-id="03-medieval-a"><span>Choose A</span></label></div>
+    </article>
+    <article class="concept" data-id="03-medieval-b">
+      <button class="image-button" data-enlarge="03-medieval-b" aria-label="Enlarge Medieval B: Fortified Courtyard"><img src="03-medieval-b.png" alt="Medieval option B: Fortified Courtyard, isometric outpost concept" loading="lazy" width="960" height="840"></button>
+      <div class="caption"><div><span class="option">OPTION B</span><h3>Fortified Courtyard</h3></div><label class="pick"><input type="radio" name="Medieval" value="B" data-id="03-medieval-b"><span>Choose B</span></label></div>
+    </article></div>
+</section><section id="renaissance" aria-labelledby="era-3">
+  <div class="era-title"><span class="number">04</span><div><h2 id="era-3">Renaissance</h2><p>Angled ramparts and early gunpowder defenses.</p></div></div>
+  <div class="pair">
+    <article class="concept" data-id="04-renaissance-a">
+      <button class="image-button" data-enlarge="04-renaissance-a" aria-label="Enlarge Renaissance A: Bastioned Watchtower"><img src="04-renaissance-a.png" alt="Renaissance option A: Bastioned Watchtower, isometric outpost concept" loading="lazy" width="960" height="840"></button>
+      <div class="caption"><div><span class="option">OPTION A</span><h3>Bastioned Watchtower</h3></div><label class="pick"><input type="radio" name="Renaissance" value="A" data-id="04-renaissance-a"><span>Choose A</span></label></div>
+    </article>
+    <article class="concept" data-id="04-renaissance-b">
+      <button class="image-button" data-enlarge="04-renaissance-b" aria-label="Enlarge Renaissance B: Star Redoubt"><img src="04-renaissance-b.png" alt="Renaissance option B: Star Redoubt, isometric outpost concept" loading="lazy" width="960" height="840"></button>
+      <div class="caption"><div><span class="option">OPTION B</span><h3>Star Redoubt</h3></div><label class="pick"><input type="radio" name="Renaissance" value="B" data-id="04-renaissance-b"><span>Choose B</span></label></div>
+    </article></div>
+</section><section id="industrial" aria-labelledby="era-4">
+  <div class="era-title"><span class="number">05</span><div><h2 id="era-4">Industrial</h2><p>Brick, iron and mechanical signaling.</p></div></div>
+  <div class="pair">
+    <article class="concept" data-id="05-industrial-a">
+      <button class="image-button" data-enlarge="05-industrial-a" aria-label="Enlarge Industrial A: Iron Signal Tower"><img src="05-industrial-a.png" alt="Industrial option A: Iron Signal Tower, isometric outpost concept" loading="lazy" width="960" height="840"></button>
+      <div class="caption"><div><span class="option">OPTION A</span><h3>Iron Signal Tower</h3></div><label class="pick"><input type="radio" name="Industrial" value="A" data-id="05-industrial-a"><span>Choose A</span></label></div>
+    </article>
+    <article class="concept" data-id="05-industrial-b">
+      <button class="image-button" data-enlarge="05-industrial-b" aria-label="Enlarge Industrial B: Brick Blockhouse"><img src="05-industrial-b.png" alt="Industrial option B: Brick Blockhouse, isometric outpost concept" loading="lazy" width="960" height="840"></button>
+      <div class="caption"><div><span class="option">OPTION B</span><h3>Brick Blockhouse</h3></div><label class="pick"><input type="radio" name="Industrial" value="B" data-id="05-industrial-b"><span>Choose B</span></label></div>
+    </article></div>
+</section><section id="modern" aria-labelledby="era-5">
+  <div class="era-title"><span class="number">06</span><div><h2 id="era-5">Modern</h2><p>Concrete, field shelters and radio.</p></div></div>
+  <div class="pair">
+    <article class="concept" data-id="06-modern-a">
+      <button class="image-button" data-enlarge="06-modern-a" aria-label="Enlarge Modern A: Radio Watchpost"><img src="06-modern-a.png" alt="Modern option A: Radio Watchpost, isometric outpost concept" loading="lazy" width="960" height="840"></button>
+      <div class="caption"><div><span class="option">OPTION A</span><h3>Radio Watchpost</h3></div><label class="pick"><input type="radio" name="Modern" value="A" data-id="06-modern-a"><span>Choose A</span></label></div>
+    </article>
+    <article class="concept" data-id="06-modern-b">
+      <button class="image-button" data-enlarge="06-modern-b" aria-label="Enlarge Modern B: Concrete Field Fort"><img src="06-modern-b.png" alt="Modern option B: Concrete Field Fort, isometric outpost concept" loading="lazy" width="960" height="840"></button>
+      <div class="caption"><div><span class="option">OPTION B</span><h3>Concrete Field Fort</h3></div><label class="pick"><input type="radio" name="Modern" value="B" data-id="06-modern-b"><span>Choose B</span></label></div>
+    </article></div>
+</section><section id="atomic" aria-labelledby="era-6">
+  <div class="era-title"><span class="number">07</span><div><h2 id="era-6">Atomic</h2><p>Radar, prefabrication and hardened shelters.</p></div></div>
+  <div class="pair">
+    <article class="concept" data-id="07-atomic-a">
+      <button class="image-button" data-enlarge="07-atomic-a" aria-label="Enlarge Atomic A: Radar Sentry Post"><img src="07-atomic-a.png" alt="Atomic option A: Radar Sentry Post, isometric outpost concept" loading="lazy" width="960" height="840"></button>
+      <div class="caption"><div><span class="option">OPTION A</span><h3>Radar Sentry Post</h3></div><label class="pick"><input type="radio" name="Atomic" value="A" data-id="07-atomic-a"><span>Choose A</span></label></div>
+    </article>
+    <article class="concept" data-id="07-atomic-b">
+      <button class="image-button" data-enlarge="07-atomic-b" aria-label="Enlarge Atomic B: Hardened Field Station"><img src="07-atomic-b.png" alt="Atomic option B: Hardened Field Station, isometric outpost concept" loading="lazy" width="960" height="840"></button>
+      <div class="caption"><div><span class="option">OPTION B</span><h3>Hardened Field Station</h3></div><label class="pick"><input type="radio" name="Atomic" value="B" data-id="07-atomic-b"><span>Choose B</span></label></div>
+    </article></div>
+</section><section id="information" aria-labelledby="era-7">
+  <div class="era-title"><span class="number">08</span><div><h2 id="era-7">Information</h2><p>Modular buildings, sensors and local power.</p></div></div>
+  <div class="pair">
+    <article class="concept" data-id="08-information-a">
+      <button class="image-button" data-enlarge="08-information-a" aria-label="Enlarge Information A: Sensor Mast Outpost"><img src="08-information-a.png" alt="Information option A: Sensor Mast Outpost, isometric outpost concept" loading="lazy" width="960" height="840"></button>
+      <div class="caption"><div><span class="option">OPTION A</span><h3>Sensor Mast Outpost</h3></div><label class="pick"><input type="radio" name="Information" value="A" data-id="08-information-a"><span>Choose A</span></label></div>
+    </article>
+    <article class="concept" data-id="08-information-b">
+      <button class="image-button" data-enlarge="08-information-b" aria-label="Enlarge Information B: Modular Operations Post"><img src="08-information-b.png" alt="Information option B: Modular Operations Post, isometric outpost concept" loading="lazy" width="960" height="840"></button>
+      <div class="caption"><div><span class="option">OPTION B</span><h3>Modular Operations Post</h3></div><label class="pick"><input type="radio" name="Information" value="B" data-id="08-information-b"><span>Choose B</span></label></div>
+    </article></div>
+</section>
+<section class="review" id="selections" aria-labelledby="selection-heading"><h2 id="selection-heading">Your era choices</h2><p>Selections stay in this browser where storage is available. Copy the summary back into the chat when ready; it does not submit automatically.</p><textarea id="summary" readonly aria-label="Selected options"></textarea><div class="actions"><button class="action" id="copy">Copy selections</button><button class="action secondary" id="clear">Clear selections</button><span id="status" role="status" aria-live="polite"></span></div></section>
+</main>
+<footer><p>These are generated concept illustrations, not finished game meshes or in-game screenshots. The terrain plinths are presentation aids. Production will simplify fine details, fit the game’s tile and unit scale, and blend the structures into terrain. Antennas, radar and solar equipment are visual details; they do not add gameplay requirements.</p><p>Created with the built-in image generation tool. <a href="prompts.json">View the complete prompt set and image manifest.</a></p></footer>
+<dialog id="viewer"><div class="dialog-head"><h2 id="viewer-title"></h2><button class="close" id="close">Close</button></div><img id="viewer-image" alt=""></dialog>
+<script>
+const concepts=[{"id":"01-ancient-a","era":"Ancient","option":"A","name":"Timber Watchpost","filename":"01-ancient-a.png"},{"id":"01-ancient-b","era":"Ancient","option":"B","name":"Earthwork Redoubt","filename":"01-ancient-b.png"},{"id":"02-classical-a","era":"Classical","option":"A","name":"Stone Signal Post","filename":"02-classical-a.png"},{"id":"02-classical-b","era":"Classical","option":"B","name":"Frontier Fortlet","filename":"02-classical-b.png"},{"id":"03-medieval-a","era":"Medieval","option":"A","name":"Round Keep","filename":"03-medieval-a.png"},{"id":"03-medieval-b","era":"Medieval","option":"B","name":"Fortified Courtyard","filename":"03-medieval-b.png"},{"id":"04-renaissance-a","era":"Renaissance","option":"A","name":"Bastioned Watchtower","filename":"04-renaissance-a.png"},{"id":"04-renaissance-b","era":"Renaissance","option":"B","name":"Star Redoubt","filename":"04-renaissance-b.png"},{"id":"05-industrial-a","era":"Industrial","option":"A","name":"Iron Signal Tower","filename":"05-industrial-a.png"},{"id":"05-industrial-b","era":"Industrial","option":"B","name":"Brick Blockhouse","filename":"05-industrial-b.png"},{"id":"06-modern-a","era":"Modern","option":"A","name":"Radio Watchpost","filename":"06-modern-a.png"},{"id":"06-modern-b","era":"Modern","option":"B","name":"Concrete Field Fort","filename":"06-modern-b.png"},{"id":"07-atomic-a","era":"Atomic","option":"A","name":"Radar Sentry Post","filename":"07-atomic-a.png"},{"id":"07-atomic-b","era":"Atomic","option":"B","name":"Hardened Field Station","filename":"07-atomic-b.png"},{"id":"08-information-a","era":"Information","option":"A","name":"Sensor Mast Outpost","filename":"08-information-a.png"},{"id":"08-information-b","era":"Information","option":"B","name":"Modular Operations Post","filename":"08-information-b.png"}];
+const eras=["Ancient","Classical","Medieval","Renaissance","Industrial","Modern","Atomic","Information"];
+const approved={Ancient:"A",Classical:"B",Medieval:"B",Renaissance:"A",Industrial:"B",Modern:"A",Atomic:"A",Information:"A"};
+const key="resource-outpost-era-concepts-v1-approved-review";
+let selected={...approved};
+try{selected=JSON.parse(localStorage.getItem(key)||"null")||{...approved}}catch(e){}
+document.querySelectorAll('.concept').forEach(card=>{const d=concepts.find(x=>x.id===card.dataset.id);if(approved[d.era]===d.option)card.querySelector('.option').textContent='OPTION '+d.option+' / APPROVED';});
+for(const era of eras)if(!["A","B"].includes(selected[era]))delete selected[era];
+const summary=document.querySelector("#summary");
+function refresh(){
+ document.querySelectorAll(".pick input").forEach(input=>{
+  input.checked=selected[input.name]===input.value;
+  input.closest(".concept").classList.toggle("selected",input.checked);
+ });
+ summary.value=eras.map(era=>{
+  const d=concepts.find(x=>x.era===era&&x.option===selected[era]);
+  return era+": "+(d?d.option+" — "+d.name:"undecided");
+ }).join("\n");
+ try{localStorage.setItem(key,JSON.stringify(selected))}catch(e){}
+}
+document.querySelectorAll(".pick input").forEach(input=>input.addEventListener("change",()=>{
+ selected[input.name]=input.value;refresh();document.querySelector("#status").textContent="";
+}));
+document.querySelector("#clear").addEventListener("click",()=>{selected={};refresh();document.querySelector("#status").textContent="Selections cleared."});
+document.querySelector("#copy").addEventListener("click",async()=>{
+ try{await navigator.clipboard.writeText(summary.value);document.querySelector("#status").textContent="Copied. Paste this into the chat."}
+ catch(e){summary.focus();summary.select();document.querySelector("#status").textContent="Summary selected. Press Command+C or Ctrl+C."}
+});
+const viewer=document.querySelector("#viewer");
+document.querySelectorAll("[data-enlarge]").forEach(button=>button.addEventListener("click",()=>{
+ const d=concepts.find(x=>x.id===button.dataset.enlarge);
+ document.querySelector("#viewer-title").textContent=d.era+" "+d.option+" — "+d.name;
+ const img=document.querySelector("#viewer-image");img.src=d.filename;img.alt=d.era+" option "+d.option+": "+d.name;
+ viewer.showModal();
+}));
+document.querySelector("#close").addEventListener("click",()=>viewer.close());
+viewer.addEventListener("click",e=>{if(e.target===viewer){const r=viewer.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)viewer.close()}});
+refresh();
+</script>
+</body></html>
