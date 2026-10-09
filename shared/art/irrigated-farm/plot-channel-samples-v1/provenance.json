@@ -1,0 +1,85 @@
+{
+  "created": "2026-10-09",
+  "tool": "built-in image_gen.imagegen",
+  "status": "visual samples awaiting review",
+  "request": "Can you have the channels between some plots. There density should not be too high, but should contour to the existing farm texture. Make a sample for every terrain configuration",
+  "scope": "Four established terrain families, each with two views. Eight views total; not all possible neighbor masks, biomes or terrain-pair permutations.",
+  "direction_record": "../native-overlay-study/direction-selection.json",
+  "constraints": [
+    "Channels occupy selected existing inter-plot seams; most boundaries stay dry.",
+    "Preserve the native farm texture and parcel design as the basis.",
+    "Follow terrace contours and use descending links at terrace breaks.",
+    "Finish exposed ends inside fields; join selected shared water connections.",
+    "Retain restrained aqueducts for elevated supply across gaps."
+  ],
+  "references": [
+    {
+      "role": "preferred design study",
+      "path": "../native-overlay-study/native-farm-irrigation-study.png"
+    },
+    {
+      "role": "native flat farm screenshot",
+      "url": "https://store.steampowered.com/app/99614/"
+    },
+    {
+      "role": "native terrace farm screenshot",
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=157241384"
+    },
+    {
+      "role": "native terrace texture reference",
+      "asset": "incan_terrace_diff.dds",
+      "policy": "local installed-game reference only; not bundled"
+    }
+  ],
+  "assets": [
+    {
+      "terrain": "flat",
+      "title": "Flat ground",
+      "image": "flat.png",
+      "prompt": "flat-prompt.txt",
+      "sha256": "8b0fdf25b72f6255f91eac579ea1497d0a5438d174732e5da536bff79a27083c",
+      "prompt_sha256": "59ab3b0af18a194e77957392926ad6f5e1e8aa48bf8543785e40b274a9ba7f97",
+      "panels": [
+        "flat farm with finished exposed edges",
+        "flat-to-flat shared connection"
+      ]
+    },
+    {
+      "terrain": "gentle-hill",
+      "title": "Gentle hill",
+      "image": "gentle-hill.png",
+      "prompt": "gentle-hill-prompt.txt",
+      "sha256": "103b30e0a1160191c299dff641ef1c0905e6d5a8d58b5e76375fec86f55066cb",
+      "prompt_sha256": "a3248af5bd392737a187655daa105049db4ce930f3cabe8dc4354c96619666fb",
+      "panels": [
+        "gentle hill with finished exposed edges",
+        "gentle-hill-to-flat transition"
+      ]
+    },
+    {
+      "terrain": "steep-hill",
+      "title": "Steep hill",
+      "image": "steep-hill.png",
+      "prompt": "steep-hill-prompt.txt",
+      "sha256": "b26e4e8bda170aa30fceb8a21f6defe46b57d2f3e3e32b9f2744eda485bd1a70",
+      "prompt_sha256": "22ce1fcc7363617ffb3e89054fdb509df8eaf1652ff730d1477fc02a487fb6bb",
+      "panels": [
+        "steep hill with finished exposed edges",
+        "steep-to-gentle-hill transition"
+      ]
+    },
+    {
+      "terrain": "rocky-foothill",
+      "title": "Rocky foothill",
+      "image": "rocky-foothill.png",
+      "prompt": "rocky-foothill-prompt.txt",
+      "sha256": "81ef2d677c953e4d997f5fdcb5e28aaba4fd7f6e7b6e6031ba717342b017b1f5",
+      "prompt_sha256": "28333f726ef91862c989efbac0381dacf0db4e562811859664392fc0aa6e2d6d",
+      "panels": [
+        "mountain-source-to-rocky-foothill intake",
+        "foothill-to-steep-hill transition"
+      ]
+    }
+  ],
+  "limits": "Generated visual studies based on game references; not pixel-exact native texture edits, exported meshes or in-game captures. Actual UV alignment, channel heights and terrain clearance must be validated during native fitting. No runtime or mesh changes in this sample pass."
+}

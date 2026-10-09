@@ -13,7 +13,9 @@ Distinguish current flat-desert gameplay eligibility from approved terraced-hill
 and tile-compatibility visual requirements. Record unimplemented differences.
 Use the user-selected native-art approach: retain default Farm and Incan Terrace
 Farm textures, parcels and boundaries, then add a few readable irrigation features
-and the existing aqueduct design. The 2026-10-09 direction selection is recorded
+and the existing aqueduct design. Place channels in selected gaps between crop
+plots, following their existing texture/parcel boundaries and terrace contours;
+keep most plot seams dry. The 2026-10-09 direction selection is recorded
 in `shared/art/irrigated-farm/native-overlay-study/direction-selection.json`.
 Earlier replacement-field meshes are historical studies. Preserve consistent
 tile seams, finished exposed edges, height transitions and source-connected,

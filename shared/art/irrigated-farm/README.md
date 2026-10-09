@@ -17,3 +17,8 @@ for the exact confirmation, referenced study hash and approval scope. This
 supersedes the replacement-field approach while preserving the v6 concept and
 its original approval record. Final mesh acceptance and native validation remain
 separate.
+
+[Plot-channel samples](plot-channel-samples-v1/README.md) cover the four established
+terrain families with sparse channels between selected crop parcels. These eight
+illustrative views retain their exact prompts and provenance; they await review
+and do not change the earlier direction selection or certify native mesh fitting.

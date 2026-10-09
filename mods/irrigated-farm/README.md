@@ -56,5 +56,11 @@ the exported overlay components from the generated visual study in
 capture or a converted native model. Previous studies and approval records remain
 intact. No gameplay/source art references changed in this design pass.
 
+The [plot-channel samples](../../shared/art/irrigated-farm/plot-channel-samples-v1/README.md)
+show the requested sparse routing between crop parcels for flat, gentle-hill,
+steep-hill and rocky-foothill terrain. Channels follow selected parcel boundaries;
+most seams stay dry. Each sheet includes exposed/source and connected views.
+These are generated visual samples, not native mesh/UV fitting evidence.
+
 See the [development guide](../../docs/DEVELOPMENT.md) for the remaining standalone
 packaging work and the [tool catalog](../../tools/README.md) for validation.
