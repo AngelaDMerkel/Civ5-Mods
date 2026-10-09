@@ -9,6 +9,12 @@ Current release: Realistic Terrain v2, single-player BNW alpha; UUID
 Ministry of Coin and replacement trade belong here. Irrigation's source belongs
 to its sibling project and is assembled into this release by the shared builder.
 
+The primary distribution target is a **standalone Steam Workshop mod** requiring
+Brave New World, with no WSDLC, mod-manager or gameplay-overhaul dependency.
+Current Lua/SQL/XML/art content is already packaged on that basis. Native trade
+parity remains incomplete; any necessary engine support will be developed for
+Terrain itself, as described in [the integration plan](docs/NATIVE-INTEGRATION.md).
+
 The combined worker UI, construction-order infrastructure and irrigation text
 still live here. Coordinate changes with Irrigated Farm; do not copy its Lua/SQL
 back into this source tree. Resource Outposts shelter remains an optional bridge.

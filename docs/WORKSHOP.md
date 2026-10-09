@@ -108,7 +108,9 @@ religious pressure, tourism connections and trade-route quests do not integrate
 these routes. Start a new game; earlier alpha saves are not migrated. Do not
 describe native rendering, AI balance or engine timing as verified until the
 native game acceptance tests pass. WSDLC/native GameCore integration is a
-[separate proposed path](../mods/realistic-terrain/docs/NATIVE-INTEGRATION.md).
+[separate assessment](../mods/realistic-terrain/docs/NATIVE-INTEGRATION.md).
+The confirmed target is a standalone Workshop mod: WSDLC is optional, and any
+unavoidable engine support must be developed and delivered by Terrain itself.
 
 ## Resource Outposts listing draft
 

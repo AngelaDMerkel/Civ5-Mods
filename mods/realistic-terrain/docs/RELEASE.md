@@ -3,6 +3,11 @@
 Local alpha package only. Workshop publication, native model conversion and
 in-game acceptance remain deferred. UUID and integer mod version are unchanged.
 
+Primary target: a standard standalone Workshop mod with Brave New World as its
+only required dependency. WSDLC is optional and is not part of installation or
+release acceptance for this package. Necessary native work must be owned and
+delivered by Terrain, with its platform/install boundary explicitly described.
+
 ## Workshop description draft
 
 **Realistic Terrain — Expeditions and Trade Logistics**
@@ -38,6 +43,7 @@ optional, independent companion; enabling it adds shelter for its stationed
 defenders without adding a road requirement to its resource claims.
 
 **Requires Brave New World. Single-player only. Start a new game through Mods.**
+No WSDLC, other mod manager, Lekmod or Vox Populi installation is required.
 
 This is a replacement trade system. Native trade overview and top-bar GPT do not
 include its routes; use Accounts. Native trade religious pressure, tourism
@@ -84,10 +90,12 @@ test code or source-review gallery belongs in the playable ZIP.
 - Build with a compatible Civ V SDK/ModBuddy publishing environment, verify the
   resulting install, confirm author/listing details and obtain publication approval.
 
-Full native religion/tourism/quest parity is a separate GameCore integration
-decision, documented in [NATIVE-INTEGRATION.md](NATIVE-INTEGRATION.md). The current
-listing must retain the standalone limitations unless that integration is built
-and accepted. WSDLC packaging/installation is not yet validated for this package.
+Full native religion/tourism/quest parity remains incomplete. Any necessary
+engine support will be written for Terrain under the standalone-first decision
+in [NATIVE-INTEGRATION.md](NATIVE-INTEGRATION.md). The current listing must retain
+its limitations until that work is built and accepted. WSDLC translation is
+optional and is not a prerequisite for the Workshop package. Verify the direct
+Mac installation path separately from package structure and Workshop publication.
 
 ## Merge handoff
 

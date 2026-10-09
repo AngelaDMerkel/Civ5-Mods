@@ -167,10 +167,11 @@ These limits must accompany the Workshop listing. This is an implementation of
 the requested logistics rules, not a claim of full replacement of every BNW
 trade-related subsystem.
 
-The stock-Mac limits above are not a claim that a custom Mac GameCore is
-impossible. The user's WSDLC and native GameCore projects provide a separate
-integration path; see [the assessment](NATIVE-INTEGRATION.md). This version has
-no dependency on those projects and has not been validated by their DLC packer.
+The primary target is a standalone Workshop mod, with no WSDLC or overhaul
+dependency. Necessary native work will be developed for Terrain itself; existing
+Mac compatibility work may inform that development. See [the standalone-first
+decision](NATIVE-INTEGRATION.md). WSDLC remains optional, and its DLC translation
+does not block the standard mod package. Full native parity is still incomplete.
 
 ## Source evidence
 

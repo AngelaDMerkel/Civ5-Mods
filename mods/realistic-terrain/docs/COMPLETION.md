@@ -61,3 +61,9 @@ in [RELEASE.md](RELEASE.md). The user's WSDLC/native Mac GameCore repositories
 were inspected read-only; [NATIVE-INTEGRATION.md](NATIVE-INTEGRATION.md) records
 the proposed route to native religion, tourism and quest parity. No dependency,
 publication, engine installation or cross-repository change was made.
+
+The later user decision makes standalone Workshop distribution primary and
+WSDLC optional. The integration plan now scopes unavoidable native work to a
+Terrain-owned BNW extension with direct installation, without an overhaul or
+WSDLC prerequisite. `NATIVE-TRADE-CONTRACT.md` records that work; no native binary
+has been implemented or added to the standard release.

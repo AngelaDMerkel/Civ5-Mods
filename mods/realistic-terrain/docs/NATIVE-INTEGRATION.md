@@ -1,10 +1,34 @@
-# Native Mac trade integration assessment
+# Standalone distribution and native trade integration
 
-Reviewed on 2026-10-09 after the user identified their GitHub account. This is a
-follow-up design, not an implemented dependency or a change to the current
-standalone single-player BNW target.
+Updated on 2026-10-09 following the user's distribution decision: make Terrain
+as standalone as possible, preferably a standard Steam Workshop mod. If required
+features exceed that boundary, write the necessary support for Terrain itself.
+This supersedes the earlier proposal to make WSDLC the full-integration path.
 
-## Existing work to reuse
+## Confirmed distribution requirements
+
+- The standard package uses Civ V's ordinary mod format and requires BNW only.
+  WSDLC, Lekmod, Vox Populi and companion mods are not required installations.
+- Use supported Lua, SQL, XML and art first. Custom map models do not by
+  themselves justify a custom gameplay core, though conversion and native visual
+  acceptance remain necessary and deferred.
+- WSDLC can optionally distribute compatible content later. Its SQL/UI
+  translation work is not on the standard Workshop release's critical path.
+- Do not quietly replace required native behavior with superficially similar
+  effects to claim completeness. Fractional follower conversion is not native
+  religious pressure; influence rewards are not native quest completion.
+- Any unavoidable engine extension belongs to Terrain and must have a direct
+  installation path. Reusable build-time Mac compatibility code is acceptable;
+  players must not need to install the projects that originally developed it.
+- Workshop packaging and Mac installation are separate acceptance questions.
+  A valid `.modinfo` or `SupportsMac=1` declaration does not establish automatic
+  Workshop installation on every Mac build. Verify the supported game's loader;
+  document a direct mod-folder installation if needed, without requiring WSDLC.
+
+The current package already follows the standalone dependency boundary. These
+requirements do not make the missing native trade effects implemented.
+
+## Existing work that can inform development
 
 | Project | Relevant responsibility |
 | --- | --- |
@@ -14,8 +38,8 @@ standalone single-player BNW target.
 | [Lekmod](https://github.com/AngelaDMerkel/Lekmod) / [Vox Populi Mac port](https://github.com/AngelaDMerkel/Community-Patch-DLL-macOS) | Existing native gameplay-core consumers; adopting either also adopts its gameplay baseline |
 
 WSDLC alone cannot turn a saved Lua route into an engine trade connection. The
-missing native controls belong in a gameplay GameCore, using the existing Mac
-compatibility work. WSDLC would package/install the resulting supported product.
+missing native controls belong in a gameplay GameCore. Existing Mac compatibility
+work may help build Terrain-owned support, without making WSDLC its installer.
 Its [current native-product contract](https://github.com/AngelaDMerkel/Wir-Schaffen-DLC/blob/main/docs/native-gamecore.md)
 recognizes Lekmod and Vox Populi only; a separate Terrain/BNW core would require
 explicit product support, rather than relabeling it as an existing product.
@@ -25,11 +49,12 @@ test, while explicitly leaving broader gameplay/platform acceptance open and the
 public native release catalog empty pending validation/publication. That is useful
 existing work, not evidence that Terrain's rules already work in that core.
 
-## Proposed implementation boundary
+## Terrain-owned native work, if needed
 
-1. Choose a supported gameplay baseline explicitly: extend one existing core, or
-   build a narrow BNW-compatible core using the shared port support. Do not add an
-   overhaul dependency silently. Only one gameplay core can be active at a time.
+1. Use the BNW gameplay baseline for Terrain-specific native support; do not
+   require an overhaul to obtain trade controls. Reuse validated build/ABI work
+   where its licensing and interfaces permit. Only one gameplay core can be
+   active at a time; compatibility with an overhaul would need a separate build.
 2. Expose versioned capabilities for route eligibility, authorized transit,
    chosen path/range, movement, invested unit type, yields and plunder protection.
    Agreements and infrastructure decisions must be consulted by the engine,
@@ -38,17 +63,23 @@ existing work, not evidence that Terrain's rules already work in that core.
    Native trade connections can then participate in pressure, tourism, quests,
    overview and GPT calculations. Retain the logistics economy but account for
    native payments exactly once. Never run both route simulations for one convoy.
-4. Preserve the standalone Lua edition separately. Do not infer compatibility
+4. Preserve the standard Workshop/Lua package separately. Do not infer compatibility
    from a DLL/dylib filename or the presence of unrelated extended APIs. Require
    the exact trade capability/version contract and fail clearly on mismatch.
 5. Decide save migration before enabling a new backend. Current route IDs and
    fractions belong to `RealisticTerrain.Trade.v2`; they must not be silently
    interpreted as native connections. A new-game requirement is the conservative
    initial boundary.
-6. Add the chosen product to WSDLC only after validating its manifest, signed
-   binary and content inventory. Its install/switch/restore tests must include
-   the Terrain edition. Workshop content can carry assets/scripts, but subscribing
-   must not be described as sufficient to install the native core.
+6. Deliver any required native component with Terrain-owned build, installation
+   and restoration instructions/tools. Verify hashes, supported game versions,
+   matching content, saved-game compatibility and recovery. On a platform where
+   the ordinary mod loader can load the component, use that path; where it cannot,
+   document the additional step explicitly. Do not assume a Mac engine library
+   can be activated by a Workshop subscription. Optional WSDLC product support
+   can be added independently after the direct path works.
+
+The scoped native requirements are in [NATIVE-TRADE-CONTRACT.md](NATIVE-TRADE-CONTRACT.md).
+That document is an implementation contract, not an existing API or compiled core.
 
 Acceptance must cover native religion/tourism/quest effects exactly once,
 AI/human agreement enforcement, sanctions/repeal, road and relay changes, mature
@@ -66,7 +97,8 @@ multiplayer support for this currently single-player mod.
 | Combined income projection | Implemented in Accounts; stock top bar unchanged |
 | Moving convoy presentation | Native UI portrait anchors; 3D conversion/rigging deferred |
 | Religion, tourism, native trade-route quests | Not implemented; requires the native integration above for true parity |
-| WSDLC packaging of Terrain | Not tested; its structural SQL/UI translation must be checked independently |
+| Standard mod package | Existing ModBuddy/`.modinfo` staging and ZIP; BNW is the only required dependency |
+| WSDLC packaging of Terrain | Optional, not implemented or required for the standard release |
 
 No external repository was modified, no GameCore installed, and no new dependency
 added during this assessment.
