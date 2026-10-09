@@ -116,3 +116,14 @@ is the wheat-resource variant. The inspected farm definitions separate regional
 crop families and era/resource model bindings, with no dedicated desert-farm row.
 Exact farm texture selection and placement on a desert tile remain unverified
 in-game; do not infer that `Crops_Africa` means a desert-specific farm asset.
+
+
+The latest user instruction explicitly selects the **regular resource-free farm
+building variant and the regular farm texture used on desert**. The importer now
+includes all six stock Farm1/2/3 files (Ancient and Industrial bindings). It retains
+the full three-state native graphs, while its visible exports select only the
+constructed model. All eleven imports pass native graph and GLB buffer parity.
+The six ordinary variants use the installed farmstead decals/materials; the
+unsuffixed wheat Farm files are retained only as historical references. All four
+regular regional crop families are recorded without treating Africa as a
+terrain-specific selection. Native `FARM` placement must supply the actual fields.

@@ -257,3 +257,16 @@ Further design acceptance requires unmodified in-game farm baselines, followed
 by irrigation-only changes retaining those placements, terrain fit and material
 behavior. Do not replace that missing engine integration with more authored
 field/terrain fixtures. The existing playable Farm-art fallback is unchanged.
+
+
+### Regular farm selection correction
+
+`import_native_farms.py` also imports the six resource-free Farm1/2/3 assets.
+Their GR2 files bundle constructed, half-built and pillaged models. The preview
+selects the constructed model by the names inspected in the file, including
+Farm2's constructed `Med_Farm1` name; native round trips preserve all states.
+`validate_native_import.py` verifies these selected buffers against the original
+full graph. The normal farmstead decal is separate from the crop fields. The
+import manifest records all four regular crop families from `farm_types.xml`;
+only the game's `FARM` handler can currently provide verified parcel placement
+and texture selection for a particular desert tile.

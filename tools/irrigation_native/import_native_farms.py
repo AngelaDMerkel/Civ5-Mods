@@ -10,7 +10,7 @@ from PIL import Image, ImageDraw
 from native_fpk import Archive
 from native_gr2 import Reader, build_decoder
 from gr2_writer import Writer
-from native_scene import parts, diffuse, write_glb, review_glb
+from native_scene import parts, diffuse, write_glb, review_glb, regular_farm_states, selected_models
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
@@ -47,14 +47,25 @@ def import_assets(game, output, quick=False):
                    ('incan_terrace_farm', 'ConquestDeluxeModels', 'conquestdeluxemodels', 'ConquestDeluxeTextures'),
                    ('hb_incan_terrace_farm', 'ConquestDeluxeModels', 'conquestdeluxemodels', 'ConquestDeluxeTextures'),
                    ('pl_incan_terrace_farm', 'ConquestDeluxeModels', 'conquestdeluxemodels', 'ConquestDeluxeTextures')]
+    definitions += [(era+'_farm'+str(variant), 'ImprovementModels', 'improvementmodels', 'ImprovementTextures')
+                    for era in ('medieval', 'modern') for variant in (1, 2, 3)]
     decoder = build_decoder(output/'codec')
     models = []
     for name, pack, database, texture_pack in definitions:
         meshpath = extract('Common/'+pack+'.fpk', name+'.gr2')
-        extract('Common/'+pack+'.fpk', name+'.fxsxml')
+        wrapper = extract('Common/'+pack+'.fpk', name+'.fxsxml')
         gsd = extract('Common/'+pack+'.fpk', database+'_stringdatabase.gsd')
         reader = Reader(meshpath, gsd, decoder)
-        root = reader.root(); scene = parts(root)
+        root = reader.root()
+        states = regular_farm_states(root) if name[-1:] in ('1', '2', '3') else None
+        names = states['constructed'] if states else [m['Name'] for m in root['Models']]
+        scene = parts(selected_models(root, names))
+        if states:
+            # Keep visible state materials; the tree-cut stencil stays a stock reference.
+            for item in ET.parse(wrapper).getroot().findall('Texture'):
+                if item.attrib['file'].lower() == 'generic_grey_8.dds':
+                    continue  # Stencil helper is not part of the visible GLB.
+                extract('DX9/'+texture_pack+'.fpk', item.attrib['file'])
         for texture in sorted({diffuse(m) for p in scene for m in p['materials']}):
             extract('DX9/'+texture_pack+'.fpk', texture)
         folder = output/name; folder.mkdir(exist_ok=True)
@@ -69,9 +80,10 @@ def import_assets(game, output, quick=False):
                  'triangles': sum(len(p['indices'])//3 for p in scene),
                  'visible_meshes': [p['name'] for p in scene],
                  'native_graph_round_trip': True, 'glb': str(source.relative_to(output)),
+                 'preview_model_names': names, 'construction_states': states,
                  'source_coordinate_system': semantic(root['ArtToolInfo'])}
         models.append(model)
-        if not quick and name in ('medieval_farm', 'incan_terrace_farm'):
+        if not quick and name in ('medieval_farm', 'incan_terrace_farm', 'medieval_farm1', 'modern_farm1'):
             review = folder/(name+'-review.glb')
             review_glb(scene, cache, review)
             render_glb(review, 1000, 750, elevation=50).save(folder/(name+'-mesh-preview.png'))
@@ -91,11 +103,20 @@ def import_assets(game, output, quick=False):
             sheet.paste(im.resize((256, 256)), (x, y), im.resize((256, 256)))
             draw.text((x+8, y+260), name, fill='#252924')
         sheet.save(output/'native-flat-crop-decals.png')
+    regular_crops = {}
+    for family in ('Crops_Africa', 'Crops_America', 'Crops_Asia', 'Crops_Europe'):
+        regular_crops[family] = []
+        for item in table.find(family):
+            name = item.attrib['albedo'].replace('\\', '/').rsplit('/', 1)[-1].lower()
+            extract('DX9/DecalTextures.fpk', name)
+            regular_crops[family].append(name)
     manifest = {'status': 'Native source import and experimental GR2 round-trip; engine validation pending',
                 'native_game_validation': False, 'redistributable': False,
                 'source_installation': str(game), 'extracted_assets': records, 'models': models,
                 'flat_farm_finding': 'Farm GR2s contain props. farm_types.xml separately references regional crop decals. Engine parcel placement has not been reproduced or hooked.',
-                'crop_family': 'Crops_Africa', 'crop_decals': crops}
+                'crop_family': 'Crops_Africa', 'crop_decals': crops,
+                'regular_crop_families': regular_crops,
+                'regular_crop_policy': 'Keep the FARM layout handler and stock crop textures. No desert-specific family is inferred; engine selection and parcel placement remain native-test work.'}
     (output/'native-import.json').write_text(json.dumps(manifest, indent=2)+'\n')
     return manifest
 

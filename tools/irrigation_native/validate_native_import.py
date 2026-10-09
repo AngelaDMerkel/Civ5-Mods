@@ -6,7 +6,7 @@ import json
 import struct
 import numpy as np
 from native_gr2 import Reader, build_decoder
-from native_scene import parts
+from native_scene import parts, selected_models, regular_farm_states
 from import_native_farms import OUT, semantic, digest
 
 
@@ -40,7 +40,10 @@ def validate(output):
         exported = Reader(folder/(name+'-uncompressed.gr2')).root()
         if semantic(source) != semantic(exported):
             raise ValueError('GR2 round-trip mismatch')
-        scene = parts(source); doc, acc = glb(folder/(name+'.glb'))
+        if record.get('construction_states'):
+            assert regular_farm_states(source) == record['construction_states']
+        selected = selected_models(source, record.get('preview_model_names', [m['Name'] for m in source['Models']]))
+        scene = parts(selected); doc, acc = glb(folder/(name+'.glb'))
         assert len(scene) == len(doc['meshes'])
         for part, mesh, node in zip(scene, doc['meshes'], doc['nodes']):
             assert mesh['name'] == part['name']

@@ -34,6 +34,32 @@ def transform(value):
     return matrix
 
 
+
+def regular_farm_states(root):
+    """Select stock Farm1/2/3 states without drawing all three at once.
+
+    These files bundle one constructed, half-built and pillaged model. Preserve
+    the complete graph for native export; this selection is for inspection only.
+    Model names are read from the asset, not inferred from its filename (Farm2
+    also calls its constructed model Med_Farm1).
+    """
+    states = {'constructed': [], 'half_built': [], 'pillaged': []}
+    for model in root['Models']:
+        state = ('half_built' if model['Name'].startswith('HB_') else
+                 'pillaged' if model['Name'].startswith('PL_') else 'constructed')
+        states[state].append(model['Name'])
+    if any(len(names) != 1 for names in states.values()):
+        raise ValueError('Expected the three inspected regular Farm states')
+    return states
+
+
+def selected_models(root, names):
+    models = [model for model in root['Models'] if model['Name'] in names]
+    if len(models) != len(names):
+        raise ValueError('Missing or duplicate requested native model')
+    return dict(root, Models=models)
+
+
 def parts(root):
     """Exclude stencil helpers from visible exports; leave the GR2 graph intact."""
     result = []
