@@ -13,9 +13,18 @@ local function createScene()
   for i=0,Map.GetNumPlots()-1 do
     local plot=Map.GetPlotByIndex(i)
     if plot:IsGoody() then plot:SetImprovementType(-1) end
-    plot:ChangeVisibilityCount(player:GetTeam(),1,-1,true,true)
+    -- Reveal only the review area. Revealing the opponent's start opens diplomacy.
+    if plot:GetX()>=6 and plot:GetX()<=12 and plot:GetY()>=6 and plot:GetY()<=12 then
+      plot:ChangeVisibilityCount(player:GetTeam(),1,-1,true,true)
+    end
   end
   local kind=assert(GameInfoTypes.IMPROVEMENT_CG2_STATIC)
+  if "__TERRAIN__"=="mixed" then
+    -- Check a raised site, dry construction ground, and preserved trees.
+    Map.GetPlot(8,8):SetPlotType(PlotTypes.PLOT_HILLS,true,true)
+    Map.GetPlot(10,8):SetTerrainType(GameInfoTypes.TERRAIN_DESERT,true,true)
+    Map.GetPlot(8,10):SetFeatureType(GameInfoTypes.FEATURE_FOREST,-1)
+  end
   local intact=Map.GetPlot(8,8)
   intact:SetImprovementType(kind)
   local construction=Map.GetPlot(10,8)

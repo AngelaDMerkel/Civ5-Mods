@@ -10,7 +10,7 @@ except ImportError:
 
 @unittest.skipIf(LuaRuntime is None, 'install tests/requirements.txt')
 class OutpostReviewTests(unittest.TestCase):
-    def scene(self, marker='CG2_STATIC_TEST_V1', turn=0, multiplayer=False):
+    def scene(self, marker='CG2_STATIC_TEST_V1', turn=0, multiplayer=False, production=False):
         lua = LuaRuntime()
         lua.execute('''
           callbacks={}; units=0; plots={}; reveals=0
@@ -23,6 +23,8 @@ class OutpostReviewTests(unittest.TestCase):
             if not plots[key] then
               local p={kind=-1,progress=0,pillaged=false}
               function p:GetScriptData() return marker end
+              function p:GetX() return x end
+              function p:GetY() return y end
               function p:IsGoody() return false end
               function p:SetImprovementType(k) self.kind=k end
               function p:GetImprovementType() return self.kind end
@@ -43,20 +45,22 @@ class OutpostReviewTests(unittest.TestCase):
           print=function() end
         ''')
         lua.globals().marker=marker; lua.globals().turn=turn; lua.globals().multiplayer=multiplayer
-        lua.execute((Path(__file__).resolve().parents[1]/'mods/resource-outposts/tests/native/RO_RenderScene.lua').read_text())
+        name='RO_ProductionScene.lua' if production else 'RO_RenderScene.lua'
+        lua.execute((Path(__file__).resolve().parents[1]/'mods/resource-outposts/tests/native'/name).read_text())
         lua.execute('for _,fn in ipairs(callbacks) do fn() end')
         return lua
 
     def test_campaign_save_and_multiplayer_are_untouched(self):
-        for args in (('', 0, False), ('CG2_STATIC_TEST_V1', 1, False), ('CG2_STATIC_TEST_V1', 0, True)):
-            lua=self.scene(*args)
-            self.assertEqual(lua.globals().units, 0)
-            self.assertEqual(lua.globals().reveals, 0)
+        for production in (False, True):
+            for args in (('', 0, False), ('CG2_STATIC_TEST_V1', 1, False), ('CG2_STATIC_TEST_V1', 0, True)):
+                lua=self.scene(*args, production=production)
+                self.assertEqual(lua.globals().units, 0)
+                self.assertEqual(lua.globals().reveals, 0)
 
     def test_duplicate_callbacks_keep_construction_incomplete_and_pillage_real(self):
         lua=self.scene()
         self.assertEqual(lua.globals().units, 1)
-        self.assertEqual(lua.globals().reveals, 384)
+        self.assertEqual(lua.globals().reveals, 49)
         self.assertEqual(lua.eval('Map.GetPlot(8,8).kind'), 100)
         self.assertEqual(lua.eval('Map.GetPlot(10,8).kind'), -1)
         self.assertEqual(lua.eval('Map.GetPlot(10,8).progress'), 1)

@@ -19,7 +19,7 @@ ERAS = ('Ancient', 'Classical', 'Medieval', 'Renaissance', 'Industrial', 'Modern
 STATES = ('', '_UnderConstruction', '_Pillaged')
 
 
-def prepare(batch, sources, output, era, scale=6):
+def prepare(batch, sources, output, era, scale=6, terrain='grass'):
     if output.exists():
         raise ValueError('Use a fresh fixture directory')
     stem = 'RO_' + era
@@ -49,7 +49,7 @@ def prepare(batch, sources, output, era, scale=6):
         ET.SubElement(row, key).text = str(value)
     write_xml(xml, output/'XML/CG2_Art.xml')
     shutil.copyfile(FIXTURES/'CG2_StaticTest.lua', output/'Maps/CG2_StaticTest.lua')
-    scene = (ROOT/'mods/resource-outposts/tests/native/RO_RenderScene.lua').read_text().replace('__ERA__', era).replace('__SCALE__', str(scale))
+    scene = (ROOT/'mods/resource-outposts/tests/native/RO_RenderScene.lua').read_text().replace('__ERA__', era).replace('__SCALE__', str(scale)).replace('__TERRAIN__', terrain)
     (output/'Lua/CG2_Scene.lua').write_text(scene)
     files = {p.relative_to(output).as_posix(): p for p in sorted(output.rglob('*')) if p.is_file()}
     spec = dict(id=FIXTURE_ID, version=1, name='Outpost Native Review',
@@ -62,7 +62,7 @@ def prepare(batch, sources, output, era, scale=6):
     ET.SubElement(entry, 'Description').text='Fresh diagnostic scene only.'
     write_xml(mod, output/'Outpost Native Review.modinfo')
     write_xml(modbuddy(files, mod, spec), output/'Outpost Native Review.civ5proj')
-    (output/'fixture.json').write_text(json.dumps(dict(era=era, scale=scale, assets=records,
+    (output/'fixture.json').write_text(json.dumps(dict(era=era, scale=scale, terrain=terrain, assets=records,
         native_game='unverified', coordinates=dict(intact=[8,8], construction=[10,8], pillaged=[8,10], fort=[10,10])), indent=2)+'\n')
 
 
@@ -72,9 +72,10 @@ def main():
     parser.add_argument('--sources', type=Path, default=ROOT/'output/models/outpost-eras-v1')
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--era', choices=ERAS)
+    parser.add_argument('--terrain', choices=('grass', 'mixed'), default='grass')
     args=parser.parse_args()
     for era in (args.era,) if args.era else ERAS:
-        prepare(args.batch, args.sources, args.output/era, era)
+        prepare(args.batch, args.sources, args.output/era, era, terrain=args.terrain)
         print('Prepared', era, flush=True)
 
 
