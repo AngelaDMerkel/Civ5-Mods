@@ -17,6 +17,7 @@ one mod. Do not move them into a playable package.
 | Irrigation mesh kit v1 | `tools/build_irrigation_meshes.py` | `tools/validate_irrigation_meshes.py` | `output/models/irrigated-farm-v1/` |
 | Irrigation mesh refinement v2 | `tools/irrigation_v2/build_irrigation_meshes.py` | `tools/irrigation_v2/validate_irrigation_meshes.py` | `output/models/irrigated-farm-v2/` |
 | Irrigation terrain/network review v3 (unapproved) | `tools/irrigation_v3/build_irrigation_meshes.py` | `tools/irrigation_v3/validate_irrigation_meshes.py` | `output/models/irrigated-farm-v3/` |
+| Native farm irrigation-only overlay study (unapproved) | `tools/irrigation_native/build_overlays.py` | `tools/irrigation_native/validate_overlays.py` | `output/models/irrigated-farm-native-overlay/` |
 
 Python files in this table are run with the Python interpreter for the appropriate
 environment. Packaging/validation use the standard library. Gameplay tests need
@@ -35,3 +36,8 @@ Selected source art is under `shared/art/`. Review tools may additionally requir
 ignored, locally supplied stock references; consult `shared/references/README.md`.
 Ordinary package builds use versioned DDS assets and do not need those references.
 Model/source ZIPs are authoring bundles, not installable Civ V mods.
+
+The native-farm overlay study reuses the v3 exporter and aqueduct source without
+exporting replacement fields or terrain. Its validator checks closed/open edges,
+neighbor-link selection, format parity and preserved aqueduct geometry. Actual
+native farm mesh fitting and terrain clearance are not yet validated.

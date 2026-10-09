@@ -1,0 +1,24 @@
+{
+  "created": "2026-10-09",
+  "tool": "built-in image_gen.imagegen",
+  "status": "unapproved visual study; not native mesh or game capture",
+  "image": "native-farm-irrigation-study.png",
+  "sha256": "be835ba22314b1af98e084239a5407dbb3e7a449384f32f0f80cf4e33edb5910",
+  "prompt": "prompt.txt",
+  "prompt_sha256": "64c02febcea9597ff501306dc4449caeb65bcd900ab9c7a8637f7d324fca3c91",
+  "references": [
+    {
+      "role": "flat farm reference",
+      "url": "https://store.steampowered.com/app/99614/"
+    },
+    {
+      "role": "native Incan Terrace Farm reference",
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=157241384"
+    },
+    {
+      "role": "original aqueduct reference only",
+      "path": "output/models/irrigated-farm-v3/connected-district-preview.png"
+    }
+  ],
+  "limits": "AI-reconstructed artwork illustrates direction; native pixel/mesh reuse is the implementation requirement. Not included in playable packages."
+}

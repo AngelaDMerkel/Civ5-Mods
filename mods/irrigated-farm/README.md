@@ -21,7 +21,7 @@ and the newer `tools/irrigation_v2/`; generated kits and previews stay in
 Current detail/density refinement, native conversion and in-game terrain fitting
 require their own verification and acceptance.
 
-The current **unapproved v3 mesh review** is built by
+The historical **unapproved v3 mesh review** is built by
 `tools/irrigation_v3/build_irrigation_meshes.py`. It replaces complete terrace
 rings with partial benches and sloping shoulders, adds original painted alpha
 foliage, and models a source-connected distribution network with contour
@@ -37,6 +37,21 @@ packed to 2048 for export; this does not imply additional source detail or nativ
 material compatibility. The v6 approval record is unchanged. Native conversion,
 dynamic adjacency, terrain fitting and in-game visual acceptance remain pending;
 the existing flat-desert gameplay and Farm-art fallback are unchanged.
+
+The latest user direction is to retain the **native Farm and Incan Terrace Farm
+artwork** and add readable irrigation, rather than replace the crops and terrain.
+`tools/irrigation_native/build_overlays.py` builds irrigation-only source pieces:
+curved earth/stone channels, closed field outlets, open shared-edge joints and
+the unchanged v3 aqueducts. Neighbor presence and actual water links are separate;
+unused exposed route ends close inside the field. Native field boundaries and
+textures remain the intended base. The local selector supports 64 neighbor masks,
+but runtime dynamic selection and native mesh fitting are still pending.
+
+The new [source study notes](../../tools/irrigation_native/README.md) distinguish
+the exported overlay components from the generated visual study in
+`shared/art/irrigated-farm/native-overlay-study/`. Neither is a verified in-game
+capture or a converted native model. Previous studies and approval records remain
+intact. No gameplay/source art references changed in this design pass.
 
 See the [development guide](../../docs/DEVELOPMENT.md) for the remaining standalone
 packaging work and the [tool catalog](../../tools/README.md) for validation.
