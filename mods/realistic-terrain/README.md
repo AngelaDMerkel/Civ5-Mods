@@ -1,19 +1,19 @@
 # Realistic Terrain
 
-Owned by the **Terrain Mod** chat. Gameplay source is in `src/`, tests in `tests/`,
-and trade rules in [docs/TRADE.md](docs/TRADE.md). The full current player guide is
-[docs/GAMEPLAY.md](../../docs/GAMEPLAY.md).
+Make difficult terrain matter to military expeditions. Units that spend too long
+in desert, tundra, snow or jungle suffer exposure; friendly territory, freshwater
+and supplied Caravansaries help keep them fighting.
 
-Current release: Realistic Terrain v2, single-player BNW alpha; UUID
-`d571e16c-bb58-40bf-a81f-a919249e7995`. Exposure, military supply, Caravansaries,
-Ministry of Coin and replacement trade belong here. Irrigation's source belongs
-to its sibling project and is assembled into this release by the shared builder.
+- Plan safe stopping points for armies beyond your borders.
+- Build a **Ministry of Coin** and roadside **Caravansaries**.
+- Establish commercial agreements and manage routes through **Trade and logistics**.
+- Develop connected desert farms with the included **Irrigated Farm** feature.
 
-The combined worker UI, construction-order infrastructure and irrigation text
-still live here. Coordinate changes with Irrigated Farm; do not copy its Lua/SQL
-back into this source tree. Resource Outposts shelter remains an optional bridge.
+**Experimental v2 build.** Requires Brave New World and a new single-player game.
+In-game testing is pending. This mod changes standard trade behavior; read the
+trade section of the guide before playing.
 
-Build/test commands are in the [root README](../../README.md). Shared model tools
-are cataloged in [tools/README.md](../../tools/README.md); approved designs are in
-`shared/art/rt-models/` and selected icons in `shared/art/terrain-icons-round-3/`.
-Native model conversion, UI rendering and gameplay acceptance remain pending.
+**[Player guide](docs/GUIDE.md)** ·
+**[Installation](../../docs/GAMEPLAY.md#install-a-packaged-test-build)**
+
+[Development notes](docs/DEVELOPMENT.md)
