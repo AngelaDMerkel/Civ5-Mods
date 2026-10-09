@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Compile and run foundation tests; this does not build a Civ V GameCore."""
+"""Compile and run portable core tests; native acceptance is separate."""
 import os
 from pathlib import Path
 import shlex
@@ -20,6 +20,22 @@ def main():
             str(ROOT / 'tests/module_registry.cpp'), '-o', str(binary),
         ], check=True)
         subprocess.run([str(binary)], check=True)
+        random_binary = Path(directory) / 'random-seed-tests'
+        subprocess.run(compiler + [
+            '-std=c++03', '-Wall', '-Wextra', '-Werror', '-pedantic',
+            '-I', str(ROOT / 'include'), str(ROOT / 'tests/random_seed.cpp'),
+            '-o', str(random_binary),
+        ], check=True)
+        subprocess.run([str(random_binary)], check=True)
+        context_binary = Path(directory) / 'core-context-tests'
+        subprocess.run(compiler + [
+            '-std=c++03', '-Wall', '-Wextra', '-Werror', '-pedantic',
+            '-I', str(ROOT / 'include'),
+            str(ROOT / 'src/C5M_ModuleRegistry.cpp'),
+            str(ROOT / 'src/C5M_CoreContext.cpp'),
+            str(ROOT / 'tests/core_context.cpp'), '-o', str(context_binary),
+        ], check=True)
+        subprocess.run([str(context_binary)], check=True)
 
 
 if __name__ == '__main__':

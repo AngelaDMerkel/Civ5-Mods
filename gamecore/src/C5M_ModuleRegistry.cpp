@@ -1,4 +1,4 @@
-#include "C5M_ModuleRegistry.h"
+#include "../include/C5M_ModuleRegistry.h"
 
 #include <algorithm>
 #include <locale>
