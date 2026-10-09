@@ -36,4 +36,5 @@ The source SVG and its local render are cached in ignored
 Civ V icon-design sheet credited to Russell Vaccaro, retained in the ignored
 review cache. Game reference pixels are comparison material only and must not
 be distributed with the collection. Original collection icons are separate SVG
-geometry. Their design selection remains pending.
+geometry. The user identified E — Living Map as the preferred direction; see
+[the current identity and selection record](../../art/collection-identity/README.md).

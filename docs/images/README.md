@@ -1,8 +1,10 @@
 # Player-guide image provenance
 
 The guides and collection README reuse existing original project images without
-altering them. A small original SVG diagram illustrates Climate Change's confirmed
-warming-or-cooling direction; it is documentation, not proposed game artwork.
+altering them. The shared [Living Map identity](../../shared/art/collection-identity/README.md)
+provides the collection masthead, with preserved SVG sources and reusable exports.
+A small original SVG diagram illustrates Climate Change's confirmed warming-or-cooling
+direction; it is documentation, not proposed game artwork.
 
 | Local image | Original location | Meaning |
 | --- | --- | --- |

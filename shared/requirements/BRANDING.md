@@ -30,10 +30,10 @@ mods made by a person who wants something but does not want to do it. This is an
 internal creative brief for visual style proposals, **not README copy, a tagline,
 or wording to print in the masthead**. The user clarified this explicitly.
 
-Express the personality through imagery, expression and composition: relaxed
-confidence, a restrained raised eyebrow, an armchair planner, or a small visual
-joke about supervising the work. Those motifs are design possibilities, not
-approved assets. Keep the humour understated and readable at icon scale.
+The user identified **E — Living Map** as closer to the intended direction after
+the character studies. Carry the personality through the landscape illustration,
+colour and composition. Keep the humour subtle; do not turn it into a literal
+face, mascot or armchair character. The E artwork is the current basis.
 
 Preserve the verified WSDLC palette and exact collection name. Avoid turning the
 brief into a solemn product identity, a loud comedy mascot or additional slogans.
@@ -47,18 +47,21 @@ Public README and guide text should continue to explain the mods clearly.
 - Editable sources, source hashes and a recorded design selection before
   integration, following [the art rules](ART.md).
 
-The fourth review applies the clarified creative brief through original SVG
-character proposals: **G — Armchair world-builder**, an opinionated globe
-comfortably supervising from its chair; and **H — The discerning tile**, a map
-tile with a raised eyebrow and restrained smirk. The brief itself is not printed
-in either masthead. Both proposals retain WSDLC's exact palette and remain
-unselected. Each has separate masthead, icon and wordmark files, plus 64 px and
-32 px icon examples. See the ignored local comparison at
-`output/branding-review/round-4/index.html` and its source/hash manifest.
+The current direction is **E — Living Map**, following the user's comment:
+"I think the E - Living Map is closer to the intended direciton". The reviewed
+source is preserved unchanged in
+[the collection identity assets](../art/collection-identity/README.md), with the
+scope and original/export hashes in
+[selection.json](../art/collection-identity/selection.json).
 
-Earlier palette studies **E — Living map** and **F — Remade world** remain at
-`output/branding-review/round-3/index.html` as alternatives, also unselected.
-The user's style clarification does not constitute selection of a pictorial design.
+The README uses its masthead. Separate icon and wordmark files are available as
+portable SVGs and PNGs; editable originals retain the original font stack. This
+records the user's directional preference, not blanket approval of later redesigns.
+The personality brief remains internal and is not printed in the artwork or README.
+
+Earlier alternatives and genuine reference comparisons remain in ignored
+`output/branding-review/round-3/` and `round-4/`. The character studies G/H and
+globe study F are not used by the current collection identity.
 
 Keep the mod overviews, relevant images and links to the four detailed guides
 beneath the shared identity. Each mod retains its own gameplay artwork.

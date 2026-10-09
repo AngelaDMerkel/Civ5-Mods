@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="360" viewBox="0 0 1280 360" role="img" aria-labelledby="title"><title id="title">AngelaDMerkel&#x27;s Mods</title><rect width="1280" height="360" fill="#fbf4dd"/>
+ <rect x="36" y="36" width="1208" height="288" fill="none" stroke="#8c6900" stroke-width="2"/>
+ <rect x="36" y="36" width="8" height="288" fill="#ffdd45"/>
+ <g transform="translate(79 64) scale(.9)"><path d="M128 14 230 73V185L128 244 26 185V73Z" fill="#fbf4dd"/>
+ <clipPath id="tile-0"><path d="M128 14 230 73V185L128 244 26 185V73Z"/></clipPath>
+ <g clip-path="url(#tile-0)">
+ <circle cx="172" cy="79" r="22" fill="#d64b40"/>
+ <path d="M12 144 91 56 166 144Z" fill="#1f263c"/>
+ <path d="m72 78 19-22 19 22-19-6Z" fill="#fbf4dd"/>
+ <path d="M-4 150Q68 126 125 152T260 157V264H-4Z" fill="#ffdd45"/>
+ <path d="M157 131C110 159 161 163 120 192S94 222 110 254" fill="none" stroke="#fbf4dd" stroke-width="33"/>
+ <path d="M157 131C110 159 161 163 120 192S94 222 110 254" fill="none" stroke="#216f82" stroke-width="22"/>
+ <path d="m152 197 59-35m-49 50 66-39" stroke="#8c6900" stroke-width="8"/>
+ </g><path d="M128 14 230 73V185L128 244 26 185V73Z" fill="none" stroke="#1f263c" stroke-width="10" stroke-linejoin="round"/></g>
+ <g transform="translate(377 65)"><g font-family="Menlo, DejaVu Sans Mono, monospace" fill="#8c6900" font-weight="700"><text x="0" y="63" font-size="58">AngelaDMerkel's</text><text x="-3" y="176" font-size="106" letter-spacing="-4">Mods</text></g></g>
+ <rect x="377" y="265" width="385" height="33" fill="#ffdd45"/>
+ <text x="390" y="288" font-family="Menlo, DejaVu Sans Mono, monospace" font-size="18" fill="#151720">CUSTOM MODS FOR CIVILIZATION V</text>
+ <path d="M1090 76h44v44h-44Z" fill="#216f82"/><circle cx="1170" cy="98" r="22" fill="#d64b40"/>
+ </svg>

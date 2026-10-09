@@ -1,4 +1,4 @@
-# AngelaDMerkel's Mods
+<img src="shared/art/collection-identity/masthead.svg" alt="AngelaDMerkel's Mods — custom mods for Civilization V" width="1280">
 
 Custom mods by **AngelaDMerkel** for **Civilization V: Brave New World**.
 
