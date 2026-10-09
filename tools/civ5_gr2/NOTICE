@@ -21,3 +21,12 @@ Optional local renderer-fixture packaging uses Wir Schaffen DLC, MIT, commit
 remain in the ignored research cache; it is not a conversion dependency.
 No code was copied from Lekmod's separately licensed macOS harness. The test
 map and scene in fixtures/ are original code for this repository.
+
+Optional background testing uses a local checkout of AngelaDMerkel/Lekmod at
+181b7232160a5661424c275f2a62deb5c56a7a34 (https://github.com/AngelaDMerkel/Lekmod).
+Its root LEKMOD CONTRIBUTOR & MODIFICATION LICENSE permits personal noncommercial
+use and restricts redistribution. No source is copied into this repository. The
+runner loads its automated-playtest.py utilities and compiles background/capture
+helpers from the ignored checkout. Runtime-parameterized Lua and owned game UI
+copies remain in ignored local test evidence only. This optional test dependency
+is separate from the dependency-free GR2 converter.

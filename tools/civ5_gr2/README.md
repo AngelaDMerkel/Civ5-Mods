@@ -1,8 +1,10 @@
 # Shared static Civilization V GR2 tools
 
 Experimental converter infrastructure for **all repository mods**, maintained in
-`tools/`. Outposts is the first consumer, not the owner of the serializer. Native
-Civ V compatibility has not been established. Animated models are outside scope.
+`tools/`. Outposts is the first consumer, not the owner of the serializer. The Ancient
+outpost has rendered beside a stock Fort in native macOS Civ V. All 24 Outpost
+variants convert and pass independent reads; their complete visual acceptance and
+mod integration remain separate checks. Animated models are outside scope.
 
 Python 3.10+ runs directly on Apple Silicon; the converter has no third-party
 Python dependencies. Optional reference inspection needs Apple Command Line Tools
@@ -74,8 +76,9 @@ avoid Civ V's case-insensitive VFS collisions.
 
 `--sref` is mandatory: a generic black specular map is a **candidate**, not verified
 BuildingSREF semantics. The flat-normal export is not used by this measured shader
-profile. Material appearance, UV orientation, scale, shadows, fog and uncompressed
-GR2 acceptance remain native-game checks. The converter always marks native game
+profile. Uncompressed GR2 loading and visible Ancient rendering have passed a native
+probe. Detailed material appearance, UV orientation, scale, shadows and fog remain
+visual-acceptance checks. The converter always marks native game
 status `unverified`; structural checks and OpenGR2 reads cannot promote it.
 
 ## Verify and batch
@@ -91,7 +94,9 @@ python3 -m tools.civ5_gr2 batch \
   --probe output/gr2-research/independent-probe
 ```
 
-Batch output is **experimental** until the native rendering checks below pass.
+Batch output uses the profile demonstrated by the native Ancient probe. Only that
+candidate has native rendering evidence so far; each consumer must review its
+remaining variants and production integration.
 The supplied manifest pins all 24 approved era/state BR2s and their DDS files.
 Each asset has `name`, `source`, `diffuse`, `sref` and optional `units_per_meter`.
 Each input is an object with `path` (relative to the manifest) and `sha256`.
@@ -134,12 +139,50 @@ python3 output/gr2-research/upstream/wsdlc/civ5_dlc_packer.py \
 ```
 
 Keep WSDLC output ignored and local: its generated UI hook includes a copy of
-owned stock `InGame.lua`. Preserve saves, caches and settings before a native
-test; with the game closed, install only this generated DLC directory under its
-unique `CG2_StaticRenderTest` name. Use **Single Player → Set Up Game → Advanced
-Setup**, choose **GR2 Static Rendering Test**, two players, no city states and
-Ancient era. Start a new game. Never use a campaign save for this test. Remove
-only the exact owned test DLC after closing the game and restore settings.
+owned stock `InGame.lua`. For unattended **background** testing, use the optional
+harness from AngelaDMerkel/Lekmod. Inspect its license before reuse: it permits
+personal noncommercial use but restricts redistribution. No Lekmod source is
+vendored or required by the converter.
+
+```sh
+python3 tools/civ5_gr2/setup_research.py --background-harness
+python3 -m tools.civ5_gr2.background_test \
+  --dlc output/gr2-research/render-dlc \
+  --output output/gr2-research/native-run-001 \
+  --activation-only --timeout 600
+```
+
+Steam must already be signed in and Civ V closed. This runner uses the pinned
+harness's process-only background guard, startup/load Lua templates and PID-only
+capture helpers with the installed GameCore. It temporarily installs only the
+unique CG2 DLC, a map and startup hooks; bypasses the legal screen for this launch;
+starts a fresh two-player Ancient scene; and advances no turns. It snapshots and
+restores settings, UI, caches, logs and saves, preserves test logs/autosaves in the
+evidence directory, and verifies original hashes. `--activation-only` disables
+upstream diagnostic interposers while retaining the background activation guard.
+Without it, diagnostic logging is more immediate but adds interposers to the
+process. Neither mode modifies game executable or GameCore bytes.
+
+The run is bounded to 60–1200 seconds and always restores after normal completion,
+errors or interruption. After an abnormal supervisor termination, close only the
+owned game process and recover with:
+
+```sh
+python3 -m tools.civ5_gr2.background_test \
+  --output output/gr2-research/native-run-001 --restore
+```
+
+Recovery refuses changed binaries, hooks, payloads or backup files; inspect the
+journal instead of overriding that refusal. Evidence contains owned game UI and
+must remain ignored/local. Use a fresh evidence directory for every run.
+
+All native test runners across this user's worktrees should hold
+`tools.civ5_test_lock.native_test_lock(owner, evidence)` before preparation and
+through restoration. It uses a nonblocking `flock` lease at
+`/private/tmp/civ5-native-test-<uid>.lock`; its JSON identifies the supervisor and
+evidence location. A lock file's existence alone does not mean it is held. Also
+check for an existing Civ V process and unresolved recovery journals. Coordinate
+with other chats before changing installed DLC/GameCore or claiming the test slot.
 
 Record the game executable/GameCore and GR2 hashes, native logs when available,
 a screenshot showing both models, the landmark scale, UV/texture orientation,

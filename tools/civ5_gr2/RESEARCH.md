@@ -124,38 +124,64 @@ evidence. Lekmod's top-level license restricts redistribution of its author's
 contributions; no harness source has been copied into this repository. Those
 tests target its custom GameCore and cannot be treated as stock BNW validation.
 
-## Native test attempt and remaining gate
+## Background native test and remaining gate
 
-The original shared fixture was packaged successfully with pinned WSDLC. Its XML
-was checked against an in-memory copy of the installed Civ V database, its Lua
-compiled as Lua 5.1, and guard regressions reject ordinary maps, later saves and
-multiplayer. These are fixture checks, not game rendering results.
+The original shared fixture was packaged with pinned WSDLC. Its XML was checked
+against an in-memory copy of the installed database, its Lua compiled as Lua 5.1,
+and guard regressions reject ordinary maps, later saves and multiplayer.
 
-The installed Aspyr 1.4.2 game executable has SHA-256
-`d56d6bfbc0ef517fcb7cbaff46c42d1bdfab809c084684045761bd9d85807ee9`.
-The actual macOS application runs as x86-64 through Rosetta; the converter and
-OpenGR2 tools run as arm64. Native launches reached the copyright notice. The
-computer-control tool rejects coordinate clicks with `noWindowsAvailable` in
-both fullscreen and windowed modes, although its screenshot/menu observations
-work. The windowed startup delay resolved without a binary change. The prepared
-scene has **not** been entered, and there is no native candidate-load or rendering
-evidence. The user subsequently authorized an app-targeted native input helper
-to continue testing after the computer-control tool failed.
+The installed Aspyr 1.4.2 executable has SHA-256
+`d56d6bfbc0ef517fcb7cbaff46c42d1bdfab809c084684045761bd9d85807ee9`;
+Expansion2 GameCore is
+`0da6a5ffc283c3f147b20a7ec426e4ed85a6838ab891faf61b50af4e25c4a09c`.
+The macOS game runs as x86-64 through Rosetta; conversion and OpenGR2 tools run
+as arm64. Earlier foreground attempts stopped at the copyright notice because
+CUA rejected clicks. Both attempts were restored. The user then directed use of
+AngelaDMerkel's background harness and coordination of the shared game test slot.
 
-The test preparation preserves all 135 existing save/cache/settings files in
-the ignored `output/gr2-research/native-test/backup/`, records the executable and
-GameCore hashes, and installs only an owned `CG2_StaticRenderTest` DLC directory.
-No game executable or GameCore patch, injected library or FireTuner listener is
-used. The local session journal and restoration results belong in that ignored
-directory. The first attempt was stopped at the notice, the exact test DLC was
-removed, all 135 original files were hash-verified/restored, and the original
-fullscreen preference was restored. The generated WSDLC bundle includes a stock UI hook and must not be
-distributed. A fixture-ready message or an exit code would not promote rendering
-status even after input control is available.
+`background_test.py` now references the pinned Lekmod helpers from the ignored
+checkout. It compiles a process-only activation guard and PID-specific capture
+helper, uses locally parameterized startup/load templates with the installed
+GameCore, and snapshots/restores original files. No executable/GameCore bytes
+are patched. The runner holds a shared nonblocking lease from preparation through
+restoration. The converter itself has none of these test dependencies.
 
-All 24 approved sources (45,080 triangles total) pass the strict BR2/DDS profile
-preflight and manifest hash checks. Batch serialization is covered by synthetic
-fixtures; promotion of the 24 assets to game-ready output is deferred until the
-Ancient candidate is actually rendered. Outstanding questions are uncompressed
-v7/embedded-string acceptance, BuildingShader parameter binding, UV orientation,
-SREF response, static attachment, scale, lighting/shadows/fog and terrain contact.
+Local evidence lives under `output/gr2-research/background-ancient-*`. Run 01
+(full diagnostic adapter) exited with signal 4 before scene startup. Run 02
+(activation-only adapter) reached and captured the fresh flat map at turn zero.
+The process-status helper confirmed `active=false`, activation policy 2, while
+Codex retained focus. This proves background startup/capture; the candidate
+placement did not take effect, so it is not model-rendering evidence. The run
+was stopped and all 149 original save/cache/settings/log files plus UI and display
+preferences were restored. Run 03 also exited with signal 4 before the scene,
+showing that the startup failure is not exclusive to the diagnostic interposers.
+The next fixture registers placement directly in the temporary loading context
+so it does not depend on a DLC InGame UI override being selected.
+
+Native evidence must distinguish startup, database loading, scene placement and
+visible candidate rendering. SIGILL before scene initialization is an unresolved
+startup issue, not evidence that the GR2 was rejected. All test evidence includes
+owned stock UI and must remain ignored/local. No converted assets have been
+integrated into a production mod.
+
+Run 04 (activation-only, direct guarded loading-context hook) visibly rendered
+**the approved Ancient constructed outpost beside the stock Fort** in the native
+macOS game at turn zero. `background-ancient-04/progress-90.png` and
+`native-review.json` record this observation and exact hashes. The wooden palisade,
+tower and thatched roof appear textured without obvious exploding geometry or a
+missing material. Notifications/yield icons obscure some detail, and some edges
+are in fog. This establishes minimal native loading/rendering for GR2 SHA-256
+`30e871bfaaf4c5856681dbba32205ed96db8048bb270b58846ff5e20896ff509` at scale 6.
+It does not establish final scale or art acceptance, all-face UV orientation,
+SREF accuracy, all lighting/shadow/fog conditions or production mod integration.
+The run was stopped after capture, its original files restored/hash-verified,
+and the shared test slot released to the other active chats.
+
+After that native milestone, all **24 approved sources / 45,080 triangles** were
+converted into `output/gr2-converted/outposts-v1/`. Every bundle passed source
+comparison and the independent native OpenGR2 vertex/index byte check. The batch
+pins manifest SHA-256
+`0242afa26004aeb9091fafaad002e3726c14577c6c53ab6e31f7dd7ad8e499ad`.
+Conversion reports retain `native_game: unverified`: native observations are
+separate evidence tied to exact hashes, never inferred from serialization success.
+Remaining variants and all eight era selections need their own native review.

@@ -18,10 +18,19 @@ and [measured format/dependency findings](../../../tools/civ5_gr2/RESEARCH.md).
 - A disposable native fixture uses unique `CG2_` identifiers and a stock Fort
   control. It is separate from registered releases and every mod's runtime.
 
-**Native rendering remains unverified.** Do not replace production Fort bindings
-with these candidates yet. Geometry approval, structural validation, conversion,
-game load and visual acceptance are distinct. Approved source meshes, textures,
-selection records and the source archive have not been redesigned or overwritten.
+**Minimal native rendering is demonstrated for the Ancient constructed asset.**
+The uncompressed GR2 rendered as a textured palisade/tower/roof beside a stock Fort
+in background Aspyr Civ V at scale 6. The precise hash and screenshot evidence are
+in the research record. All 24 variants then converted successfully and passed
+independent OpenGR2 geometry checks in `output/gr2-converted/outposts-v1/`.
+
+Final visual acceptance and production era/state integration remain outstanding.
+Do not promote the whole batch to accepted production art from this one probe.
+Approved sources, textures, selection records and the archive remain unchanged.
+The native runner uses the pinned external Lekmod background harness, a shared
+test lock and the stock installed GameCore; it restores all temporary game files.
+Startup is intermittent (two pre-scene SIGILL exits were observed), which is
+recorded separately from the successful model-rendering result.
 
 ## Integration contract
 

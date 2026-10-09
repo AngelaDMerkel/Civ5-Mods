@@ -1,8 +1,10 @@
 -- Original fixture, deliberately independent of mod gameplay and test GameCores.
 local done=false
+print("[CG2] registering guarded scene callbacks")
 local function createScene()
   if done then return end
   local marker=Map.GetPlot(0,0)
+  print("[CG2] scene-check marker="..tostring(marker and marker:GetScriptData()).." turn="..tostring(Game.GetElapsedGameTurns()))
   if not marker or marker:GetScriptData()~="CG2_STATIC_TEST_V1" then return end
   done=true
   -- Loading any later save is observation only; never mutate a user's campaign.
