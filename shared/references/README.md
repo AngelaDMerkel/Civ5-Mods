@@ -2,6 +2,7 @@
 
 | Reference | Location | Use and status |
 | --- | --- | --- |
+| WSDLC palette and tone | [Branding reference](branding/README.md) | Exact colours verified from Wir Schaffen DLC source and README artwork |
 | Existing UI styles and contexts | [UI index](ui/README.md) | Inspect working source; native acceptance still pending |
 | Terrain portraits/action/wonder selections | [terrain-icons-round-3](../art/terrain-icons-round-3/selections.json) | User-selected original art; DDS source hashes in `exports.json` |
 | Terrain source model approval | [rt-models](../art/rt-models/approved.json) | Exact approved hashes; native conversion pending |

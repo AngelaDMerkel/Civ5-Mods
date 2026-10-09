@@ -1,39 +1,49 @@
 # Shared collection identity
 
 The collection name is **AngelaDMerkel's Mods**. Its README needs a coordinated
-masthead, standalone icon and wordmark. Civilization V: Brave New World remains
-the game described in the introduction, rather than part of the collection name.
+masthead, standalone icon and wordmark. The introduction identifies Civilization V:
+Brave New World as the game.
 
 ## Confirmed direction
 
-The user asked to build on **WSLDC's tone and colour scheme** (initially written
-as WSDLC), not to adapt an existing logo. An existing masthead or logo is not a
-prerequisite. Do not expand the acronym or substitute a generic Civ V palette.
+Build on the tone and colour scheme of **Wir Schaffen DLC (WSDLC)**:
+[AngelaDMerkel/Wir-Schaffen-DLC](https://github.com/AngelaDMerkel/Wir-Schaffen-DLC).
+The user pointed to its GitHub repository as the colour reference. Its source
+explicitly describes a Bauhaus light palette. Use the
+[verified palette and source links](../references/branding/README.md), with exact
+values in [wsdlc-palette.json](../references/branding/wsdlc-palette.json).
 
-The user rejected the proposed **A monogram** as an unhelpful icon and said the
-slate/gold/ivory revision did not use WSLDC's colours. That palette is not an
-approved interpretation of WSLDC. Neither revision is approved for use.
+Use a warm cream `#FBF4DD` surface, bright yellow `#FFDD45` highlights, ochre
+`#8C6900` lettering and dark indigo `#1F263C` outlines/text. Teal `#216F82` and
+coral `#D64B40` are accents. Its README uses Menlo/DejaVu Sans Mono typography.
+Preserve that light, playful geometric character when adapting it to this
+collection. The user did not request a copy of an existing logo.
 
-The actual main and accent colours remain unconfirmed. Record the user's colour
-values, colour names or supplied reference here before producing the next coloured
-revision. Do not label inferred colours as established brand colours.
+The user rejected an **A monogram** as an unhelpful icon. The earlier dark
+slate/gold/ivory proposal was the assistant's incorrect palette assumption and
+is superseded. Do not reuse it as a WSDLC reference.
 
-## Deliverables
+## Deliverables and review
 
 - A README masthead with the exact name **AngelaDMerkel's Mods**.
 - A matching standalone pictorial icon and wordmark, suitable for reuse.
 - An icon that conveys the mod collection rather than relying on an initial.
-  Its subject remains to be selected; do not treat a new motif as approved.
-- Original sources, prompts when generated, source hashes and a record of the
-  selected design before integration, following [the art rules](ART.md).
+- Editable sources, source hashes and a recorded design selection before
+  integration, following [the art rules](ART.md).
+
+The third review contains two original SVG proposals with the verified palette:
+**E — Living map**, a hex tile with mountains, water and cultivated land; and
+**F — Remade world**, a globe with an added tile. Each has separate masthead,
+icon and wordmark files, plus 64 px and 32 px icon examples on its review board.
+Both are awaiting user selection. See the ignored local comparison at
+`output/branding-review/round-3/index.html` and its source/hash manifest.
 
 Keep the mod overviews, relevant images and links to the four detailed guides
 beneath the shared identity. Each mod retains its own gameplay artwork.
 
 ## Superseded explorations
 
-The first two explorations (A/B) and the later A-monogram boards (C/D) are retained
-locally with prompts and hashes in ignored `output/branding-review/round-1/` and
-`output/branding-review/round-2/`. They are review history, not README assets.
-The C/D prompts contain the assistant's rejected palette assumption; they must
-not be treated as requirements for the next revision.
+The first explorations (A/B) and A-monogram boards (C/D) are retained locally with
+prompts and hashes in ignored `output/branding-review/round-1/` and `round-2/`.
+They are review history, not README assets. Round 3 uses hand-authored SVG
+geometry and exact palette values; it was not generated with an image model.
