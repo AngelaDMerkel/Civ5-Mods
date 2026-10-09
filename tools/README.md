@@ -16,6 +16,7 @@ one mod. Do not move them into a playable package.
 | Approved Outpost era models | `tools/build_outpost_era_models.py` | `tools/validate_outpost_era_models.py` | `output/models/outpost-eras-v1/` |
 | Irrigation mesh kit v1 | `tools/build_irrigation_meshes.py` | `tools/validate_irrigation_meshes.py` | `output/models/irrigated-farm-v1/` |
 | Irrigation mesh refinement v2 | `tools/irrigation_v2/build_irrigation_meshes.py` | `tools/irrigation_v2/validate_irrigation_meshes.py` | `output/models/irrigated-farm-v2/` |
+| Irrigation terrain/network review v3 (unapproved) | `tools/irrigation_v3/build_irrigation_meshes.py` | `tools/irrigation_v3/validate_irrigation_meshes.py` | `output/models/irrigated-farm-v3/` |
 
 Python files in this table are run with the Python interpreter for the appropriate
 environment. Packaging/validation use the standard library. Gameplay tests need
@@ -23,6 +24,12 @@ environment. Packaging/validation use the standard library. Gameplay tests need
 `tools/requirements-art.txt`. Module files such as `model_*`, `outpost_*` and
 `irrigation_mesh_io.py` support those entry points. The `irrigation_v2/refine_*`
 modules are part of its active refinement pipeline; see its mesh notes before use.
+The v3 pipeline adds `natural_farms.py`, a versioned original painted atlas under
+`shared/art/irrigated-farm/mesh-v3-review/`, alpha-aware rendering, and
+`tools/irrigation_v3/render_flow_review.py`. Run the latter after the v3 builder
+to inspect annotated, source-connected water routes. Its source/export validation
+also samples channel beds against the exported terrain; it does not validate
+native GR2 materials, runtime art placement or fluid simulation.
 
 Selected source art is under `shared/art/`. Review tools may additionally require
 ignored, locally supplied stock references; consult `shared/references/README.md`.
