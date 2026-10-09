@@ -3,7 +3,11 @@
 The user redirected the design on 2026-10-09: retain the default flat and hill
 farm artwork and add conspicuous irrigation. The v1–v3 replacement fields and
 terrain are historical studies, not the current art direction. The earlier v6
-concept approval is preserved; neither this overlay study nor v3 is approved.
+concept approval is preserved. The user subsequently selected this native-art
+approach as preferred on 2026-10-09: “This direction is much better and should be
+the preferred approach.” This selects the design direction; final mesh acceptance
+and native validation remain pending. The exact scope is recorded in
+`shared/art/irrigated-farm/native-overlay-study/direction-selection.json`.
 
 Use the installed `ART_DEF_IMPROVEMENT_FARM` artwork for ordinary fields and the
 installed `ART_DEF_IMPROVEMENT_TERRACE_FARM` / `Incan_Terrace_Farm.fxsxml` artwork

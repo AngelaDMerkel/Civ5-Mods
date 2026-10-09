@@ -38,8 +38,11 @@ material compatibility. The v6 approval record is unchanged. Native conversion,
 dynamic adjacency, terrain fitting and in-game visual acceptance remain pending;
 the existing flat-desert gameplay and Farm-art fallback are unchanged.
 
-The latest user direction is to retain the **native Farm and Incan Terrace Farm
-artwork** and add readable irrigation, rather than replace the crops and terrain.
+The user selected the **native Farm and Incan Terrace Farm artwork with readable
+irrigation additions** as the preferred approach on 2026-10-09. Preserve native
+textures, parcels and boundaries. This supersedes the replacement-field approach
+of the earlier mesh studies. The [direction selection](../../shared/art/irrigated-farm/native-overlay-study/direction-selection.json)
+records the exact confirmation and its scope.
 `tools/irrigation_native/build_overlays.py` builds irrigation-only source pieces:
 curved earth/stone channels, closed field outlets, open shared-edge joints and
 the unchanged v3 aqueducts. Neighbor presence and actual water links are separate;

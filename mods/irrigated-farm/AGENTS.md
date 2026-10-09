@@ -11,7 +11,12 @@ tests. Do not create a second copy of the feature or claim a standalone release.
 
 Distinguish current flat-desert gameplay eligibility from approved terraced-hill
 and tile-compatibility visual requirements. Record unimplemented differences.
-Match the approved v6 concept, real Civ V agricultural detail and consistent
-tile seams, height transitions and water flow. Keep mesh tools in `tools/` and
+Use the user-selected native-art approach: retain default Farm and Incan Terrace
+Farm textures, parcels and boundaries, then add a few readable irrigation features
+and the existing aqueduct design. The 2026-10-09 direction selection is recorded
+in `shared/art/irrigated-farm/native-overlay-study/direction-selection.json`.
+Earlier replacement-field meshes are historical studies. Preserve consistent
+tile seams, finished exposed edges, height transitions and source-connected,
+level or descending water flow. Keep mesh tools in `tools/` and
 generated previews under `output/`. Do not treat concept approval as acceptance
 of later mesh revisions or native terrain fitting.

@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-09",
+  "status": "preferred design approach selected by user",
+  "user_statement": "This direction is much better and should be the preferred approach",
+  "scope": "Preserve native Farm and Incan Terrace Farm artwork and add distinct, readable irrigation components.",
+  "requirements": [
+    "Retain native field textures, parcel shapes, props, terrace walls and natural boundaries.",
+    "Use a few legible channels; preserve the existing aqueduct design.",
+    "Keep a continuous source connection with level or descending water routes.",
+    "Close exposed route ends within the field and join selected shared water connections.",
+    "Treat the earlier replacement-field mesh designs as historical studies."
+  ],
+  "reference_image": "native-farm-irrigation-study.png",
+  "reference_sha256": "be835ba22314b1af98e084239a5407dbb3e7a449384f32f0f80cf4e33edb5910",
+  "approval_limits": "Direction selection does not certify every generated detail or approve the final mesh, native conversion, terrain fit, runtime adjacency or in-game appearance.",
+  "supersedes": "Replacement crop/terrain design approach in v1-v3; preserves previous artwork and approval history."
+}
