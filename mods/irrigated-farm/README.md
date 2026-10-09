@@ -77,3 +77,25 @@ constructed-terrace fitting, not the full flat/hill/mountain or HB/PL variant se
 
 See the [development guide](../../docs/DEVELOPMENT.md) for the remaining standalone
 packaging work and the [tool catalog](../../tools/README.md) for validation.
+
+The subsequent terrain review expands this to seven authored fitting cases:
+terraced hill, flat desert, flat grassland, river-fed floodplain, terrace-to-flat,
+floodplain-to-desert and mountain-to-terrace. `build_terrain_cases.py` makes the
+terrace carrier twice as wide, enlarges the reused aqueduct and gives sparse flat
+channels broader pale banks. It preserves native terrace geometry and uses actual
+regional crop textures in clearly labeled authored flat parcel layouts. The real
+mountain heightmap and floodplain materials supply local reference context.
+`validate_terrain_cases.py` checks fourteen wet/dry exports, source connections,
+falling grades, shared ports and exported water clearance. These proposed meshes
+remain offline review candidates; native flat placement, dynamic terrain art and
+in-game acceptance are still pending. No new runtime eligibility is implied.
+
+The subsequent user review identifies the seven authored terrain/parcel fixtures
+as insufficiently faithful to the original models. They are diagnostic geometry,
+not the accepted art baseline. The viewer now defaults to unchanged native
+terrace source, that same source with irrigation, and irrigation alone, without
+authored terrain. `audit_native_layout.py` confirms that ordinary farms depend on
+the FARM layout handler and terrain contouring, while terraces use SNAPSHOT with
+terrain contouring. Exact regular Farm1/2/3 variants differ from the wheat-resource
+Farm prop used in the fixtures. In-game baselines and preserving those placement
+systems are required before further native-art acceptance.

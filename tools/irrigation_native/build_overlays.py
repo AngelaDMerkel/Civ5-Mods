@@ -38,7 +38,7 @@ def curve(controls, steps=5):
 
 
 def channel(mesh, points, name, width=.30, wet=True, terminal=True,
-            upstream=None, gaps=(), stone=False, start_clearance=0.):
+            upstream=None, gaps=(), stone=False, start_clearance=0., profile_scale=1., widths=None, bank_scale=1., bank_material=None):
     """Low, battered earth banks with a tapered, closed field end.
 
     Joints have open mouths. Texture furrows remain on the native farm, rather
@@ -54,15 +54,18 @@ def channel(mesh, points, name, width=.30, wet=True, terminal=True,
     sides = [normals[0]] + [unit(a+b) / max(.65, np.dot(unit(a+b), b)) for a,b in zip(normals, normals[1:])] + [normals[-1]]
     distance = np.r_[0., np.cumsum(np.linalg.norm(tangent[:, :2], axis=1))]
     remaining = distance[-1] - distance
-    half = width/2 * (np.clip(remaining/.8, .35, 1.) if terminal else np.ones(len(points)))
+    sizes = np.full(len(points), width) if widths is None else np.asarray(widths, dtype=float)
+    if sizes.shape != (len(points),) or (sizes <= 0).any():
+        raise ValueError('Invalid channel width profile')
+    half = sizes/2 * (np.clip(remaining/.8, .35, 1.) if terminal else np.ones(len(points)))
     # A narrow, irregular lip casts a legible contact shadow without the v3 rails.
-    bank = 'stone' if stone else 'earth'
+    bank = bank_material or ('stone' if stone else 'earth')
     profiles = []
     for i, (p, side, w) in enumerate(zip(points, sides, half)):
-        shoulder = .105 + .014 * math.sin(i*.61)
-        profiles.append([p + side*s + [0,0,z] for s,z in [
-            (-w-shoulder,-.11), (-w-.035,.022), (-w,-.052),
-            (w,-.052), (w+.035,.022), (w+shoulder,-.11)]])
+        shoulder = (.105 + .014 * math.sin(i*.61))*bank_scale
+        profiles.append([p + side*s + [0,0,z*profile_scale] for s,z in [
+            (-w-shoulder,-.11), (-w-.035*bank_scale,.022), (-w,-.052),
+            (w,-.052), (w+.035*bank_scale,.022), (w+shoulder,-.11)]])
     for i, (a,b) in enumerate(zip(points, points[1:])):
         pa,pb = profiles[i:i+2]
         for j in range(5):
@@ -80,17 +83,19 @@ def channel(mesh, points, name, width=.30, wet=True, terminal=True,
     if terminal:
         p = points[-1]; side = sides[-1]; along = unit(tangent[-1]); w = half[-1]
         # Water stops inside a closed earth end. No square cut or ornamental pool.
-        cap=[p-side*w+[0,0,-.052],p+side*w+[0,0,-.052],
-             p+side*(w+.035)+[0,0,.022],p-side*(w+.035)+[0,0,.022]]
+        cap=[p-side*w+[0,0,-.052*profile_scale],p+side*w+[0,0,-.052*profile_scale],
+             p+side*(w+.035*bank_scale)+[0,0,.022*profile_scale],p-side*(w+.035*bank_scale)+[0,0,.022*profile_scale]]
         mesh.face(cap,bank,name+'_terminal')
         mesh.face(cap[::-1],bank,name+'_terminal')
-        tip = p+along*.20+[0,0,-.105]
+        tip = p+along*.20+[0,0,-.105*profile_scale]
         left_toe,left_crest,_,_,right_crest,right_toe=profiles[-1]
         mesh.face([right_crest,left_crest,tip],bank,name+'_terminal')
         mesh.face([left_toe,tip,left_crest],bank,name+'_terminal')
         mesh.face([right_crest,tip,right_toe],bank,name+'_terminal')
     mesh.routes.append({'name':name,'points':points.tolist(),'width':width,'wet':wet,
                         'upstream':upstream,'end':'closed_field_outlet' if terminal else 'open_joint'})
+    if widths is not None:
+        mesh.routes[-1]['widths'] = sizes.tolist()
 
 
 def flat_overlay(stone=False, wet=True):

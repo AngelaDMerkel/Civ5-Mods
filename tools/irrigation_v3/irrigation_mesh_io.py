@@ -201,7 +201,7 @@ def pixels(coords,w,h):
     return (slice(lo[1],hi[1]+1),slice(lo[0],hi[0]+1)),a,b,c,(a>=-1e-7)&(b>=-1e-7)&(c>=-1e-7)
 
 
-def render_glb(path, width=1200, height=900, azimuth=-72, elevation=42, wire=False):
+def render_glb(path, width=1200, height=900, azimuth=-72, elevation=42, wire=False, shadow_bias=.035):
     """Orthographic textured raster and shadow map made from the exported GLB."""
     g,(p,n,uv),blob=read_glb(path)
     v=g['bufferViews'][g['images'][0]['bufferView']]
@@ -241,7 +241,7 @@ def render_glb(path, width=1200, height=900, azimuth=-72, elevation=42, wire=Fal
         pos=a[:,:,None]*tri[0]+b[:,:,None]*tri[1]+c[:,:,None]*tri[2]
         xy=proj(pos,sr,su,center,sc,sw,sw)
         sx=np.clip(xy[:,:,0].astype(int),0,sw-1);sy=np.clip(xy[:,:,1].astype(int),0,sw-1)
-        lit=(pos@sun+.035>=shadow[sy,sx]).astype(float)
+        lit=(pos@sun+shadow_bias>=shadow[sy,sx]).astype(float)
         nn=a[:,:,None]*normal[0]+b[:,:,None]*normal[1]+c[:,:,None]*normal[2]
         diffuse=np.maximum(0,(nn@sun)/np.maximum(1e-8,np.linalg.norm(nn,axis=2)))
         lighting=.52+.48*diffuse*(.23+.77*lit)

@@ -89,7 +89,7 @@ def write_glb(scene, texture_dir, destination):
                 textures.append({'source': len(images)-1})
                 image_ids[path] = len(textures)-1
             material_ids[name] = len(materials)
-            materials.append({'name': name, 'doubleSided': True, 'alphaMode': 'MASK', 'alphaCutoff': .5,
+            materials.append({'name': name, 'doubleSided': True, 'alphaMode': native.get('_previewAlphaMode', 'MASK'), 'alphaCutoff': .5,
                               'pbrMetallicRoughness': {'baseColorTexture': {'index': image_ids[path]},
                                                      'metallicFactor': 0, 'roughnessFactor': 1},
                               'extras': {'nativeShader': native['ExtendedData']['ShaderSet'],
@@ -138,13 +138,17 @@ def world_arrays(part):
     return p, n
 
 
-def review_glb(scene, texture_dir, destination):
+def review_glb(scene, texture_dir, destination, *, texture_names=None, cell=2048, columns=None, opaque_texture_names=None):
     """Flatten an inspection copy for the existing CPU renderer, separate from source GLB."""
-    names = sorted({diffuse(m) for part in scene for m in part['materials']})
-    atlas = Image.new('RGBA', (2048*len(names), 2048), (0, 0, 0, 0))
+    names = texture_names or sorted({diffuse(m) for part in scene for m in part['materials']})
+    cols = columns or len(names); rows = math.ceil(len(names)/cols)
+    opaque = set(opaque_texture_names or ()) | {diffuse(m) for part in scene for m in part['materials'] if m.get('_previewAlphaMode') == 'OPAQUE'}
+    atlas = Image.new('RGBA', (cell*cols, cell*rows), (0, 0, 0, 0))
     for i, name in enumerate(names):
         im = Image.open(Path(texture_dir)/name).convert('RGBA')
-        atlas.paste(im.resize((2048, 2048), Image.Resampling.NEAREST), (i*2048, 0))
+        if name in opaque:
+            im.putalpha(255)  # Terrain diffuse alpha encodes blend weight, not opacity.
+        atlas.paste(im.resize((cell, cell), Image.Resampling.LANCZOS if cell < im.width else Image.Resampling.NEAREST), ((i % cols)*cell, (i//cols)*cell))
     ps, ns, ts = [], [], []
     for part in scene:
         p, n = world_arrays(part)
@@ -152,7 +156,8 @@ def review_glb(scene, texture_dir, destination):
             ix = part['indices'][group['TriFirst']*3:(group['TriFirst']+group['TriCount'])*3]
             t = part['arrays']['TextureCoordinates0'][ix, :2].copy()
             index = names.index(diffuse(part['materials'][group['MaterialIndex']]))
-            t[:, 0] = (np.clip(t[:, 0], 0, 1)+index)/len(names)
+            t[:, 0] = (np.clip(t[:, 0], 0, 1)+index % cols)/cols
+            t[:, 1] = (np.clip(t[:, 1], 0, 1)+index//cols)/rows
             ps.append(p[ix]); ns.append(n[ix]); ts.append(t)
     p, n, uv = map(np.concatenate, (ps, ns, ts))
     blob, views, accs = bytearray(), [], []

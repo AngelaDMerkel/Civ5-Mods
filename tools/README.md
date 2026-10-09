@@ -18,6 +18,7 @@ one mod. Do not move them into a playable package.
 | Irrigation mesh refinement v2 | `tools/irrigation_v2/build_irrigation_meshes.py` | `tools/irrigation_v2/validate_irrigation_meshes.py` | `output/models/irrigated-farm-v2/` |
 | Irrigation terrain/network review v3 (unapproved) | `tools/irrigation_v3/build_irrigation_meshes.py` | `tools/irrigation_v3/validate_irrigation_meshes.py` | `output/models/irrigated-farm-v3/` |
 | Native farm irrigation-only overlay study (unapproved) | `tools/irrigation_native/build_overlays.py` | `tools/irrigation_native/validate_overlays.py` | `output/models/irrigated-farm-native-overlay/` |
+| Native-art irrigation terrain and junction review (unapproved) | `tools/irrigation_native/build_terrain_cases.py` | `tools/irrigation_native/validate_terrain_cases.py` | `output/models/irrigated-farm-native-fit/terrain-review/` |
 
 Python files in this table are run with the Python interpreter for the appropriate
 environment. Packaging/validation use the standard library. Gameplay tests need
@@ -50,3 +51,10 @@ installed-game path, compiler and sequence. These tools import five real native
 Farm/Terrace Farm sources and build the first constructed-terrace irrigation
 addition. All extracted art remains in ignored `output/`; the original overlay
 exports are separate. Native engine acceptance is still pending.
+
+The terrain-case builder runs after native import and first fitting. It exports
+seven wet/dry fitting cases using preserved native terrace meshes and native
+crop/terrain textures in authored terrain fixtures. Its validator checks actual
+exported water geometry and hydraulic connections. The offline viewer exposes
+separate terrain, farm and irrigation layers. These checks do not validate the
+game's procedural flat-farm placement or dynamic terrain/adjacency art.

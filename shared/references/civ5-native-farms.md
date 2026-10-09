@@ -22,3 +22,29 @@ Decoder provenance: [OpenGr2](https://github.com/arves100/opengr2), pinned to
 `4e5edd5e98dbd69270d40a92ed94cfe16e57955a`, MPL-2.0. The release-only debug-header
 adjustment is documented beside the source. Our experimental uncompressed writer
 is independent project code; its round-trip checks do not establish game support.
+
+
+Additional terrain-junction references used by `build_terrain_cases.py`:
+
+| Installed path | Purpose |
+| --- | --- |
+| `Resource/DX9/TerrainTextures.fpk` | `afri_desert_d.dds`, `afri_grassland_d.dds`, `afri_mountain_base_d.dds`, `river_diffuse.dds` for fixture material comparisons |
+| `Resource/DX9/DecalTextures.fpk` | `floodplains_d.dds` for the river-bank vegetation ribbon; original regional crop textures reused |
+| `Assets/terrain/pieces/Mountain/Africa/Afri_Mountain_1_1_H.dds` | Native A16B16G16R16 mountain height samples, normalized to an authored 24-unit fixture range |
+
+Exact extracted hashes and origin locators are written to the ignored
+`terrain-review/terrain-cases.json`. These are local reference inputs, not assets
+for redistribution. The flat crop polygons, river ribbon, supporting hill and
+placement/scaling of the mountain are authored fixture geometry. They do not
+establish native terrain-compositor or procedural farm-placement behavior.
+
+
+The installed `Resource/Common/MiscData.fpk:civ5artdefines_landmarks.xml` assigns
+resource-free ordinary farms to `LayoutHandler=FARM`, `bTerrainContour=True`, and
+era-specific `Medieval_Farm1/2/3.fxsxml` / `Modern_Farm1/2/3.fxsxml`. The unsuffixed
+`Medieval_Farm.fxsxml` used by the earlier prop fixture is a constructed wheat
+farm reference. `Assets/DLC/DLC_02/Features/Civ5ArtDefines_Landmarks_DLC_02.xml`
+assigns Terrace Farm to `SNAPSHOT` with terrain contouring enabled. Reproduce the
+read-only definition audit with `tools/irrigation_native/audit_native_layout.py`.
+Output remains local. These definitions explain why decoded source meshes and
+invented context do not demonstrate the native in-game farm appearance.
