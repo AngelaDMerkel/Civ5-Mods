@@ -100,16 +100,20 @@ def main():
         for route in r['routes']:
             points=np.array(route['points']);assert (np.diff(points[:,2])<=1e-7).all(),(name,'uphill water')
         if r['category']=='tile':
-            assert r['triangles']<14000,(name,'budget')
+            assert r['triangles']<10000,(name,'chosen source-review budget; not a native measurement')
             assert not any('foundation' in part or 'pedestal' in part for part in parts)
             if r['state']!='Wet':assert not any(part.endswith('_water') for part in parts)
             else:assert any(part.endswith('_water') for part in parts)
             counts.setdefault(r['terrain'],{})[(r['state'],r['lod'])]=r['triangles']
+            if r['state']=='Wet' and r['lod']==0:
+                assert 'crop_relief' in parts and 'fruit_crown' in parts and 'farm_store' in parts
+                assert sum(part=='crop_relief' for part in parts)>1000
+            if r['lod']==1:assert 'crop_relief' not in parts
         if name=='RT_IF_Aqueduct_Short':
             assert ray_hits(p,np.array((-.85,-2,.35)),np.array((0,1,0)))==0,'Arch opening is blocked'
         print(name,r['triangles'],'triangles: formats, UVs, normals and grade verified')
     for kind,states in counts.items():
-        assert states[('Wet',1)]<states[('Wet',0)],(kind,'LOD does not reduce geometry')
+        assert states[('Wet',1)]<states[('Wet',0)]*.35,(kind,'LOD must remove most close-up geometry')
         assert set(states)=={('Wet',0),('Dry',0),('Construction',0),('Pillaged',0),('Wet',1)}
     socket=json.loads((OUT/'connectors.json').read_text())
     assert {r['mask'] for r in socket['layouts']}==set(range(64))

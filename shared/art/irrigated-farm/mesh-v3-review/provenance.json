@@ -1,0 +1,18 @@
+{
+  "status": "unapproved mesh/material review; not runtime-integrated",
+  "generation": "built-in imagegen",
+  "date": "2026-10-09",
+  "original_dimensions": [
+    1254,
+    1254
+  ],
+  "packed_dimensions": [
+    2048,
+    2048
+  ],
+  "note": "Packing changes texture dimensions, not source detail. Existing v6 approval applies only to the earlier concept.",
+  "files": {
+    "texture-prompt.txt": "442fdc9a6de26794b7f962484b6c79c105f1867696031354c0a6b34557bfe343",
+    "painted-atlas.png": "ebc9454899670cb02a03e503f76c45042672d694e7ff1d2c4d0a6b3c6f9c0f58"
+  }
+}

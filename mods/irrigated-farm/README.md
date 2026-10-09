@@ -21,5 +21,22 @@ and the newer `tools/irrigation_v2/`; generated kits and previews stay in
 Current detail/density refinement, native conversion and in-game terrain fitting
 require their own verification and acceptance.
 
+The current **unapproved v3 mesh review** is built by
+`tools/irrigation_v3/build_irrigation_meshes.py`. It replaces complete terrace
+rings with partial benches and sloping shoulders, adds original painted alpha
+foliage, and models a source-connected distribution network with contour
+channels, bed branches and short aqueducts across dry gullies. Its validator
+checks branch connections and downhill grade, including clearance against the
+actual exported terrain triangles. `render_flow_review.py` annotates those
+exported routes for inspection. Outputs remain in
+`output/models/irrigated-farm-v3/`; they are not playable assets.
+
+Original v3 texture input, its built-in imagegen prompt and provenance are in
+`shared/art/irrigated-farm/mesh-v3-review/`. The source image is 1254 square and
+packed to 2048 for export; this does not imply additional source detail or native
+material compatibility. The v6 approval record is unchanged. Native conversion,
+dynamic adjacency, terrain fitting and in-game visual acceptance remain pending;
+the existing flat-desert gameplay and Farm-art fallback are unchanged.
+
 See the [development guide](../../docs/DEVELOPMENT.md) for the remaining standalone
 packaging work and the [tool catalog](../../tools/README.md) for validation.

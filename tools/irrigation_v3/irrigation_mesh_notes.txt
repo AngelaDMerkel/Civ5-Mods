@@ -1,0 +1,91 @@
+IRRIGATED FARM — SOURCE MESH REVIEW v3
+9 October 2026. Unapproved revision; no native game integration.
+
+WHAT CHANGED
+This revision responds to the overly geometric v1/v2 meshes and sparse water
+network. The farmed slopes now use partial, uneven contour benches, exposed
+unworked shoulders, dry gullies and low retaining walls. The terraces do not
+form complete concentric hexagonal rings. Terrain normals are smoothed while
+retaining masonry stays hard edged. Different tree scales, painted foliage
+cutouts, granular crop textures and smaller masonry replace the repeated solid
+canopies, mathematical crop sprouts and large clean wall panels.
+
+The original atlas was generated with the built-in imagegen tool. The source
+image is 1254 square; it is packed to 2048 square for the exports. Packing does
+not add source detail. The original and exact prompt are preserved under
+shared/art/irrigated-farm/mesh-v3-review/ and copied into this kit's source/.
+provenance.json records the source hashes and unapproved review status. No
+extracted Firaxis textures or meshes are included in the source kit.
+
+REFERENCE BASIS
+The installed Incan_Terrace_DIFF and native Farm/Terrace Farm screenshots were
+inspected for the granular planted surfaces, small agricultural structures,
+weathered masonry and terrain transitions. Reference extracts stay in local
+ignored caches. Screenshot sources:
+  https://store.steampowered.com/app/99614/
+  https://steamcommunity.com/sharedfiles/filedetails/?id=157241384
+The previously approved v6 concept remains unchanged in shared/art/irrigated-farm/.
+Its approval does not cover this mesh revision or the new texture art.
+
+WATER NETWORK
+Each hill has a high receiver, descending lined supply cuts, contour channels
+on level benches, and small branches running outward into the crop beds. Short
+aqueducts carry contour channels across dry gullies. Flat farms have a supply
+channel, several secondary headers, and many narrow bed channels. Junction
+banks are notched at branch mouths. Every route has an upstream route ID.
+
+The connected district has one source. Hills receive water at their upper
+intakes. Flat farms receive water from the lowest contour channels of their
+upstream hills, rather than from a giant inclined bridge starting at a summit.
+Waterways retain a level or falling waterline. Drops remain high until beyond
+the upper retaining edge, then descend into the lower bench. High aqueducts are
+rigid spans and must never be terrain-warped into a dip followed by a climb.
+
+Validation checks route reachability and exact junction positions, monotone
+water elevations, and bed clearance over the full channel width. These are
+source geometry checks, not a flow-rate, pressure, discharge or fluid simulation.
+The flow review is an annotation of the exported routes on an actual GLB render.
+
+SOURCE CONTRACT AND OUTPUTS
+Z up, radius-six hex footprints, normalized authoring units. Native units,
+placement and scale have not been calibrated. Six shared edge directions and
+64 neighbor masks remain in connectors.json. That inventory is not a native
+runtime system for dynamic per-edge mesh placement.
+
+The 36 outputs include four terrain families, wet/dry/construction/pillaged
+states, wet LOD1 variants, separate connectors, vegetation and a district.
+OBJ/MTL, textured GLB, and rigid-root BR2 are provided. The GLB material uses
+alpha masking; the OBJ MTL includes map_d. Native alpha/material binding remains
+to be configured and verified during GR2 conversion. Neutral normal/specular
+DDS files are placeholders. The interactive viewer has simpler lighting than
+the static preview renderer.
+
+LOD1 reduces plant geometry and hidden channel structure; it preserves water
+routes, edge positions and terrain boundaries. Triangle counts are measured
+from these exports, not asserted to match native Civ V budgets. In-game
+performance and further native LOD optimization remain untested.
+
+Crop texture coordinates use a common world frame. Where cultivated surfaces
+meet across tile edges, field species and UV phase agree. Partial benches may
+meet unworked shoulders, so not every edge location has crops on both sides.
+The preview terrain is authored context; fitting to actual Civ V terrain is
+still required. The generic cone mountain was removed from the review scene;
+the elevated source socket represents an attachment to a native mountain.
+
+LIMITS
+This is an art and hydraulic-layout review, not an installable mod. No native
+GR2 conversion, game installation, dynamic native adjacency, terrain fitting,
+or in-game art acceptance has occurred. Current playable irrigation remains
+flat-desert gameplay using normal Farm art. Source-only visual refinements do
+not change that implementation. Native conversion reference:
+  https://github.com/deliverator23/Civilization-Blender-Scripts
+
+REBUILD
+Requires Python 3, NumPy and Pillow.
+  python tools/irrigation_v3/build_irrigation_meshes.py
+  python tools/irrigation_v3/validate_irrigation_meshes.py
+  python tools/irrigation_v3/render_flow_review.py
+From the source bundle:
+  python source/build_irrigation_meshes.py --output rebuilt
+  python source/validate_irrigation_meshes.py --output rebuilt
+Use --quick to skip static renders. Validation results are in validation.json.

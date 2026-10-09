@@ -1,0 +1,366 @@
+{
+  "version": 1,
+  "description": "Approved v1 sources. Conversion candidates only; native profile rendering is unverified.",
+  "assets": [
+    {
+      "name": "RO_Ancient",
+      "source": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Ancient/RO_Ancient.br2",
+        "sha256": "74151417eb1b708c0299b114b963f36c2257797aa3585f5f6a87ae6888989ed1"
+      },
+      "diffuse": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Ancient/RO_Ancient_diffuse.dds",
+        "sha256": "3dc0eb5eef9ddf01268b6d01be12f5aff18d3e0a11b7067009e893d7a8657d56"
+      },
+      "sref": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Era_BlackSpec.dds",
+        "sha256": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+      }
+    },
+    {
+      "name": "RO_Ancient_Pillaged",
+      "source": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Ancient_Pillaged/RO_Ancient_Pillaged.br2",
+        "sha256": "7ca083a584dae4fb6f0aff3e450be10c5466b5fc871b6b43979cc0991924ab87"
+      },
+      "diffuse": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Ancient_Pillaged/RO_Ancient_Pillaged_diffuse.dds",
+        "sha256": "be69fa4922038a0f520be966ebc57c4b525168b8f8831b29cb3fdcdd4b28dec0"
+      },
+      "sref": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Era_BlackSpec.dds",
+        "sha256": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+      }
+    },
+    {
+      "name": "RO_Ancient_UnderConstruction",
+      "source": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Ancient_UnderConstruction/RO_Ancient_UnderConstruction.br2",
+        "sha256": "01c3875d9ce498b497344fcd6b4581663fe76ffcb379681ed8c935b760e86ddc"
+      },
+      "diffuse": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Ancient_UnderConstruction/RO_Ancient_UnderConstruction_diffuse.dds",
+        "sha256": "489d3c785d8577570011b88a904fb2dddb6f81e008db000f087129ca4da10739"
+      },
+      "sref": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Era_BlackSpec.dds",
+        "sha256": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+      }
+    },
+    {
+      "name": "RO_Atomic",
+      "source": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Atomic/RO_Atomic.br2",
+        "sha256": "0589101f0cea76873adc2fcba4c2b3a8b3277a2589932c1ee076082d0948a418"
+      },
+      "diffuse": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Atomic/RO_Atomic_diffuse.dds",
+        "sha256": "91049d858ffdddc5302903619e6bafbe020abd6022e69ba2bf9a08cbc209b4b1"
+      },
+      "sref": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Era_BlackSpec.dds",
+        "sha256": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+      }
+    },
+    {
+      "name": "RO_Atomic_Pillaged",
+      "source": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Atomic_Pillaged/RO_Atomic_Pillaged.br2",
+        "sha256": "57209de9d87bfd8334c85969ed874487f276044bfec1822a3933d86a9a3f0e62"
+      },
+      "diffuse": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Atomic_Pillaged/RO_Atomic_Pillaged_diffuse.dds",
+        "sha256": "d9d373b8791077ea552ed5eeb92a594316df4cfcc692f97d04595116ce672083"
+      },
+      "sref": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Era_BlackSpec.dds",
+        "sha256": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+      }
+    },
+    {
+      "name": "RO_Atomic_UnderConstruction",
+      "source": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Atomic_UnderConstruction/RO_Atomic_UnderConstruction.br2",
+        "sha256": "6d81554b786c49e162f2ef254d41e24e5c8a41011f065eef50c7c25bcaedca3c"
+      },
+      "diffuse": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Atomic_UnderConstruction/RO_Atomic_UnderConstruction_diffuse.dds",
+        "sha256": "d66b9cda25721210944d730a1bb7fd06e0314730039a4c12b1f7f1ce848a9abe"
+      },
+      "sref": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Era_BlackSpec.dds",
+        "sha256": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+      }
+    },
+    {
+      "name": "RO_Classical",
+      "source": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Classical/RO_Classical.br2",
+        "sha256": "d40098fa6ff58106e8b76a540770207cdbb686590aa94122344dee97ddd3336e"
+      },
+      "diffuse": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Classical/RO_Classical_diffuse.dds",
+        "sha256": "30b87dc49d02f88d87eb4b829a34d2a8fca501b7333ca7847869d9012346d754"
+      },
+      "sref": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Era_BlackSpec.dds",
+        "sha256": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+      }
+    },
+    {
+      "name": "RO_Classical_Pillaged",
+      "source": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Classical_Pillaged/RO_Classical_Pillaged.br2",
+        "sha256": "ce56ba0f5ccc00ad72066f1ede757a0c0038ac792a988603ad156cc7386b652f"
+      },
+      "diffuse": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Classical_Pillaged/RO_Classical_Pillaged_diffuse.dds",
+        "sha256": "af143bc5c41ee2b6ea9e3fe4e01e3c1b7eeca2e01fdcbad23449b2b157b97fea"
+      },
+      "sref": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Era_BlackSpec.dds",
+        "sha256": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+      }
+    },
+    {
+      "name": "RO_Classical_UnderConstruction",
+      "source": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Classical_UnderConstruction/RO_Classical_UnderConstruction.br2",
+        "sha256": "3c9b719bc8f11f0b2710ccd737d7cce21f6491776986ba642cb29c02c7a730fa"
+      },
+      "diffuse": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Classical_UnderConstruction/RO_Classical_UnderConstruction_diffuse.dds",
+        "sha256": "b910d68c3bc4d7ecc52241b8798f015405e90c1d9c85c1805a11166b26c3de41"
+      },
+      "sref": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Era_BlackSpec.dds",
+        "sha256": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+      }
+    },
+    {
+      "name": "RO_Industrial",
+      "source": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Industrial/RO_Industrial.br2",
+        "sha256": "4bdf8740f86f286b614cba274d34ffb69fa532988b2418fec501ba24ee73e31e"
+      },
+      "diffuse": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Industrial/RO_Industrial_diffuse.dds",
+        "sha256": "eb1026d6dc69a14ee6fad4ef79b4d5578a4a06e2b917e66f86604767e66cde3f"
+      },
+      "sref": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Era_BlackSpec.dds",
+        "sha256": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+      }
+    },
+    {
+      "name": "RO_Industrial_Pillaged",
+      "source": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Industrial_Pillaged/RO_Industrial_Pillaged.br2",
+        "sha256": "1063d1fc3a5796e4be1fcc49e1bda99e9ae33f6c66e5b6bfca0767d14502e969"
+      },
+      "diffuse": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Industrial_Pillaged/RO_Industrial_Pillaged_diffuse.dds",
+        "sha256": "8239a6c1b60d3071346ed22ec531691b4f472947815916faf84160c4955c5673"
+      },
+      "sref": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Era_BlackSpec.dds",
+        "sha256": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+      }
+    },
+    {
+      "name": "RO_Industrial_UnderConstruction",
+      "source": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Industrial_UnderConstruction/RO_Industrial_UnderConstruction.br2",
+        "sha256": "76fdec2064e03dc8a7bfb9ebbf29b13a48bf31baeeebb3f2858c3095cb7a95f9"
+      },
+      "diffuse": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Industrial_UnderConstruction/RO_Industrial_UnderConstruction_diffuse.dds",
+        "sha256": "87fb384508866ba33ee169d1e4acbe0105685efb948fad0bd04d97568ae376b7"
+      },
+      "sref": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Era_BlackSpec.dds",
+        "sha256": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+      }
+    },
+    {
+      "name": "RO_Information",
+      "source": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Information/RO_Information.br2",
+        "sha256": "5dfcd5185a3c5a4f9e3b7d51c4f6c6c5c24528456c4575c3a57a6a5292f87c53"
+      },
+      "diffuse": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Information/RO_Information_diffuse.dds",
+        "sha256": "dc573d1ea43dcc9cf8f2f93e304d4f802b8724894e21348f5a258d0a33a5e1ab"
+      },
+      "sref": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Era_BlackSpec.dds",
+        "sha256": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+      }
+    },
+    {
+      "name": "RO_Information_Pillaged",
+      "source": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Information_Pillaged/RO_Information_Pillaged.br2",
+        "sha256": "639c5a002032786608f027c81546a13cc0bf98bf54c05a94349402b5ee973f61"
+      },
+      "diffuse": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Information_Pillaged/RO_Information_Pillaged_diffuse.dds",
+        "sha256": "5965e87330534b0f80905b5a107395906858c9819c3baa697921d0d1454207f8"
+      },
+      "sref": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Era_BlackSpec.dds",
+        "sha256": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+      }
+    },
+    {
+      "name": "RO_Information_UnderConstruction",
+      "source": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Information_UnderConstruction/RO_Information_UnderConstruction.br2",
+        "sha256": "d4d7bef498d23cd8f50ebb79dd065cf3af5766d2031cf77aa3728b51a39d4977"
+      },
+      "diffuse": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Information_UnderConstruction/RO_Information_UnderConstruction_diffuse.dds",
+        "sha256": "4652a12479acb97598cbe31dc9895ff4ff3a83a6eedf8aa3dfa2751c68338c82"
+      },
+      "sref": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Era_BlackSpec.dds",
+        "sha256": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+      }
+    },
+    {
+      "name": "RO_Medieval",
+      "source": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Medieval/RO_Medieval.br2",
+        "sha256": "084ffaa9421a491bd3447411983890db8be63d31c7d40eaf29eab1a2e226807a"
+      },
+      "diffuse": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Medieval/RO_Medieval_diffuse.dds",
+        "sha256": "cc2b007e7e72bf6a0a24fb1fc0e47fb381fc3fd8cfadc06dbbc2ec5224bc987a"
+      },
+      "sref": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Era_BlackSpec.dds",
+        "sha256": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+      }
+    },
+    {
+      "name": "RO_Medieval_Pillaged",
+      "source": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Medieval_Pillaged/RO_Medieval_Pillaged.br2",
+        "sha256": "07049fec9b81b554f0a86f2b59898407c3e3bcaa43addc1a412f7d644cf0f3e1"
+      },
+      "diffuse": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Medieval_Pillaged/RO_Medieval_Pillaged_diffuse.dds",
+        "sha256": "bdd83b78c2c85151facd6a0ce844e488be6d9722fc6a3f8680716395738dbf2e"
+      },
+      "sref": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Era_BlackSpec.dds",
+        "sha256": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+      }
+    },
+    {
+      "name": "RO_Medieval_UnderConstruction",
+      "source": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Medieval_UnderConstruction/RO_Medieval_UnderConstruction.br2",
+        "sha256": "7a310138ad4319c208eed810ee8fc10f701bdc1c021e8b85a8d784a7acc55fae"
+      },
+      "diffuse": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Medieval_UnderConstruction/RO_Medieval_UnderConstruction_diffuse.dds",
+        "sha256": "0b147d09c56faef768a751a581f5cda3deb0cb18343f00392c181140d57cf58a"
+      },
+      "sref": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Era_BlackSpec.dds",
+        "sha256": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+      }
+    },
+    {
+      "name": "RO_Modern",
+      "source": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Modern/RO_Modern.br2",
+        "sha256": "786686d883517d097de77947693f15a8370cea5cab0ad4dffc99fb9a0045ce4e"
+      },
+      "diffuse": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Modern/RO_Modern_diffuse.dds",
+        "sha256": "336ee53fd1598ad460f4a50efe49915fdd80edc3b3331fc51135a9904fa64b92"
+      },
+      "sref": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Era_BlackSpec.dds",
+        "sha256": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+      }
+    },
+    {
+      "name": "RO_Modern_Pillaged",
+      "source": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Modern_Pillaged/RO_Modern_Pillaged.br2",
+        "sha256": "c6b305880823b5a2f8b5edb2ce67f7d562208136a97b0f8fb5412db6b4396c22"
+      },
+      "diffuse": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Modern_Pillaged/RO_Modern_Pillaged_diffuse.dds",
+        "sha256": "57033464ef995199b0dda02964c9b1508488ce60c038e46ddac8147b6f68e82e"
+      },
+      "sref": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Era_BlackSpec.dds",
+        "sha256": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+      }
+    },
+    {
+      "name": "RO_Modern_UnderConstruction",
+      "source": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Modern_UnderConstruction/RO_Modern_UnderConstruction.br2",
+        "sha256": "b46cdd0d8b2e627d19dc67e87e376253c6a5d7568a0e6a62732c18021edf3983"
+      },
+      "diffuse": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Modern_UnderConstruction/RO_Modern_UnderConstruction_diffuse.dds",
+        "sha256": "95834941ca6136eb686c355a12d4b44fe49e9f0f484b8344bd403642f8465739"
+      },
+      "sref": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Era_BlackSpec.dds",
+        "sha256": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+      }
+    },
+    {
+      "name": "RO_Renaissance",
+      "source": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Renaissance/RO_Renaissance.br2",
+        "sha256": "eaf5de5631e20a1a3ad08d385adf301df03b1ad6d78a353b08ff109eed0501d8"
+      },
+      "diffuse": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Renaissance/RO_Renaissance_diffuse.dds",
+        "sha256": "3468fa3c96f670621f8de567e9557591b4c06cf5e82e9e325cc6e6b6d9e2478c"
+      },
+      "sref": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Era_BlackSpec.dds",
+        "sha256": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+      }
+    },
+    {
+      "name": "RO_Renaissance_Pillaged",
+      "source": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Renaissance_Pillaged/RO_Renaissance_Pillaged.br2",
+        "sha256": "7c045174ec2f01002b292ed6f7349e05065848590a604364f05428ed1d6a03dc"
+      },
+      "diffuse": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Renaissance_Pillaged/RO_Renaissance_Pillaged_diffuse.dds",
+        "sha256": "f5740c96025bf5b3b6ad9a5c60813291283b0e0c47f28431acc6a0b77db1fa02"
+      },
+      "sref": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Era_BlackSpec.dds",
+        "sha256": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+      }
+    },
+    {
+      "name": "RO_Renaissance_UnderConstruction",
+      "source": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Renaissance_UnderConstruction/RO_Renaissance_UnderConstruction.br2",
+        "sha256": "5f00e5b6530fcfc5cc93c21280ce31ef676dcf1a61e4b4edeb5b88c12b57043d"
+      },
+      "diffuse": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Renaissance_UnderConstruction/RO_Renaissance_UnderConstruction_diffuse.dds",
+        "sha256": "bdc22b202b7b03e1ab009df4af532a7bbcc4c2e30bda5a567689cf61f547f0f1"
+      },
+      "sref": {
+        "path": "../../../output/models/outpost-eras-v1/RO_Era_BlackSpec.dds",
+        "sha256": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+      }
+    }
+  ]
+}

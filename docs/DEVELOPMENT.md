@@ -151,3 +151,22 @@ Keep evidence specific: automated logic/data checks, visual design approval,
 native GR2 conversion, and actual game testing have different acceptance criteria.
 `docs/TESTING.md` and each mod's docs list remaining manual checks. Packaging does
 not install a mod into the game or publish it to Workshop.
+
+## Shared native Civ V test slot
+
+All worktrees use the same installed game and user data. Coordinate native tests
+with active chats before launching, installing DLC/GameCore or changing UI, saves,
+cache or settings. Offline builds and reference inspection can continue in parallel.
+
+Hold `tools.civ5_test_lock.native_test_lock(owner, evidence_directory)` from before
+preparation until restoration completes. The advisory nonblocking `flock` lease is
+`/private/tmp/civ5-native-test-<uid>.lock`, shared across worktrees. Its JSON records
+the owning supervisor PID and evidence directory. Do not delete a held lock file;
+its presence alone is not evidence of an active lease. Also refuse any existing
+Civ V process and recover interrupted-session journals before a new run.
+
+Use background testing by default. The shared GR2 runner in
+`tools/civ5_gr2/background_test.py` uses the pinned external Lekmod harness, a
+disposable scene and stock installed GameCore. It preserves originals and records
+restoration hashes. Its startup and placement evidence does not establish correct
+rendering; inspect the captured game window and report those outcomes separately.
