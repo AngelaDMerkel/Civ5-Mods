@@ -12,6 +12,7 @@ with [AGENTS.md](AGENTS.md) and the [development guide](docs/DEVELOPMENT.md).
 
 ```text
 mods/          Per-mod source, documentation, tests and agent instructions
+gamecore/      Shared native foundation and pinned Mac compatibility bootstrap
 tools/         Shared packaging, mesh builders, exporters and validators
 shared/        Common requirements, reference indexes and approved art sources
 docs/          Repository workflow, current gameplay guide, testing and release notes
@@ -42,6 +43,12 @@ It preserves existing package UUIDs, versions, filenames, database actions and
 save keys. Splitting irrigation into its own playable mod remains a separate
 implementation task. ModBuddy projects are generated under `build/`; edit the
 authoritative files under `mods/*/src/`.
+
+The planned [shared GameCore](docs/SHARED-GAMECORE.md) supports optional native
+features for all four projects. Its [module registry](gamecore/README.md) is
+implemented and compiled tests run with `python3 gamecore/tests/run.py`; no
+loadable core or native gameplay providers exist yet. Existing Mac compatibility
+work is pinned for reuse, and current standalone packages remain independent.
 
 See the [current gameplay and installation guide](docs/GAMEPLAY.md),
 [shared requirements and references](shared/README.md),

@@ -1,9 +1,14 @@
-# Terrain-owned native trade requirements
+# Terrain module: native trade requirements
 
 Status: implementation specification. No APIs or native binary described here
 are implemented by the current Lua package. This records the minimum work needed
 if native trade parity cannot be delivered through the standard mod interface.
 No WSDLC runtime or installer dependency is permitted.
+
+The subsequent user decision places this module in one project-owned GameCore
+shared by the four repository mods. See [the shared architecture](../../../docs/SHARED-GAMECORE.md).
+The trade rules below remain Terrain-owned; other mods do not acquire them just
+because their native capabilities share the same binary.
 
 ## Why native work remains relevant
 
@@ -57,14 +62,16 @@ not accept arbitrary gold, immunity or path data from an unvalidated UI quote.
 
 ## Build and direct installation
 
-Keep Terrain-native source, build inputs, dependency revisions and licenses with
-the Terrain project when implementation begins. The player download contains
+Keep native source, build inputs, dependency revisions and licenses under the
+shared `gamecore/` project, with Terrain's feature contract here. Reuse the existing
+Mac build/ABI work as recorded in [the reuse inventory](../../../gamecore/REUSE.md).
+The player download contains
 the resulting component and matching mod content, not a requirement to build
 the Mac compatibility repository or install another gameplay overhaul.
 
 Before providing an installer, prove that the minimal core can build and load
 on the supported Civ V version. Use the ordinary mod loader where supported.
-If Mac requires replacing its gameplay library, supply a narrow Terrain-owned
+If Mac requires replacing its gameplay library, supply a narrow shared-core
 installer or documented direct process with exact version checks, a verified
 original backup and restoration. WSDLC integration must remain optional.
 

@@ -5,6 +5,12 @@ as standalone as possible, preferably a standard Steam Workshop mod. If required
 features exceed that boundary, write the necessary support for Terrain itself.
 This supersedes the earlier proposal to make WSDLC the full-integration path.
 
+The user subsequently requested one shared GameCore for the four repository
+mods, with modular features and reuse of existing porting work. That decision
+supersedes a Terrain-only native binary; see [SHARED-GAMECORE.md](../../../docs/SHARED-GAMECORE.md).
+Terrain retains ownership of its trade rules. The first compiled module-registry
+foundation exists, but native trade and a loadable core are still unimplemented.
+
 ## Confirmed distribution requirements
 
 - The standard package uses Civ V's ordinary mod format and requires BNW only.
@@ -17,7 +23,7 @@ This supersedes the earlier proposal to make WSDLC the full-integration path.
 - Do not quietly replace required native behavior with superficially similar
   effects to claim completeness. Fractional follower conversion is not native
   religious pressure; influence rewards are not native quest completion.
-- Any unavoidable engine extension belongs to Terrain and must have a direct
+- Any unavoidable engine extension belongs to the shared project and must have a direct
   installation path. Reusable build-time Mac compatibility code is acceptable;
   players must not need to install the projects that originally developed it.
 - Workshop packaging and Mac installation are separate acceptance questions.
@@ -39,7 +45,7 @@ requirements do not make the missing native trade effects implemented.
 
 WSDLC alone cannot turn a saved Lua route into an engine trade connection. The
 missing native controls belong in a gameplay GameCore. Existing Mac compatibility
-work may help build Terrain-owned support, without making WSDLC its installer.
+work is the selected build-time reuse path, without making WSDLC its installer.
 Its [current native-product contract](https://github.com/AngelaDMerkel/Wir-Schaffen-DLC/blob/main/docs/native-gamecore.md)
 recognizes Lekmod and Vox Populi only; a separate Terrain/BNW core would require
 explicit product support, rather than relabeling it as an existing product.
@@ -49,12 +55,13 @@ test, while explicitly leaving broader gameplay/platform acceptance open and the
 public native release catalog empty pending validation/publication. That is useful
 existing work, not evidence that Terrain's rules already work in that core.
 
-## Terrain-owned native work, if needed
+## Terrain module in the shared native core
 
-1. Use the BNW gameplay baseline for Terrain-specific native support; do not
+1. Use the BNW gameplay baseline for the shared core's Terrain module; do not
    require an overhaul to obtain trade controls. Reuse validated build/ABI work
    where its licensing and interfaces permit. Only one gameplay core can be
-   active at a time; compatibility with an overhaul would need a separate build.
+   active at a time; the four repository mods share a build with optional native
+   modules. Compatibility with an overhaul would need deliberate source integration.
 2. Expose versioned capabilities for route eligibility, authorized transit,
    chosen path/range, movement, invested unit type, yields and plunder protection.
    Agreements and infrastructure decisions must be consulted by the engine,
@@ -70,7 +77,7 @@ existing work, not evidence that Terrain's rules already work in that core.
    fractions belong to `RealisticTerrain.Trade.v2`; they must not be silently
    interpreted as native connections. A new-game requirement is the conservative
    initial boundary.
-6. Deliver any required native component with Terrain-owned build, installation
+6. Deliver the shared native component with project-owned build, installation
    and restoration instructions/tools. Verify hashes, supported game versions,
    matching content, saved-game compatibility and recovery. On a platform where
    the ordinary mod loader can load the component, use that path; where it cannot,

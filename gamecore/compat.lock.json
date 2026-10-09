@@ -1,0 +1,6 @@
+{
+  "schema_version": 1,
+  "repository": "https://github.com/AngelaDMerkel/civ5-macos-gamecore-compat.git",
+  "commit": "1663b23bdfa0b79f431c7ff437c6851581efa219",
+  "abi_id": "aspyr-civ5-bnw-x86_64-10.11.6-v1"
+}

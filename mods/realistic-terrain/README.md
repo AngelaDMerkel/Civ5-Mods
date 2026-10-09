@@ -12,8 +12,10 @@ to its sibling project and is assembled into this release by the shared builder.
 The primary distribution target is a **standalone Steam Workshop mod** requiring
 Brave New World, with no WSDLC, mod-manager or gameplay-overhaul dependency.
 Current Lua/SQL/XML/art content is already packaged on that basis. Native trade
-parity remains incomplete; any necessary engine support will be developed for
-Terrain itself, as described in [the integration plan](docs/NATIVE-INTEGRATION.md).
+parity remains incomplete; necessary engine support will be a Terrain module in
+the project-owned [shared GameCore](../../docs/SHARED-GAMECORE.md), as described
+in [the integration plan](docs/NATIVE-INTEGRATION.md). The compiled module-registry
+foundation does not yet provide a loadable core or native trade implementation.
 
 The combined worker UI, construction-order infrastructure and irrigation text
 still live here. Coordinate changes with Irrigated Farm; do not copy its Lua/SQL
