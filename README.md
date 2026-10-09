@@ -1,4 +1,4 @@
-# AngelaDMerkel's Civilization V Mods
+# AngelaDMerkel's Mods
 
 Custom mods by **AngelaDMerkel** for **Civilization V: Brave New World**.
 Explore the projects below for a look at what each adds to your game, then follow

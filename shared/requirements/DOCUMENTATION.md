@@ -1,6 +1,7 @@
 # Player documentation requirements
 
-The repository README is the home of **AngelaDMerkel's custom Civilization V mods**.
+The repository README is titled **AngelaDMerkel's Mods**, the author's custom
+Civilization V mod collection.
 Give each mod its own brief overview with a relevant image, a modest amount of
 gameplay information, current availability and a direct link to its detailed guide.
 Name the author and collection clearly; do not reduce the page to a generic theme
