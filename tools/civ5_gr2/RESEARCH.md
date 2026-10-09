@@ -123,3 +123,39 @@ scenes, preserved settings/saves, hashed fixtures and separate scripted/visible
 evidence. Lekmod's top-level license restricts redistribution of its author's
 contributions; no harness source has been copied into this repository. Those
 tests target its custom GameCore and cannot be treated as stock BNW validation.
+
+## Native test attempt and remaining gate
+
+The original shared fixture was packaged successfully with pinned WSDLC. Its XML
+was checked against an in-memory copy of the installed Civ V database, its Lua
+compiled as Lua 5.1, and guard regressions reject ordinary maps, later saves and
+multiplayer. These are fixture checks, not game rendering results.
+
+The installed Aspyr 1.4.2 game executable has SHA-256
+`d56d6bfbc0ef517fcb7cbaff46c42d1bdfab809c084684045761bd9d85807ee9`.
+The actual macOS application runs as x86-64 through Rosetta; the converter and
+OpenGR2 tools run as arm64. Native launches reached the copyright notice. The
+computer-control tool rejects coordinate clicks with `noWindowsAvailable` in
+both fullscreen and windowed modes, although its screenshot/menu observations
+work. The windowed startup delay resolved without a binary change. The prepared
+scene has **not** been entered, and there is no native candidate-load or rendering
+evidence. The user subsequently authorized an app-targeted native input helper
+to continue testing after the computer-control tool failed.
+
+The test preparation preserves all 135 existing save/cache/settings files in
+the ignored `output/gr2-research/native-test/backup/`, records the executable and
+GameCore hashes, and installs only an owned `CG2_StaticRenderTest` DLC directory.
+No game executable or GameCore patch, injected library or FireTuner listener is
+used. The local session journal and restoration results belong in that ignored
+directory. The first attempt was stopped at the notice, the exact test DLC was
+removed, all 135 original files were hash-verified/restored, and the original
+fullscreen preference was restored. The generated WSDLC bundle includes a stock UI hook and must not be
+distributed. A fixture-ready message or an exit code would not promote rendering
+status even after input control is available.
+
+All 24 approved sources (45,080 triangles total) pass the strict BR2/DDS profile
+preflight and manifest hash checks. Batch serialization is covered by synthetic
+fixtures; promotion of the 24 assets to game-ready output is deferred until the
+Ancient candidate is actually rendered. Outstanding questions are uncompressed
+v7/embedded-string acceptance, BuildingShader parameter binding, UV orientation,
+SREF response, static attachment, scale, lighting/shadows/fog and terrain contact.

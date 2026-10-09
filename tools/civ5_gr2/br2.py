@@ -25,7 +25,7 @@ class Model:
 
 
 def asset_name(value):
-    require(bool(re.fullmatch(r'[A-Za-z][A-Za-z0-9_-]{0,95}', value)), 'asset name must start with a letter and contain only ASCII letters, digits, _ or -')
+    require(isinstance(value,str) and bool(re.fullmatch(r'[A-Za-z][A-Za-z0-9_-]{0,95}', value)), 'asset name must start with a letter and contain only ASCII letters, digits, _ or -')
     return value
 
 

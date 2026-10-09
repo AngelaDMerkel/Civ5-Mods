@@ -15,3 +15,9 @@ no code, binaries, templates or assets from it are included or executed.
 
 Local Civ V assets are proprietary reference data. They are not dependencies
 of the writer and are not included in source control or distributable output.
+
+Optional local renderer-fixture packaging uses Wir Schaffen DLC, MIT, commit
+950a329f57074dfd762e9c32aea7a67a3704b643. Its unmodified source and LICENSE
+remain in the ignored research cache; it is not a conversion dependency.
+No code was copied from Lekmod's separately licensed macOS harness. The test
+map and scene in fixtures/ are original code for this repository.

@@ -13,6 +13,7 @@ PINS = {
     'lslib': ('https://github.com/Norbyte/lslib.git', '6f5f6987d10d8485876b8368431c948e4dea4f83'),
     'opengr2': ('https://github.com/arves100/opengr2.git', '4e5edd5e98dbd69270d40a92ed94cfe16e57955a'),
     'nexus-buddy-2': ('https://github.com/deliverator23/Nexus-Buddy-2.git', 'c42a7f6d1bac7190dec5fd27efe588db91fc24a3'),
+    'wsdlc': ('https://github.com/AngelaDMerkel/Wir-Schaffen-DLC.git', '950a329f57074dfd762e9c32aea7a67a3704b643'),
 }
 
 

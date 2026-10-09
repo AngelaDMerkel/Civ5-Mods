@@ -7,6 +7,8 @@ from pathlib import Path
 from .format import FormatError, Reader, load_strings, require
 from .references import extract_fort, summarize
 from .static import convert
+from .batch import batch, verify_bundle
+from .harness import harness
 
 
 def main():
@@ -28,6 +30,18 @@ def main():
     conversion.add_argument('--name')
     conversion.add_argument('--units-per-meter', type=float, default=1)
     conversion.add_argument('--probe', type=Path, help='optional native OpenGR2 independent-probe')
+    verification = commands.add_parser('verify', help='recheck a conversion bundle against its BR2 source')
+    verification.add_argument('manifest', type=Path)
+    verification.add_argument('--source', type=Path, required=True)
+    batches = commands.add_parser('batch', help='convert a hash-pinned batch; rendering remains unverified')
+    batches.add_argument('manifest', type=Path)
+    batches.add_argument('--output', type=Path, required=True)
+    batches.add_argument('--probe', type=Path)
+    fixture = commands.add_parser('harness', help='stage a disposable renderer fixture without installing it')
+    fixture.add_argument('manifest', type=Path)
+    fixture.add_argument('--source', type=Path, required=True)
+    fixture.add_argument('--output', type=Path, required=True)
+    fixture.add_argument('--scale', type=float, default=6)
     args = parser.parse_args()
     try:
         if args.command == 'extract-fort':
@@ -35,6 +49,12 @@ def main():
         elif args.command == 'convert':
             result = convert(args.source, args.output, args.diffuse, args.sref,
                              name=args.name, probe=args.probe, units_per_meter=args.units_per_meter)
+        elif args.command == 'verify':
+            result = verify_bundle(args.manifest, args.source)
+        elif args.command == 'batch':
+            result = batch(args.manifest, args.output, probe=args.probe)
+        elif args.command == 'harness':
+            result = harness(args.manifest, args.source, args.output, args.scale)
         else:
             db_id, strings = load_strings(args.strings) if args.strings else (0, {})
             reader = Reader(args.input.read_bytes(), strings=strings, codec=args.codec)
