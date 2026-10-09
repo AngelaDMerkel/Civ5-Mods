@@ -49,4 +49,7 @@ See the [current gameplay and installation guide](docs/GAMEPLAY.md),
 [Workshop preparation](docs/WORKSHOP.md). Automated checks do not establish native
 UI rendering, model conversion or in-game behavior; those checks remain pending.
 
-This is a local Git repository. A remote hosting destination has not been configured.
+The configured GitHub remote is [Civ5-Mods](https://github.com/AngelaDMerkel/Civ5-Mods).
+Use semantic commits as work progresses, with per-mod branches in separate
+worktrees; the [development guide](docs/DEVELOPMENT.md) describes the transition
+from the currently shared checkout.

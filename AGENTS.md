@@ -41,6 +41,33 @@ Commit explicit paths belonging to the task. Do not sweep concurrent work into a
 commit with `git add .` or `git add -A`. Shared changes need one active editor;
 work on independent files while overlapping edits are being coordinated.
 
+## Semantic commits and branches
+
+The user's standing preference across all repositories is to commit work as it
+progresses. Make a local commit after each coherent, validated change and before
+handing off completed work. Do not accumulate unrelated tasks into one final
+commit or leave finished work uncommitted. Read-only work needs no commit.
+
+Use Conventional Commit subjects: `type(scope): concise imperative summary`.
+Types include `feat`, `fix`, `refactor`, `docs`, `test`, `build`, `ci`, `perf`,
+`style` and `chore`. Scopes here are `terrain`, `outposts`, `irrigation`, `climate`,
+`tools`, `shared` or `repo`. Use `!` and a breaking-change explanation only when a
+change actually breaks compatibility. Record relevant verification in the body.
+Keep existing published history intact; this convention applies going forward.
+
+Inspect the staged diff before committing and include only the current task's
+changes. If another chat has staged files, leave its index entries alone and
+coordinate the commit; a shared checkout also shares its Git index. Local commits
+are part of authorized implementation work. Publishing, merging and deployment
+remain separate actions governed by the user's task.
+
+Each mod has a reserved `mod/<directory-name>` branch. Use that branch in its own
+worktree for concurrent development; see `docs/DEVELOPMENT.md`. `main` integrates
+validated changes to shared code and the mods. Branch references alone do not
+move a chat or transfer uncommitted work. Existing chats sharing this checkout
+must checkpoint their own work before transitioning; never switch this checkout
+under another active chat.
+
 ## Implementation boundaries
 
 Target the current single-player BNW Lua 5.1/macOS-compatible baseline. Preserve

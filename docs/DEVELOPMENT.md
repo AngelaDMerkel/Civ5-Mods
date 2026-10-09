@@ -27,6 +27,64 @@ affected paths, interface/identifier changes, tests run, and the next owner/acti
 Use a dedicated branch/worktree for future concurrent work on the same files.
 Do not switch branches or broadly stage/reset files in a shared checkout.
 
+## Commit cadence and format
+
+The user requires semantic commits as work is done across all repositories.
+Commit each coherent unit after its relevant checks pass: a bug fix with its
+regression coverage, one feature increment, or a focused documentation update.
+For longer tasks, use working milestones instead of waiting for the entire feature
+to finish. Avoid empty checkpoints and unrelated changes in the same commit.
+
+Use Conventional Commits with an imperative summary:
+
+```text
+feat(irrigation): add connected terrace eligibility
+fix(outposts): prevent duplicate resource grants after reload
+test(terrain): cover interrupted supply routes
+docs(climate): record tile refresh experiment results
+build(tools): validate assembled package sources
+chore(repo): define semantic commits and mod branches
+```
+
+These are examples, not statements that those features are implemented. Supported
+types are `feat`, `fix`, `refactor`, `docs`, `test`, `build`, `ci`, `perf`, `style`
+and `chore`; use a meaningful mod or shared-area scope. Explain a real breaking
+change with `!` and a `BREAKING CHANGE:` body/footer. Include useful test evidence
+in the body. Preserve the two initial commits and any published history.
+
+Review `git status` and the staged diff immediately before committing. Stage only
+owned paths/hunks. A shared checkout has one index: do not include or unstage
+another chat's staged work. Local incremental commits are expected without a new
+confirmation each time; this does not imply publishing or merging permission.
+
+## Per-mod branches and worktrees
+
+| Mod | Reserved development branch |
+| --- | --- |
+| Realistic Terrain | `mod/realistic-terrain` |
+| Resource Outposts | `mod/resource-outposts` |
+| Irrigated Farm | `mod/irrigated-farm` |
+| Climate Change | `mod/climate-change` |
+
+`main` is the integration branch. Shared tooling/rules can use focused topic
+branches when concurrent work warrants it. Each mod branch needs a separate
+worktree, with its chat actually operating in that worktree. Every branch contains
+the full repository, so builds can test all consumers; branch names do not change
+directory ownership or create separate repositories.
+
+The mod branch references are prepared at the workflow-policy commit. Active chats
+still share the original `main` checkout; they have not been moved automatically.
+At a safe checkpoint, each owner commits its own current changes, then continues
+in a dedicated worktree based on current integrated history. Carry over only the
+necessary commits and verify they are present before editing. Avoid reapplying a
+commit that is already in the target branch. Do not copy another chat's dirty
+working tree, switch the shared checkout, or force-reset an existing branch.
+
+Bring shared changes from `main` into the mod branch before relying on them. Run
+the affected tests before integration, preserve semantic commits when merging,
+and resolve shared-file conflicts with the relevant owner. Keep mod branches
+current rather than allowing four separate versions of the common tools to drift.
+
 ## Source composition and current coupling
 
 `tools/packages.py` registers only two releases:
