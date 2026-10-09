@@ -50,8 +50,10 @@ class Member:
 class Definition:
     members: list[Member] = field(default_factory=list)
 
-    def size(self):
-        return sum(m.size() for m in self.members)
+    def size(self, ancestors=()):
+        require(self not in ancestors and len(ancestors) < 64, 'recursive or excessively nested inline type')
+        return sum((m.definition.size(ancestors + (self,)) if m.kind == 1 else SIZES[m.kind])
+                   * max(1, m.width) for m in self.members)
 
 
 @dataclass(eq=False)

@@ -73,6 +73,12 @@ class ContainerTests(unittest.TestCase):
         with self.assertRaisesRegex(FormatError, 'invalid array count'):
             reader.root()
 
+    def test_inline_cycle_rejected_even_after_a_scalar_member(self):
+        definition = Definition([Member('Count', 19)])
+        definition.members.append(Member('Recursive', 1, definition))
+        with self.assertRaisesRegex(FormatError, 'recursive'):
+            definition.size()
+
 
 if __name__ == '__main__':
     unittest.main()

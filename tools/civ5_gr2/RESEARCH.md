@@ -55,7 +55,7 @@ The vertex stride is **60 bytes**: float32 `Position[3]`, `Normal[3]`,
 `Tangent[3]`, `Binormal[3]`, `TextureCoordinates0[3]`, in that order. Source
 coordinates are Z-up. ArtToolInfo is right `(1,0,0)`, up `(0,0,1)`, back `(0,-1,0)`.
 The third texture coordinate exists even for static improvements. The prototype
-will preserve BR2 u/v and initialize that absent component to zero; its visual
+preserves BR2 u/v and initializes that absent component to zero; its visual
 meaning is not proven. Static all-root weights can be represented by a single
 rigid bone binding, as Fort does; nonrigid BR2 inputs must be rejected.
 
@@ -85,8 +85,41 @@ those effects and proprietary textures are not copied to the new converter.
 
 ## Validation boundary
 
-Seven synthetic container regression tests pass. A local Fort graph was decoded,
+A local Fort graph was decoded,
 reserialized without compression/hashed strings and read back. The independent
 OpenGR2 library loaded that rewritten file and read all five vertex/index counts
 and byte CRCs. This does not constitute permission to distribute the rewritten
 reference, or evidence of native game rendering. It remains in the ignored cache.
+
+The first approved source, `RO_Ancient.br2` (SHA-256
+`74151417eb1b708c0299b114b963f36c2257797aa3585f5f6a87ae6888989ed1`), converts to
+`output/gr2-converted/ancient-candidate/RO_Ancient.gr2` with 7,212 vertices and
+2,404 triangles. Uncompressed output SHA-256:
+`30e871bfaaf4c5856681dbba32205ed96db8048bb270b58846ff5e20896ff509`.
+The Python semantic check and independently compiled OpenGR2 loader agree on
+vertex CRC32 3987631773 and index CRC32 1638617673. The FXSXML and two supplied DDS
+files are in the candidate bundle; the JSON records their digests. The 24-source
+model validator passed, including the existing source archive. The approved
+Ancient preview was inspected; it is source-art evidence, not a game screenshot.
+
+Synthetic regressions cover CRC/truncation/relocations, allocation limits, inline
+cycles, graph identity, deterministic output, UV/normal/winding/static rig
+preservation, unsupported weights and transforms, malformed input, independent
+semantic corruption, texture truncation and refusal to overwrite other work.
+
+## WSDLC harness lead
+
+The suggested [Wir Schaffen DLC](https://github.com/AngelaDMerkel/Wir-Schaffen-DLC/tree/950a329f57074dfd762e9c32aea7a67a3704b643)
+was inspected at `950a329f57074dfd762e9c32aea7a67a3704b643`: `LICENSE` is MIT;
+`civ5_dlc_packer.py` handles art import and in-game entry-point packaging, while
+`civ5_host_startup.py` installs a narrowly pinned startup correction. Neither is a
+GR2 reader or compatibility proof. No binary patch or GameCore change is needed
+by this converter, and none has been applied by this task.
+
+WSDLC links to Lekmod's `LEKMOD_DLL/macos/automated-playtest.py`, startup/load Lua
+fixtures and native testing notes, inspected at
+`181b7232160a5661424c275f2a62deb5c56a7a34`. Useful test concepts are bounded fresh
+scenes, preserved settings/saves, hashed fixtures and separate scripted/visible
+evidence. Lekmod's top-level license restricts redistribution of its author's
+contributions; no harness source has been copied into this repository. Those
+tests target its custom GameCore and cannot be treated as stock BNW validation.

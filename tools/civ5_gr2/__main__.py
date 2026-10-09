@@ -6,6 +6,7 @@ from pathlib import Path
 
 from .format import FormatError, Reader, load_strings, require
 from .references import extract_fort, summarize
+from .static import convert
 
 
 def main():
@@ -19,10 +20,21 @@ def main():
     extract = commands.add_parser('extract-fort', help='extract local references to ignored cache')
     extract.add_argument('fpk', type=Path)
     extract.add_argument('--output', type=Path, default=Path('shared/references/local/fort'))
+    conversion = commands.add_parser('convert', help='convert a rigid BR2 to experimental GR2, FXSXML and DDS bundle')
+    conversion.add_argument('source', type=Path)
+    conversion.add_argument('--output', type=Path, required=True)
+    conversion.add_argument('--diffuse', type=Path, required=True)
+    conversion.add_argument('--sref', type=Path, required=True, help='explicit BuildingSREF candidate; visual semantics need game verification')
+    conversion.add_argument('--name')
+    conversion.add_argument('--units-per-meter', type=float, default=1)
+    conversion.add_argument('--probe', type=Path, help='optional native OpenGR2 independent-probe')
     args = parser.parse_args()
     try:
         if args.command == 'extract-fort':
             result = extract_fort(args.fpk, args.output)
+        elif args.command == 'convert':
+            result = convert(args.source, args.output, args.diffuse, args.sref,
+                             name=args.name, probe=args.probe, units_per_meter=args.units_per_meter)
         else:
             db_id, strings = load_strings(args.strings) if args.strings else (0, {})
             reader = Reader(args.input.read_bytes(), strings=strings, codec=args.codec)
