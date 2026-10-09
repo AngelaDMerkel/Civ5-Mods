@@ -217,6 +217,7 @@ function T.Launch(unit, targetID, kind)
     -- The invested trade unit is held by the route; it returns when the route
     -- finishes or is recalled. Destruction returns no unit.
     unit:Kill(false, -1); save();
+    if T.OnVisualChanged then T.OnVisualChanged(); end
     return true, "Route established";
 end
 function T.EndRoute(id, reason, destroyed)
@@ -230,6 +231,7 @@ function T.EndRoute(id, reason, destroyed)
     state.history[#state.history + 1] = { owner = route.owner, turn = Game.GetGameTurn(), message = reason };
     while #state.history > 30 do table.remove(state.history, 1); end
     notify(route.owner, reason, plot(route.path[route.position])); save();
+    if T.OnVisualChanged then T.OnVisualChanged(); end
 end
 local function routeAuthorized(route)
     local from, to = city(route.from), city(route.to);
@@ -297,7 +299,9 @@ function T.Advance(route)
             and not Teams[Players[route.owner]:GetTeam()]:GetTeamTechs():HasTech(I.TECH_RT_CARAVAN_LOGISTICS) then
             T.EndRoute(route.id, "Caravan lost entering roadless unclaimed territory before Caravan Logistics", true); return;
         end
+        local previous = route.path[route.position];
         route.position = nextIndex;
+        if T.OnRouteStep then T.OnRouteStep(route, previous, route.path[nextIndex]); end
         if T.Raid(route) then return; end
     end
 end
@@ -361,6 +365,7 @@ function T.OnTurn(owner)
         if not p:IsHuman() and RT_TradeAI then RT_TradeAI.OnTurn(owner); end
     end
     T.Pay(owner); save(); if T.OnChanged then T.OnChanged(); end
+    if T.OnVisualChanged then T.OnVisualChanged(); end
 end
 function T.OnUnitMoved(owner, unitID)
     local unit = Players[owner] and Players[owner]:GetUnitByID(unitID);

@@ -3,7 +3,14 @@ local count=0;
 local function eq(a,b,why) count=count+1;assert(a==b,why..": "..tostring(a).." ~= "..tostring(b));end
 local function check(a,why) eq(not not a,true,why);end
 local turn, values = 0, {};
-Locale={ConvertTextKey=function(key)return key;end};
+local translations={};
+local localeFile=assert(io.open(TEST_ROOT.."/mods/realistic-terrain/src/Text/RT_Text.xml"));
+for key,value in localeFile:read("*a"):gmatch('<Row Tag="([^"]+)"><Text>(.-)</Text></Row>')do translations[key]=value;end
+localeFile:close();
+Locale={ConvertTextKey=function(key,...)
+    if key:find("^TXT_KEY_RT_TRADE_")then assert(translations[key],"Missing trade localization: "..key);end
+    local args={...};return (translations[key] or key):gsub("{(%d+)[^}]*}",function(i)return tostring(args[tonumber(i)]);end);
+end};
 Game={GetGameTurn=function()return turn;end,GetActivePlayer=function()return 0;end,GetGameSpeedType=function()return 0;end};
 GameDefines={MAX_CIV_PLAYERS=3};DomainTypes={DOMAIN_LAND=0,DOMAIN_SEA=1};
 NotificationTypes={NOTIFICATION_GENERIC=1};OrderTypes={ORDER_TRAIN=1,ORDER_CONSTRUCT=2};MissionTypes={MISSION_MOVE_TO=1,MISSION_BUILD=2};
@@ -121,7 +128,9 @@ check(T.Offer(0,1),"AI signs willing agreement");check(T.HasAgreement(1,0),"agre
 check(T.Launch(caravan,6,"international"),"authorized route starts");check(caravan.dead,"trade unit invested in route");
 eq(T.Used(0),1,"route takes slot");
 eq(T.Quote(from,to,0,"international").valid,false,"duplicate destination blocked in planner");
+local steps={};T.OnRouteStep=function(route,a,b)steps[#steps+1]=a..":"..b;end;
 turn=1;T.OnTurn(0);eq(T.state.routes[1].position,3,"caravan advances two tiles");check(Players[0].gold>0,"trade pays real player gold");
+eq(table.concat(steps,","),"0:1,1:2","map presentation receives every actual route step in order");
 eq(Teams[0].science,1,"international science credited to research");
 local gold=Players[0].gold;T.OnTurn(0);eq(Players[0].gold,gold,"duplicate turn does not pay twice");eq(T.state.routes[1].position,3,"duplicate turn does not move twice");
 T.OnTurn(1);check(Players[1].gold>0,"partner receives its own trade return");
@@ -217,6 +226,7 @@ Controls={};for _,name in ipairs({"TradeRows","TradeTitle","TradeStatus","TradeS
 local rows={};InstanceManager={new=function()return{GetInstance=function()local r={};for _,name in ipairs({"Title","Detail","Root","ActionLabel","Action","Locate"})do r[name]=control();end;rows[#rows+1]=r;return r;end,
     ResetInstances=function()rows={};end};end};
 Mouse={eLClick=1};local selected=unit(0,0,I.UNIT_CARAVAN);
+ContextPtr={SetInputHandler=function(self,f)self.input=f;end};KeyEvents={KeyDown=1};Keys={VK_ESCAPE=27};
 UI={GetHeadSelectedUnit=function()return selected;end,LookAt=function()end};include=function(name)assert(name=="InstanceManager");end;
 load("RT_TradeUI");Controls.TradeOpen.callback();eq(Controls.TradePanel.hidden,false,"planner opens");
 Controls.TradeAgreementTab.callback();check(#rows>0,"agreement rows rendered");
@@ -393,3 +403,26 @@ T.ValidateRoutes();eq(Players[0].created,beforeEmbargo+1,"repeat validation cann
 resolutionRows={};check(T.Quote(from,to,0,"international",nil,nil,I.UNIT_RT_MOTORIZED_CARAVAN).valid,"repeal reopens planning");
 Game.GetActiveLeague=function()return nil;end;eq(T.IsEmbargoed(0,1),false,"pre-Congress game permits trade");
 print("Congress enforcement and income forecast: "..count.." assertions passed");
+
+-- Incoming foreign traffic is not privileged information: both list entries
+-- and stale Locate callbacks must respect current visibility.
+local foreign={id=999,owner=1,recipient=0,from=6,to=0,path={6,5,4,3,2,1,0},position=4,
+    unitType=I.UNIT_CARAVAN,kind="international",age=1,minimumTurns=10};
+T.state.routes[999]=foreign;plots[3].revealed=false;T.OpenRoutes();
+eq(#rows,1,"hidden incoming route is omitted");eq(rows[1].Title.text,"No active routes","recipient cannot track route through fog");
+plots[3].revealed=true;plots[6].revealed=false;T.OnChanged();
+check(rows[1].Title.text:find("Unknown origin"),"visible foreign marker cannot expose unrevealed endpoint name");
+eq(rows[1].Action.hidden,true,"foreign route cannot be recalled");
+local locate=rows[1].Locate.callback;local looked=false;UI.LookAt=function()looked=true;end;
+plots[3].revealed=false;locate();eq(looked,false,"stale Locate callback cannot reveal hidden position");
+plots[3].revealed=true;plots[6].revealed=true;T.state.routes[999]=nil;
+Controls.TradeAccountsTab.callback();local foundForecast,foundLimits=false,false;
+for _,r in ipairs(rows)do
+    foundForecast=foundForecast or r.Title.text:find("Empire forecast");
+    foundLimits=foundLimits or r.Detail.text:find("religious pressure");
+end
+check(foundForecast,"accounts renders combined empire forecast");check(foundLimits,"accounts discloses native subsystem limits");
+eq(ContextPtr.input(KeyEvents.KeyDown,Keys.VK_ESCAPE),true,"Escape closes only open planner");
+eq(Controls.TradePanel.hidden,true,"Escape hides planner");
+eq(ContextPtr.input(KeyEvents.KeyDown,Keys.VK_ESCAPE),false,"closed planner does not consume Escape");
+print("Trade UI localization, forecast and fog-of-war: "..count.." assertions passed");

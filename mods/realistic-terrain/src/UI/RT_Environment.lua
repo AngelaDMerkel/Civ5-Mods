@@ -77,7 +77,10 @@ local function refresh()
 end
 
 Controls.ExposurePanel:SetOffsetVal(C.UI_OFFSET_X, C.UI_OFFSET_Y);
-Controls.ConstructionPanel:SetOffsetVal(C.UI_OFFSET_X, C.UI_OFFSET_Y);
+-- Leave the companion's 95-pixel worker panel at its established top position.
+-- Database presence is stable regardless of which UI addin initializes first.
+local companionOffset = GameInfoTypes.IMPROVEMENT_RT_RESOURCE_OUTPOST and 112 or 0;
+Controls.ConstructionPanel:SetOffsetVal(C.UI_OFFSET_X, C.UI_OFFSET_Y + companionOffset);
 Controls.ConstructionButton:RegisterCallback(Mouse.eLClick, function()
     RT_ConstructionOrders.Toggle(UI.GetHeadSelectedUnit());
     refresh();

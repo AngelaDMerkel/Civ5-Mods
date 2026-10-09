@@ -5,4 +5,5 @@ include("RT_TradeMap");
 include("RT_Trade");
 include("RT_TradeAI");
 include("RT_TradeUI");
+include("RT_TradeMarkers");
 RT_Trade.Initialize();
