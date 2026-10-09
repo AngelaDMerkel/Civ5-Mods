@@ -41,3 +41,12 @@ The native-farm overlay study reuses the v3 exporter and aqueduct source without
 exporting replacement fields or terrain. Its validator checks closed/open edges,
 neighbor-link selection, format parity and preserved aqueduct geometry. Actual
 native farm mesh fitting and terrain clearance are not yet validated.
+
+
+Native irrigation source work now also has `irrigation_native/import_native_farms.py`,
+`validate_native_import.py`, `build_native_fit.py` and `validate_native_fit.py`.
+See [the native pipeline notes](irrigation_native/README.md) for the required
+installed-game path, compiler and sequence. These tools import five real native
+Farm/Terrace Farm sources and build the first constructed-terrace irrigation
+addition. All extracted art remains in ignored `output/`; the original overlay
+exports are separate. Native engine acceptance is still pending.

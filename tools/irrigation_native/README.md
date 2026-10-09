@@ -107,3 +107,51 @@ readback without a GSD. This is an **experimental exporter**, not certification 
 Granny/Nexus or Civ V. Native material rendering, terrain contouring, engine
 loading, states and dynamic adjacency still require engine tests. No runtime
 art definition or gameplay rule is changed by these tools.
+
+
+## First actual native fitting
+
+```sh
+python tools/irrigation_native/build_native_fit.py
+python tools/irrigation_native/validate_native_fit.py
+```
+
+Run after the native importer. The generated `irrigation-fit/index.html` compares
+the original native terrace, the combined model and irrigation alone. The main
+GLB retains the native indexed positions, crop UVs and model transforms verbatim.
+Only the separate renderer copy uses a packed inspection atlas. Renders are made
+from exported geometry and decoded textures, never generated concept imagery.
+
+The original addition is a single sparse header on measured wall caps in
+`Incan_Farm06` and `Incan_Farm07`, fed by the existing aqueduct design. The aqueduct
+builder is reused with a uniform 2.2 scale; its pier feet sample the actual native
+surface and its waterline stays on one descending grade. The source socket is
+open for an upstream connection; the exposed header outlet is closed inside the
+farm. Most native parcel boundaries remain dry. No native field or wall is replaced.
+
+Outputs include wet/dry GR2, FXSXML, mipmapped BC1 diffuse/SREF DDS, indexed GLBs,
+OBJ/BR2 sources, the local combined model and distance/detail renders. The original
+wet overlay has 573 triangles; dry has 525. The base native mesh has 1,066 visible
+triangles. The painted irrigation atlas is reused from the previous original
+source kit; it is not a native crop texture. No extra farm crops are generated.
+
+Validation checks unchanged native vertices/UVs/indices/transforms, native GR2 to
+GLB parity, finite/nondegenerate triangles, unit normals, wrapper references and
+complete DDS mip chains. The route checks take 1,083 samples across the channel
+width and aqueduct. Another 192 samples check actual exported wet triangles. The
+minimum water clearance is about 0.146 native authoring units. These are source
+mesh checks; engine terrain deformation may change the result. The source PNGs
+were visually inspected and viewer JavaScript syntax checked; browser automation
+was unavailable for interactive verification in this pass.
+
+This first fitting is **not** a finished set for every terrain configuration.
+The flat Farm crop-decal layout needs a native placement hook or an established
+engine-compatible overlay method. Terrace HB/PL sources have been imported but
+have not received irrigation geometry. Dynamic adjacent/source selection,
+aqueduct terrain-contour exclusion, native engine loading/materials and actual
+hill/mountain transitions remain unverified. The open source port does not prove
+an in-game water connection. Runtime stays on the current Farm-art fallback.
+
+Do not copy the whole local review output into a release: it contains the owner's
+native reference art. Original overlay exports are separate, but are still an
+experimental native-format candidate requiring engine testing and design review.

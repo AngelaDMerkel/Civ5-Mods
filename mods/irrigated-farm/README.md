@@ -68,7 +68,12 @@ assets export to editable GLBs and experimental GR2 files with verified vertex,
 UV, index, transform and complete decoded-graph parity. Local extracts and renders
 are ignored; they are not distributable mod assets. Ordinary farm crop decals are
 separate from their GR2 props, as recorded in the installed `farm_types.xml`.
-Native engine loading and terrain/adjacency integration are still pending.
+`build_native_fit.py` now adds original wet/dry header channels and an aqueduct to
+the actual constructed Terrace Farm source mesh, keeping its native crop geometry
+and UVs unchanged. The first fitting exports GLB/OBJ/BR2 plus experimental GR2,
+DDS and FXSXML candidates, with gravity, clearance and export checks. Native
+engine loading and terrain/adjacency integration are still pending; this is one
+constructed-terrace fitting, not the full flat/hill/mountain or HB/PL variant set.
 
 See the [development guide](../../docs/DEVELOPMENT.md) for the remaining standalone
 packaging work and the [tool catalog](../../tools/README.md) for validation.
