@@ -4,7 +4,7 @@ import hashlib
 import json
 
 ROOT=Path(__file__).resolve().parents[1]
-APPROVAL=ROOT/'docs/art/rt-models/approved.json'
+APPROVAL=ROOT/'shared/art/rt-models/approved.json'
 
 
 def apply_approval(manifest,out):

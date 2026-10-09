@@ -6,7 +6,7 @@ import shutil
 import xml.etree.ElementTree as ET
 import zipfile
 
-from packages import ROOT, BNW_ID, RT_ID, PACKAGES
+from packages import ROOT, BNW_ID, RT_ID, PACKAGES, package_files
 
 
 def imports_into_vfs(path):
@@ -19,7 +19,6 @@ def write_xml(root, path):
 
 
 def manifest(files, spec):
-    source = spec["source"]
     mod = ET.Element("Mod", id=spec["id"], version=str(spec["version"]))
     props = ET.SubElement(mod, "Properties")
     for key, value in {
@@ -42,8 +41,7 @@ def manifest(files, spec):
     if spec["id"] != RT_ID:
         ET.SubElement(blocks, "Mod", id=RT_ID, minversion="0", maxversion="1", title="Realistic Terrain (old bundled outposts)")
     entries = ET.SubElement(mod, "Files")
-    for path in files:
-        rel = path.relative_to(source).as_posix()
+    for rel, path in files.items():
         ET.SubElement(entries, "File", {"md5": hashlib.md5(path.read_bytes()).hexdigest().upper(),
             "import": "1" if imports_into_vfs(rel) else "0"}).text = rel
     actions = ET.SubElement(ET.SubElement(mod, "Actions"), "OnModActivated")
@@ -57,7 +55,6 @@ def manifest(files, spec):
 
 
 def modbuddy(files, mod, spec):
-    source = spec["source"]
     ns = "http://schemas.microsoft.com/developer/msbuild/2003"
     ET.register_namespace("", ns)
     def tag(s): return f"{{{ns}}}{s}"
@@ -74,8 +71,7 @@ def modbuddy(files, mod, spec):
         group = ET.SubElement(project, tag("PropertyGroup"), Condition=f"'$(Configuration)' == '{configuration}'")
         ET.SubElement(group, tag("OutputPath")).text = f"bin\\{configuration}\\"
     items = ET.SubElement(project, tag("ItemGroup"))
-    for path in files:
-        rel = path.relative_to(source).as_posix()
+    for rel in files:
         item = ET.SubElement(items, tag("Content"), Include=rel.replace("/", "\\"))
         ET.SubElement(item, tag("ImportIntoVFS")).text = "True" if imports_into_vfs(rel) else "False"
     ET.SubElement(project, tag("Import"), Project="$(MSBuildExtensionsPath)\\Firaxis\\ModBuddy\\Civ5Mod.targets")
@@ -83,17 +79,25 @@ def modbuddy(files, mod, spec):
 
 
 def build(spec):
-    source = spec["source"]
-    files = sorted(p for p in source.rglob("*") if p.suffix.lower() in {".lua", ".sql", ".xml", ".dds", ".gr2", ".fxsxml", ".ftsxml"})
+    files = package_files(spec)
     mod = manifest(files, spec)
-    manifest_path = source / (spec["name"] + ".modinfo")
+    # The ModBuddy project and its complete source tree are generated together.
+    # Mod ownership directories never receive generated manifests or copied code.
+    stage = spec["stage"]
+    if stage.exists(): shutil.rmtree(stage)
+    stage.mkdir(parents=True)
+    for rel, path in files.items():
+        dest = stage / rel
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(path, dest)
+    manifest_path = stage / (spec["name"] + ".modinfo")
     write_xml(mod, manifest_path)
-    write_xml(modbuddy(files, mod, spec), source / (spec["name"] + ".civ5proj"))
+    write_xml(modbuddy(files, mod, spec), stage / (spec["name"] + ".civ5proj"))
     output = ROOT / "dist" / (spec["name"] + " (v " + str(spec["version"]) + ")")
     if output.exists(): shutil.rmtree(output)
     output.mkdir(parents=True)
-    for path in files + [manifest_path]:
-        dest = output / path.relative_to(source)
+    for rel, path in {**files, manifest_path.name: manifest_path}.items():
+        dest = output / rel
         dest.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(path, dest)
     archive = ROOT / "dist" / (spec["slug"] + "-v" + str(spec["version"]) + ".zip")

@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "round": 3,
+  "selected_by": "user",
+  "status": "exported as DDS and integrated in Realistic Terrain v2; native game rendering pending",
+  "export_manifest": "exports.json",
+  "source_base": ".",
+  "crop_format": "x, y, width, height in source pixels, top-left origin",
+  "prompt_set": "prompts.json",
+  "selections": [
+    {
+      "id": "logistics",
+      "role": "Caravan Logistics technology portrait",
+      "option": "B",
+      "title": "Mountain passage",
+      "source": "logistics-b.png",
+      "review_crop": [14, 14, 1226, 1226]
+    },
+    {
+      "id": "ministry",
+      "role": "Ministry of Coin national wonder portrait",
+      "option": "B",
+      "title": "Counting house",
+      "source": "ministry-options.png",
+      "review_crop": [913, 26, 823, 823]
+    },
+    {
+      "id": "caravansary",
+      "role": "Caravansary improvement portrait",
+      "option": "A",
+      "title": "Roadside gateway",
+      "source": "caravansary-options.png",
+      "review_crop": [42, 30, 809, 809]
+    },
+    {
+      "id": "worker",
+      "role": "Build Caravansary worker action",
+      "option": "B",
+      "title": "Well and shelter",
+      "source": "worker-options.png",
+      "review_crop": [1020, 166, 600, 600]
+    },
+    {
+      "id": "wonder",
+      "role": "Ministry of Coin wonder painting",
+      "option": "A",
+      "title": "Treasury arrival",
+      "source": "wonder-a.png",
+      "review_crop": null
+    }
+  ],
+  "notes": [
+    "The user selected Ministry portrait B and wonder painting A separately. Preserve this combination.",
+    "Review crops identify the selected subjects on the original concept sheets; they are not production texture specifications.",
+    "Do not include the original Civ V comparison references in the mod package."
+  ]
+}

@@ -15,7 +15,7 @@ from outpost_mesh_io import export, make_atlas, render, make_gallery, MATERIALS
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'output/models/outpost-eras-v1'
-APPROVAL = ROOT / 'docs/art/outpost-era-concepts-v1/approved.json'
+APPROVAL = ROOT / 'shared/art/outpost-era-concepts-v1/approved.json'
 
 
 class Mesh(BaseMesh):

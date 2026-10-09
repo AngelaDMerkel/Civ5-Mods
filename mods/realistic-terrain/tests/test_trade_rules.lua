@@ -1,0 +1,60 @@
+dofile(TEST_ROOT .. "/mods/realistic-terrain/src/Lua/RT_TradeRules.lua");
+dofile(TEST_ROOT .. "/mods/realistic-terrain/src/Lua/RT_Serialize.lua");
+local R, count = RT_TradeRules, 0;
+local function eq(a,b,why) count=count+1; assert(a==b,why .. ": " .. tostring(a) .. " ~= " .. tostring(b)); end
+local opts = { origin=0, international=true, destinationAgreement=true, agreements={[1]=true},
+    land=true, logistics=false, baseRange=10 };
+local path={}; for id=1,41 do path[id]={id=id,owner=-1,road=true,stepCost=50}; end
+eq(R.Inspect(path,opts).valid,false,"roads alone do not provide unlimited range");
+path[20].station=true; path[30].station=true;
+local q=R.Inspect(path,opts);
+eq(q.valid,true,"two reachable relays allow 40 road edges"); eq(q.relays,2,"two extensions"); eq(q.range,2000,"extension cap");
+path[42]={id=42,owner=-1,road=true,stepCost=100,station=true};
+eq(R.Inspect(path,opts).valid,false,"unreachable relay cannot bootstrap range"); path[42]=nil;
+path[20].station=false; eq(R.Inspect(path,opts).valid,false,"disconnected first relay breaks chain"); path[20].station=true;
+path[5].road=false;
+eq(R.Inspect(path,opts).valid,false,"neutral roadless tile forbidden before logistics");
+opts.logistics=true; q=R.Inspect(path,opts);eq(q.valid,true,"logistics permits neutral roadless travel");eq(q.efficiency,60,"road penalty remains");
+path[6].hazard="heat";q=R.Inspect(path,opts);eq(q.efficiency,20,"missing relief adds another 40 percent");
+path[6].relief=true;eq(R.Inspect(path,opts).efficiency,60,"relief repairs its own penalty");
+path[5].owner=2;eq(R.Inspect(path,opts).valid,false,"logistics does not grant foreign passage");
+opts.agreements[2]=true;eq(R.Inspect(path,opts).valid,true,"transit agreement grants passage");
+opts.destinationAgreement=false;eq(R.Inspect(path,opts).valid,false,"destination agreement mandatory");opts.destinationAgreement=true;
+path[41].id=1;eq(R.Inspect(path,opts).valid,false,"loop cannot generate extra range or income");
+local edges={[1]={2,3},[2]={1,4},[3]={1,4},[4]={2,3}};
+local function weight(a,b) if a==2 or b==2 then return 50;end;return 100;end
+local p,cost=R.Path(1,4,function(id)return edges[id];end,function()return true;end,weight,300);
+eq(p[2],2,"weighted path prefers road");eq(cost,100,"weighted path cost");
+eq(R.Path(1,4,function(id)return edges[id];end,function(id)return id~=2 and id~=3;end,weight,300),nil,"blocked graph has no route");
+local data={routes={[1]={path={0,1,2},name="a:b;n",active=true}},cash={[0]=23},empty={}};
+local decoded=RT_Serialize.Decode(RT_Serialize.Encode(data));
+eq(decoded.routes[1].path[1],0,"zero plot ID survives save");eq(decoded.routes[1].name,"a:b;n","delimiter characters round-trip");
+eq(decoded.cash[0],23,"numeric player keys survive");eq(decoded.routes[1].active,true,"boolean round-trip");
+eq(pcall(RT_Serialize.Decode,"os.execute('bad')"),false,"save is data, never executable code");
+eq(pcall(RT_Serialize.Decode,"s100:short"),false,"truncated save rejected");
+
+local expedition={{id=0,owner=0,city=true,stepCost=0},{id=1,owner=-1,road=false,hazard="cold",stepCost=100},{id=2,owner=1,city=true,stepCost=100}};
+local modern={origin=0,international=true,destinationAgreement=true,agreements={[1]=true},land=true,logistics=false,roadIndependent=true,baseRange=2};
+local mq=R.Inspect(expedition,modern);
+eq(mq.valid,true,"motorized alternative permits neutral roadless land without Logistics");
+eq(mq.roads,false,"motorized capability does not invent physical roads");
+eq(mq.roadPenalty,40,"motorized route retains road economic deduction");
+eq(mq.reliefPenalty,0,"motorized route has no terrain relief penalty");
+eq(mq.stationPenalty,40,"motorized route pays for absence of a supplied stop");
+eq(mq.efficiency,20,"roadless unserviced route pays 20 percent");
+eq(mq.cargoEfficiency,100,"motorized deductions affect gold only");
+expedition[2].hazard=nil;eq(R.Inspect(expedition,modern).efficiency,20,"mild terrain has identical motorized economics");
+expedition[2].hazard="cold";expedition[2].relief=true;expedition[2].reliefStation=99;
+eq(R.Inspect(expedition,modern).efficiency,20,"nearby relief alone cannot replace an actual station stop");
+eq(R.Inspect(expedition,modern).usedStations[99],nil,"terrain-immune trader does not claim an unused relief station");
+expedition[2].road=true;eq(R.Inspect(expedition,modern).efficiency,60,"roads without a station pay 60 percent");
+expedition[2].station=true;eq(R.Inspect(expedition,modern).efficiency,100,"roads and supplied station pay full gold");
+eq(R.Inspect(expedition,modern).usedStations[1],true,"commercial servicing qualifies a used station for compensation");
+expedition[2].road=false;eq(R.Inspect(expedition,modern).efficiency,60,"station without road continuity pays 60 percent");
+expedition[2].station=false;expedition[2].reliefStation=nil;
+modern.roadIndependent=false;eq(R.Inspect(expedition,modern).valid,false,"ordinary unit still needs Logistics");
+modern.logistics=true;eq(R.Inspect(expedition,modern).efficiency,60,"Logistics alone keeps ordinary road penalty");
+modern.roadIndependent=true;modern.agreements[1]=nil;eq(R.Inspect(expedition,modern).valid,false,"upgrade still needs transit agreements");
+modern.agreements[1]=true;modern.destinationAgreement=false;eq(R.Inspect(expedition,modern).valid,false,"upgrade still needs destination agreement");
+modern.destinationAgreement=true;modern.baseRange=1;eq(R.Inspect(expedition,modern).valid,false,"upgrade keeps range limits and normal off-road range cost");
+print("Trade paths, eligibility and persistence: " .. count .. " assertions passed");

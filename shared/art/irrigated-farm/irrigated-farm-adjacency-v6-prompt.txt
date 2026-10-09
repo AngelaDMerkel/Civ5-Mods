@@ -1,0 +1,30 @@
+Use case: precise-object-edit / game-art concept.
+Asset: Civilization V irrigated farm, version 6 — terraces and compatible terrain variants.
+
+REFERENCE ROLES:
+Image 1 is the v5 mockup to EDIT. Preserve its continuous downhill mountain aqueduct, connected district of irrigated fields, desert crop mix and subdued game-map look. The important change is properly terracing and cultivating the hills, including the currently bare foreground and background hill tiles.
+Image 2 is a REAL CIV V SCREENSHOT with the native Incan Terrace Farm on the right side near the mountains: angular polygonal stone retaining walls form several distinct flat planted shelves. This is the primary TERRACE SHAPE reference. Ignore all UI, yield icons and units.
+Image 3 is the official Civ V desert screenshot: reference native smooth yellow-gray sandy hill meshes, squat angular dark mountains, muted shading, sparse low-detail scenery and ordinary strategy-camera scale.
+Image 4 is an official Civ V screenshot of native farms: reference flat broad ground-conforming crop texture patches and small building scale.
+Image 5 is the actual installed terrace-farm texture atlas: use simple painted crop stripes and muted gray/tan masonry, not photoreal leaves.
+
+PRIMARY REQUEST:
+Add TERRACED AGRICULTURE ON EVERY HILL within the farmed district. The user wants every tile to be compatible with this improvement. Show a coherent family of interchangeable terrain-adapted farm pieces, with no arbitrarily excluded hill or isolated square farm stamp. Flat fields, gentle hill terraces, steep hill terraces and lower mountain/rocky-foot terraces all connect seamlessly to each other. Bare inaccessible rock may remain at the mountain summit; its TILE still participates through the spring, aqueduct and cultivated foothill shelves. Treat this as a visual art system, not claiming implemented game behavior.
+
+LAYOUT:
+Landscape 3:2 concept sheet. Main map about 78% of height, and four small comparison crops along the bottom. Title "IRRIGATED FARM — TERRACED TERRAIN". Bottom panel labels exactly: "Flat", "Gentle hill", "Steep hill", "Rocky foothill". Each is a crop-like view of continuous neighboring ground, never a raised hexagonal block floating on blank background. Main map is a compact group of adjoining land tiles: one source mountain at rear left; several gently and more steeply raised hills across the back and middle and one hill in the foreground; contiguous flat cultivated land between. Every usable land tile shown within the district is farmed and connected. Faint native hex grid only. No HUD, selection circles or ownership borders.
+
+TERRACES MUST READ AS TRUE STEPS:
+On gentle hills show 3–4 wide level crop benches. On steeper hills show 5–7 narrower level benches. Each tread is visibly horizontal and planted; short vertical retaining faces have simple gray-tan stone. Use bold angular contour polygons, straights and chamfered corners like Civ V's actual Incan Terrace Farm, adapting to irregular rounded hills. DO NOT simply draw crop stripes down a sloping mound or add decorative lines to unaltered slope. The stepped retaining walls and flat cultivated shelves must be obvious at ordinary game zoom. No huge ziggurats, ornamental concentric rings or watery rice paddies. Low modest dry-stone edges, stepped earth, geometric barley and low vegetable beds.
+
+SEAMLESS TILE COMPATIBILITY:
+Neighboring same-level terraces continue across the shared hex edge at matching height and width. Crop rows and long parcels pass across boundaries without gaps or doubled walls. As hill meets flat terrain, the lowest bench broadens naturally into a rectangular flat plot. A steep-hill piece joins a gentle-hill piece by matching the common ledges at the seam, with extra smaller steps added internally. Source/rocky-foot pieces share the same channel dimensions as farm pieces. Use through channels, turns and branches, so no tile depends on having one special neighbor orientation. Retaining walls follow LAND CONTOURS, not hex perimeters. No sandy moat between improved tiles and no repeated tiny hut in every tile.
+
+KEEP THE HYDRAULICS CORRECT:
+A small source midway up the mountain is physically HIGHER than the topmost receiving crop terrace. A clearly visible short raised masonry AQUEDUCT runs straight from the mountain flank across a notch onto the upper shelf of the adjacent hill, on 3–4 readable arches. Its top is a single nearly straight shallow downhill grade: the piers extend down to the uneven ground, but the water never sags into the gap and climbs again.
+The feeder runs along the upper terrace, then branches through small sluices and narrow lined downhill drops to successively LOWER benches. Keep drops modest; no waterfalls. A low straight aqueduct can bridge an additional saddle to a lower hill. Arrange all farmed hill tops BELOW the original source elevation, recompose/lower the distant hills as needed. The main feeder must reach every farmed tile continuously; do not add disconnected upper terraces above the supplied water. On flats use narrow shallow earthen channels, not wide raised concrete canals.
+
+CROPS AND STYLE:
+Continue a sparse date-palm and small fig/pomegranate grove on broad flat beds; low barley, vegetable/legume rows with visible dry earth furrows, a few olives on broad terrace benches, tawny harvested stubble and brown fallow strips. No thick generic green grass carpet, corn, rice, tropical jungle or decorative resort palms. Use the simpler native Civ V painted textures, restrained early-2010s realtime rendering, low-detail shrubs and small models. Maintain the soft gray-yellow desert palette from actual screenshots. No cinematic diorama lighting, high-detail pebbles everywhere, hyperreal foliage, lush fantasy greenery or monumental engineering. Two tiny mud-brick shared buildings at most across the district.
+
+The result should make this instantly clear: the same irrigated farm visual system works continuously across ALL the shown terrain tiles, and hills are actively FARMED IN TERRACES, not empty mounds carrying only an aqueduct.

@@ -1,0 +1,31 @@
+Irrigated Farm v6 — terraced terrain
+Created 2026-10-09 with built-in image generation.
+Final image: irrigated-farm-adjacency-v6.png
+Complete prompt sequence: irrigated-farm-adjacency-v6-prompt-set.txt
+
+Visual scope:
+This revision treats the user's request for every tile to be compatible as a family of interoperable terrain-adapted art pieces for the shown irrigated desert landscape: flat fields, gentle hill benches, steep hill terraces and rocky foothill shelves. Mountains participate through the intake, aqueduct and usable lower slopes. The concept does not imply farmland on sheer rock or water surfaces.
+
+Design requirements:
+- Hills carry planted horizontal treads with visible low retaining faces, using the angular native Civ V terrace-farm vocabulary.
+- Compatible pieces share field-row direction, soil and channel connectors at tile boundaries; additional terrace steps occur within the steeper piece.
+- Mountain-to-hill aqueducts bridge gaps at a shallow falling grade; inlet elevation must reach the highest planted bench.
+- Feeders branch downward through lower beds, with short aqueduct spans where depressions require support.
+- Flat plots and low outer benches merge naturally, retaining the date-palm/fruit-tree, barley, vegetable and fallow crop mix.
+- Channel orientation and terrain variation require multiple connector configurations; the image is not an exhaustive atlas of every possible neighbor combination.
+
+References supplied directly:
+1. Prior v5 concept in this directory.
+2. Real Civ V screenshot with native Incan Terrace Farm at the right side of the map:
+https://images.akamai.steamusercontent.com/ugc/903252542595126724/1AAE3B0CA5AFF4174F172675C611A9B6E5686785/
+Source guide: https://steamcommunity.com/sharedfiles/filedetails/?id=157241384
+Working file: /tmp/civ5-irrigation-references/civ5-native-terrace-farms.jpg
+3. Official Explorer's Map Pack desert screenshot:
+https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/16866/ss_9c8cb3ed5928bed9e4670f0da4a561113c380f16.jpg?t=1545236907
+4. Official Wonders of the Ancient World farm screenshot:
+https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/99614/ss_4527541f1f4d602a9ab952ce27cd7e17c9329f50.1920x1080.jpg?t=1605830261
+5. Installed native incan_terrace_diff.dds from ConquestDeluxeTextures.fpk, decoded to /tmp/civ5-irrigation-references/incan_terrace_diff-decoded.png.
+
+Status:
+Generated visual concept only. No SQL, Lua, actual 3D models or build rules were changed. The current mod still permits irrigated-farm construction on flat desert only. Terrain-wide gameplay support, seam handling and actual model routing need implementation and in-game validation. The generated perspective is not a verified terrain-height or hydraulic model.
+

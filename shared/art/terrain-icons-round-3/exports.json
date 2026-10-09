@@ -1,0 +1,101 @@
+{
+  "format": "legacy A8R8G8B8 DDS; straight alpha; no mipmaps",
+  "selection_manifest": "shared/art/terrain-icons-round-3/selections.json",
+  "source_sha256": {
+    "logistics-b.png": "a131f7c91ef27f2d92a10d6627a247f835e4f64c5f0cf61b65a722bbbd8397e4",
+    "ministry-options.png": "497b9eb8349d9e19316192b4652e7bc2d9f06a8f60e6d598902d6bd4a313b7de",
+    "caravansary-options.png": "44f098e78e754f5aed18788e6c3ebdc5f4aba3a91a07bf0cab2f04909bbf5b9a",
+    "worker-options.png": "b76d069d3ebcbfb86b0b45da3f57643ed76faa8d03cbe04b64325d9a57de59c5",
+    "wonder-a.png": "87e6c3acf6927e7c36e3f7c279fd0aac7e8e8ce672c6c50895de16492cc407a6"
+  },
+  "files": [
+    {
+      "file": "Art/RT_Portraits32.dds",
+      "size": [
+        128,
+        32
+      ],
+      "sha256": "843ef66e865eb6ae7a240758426c45743de44a23af6dc257b0bdf582adb3c764"
+    },
+    {
+      "file": "Art/RT_Portraits45.dds",
+      "size": [
+        180,
+        45
+      ],
+      "sha256": "8834dcdfe1a735df5f6790b78b0e596766a1cba558ee1275e3237fb402d3533a"
+    },
+    {
+      "file": "Art/RT_Portraits64.dds",
+      "size": [
+        256,
+        64
+      ],
+      "sha256": "addc5dbcddabe716ba21ab9d4bdf10c6f2f02cc7b24263dea747414924da9d2d"
+    },
+    {
+      "file": "Art/RT_Portraits80.dds",
+      "size": [
+        320,
+        80
+      ],
+      "sha256": "08e443e600455896e6b3cba8ec5482132abfd07823182436fff19cc72c785574"
+    },
+    {
+      "file": "Art/RT_Portraits128.dds",
+      "size": [
+        512,
+        128
+      ],
+      "sha256": "6a0f42eb2421345683f3ae5100ba61f40dc9fb621a6bed2d901c16e7dadca85a"
+    },
+    {
+      "file": "Art/RT_Portraits214.dds",
+      "size": [
+        856,
+        214
+      ],
+      "sha256": "b7b7ae621b3cd133510cd170cfd95fc204287a21ba88c54989c18aaf51b6b2da"
+    },
+    {
+      "file": "Art/RT_Portraits256.dds",
+      "size": [
+        1024,
+        256
+      ],
+      "sha256": "8c63eec1b31a7f296856b1837f7e76ecd539d84a0a224e53e15192d90bd2a436"
+    },
+    {
+      "file": "Art/RT_CaravansaryAction32.dds",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "c63c8bb4a35c25b67ead1cbd630b2316e55c831d04f00c04675e6797446ab8fe"
+    },
+    {
+      "file": "Art/RT_CaravansaryAction45.dds",
+      "size": [
+        45,
+        45
+      ],
+      "sha256": "460e6aeb83c4e9f6d741f9910bd7c11e6778586b6c77ac3ad0336265b15e6818"
+    },
+    {
+      "file": "Art/RT_CaravansaryAction64.dds",
+      "size": [
+        64,
+        64
+      ],
+      "sha256": "72e92d172a44988f02bf8b549118817e0651d04e193557fbcfc1f075d8ca462f"
+    },
+    {
+      "file": "Art/RT_MinistryOfCoin_Wonder.dds",
+      "size": [
+        976,
+        576
+      ],
+      "sha256": "4924a9046bbcc5a0773bdf45d3e5d40677af216605f6799ff2ebf03aa05de190"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+Make one precise local correction to the TOP RIGHT QUADRANT of this image. Preserve everything else, including central terraces, foreground farmland, mountain aqueduct, all four bottom detail panels, title and art style.
+
+The far upper-right hill still makes the connecting channel climb uphill. REMOVE THAT TALL UPPER-RIGHT MOUND. Replace it with a much LOWER, BROAD FARMED SHOULDER consisting of only two shallow angular planted terraces. Keep the same crop texture and native Civ V style. The entire replacement shoulder must sit BELOW the incoming bridge's trough and BELOW the top planted bench of the central hill, with no peak behind the channel.
+
+The connecting aqueduct from the central hill to this replacement shoulder must have a STRAIGHT trough with a small downhill fall, never bending upwards onto land. Its end should land directly on the replacement shoulder's UPPERMOST shelf. Keep this channel top in one nearly horizontal straight screen-space line from the branch near the center to the far-right landing, gently lower on the right. Do not route any water above this line. Vary pier heights underneath if needed.
+From that landing, a small channel follows the two low terrace levels downhill to the right. No higher planted shelf remains needing an uphill supply.
+
+This is a terrain-lowering edit, not an extra water pipe. Explicitly erase the old high crown and uphill zigzag route from the upper-right portion. Central and foreground hills remain properly terraced as in the input. No new elements or labels.

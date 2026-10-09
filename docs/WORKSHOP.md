@@ -5,9 +5,11 @@ Realistic Terrain v2 and Resource Outposts v1 are packaged locally. Nothing has 
 ## Files and workflow
 
 - `dist/Realistic-Terrain-v2.zip`: Realistic Terrain v2, UUID
-  `d571e16c-bb58-40bf-a81f-a919249e7995`; source/project in `mod/`.
+  `d571e16c-bb58-40bf-a81f-a919249e7995`; source in `mods/realistic-terrain/src/`
+  plus `mods/irrigated-farm/src/`; complete project in `build/realistic-terrain/`.
 - `dist/Resource-Outposts-v1.zip`: Resource Outposts v1, UUID
-  `4547ae42-3d17-4993-99e8-a7a5a2c1ec2c`; source/project in `outposts/`.
+  `4547ae42-3d17-4993-99e8-a7a5a2c1ec2c`; source in `mods/resource-outposts/src/`;
+  complete project in `build/resource-outposts/`.
 - Each ZIP contains its own installable folder and `.modinfo`. These are ordinary
   ZIPs, not `.civ5mod` archives; do not rename them.
 - Both `.civ5proj` scaffolds are generated but have not been built in ModBuddy here.

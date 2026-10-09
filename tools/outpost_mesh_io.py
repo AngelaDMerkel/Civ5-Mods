@@ -46,7 +46,7 @@ def save_dds_mips(image,path):
 
 
 def make_atlas(out):
-    source=Path(__file__).resolve().parents[1]/'docs/art/outpost-era-concepts-v1/material-library-v1.png'
+    source=Path(__file__).resolve().parents[1]/'shared/art/outpost-era-concepts-v1/material-library-v1.png'
     with Image.open(source) as image:
         atlas=image.convert('RGB').resize((1024,1024),Image.Resampling.LANCZOS)
     atlas.save(out/'RO_Era_Diffuse.png')
@@ -212,7 +212,7 @@ def make_gallery(out,records,approval):
     art_dir=out/'approved-art';art_dir.mkdir(exist_ok=True)
     rows=[]
     for r in constructed:
-        source=Path(__file__).resolve().parents[1]/'docs/art/outpost-era-concepts-v1'/(r['concept']+'.png')
+        source=Path(__file__).resolve().parents[1]/'shared/art/outpost-era-concepts-v1'/(r['concept']+'.png')
         concept='approved-art/'+source.name;shutil.copyfile(source,out/concept)
         def card(v):
             return '<figure><a href="'+v['preview']+'"><img src="'+v['preview']+'" alt="'+html.escape(v['era']+' '+v['state'])+'"></a><figcaption>'+v['state']+' · '+str(v['triangles'])+' triangles<br><a href="'+v['name']+'/'+v['name']+'.glb">GLB</a> · <a href="'+v['name']+'/'+v['name']+'.obj">OBJ</a> · <a href="'+v['name']+'/'+v['name']+'.br2">BR2</a></figcaption></figure>'
@@ -264,7 +264,7 @@ PENDING NATIVE PRODUCTION
    BR2 syntax/geometry checks are not a successful Nexus Buddy import test.
 3. Create matching FXSXML wrappers for each of the 24 native meshes. Validate
    construction/pillage/repair and every texture in Nexus and a BNW game.
-4. Add unique Resource Outposts art definitions inside outposts/, not mod/.
+4. Add unique Resource Outposts art definitions inside mods/resource-outposts/src/.
    Do not replace stock Fort art globally or pass OBJ/GLB/BR2 to ArtDefines.
 5. Implement and verify model selection by the claiming civilization's era,
    including neutral plots, capture, annexation, load and era advancement.

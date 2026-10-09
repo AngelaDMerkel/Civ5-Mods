@@ -7,7 +7,7 @@ import sqlite3
 import struct
 import xml.etree.ElementTree as ET
 import zipfile
-from packages import PACKAGES, BNW_ID, RT_ID
+from packages import PACKAGES, BNW_ID, RT_ID, package_files
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -19,8 +19,9 @@ def validate_art(db):
     for table, kind, index in expected:
         assert db.execute(f"SELECT IconAtlas, PortraitIndex FROM {table} WHERE Type=?", (kind,)).fetchone() == ('RT_PORTRAITS', index)
     assert db.execute("SELECT IconAtlas, IconIndex FROM Builds WHERE Type='BUILD_RT_RELIEF_STATION'").fetchone() == ('RT_CARAVANSARY_ACTION', 0)
-    manifest = ET.parse(ROOT / 'mod/Realistic Terrain.modinfo').getroot()
-    vfs = {Path(n.text).name: ROOT / 'mod' / n.text for n in manifest.find('Files') if n.attrib['import'] == '1'}
+    stage = PACKAGES[0]['stage']
+    manifest = ET.parse(stage / 'Realistic Terrain.modinfo').getroot()
+    vfs = {Path(n.text).name: stage / n.text for n in manifest.find('Files') if n.attrib['import'] == '1'}
     for atlas, sizes in [('RT_PORTRAITS', {32, 45, 64, 80, 128, 214, 256}), ('RT_CARAVANSARY_ACTION', {32, 45, 64})]:
         atlas_rows = db.execute('SELECT IconSize, Filename, IconsPerRow, IconsPerColumn FROM IconTextureAtlases WHERE Atlas=?', (atlas,)).fetchall()
         assert {r[0] for r in atlas_rows} == sizes and len(atlas_rows) == len(sizes)
@@ -30,7 +31,7 @@ def validate_art(db):
     filename, anchor = db.execute("SELECT WonderSplashImage, WonderSplashAnchor FROM Buildings WHERE Type='BUILDING_CARAVANSARY'").fetchone()
     assert filename == 'RT_MinistryOfCoin_Wonder.dds' and anchor == 'R,T'
     validate_dds(vfs[filename], (976, 576))
-    ui = ET.parse(ROOT / 'mod/UI/RT_Environment.xml').getroot()
+    ui = ET.parse(stage / 'UI/RT_Environment.xml').getroot()
     button = ui.find(".//*[@ID='ConstructionButton']")
     assert button.find('Image').attrib['Texture'] == 'RT_CaravansaryAction32.dds'
     assert button.find('Image').attrib['Texture'] in vfs
@@ -175,22 +176,25 @@ def main():
     args = parser.parse_args()
     all_tags, vfs_names = set(), set()
     for spec in PACKAGES:
-        mod = spec["source"]
+        mod = spec["stage"]
+        sources = package_files(spec)
         manifest = ET.parse(mod / (spec["name"] + ".modinfo")).getroot()
         assert manifest.attrib == {"id": spec["id"], "version": str(spec["version"])}
         files = set()
         for node in manifest.find("Files"):
             path = mod / node.text
+            assert node.text in sources, f'Unexpected packaged source: {node.text}'
             assert path.is_file(), f"Missing {path}"
+            assert path.read_bytes() == sources[node.text].read_bytes(), f'Stale build: {sources[node.text]}; run tools/build.py'
             assert hashlib.md5(path.read_bytes()).hexdigest().upper() == node.attrib["md5"], f"Stale manifest hash: {path}"
             if path.suffix == ".xml": ET.parse(path)
             if node.attrib["import"] == "1":
-                assert path.name not in vfs_names, f"Cross-mod VFS collision: {path.name}"
-                vfs_names.add(path.name)
+                assert path.name.casefold() not in vfs_names, f"Cross-mod VFS collision: {path.name}"
+                vfs_names.add(path.name.casefold())
             files.add(node.text)
             if path.suffix == '.dds':
                 assert node.attrib['import'] == '1', f'Texture must be in VFS: {path}'
-        assert {p.relative_to(mod).as_posix() for p in mod.rglob('*.dds')} <= files
+        assert files == set(sources), 'Manifest must contain every runtime source exactly once'
         for node in manifest.findall("Actions/OnModActivated/UpdateDatabase") + manifest.findall("EntryPoints/EntryPoint"):
             assert (node.text if node.tag == "UpdateDatabase" else node.attrib["file"]) in files
         assert [n.text for n in manifest.findall("Actions/OnModActivated/UpdateDatabase")] == spec["actions"]
@@ -225,7 +229,7 @@ def main():
         tags = set()
         for spec in specs:
             for action in spec["actions"]:
-                path = spec["source"] / action
+                path = spec["stage"] / action
                 if path.suffix == ".sql": db.executescript(path.read_text())
                 else:
                     for row in ET.parse(path).getroot().find("Language_en_US"):

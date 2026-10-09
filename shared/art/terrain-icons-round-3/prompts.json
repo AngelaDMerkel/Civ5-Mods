@@ -1,0 +1,74 @@
+{
+  "date": "2026-10-09",
+  "mode": "built-in image_gen edits with original Civ V style references",
+  "round": 3,
+  "initial": {
+    "key": "tech_a",
+    "file": "logistics-a.png",
+    "prompt": "Use case: style-transfer. This is a targeted refinement of one icon, with a real art reference.\nInput image 1 is the EDIT TARGET: a sheet with three proposed Caravan Logistics icons. Extract the LEFT Packmaster concept only, preserving the idea of a merchant tightening rope on one large cargo bale.\nInput image 2 is the STYLE REFERENCE ONLY: original Civilization V artwork from its lead UI artist. Do not reproduce any subject or text from this source.\nCompletely repaint the Packmaster in the precise visual language of the large original stone-carver icon at the upper-left of image 2: extremely economical smooth-painted planes, softly airbrushed lighting between select planes, stylized idealized anatomy, an almost sculptural figure, bold warm highlights and large brown shadow shapes. Original Civ V poster art, not an illustration with dozens of brush marks. Use one large bent arm and hand across the bottom, his head in profile cropped high at the right, a single large bundled cargo shape. Remove ALL stone-brick detail, landscape scenery, tiny folds, texture, individual facial hairs, scratches, flecked brushwork, random detailing. The baled cargo should be five or six big surfaces crossed by ONE broad rope. A pale ivory and soft desaturated cyan diagonal sky glow fills the simple background, echoing the original reference's diagonal radiance.\nOutput ONE centered circular icon, large, in a square canvas. Outside the circle genuinely transparent. NO metal rim or frame: keep the circle as pure illustrated art for native UI framing later. No text, labels, watermark, sheet layout, or second icon. Smooth controlled painted shapes are essential; reduce detail by at least 75 percent from the edit target. This must read at 64 pixels. It should sit visually beside the original stone-carver reference without looking higher-detail, more textured, or more photorealistic."
+  },
+  "refinements": [
+    {
+      "key": "tech_b",
+      "file": "logistics-b.png",
+      "transparent": true,
+      "refs": [
+        "/Users/duffy/Documents/GitHub/Realistic Terrain/output/art-concepts/2026-10-09/caravan-logistics-options-v2.png",
+        "/Users/duffy/Documents/GitHub/Realistic Terrain/output/art-concepts/2026-10-09/round-3/references/technologyatlas-decoded.png"
+      ],
+      "prompt": "Use case: style-transfer. Image 1 is the edit target, use only its middle \"Mountain passage\" concept. Image 2 is the actual shipped Civilization V technology icon atlas, style reference only. Match the ACTUAL shipped Civ V reference: broad, smoothly shaded, sculptural painted planes, simplified idealized forms and strong perspective. Colored radiating sky wedges where appropriate. Remove surface texture, brick lines, dozens of folds, tiny props and incidental background detail. Do not use etched outlines, rough stippled paint, flat emoji vectors, polished photorealism, or Civ VI toy rendering. No text or watermark. Repaint the middle caravan journey concept as ONE circular icon on a transparent square canvas. Enlarge the leading laden mule until it occupies the left-center half of the circle in a strong simple silhouette. One small person leads it up an ochre slope toward the right, with exactly one distant follower. Two broad blue mountain shapes and pale angular sunbeams; no detailed rocks, fur, textures or tiny procession. Large coherent masses and few colors, as compact as the original Mining and Animal Husbandry portraits. Simplify rather than add. Circle occupies 94% of canvas. NO frame or rim, no title or lettering."
+    },
+    {
+      "key": "ministry",
+      "file": "ministry-options.png",
+      "transparent": true,
+      "refs": [
+        "/Users/duffy/Documents/GitHub/Realistic Terrain/output/art-concepts/2026-10-09/ministry-of-coin-options-v2.png",
+        "/Users/duffy/Documents/GitHub/Realistic Terrain/output/art-concepts/2026-10-09/round-3/references/buildingatlas-decoded.png"
+      ],
+      "prompt": "Use case: style-transfer. Image 1 is the edit target: retain the architecture of its LEFT Treasury portico for option A and CENTER Counting house for option B; discard the third icon. Image 2 is the actual shipped Civilization V building atlas, STYLE reference only. Match the ACTUAL shipped Civ V reference: broad, smoothly shaded, sculptural painted planes, simplified idealized forms and strong perspective. Colored radiating sky wedges where appropriate. Remove surface texture, brick lines, dozens of folds, tiny props and incidental background detail. Do not use etched outlines, rough stippled paint, flat emoji vectors, polished photorealism, or Civ VI toy rendering. No text or watermark. Output a transparent 2:1 landscape canvas with exactly TWO equally sized circular illustrations, left and right, on the same horizontal centerline, each occupying 90% of the canvas height with equal margins. No frames or metal rims and no labels. The circle is only the boundary of the illustration; the outside is genuinely transparent. LEFT: dramatically foreshortened cream treasury portico with four columns, dark entry, shallow roof and ONE small bronze coin roundel. RIGHT: compact red-ochre ancient counting house with stepped doorway and a single broad awning. Preserve distinct identities but reduce each to about 12 big planes. Remove all masonry courses, individual paving stones, plants, tiny boxes and decorative details. Light cream and grey-green highlights, bold desaturated brown shadows; luminous white/cyan/faded ochre radial sky wedges behind each, like the stock Palace and building portraits. Restrained rendering closer to native geometric art than a richly painted landscape. Keep some soft airbrushed transitions, do not make flat vector clipart. No modern architecture."
+    },
+    {
+      "key": "caravansary",
+      "file": "caravansary-options.png",
+      "transparent": true,
+      "refs": [
+        "/Users/duffy/Documents/GitHub/Realistic Terrain/output/art-concepts/2026-10-09/caravansary-options-v2.png",
+        "/Users/duffy/Documents/GitHub/Realistic Terrain/output/art-concepts/2026-10-09/round-3/references/buildingportraits256_exp2-decoded.png"
+      ],
+      "prompt": "Use case: style-transfer. Image 1 is the edit target. Refine only LEFT Roadside gateway and CENTER Relay shelter into two icons. Image 2 is the actual shipped BNW building atlas; bottom-left is the real city Caravansary, use its tight silhouette, bold angles and smooth simplified shading as visual reference ONLY. Match the ACTUAL shipped Civ V reference: broad, smoothly shaded, sculptural painted planes, simplified idealized forms and strong perspective. Colored radiating sky wedges where appropriate. Remove surface texture, brick lines, dozens of folds, tiny props and incidental background detail. Do not use etched outlines, rough stippled paint, flat emoji vectors, polished photorealism, or Civ VI toy rendering. No text or watermark. Output a transparent 2:1 landscape canvas with exactly TWO equally sized circular illustrations, left and right, on the same horizontal centerline, each occupying 90% of the canvas height with equal margins. No frames or metal rims and no labels. The circle is only the boundary of the illustration; the outside is genuinely transparent. LEFT: a single large ochre archway and one attached low shaded supply wing, with ONE small, simple pack-camel silhouette close to the entrance. RIGHT: close three-quarter view of a low timber shelter roof on two pale stone supports, with one bold turquoise water trough foreground; no animal needed. Repaint all surfaces as large smoothly lit planes. No tile-by-tile roof, masonry texture, leaves, mountains or crowd. Keep the arch/roof and the blue water instantly legible. Clear bright pale-blue/cream poster backgrounds with angular light beams. Avoid making either building look like a temple or military fort. Distinct two choices and correct circle layout."
+    },
+    {
+      "key": "worker",
+      "file": "worker-options.png",
+      "transparent": true,
+      "refs": [
+        "/Users/duffy/Documents/GitHub/Realistic Terrain/output/art-concepts/2026-10-09/caravansary-worker-action-options-v2.png",
+        "/Users/duffy/Documents/GitHub/Realistic Terrain/output/art-concepts/2026-10-09/round-3/references/unitactions-decoded.png"
+      ],
+      "prompt": "Use case: style-transfer. Image 1 is the edit target with our previous worker buttons. Image 2 is the ACTUAL shipped Civ V UnitActions atlas and is the binding visual reference. The new artwork must match image 2's small isolated pale cream and light grey-green sculpted pictograms, crisp silhouettes, subtle dimensional bevels, cool dark shaded sides. They are actual glyphs, NOT large stone medallions.\nOutput a transparent 2:1 landscape canvas with exactly TWO isolated glyph alternatives centered at 25% and 75% width, equal visual size, each within 80% of its square half.\nLEFT option A: a compact low archway with a small builder's hammer resting diagonally across the lower right, about eight large shapes, no stone joints. RIGHT option B: a compact three-quarter view of a four-post open roadside shelter with a simple pitched roof and ONE small round well beside it, matching the native trading-post action's visual complexity.\nRemove EVERY circular background, EVERY rim and ALL text from image 1. Do not reproduce atlas tiles from image 2, just transfer their exact pale material and small-game-glyph treatment to these two new forms. Thin architectural members and clear gaps rather than chunky masonry blocks. No texture, no bright gold, no realistic stone, no landscape, no floating drop shadow. Transparent everywhere outside the pictograms."
+    },
+    {
+      "key": "wonder_a",
+      "file": "wonder-a.png",
+      "transparent": false,
+      "refs": [
+        "/Users/duffy/Documents/GitHub/Realistic Terrain/output/art-concepts/2026-10-09/ministry-wonder-a-v2.png",
+        "/Users/duffy/Documents/GitHub/Realistic Terrain/output/art-concepts/2026-10-09/round-3/references/wonderconceptparthenon-decoded.png"
+      ],
+      "prompt": "Use case: style-transfer. Image 1 is the edit target: Ministry of Coin exterior arrival scene. Image 2 is the REAL Civ V Parthenon wonder painting, STYLE reference only; do not copy its soldiers or building.\nRepaint image 1 substantially to match image 2's paint handling: broad opaque brush strokes, grouped uneven shadow masses, edges lost in deep shade, muted olive / grey-green atmosphere, warm ivory sunlit architecture, dusty dark red figure accents. Selective detail at the entrance and foreground person; all distant architecture, vegetation and figures reduced to loose, confident marks. Eliminate the uniform microscopic rendering of stones, woven fabrics, facade joints and distant windows. Remove the busy fantasy cliff-city background, use one indistinct low distant skyline. Do not simply apply a grain or blur filter; redraw in broad paint.\nPreserve the low-angle plaza composition, the four-column ancient civic treasury on the right with one plain coin emblem, foreground merchant and mule on the left, and a few officials on the steps. Reduce golden-hour saturation, add a cooler clouded sky and more powerful dark foreground shapes. The finished result should look like an expressive historical oil study at the SAME level of finish as the native reference. Full-color, no sepia or parchment. Output landscape 1.7:1 approximately, no border, text or UI."
+    },
+    {
+      "key": "wonder_b",
+      "file": "wonder-b.png",
+      "transparent": false,
+      "refs": [
+        "/Users/duffy/Documents/GitHub/Realistic Terrain/output/art-concepts/2026-10-09/ministry-wonder-b-v2.png",
+        "/Users/duffy/Documents/GitHub/Realistic Terrain/output/art-concepts/2026-10-09/round-3/references/wonderconceptparthenon-decoded.png"
+      ],
+      "prompt": "Use case: style-transfer. Image 1 is the edit target: Ministry of Coin bridge and caravan exchange scene. Image 2 is the REAL Civ V Parthenon wonder painting, STYLE reference only.\nCompletely repaint the target with the original reference's broad opaque painterly shapes, impressionistic secondary detail, muted historical color, dramatic large shadow masses and soft atmospheric depth. Preserve the red-ochre civic Ministry on the left middle ground, the curving caravan bridge toward it, two foreground officials reviewing a ledger, and distant open countryside.\nRemove at least 80% of small detail: no individually rendered bricks, distant roofs, foliage leaves, textile patterns, or dozens of people. Use just two leading mule silhouettes and a few loose distant transport marks. Architecture has simplified planes with hand-painted irregular edges. Shift from evenly detailed golden photorealism to expressive historical oil-paint concept art: large sage-grey cloud shapes, creamy sunlight, cool forest-green and purple shadow, limited red in banners. Keep red-brick ministry silhouette coherent and uncluttered. No giant props. No sepia, parchment, modern structures, text, borders or UI. Landscape about 1.7:1. The reference controls the looseness and finish; do not copy its Parthenon or soldiers."
+    }
+  ],
+  "status": "Visual review candidates only. Not installed or included in the mod package. Final icon alpha edges and DDS conversion remain to be prepared after selection.",
+  "referenceProvenance": "Shipped textures read from local Civ V UITextures.fpk and Expansion2UITextures.fpk using decode_references.py. Archive and game files remain unchanged. Actual stock artwork in the comparison viewer is decoded original pixels, not generated reconstructions. Reference files are for this local review only."
+}

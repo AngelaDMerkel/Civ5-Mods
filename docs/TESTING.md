@@ -46,7 +46,7 @@ pending.
 ## Manual acceptance checklist
 
 Connected irrigation has additional automated coverage and a native acceptance
-checklist in [IRRIGATION.md](IRRIGATION.md). Its turn-boundary hooks must be checked
+checklist in [IRRIGATION.md](../mods/irrigated-farm/docs/IRRIGATION.md). Its turn-boundary hooks must be checked
 against actual city food processing, including an unseen enemy pillage.
 
 Use a new disposable single-player BNW game. For deterministic terrain placement,
@@ -164,7 +164,7 @@ contexts test optional shelter and construction/AI coordination. Both packages
 work alone; combined shelter never needs roads. Database validation checks all
 24 land resources, package isolation and both SQL load orders. ZIPs match source.
 The rules, implementation details, native limitations and remaining in-game
-acceptance checklist are in [OUTPOSTS.md](OUTPOSTS.md).
+acceptance checklist are in [OUTPOSTS.md](../mods/resource-outposts/docs/OUTPOSTS.md).
 
 ## Replacement trade acceptance tests
 

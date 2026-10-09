@@ -1,0 +1,16 @@
+Edit this terrace-farm concept with ONE TARGETED CORRECTION: make the water supply physically continuous and above every planted terrace. Keep the Civ V look, angular stepped fields, crop choices, general composition, title and four bottom labels.
+
+CURRENT FAULTS TO FIX:
+- The isolated hill at upper right is completely disconnected.
+- The first receiving hill has planted shelves ABOVE the aqueduct landing.
+- Several foreground and inset terraces have a channel below their top shelf with no feeder to the higher crops.
+
+REPAIR THE ELEVATION AND ROUTE, NOT JUST ADD ARROWS:
+Place the mountain spring slightly higher on the same mountain face. Its straight, gently declining aqueduct MUST land at the HIGHEST planted bench of the first adjacent hill, never below it. Keep bridge modest by lowering the receiving hill if needed. Retain the prominent mountain-to-hill arch span.
+From this high landing, one visible upper distribution trough continues to the right, with a steady falling water grade, across the top contours of all rear hills. Where the land dips, support the trough on SHORT LOW ARCHES; no sagging followed by a climb.
+Lower and connect the currently isolated upper-right hill into this contiguous farm district: neighboring terrace plots should reach it without a wide empty sandy gap, and a clearly visible low aqueduct branch should connect to its TOP shelf. This receiving shelf MUST be below the source and first landing. No disconnected island of farming.
+The top feeder branches into thin lateral ditches on the flat surface of each bench, with modest sluice drops connecting progressively lower levels. Every hill has a visible connection at its highest planted shelf. Water always moves downhill or on a very shallow falling grade.
+For the foreground hills, branch off the upper feeder BEFORE the route descends onto the adjacent valley-floor farms, and visibly follow the descending shoulder to their uppermost shelves. Regrade the hills into one coherent stepped hillside district if necessary, rather than routing water up a mound from the flat floor. Avoid adding giant aqueducts over the whole farm.
+In the gentle-hill, steep-hill, and rocky-foothill bottom insets, place the inlet at the top planted bench and show a narrow stepped distribution ditch descending along one side to the lower benches. No inlet terminating halfway down a slope below planted fields.
+
+PRESERVE: every shown landform has a matching farm variant; parcels/rows/soil match across hex edges; native Civ V simple textures, broad smooth sandy landforms, low ordinary retaining walls, date palms and small fruit trees on broader beds, muted barley/vegetable/stubble textures. Do not add huge basins, waterfalls, irrigation pumping machinery, extra UI or text. This correction should make the mountain-to-high-terraces-to-low-fields gravity route obvious at a glance.

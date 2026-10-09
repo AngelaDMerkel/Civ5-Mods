@@ -1,0 +1,11 @@
+{
+  "recorded_on": "2026-10-09",
+  "status": "Concept approved by user before mesh production",
+  "source_chat": "Irrigated Farm",
+  "source_chat_id": "01a12180-c5d4-7602-86ac-edd446369cef",
+  "approval_message": "This is approved. Can you design the mesh for these tiles, making sure you remain as close to the real Civ5 style as possible",
+  "scope": "The presented v6 irrigation tile concept, including terraced hills and compatible tile transitions. Does not approve later mesh revisions or establish implemented gameplay eligibility.",
+  "source": "irrigated-farm-adjacency-v6.png",
+  "sha256": "910e649a60c1259556f86758310fdabef0c6533a2b269bc0cff833a8ab923421",
+  "native_validation": "Pending"
+}

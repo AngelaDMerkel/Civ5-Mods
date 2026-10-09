@@ -11,8 +11,8 @@ import json
 from PIL import Image, ImageChops, ImageDraw
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCES = ROOT / 'output/art-concepts/2026-10-09/round-3'
-DEST = ROOT / 'mod/Art'
+SOURCES = ROOT / 'shared/art/terrain-icons-round-3'
+DEST = ROOT / 'mods/realistic-terrain/src/Art'
 PORTRAIT_SIZES = (32, 45, 64, 80, 128, 214, 256)
 ACTION_SIZES = (32, 45, 64)
 

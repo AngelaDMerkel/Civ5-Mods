@@ -11,7 +11,7 @@ from PIL import Image,ImageDraw,ImageFont,ImageOps
 from model_approval_v2 import apply_approval
 
 ROOT=Path(__file__).resolve().parents[1]
-ART=ROOT/'output/art-concepts/2026-10-09/round-3'
+ART=ROOT/'shared/art/terrain-icons-round-3'
 MODELS=ROOT/'output/models/revised-v2'
 OUT=ROOT/'output/model-review/approved-art-alignment'
 BG=(238,233,219);INK=(42,49,43);MUTED=(92,97,83);RULE=(202,193,174)
@@ -40,7 +40,7 @@ def selected(key):
 
 
 def native_icon(file,x,y,w=176):
-    return Image.open(ART/'references'/file).convert('RGBA').crop((x,y,x+w,y+w))
+    return Image.open(ROOT/'output/art-concepts/2026-10-09/round-3/references'/file).convert('RGBA').crop((x,y,x+w,y+w))
 
 
 def main():
@@ -105,12 +105,12 @@ def main():
     for file,digest in approval['source_sha256'].items():
         assert hashlib.sha256((ART/file).read_bytes()).hexdigest()==digest,file
     for entry in approval['files']:
-        assert hashlib.sha256((ROOT/'mod'/entry['file']).read_bytes()).hexdigest()==entry['sha256'],entry['file']
+        assert hashlib.sha256((ROOT/'mods/realistic-terrain/src'/entry['file']).read_bytes()).hexdigest()==entry['sha256'],entry['file']
     record={'art_revision':3,'approved_selection_manifest':str((ART/'selections.json').relative_to(ROOT)),
             'all_approved_sources_and_runtime_dds':'SHA-256 unchanged from original export manifest',
             'model_status':status_line+' Native rendering unverified.',
             'additional_art_policy':'Present multiple options with actual Civ V references; user chooses before integration.',
-            'model_approval_record':'docs/art/rt-models/approved.json',
+            'model_approval_record':'shared/art/rt-models/approved.json',
             'provisional_models':[m['name'] for m in models['models'] if m['model_approval']!='approved'],
             'stock_reference_policy':'Review only; excluded from mod and source bundles',
             'map_reference_url':'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/99614/ss_4527541f1f4d602a9ab952ce27cd7e17c9329f50.1920x1080.jpg?t=1605830261',
