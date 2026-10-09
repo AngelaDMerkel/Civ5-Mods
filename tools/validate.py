@@ -82,6 +82,41 @@ def validate_outpost_art(db):
     print('Outpost B artwork: 11 DDS exports, approved hashes, portraits/actions, five UI icons, unique strategic mapping and every Fort fallback state validated')
 
 
+def validate_outpost_eras(db):
+    """Every visual stage must preserve the public outpost's gameplay contract."""
+    approved = json.loads((ROOT / 'shared/art/outpost-era-concepts-v1/approved.json').read_text())['selections']
+    rows = db.execute('SELECT EraType, ImprovementType, ArtDefineTag, FallbackEra, ModelStem FROM RO_OutpostEras').fetchall()
+    assert len(rows) == 8 and {r[0] for r in rows} == {r['eraType'] for r in approved}
+    models = {r['eraType']: 'RO_' + r['era'] for r in approved}
+    legacy = 'IMPROVEMENT_RT_RESOURCE_OUTPOST'
+    columns = [r[1] for r in db.execute('PRAGMA table_info(Improvements)')
+               if r[1] not in {'ID', 'Type', 'ArtDefineTag', 'GraphicalOnly'}]
+    improvement_fields = ', '.join('"' + c + '"' for c in columns)
+    original = db.execute(f'SELECT {improvement_fields} FROM Improvements WHERE Type=?', (legacy,)).fetchone()
+    assert db.execute('SELECT GraphicalOnly FROM Improvements WHERE Type=?', (legacy,)).fetchone() == (0,)
+    for era, kind, art, fallback, stem in rows:
+        assert db.execute('SELECT 1 FROM Eras WHERE Type=?', (era,)).fetchone()
+        assert stem == models[era]
+        assert fallback == ('Ancient' if era in {'ERA_ANCIENT', 'ERA_CLASSICAL', 'ERA_MEDIEVAL', 'ERA_RENAISSANCE'} else 'Industrial')
+        assert db.execute('SELECT ArtDefineTag, GraphicalOnly FROM Improvements WHERE Type=?', (kind,)).fetchone() == (art, 1)
+        assert db.execute(f'SELECT {improvement_fields} FROM Improvements WHERE Type=?', (kind,)).fetchone() == original, kind
+        for table, fields in [('Improvement_ResourceTypes', 'ResourceType, ResourceMakesValid, ResourceTrade, DiscoveryRand, QuantityRequirement'),
+                              ('Improvement_ValidFeatures', 'FeatureType')]:
+            query = f'SELECT {fields} FROM {table} WHERE ImprovementType=? ORDER BY 1'
+            assert db.execute(query, (kind,)).fetchall() == db.execute(query, (legacy,)).fetchall(), (kind, table)
+        assert not db.execute('SELECT 1 FROM Builds WHERE ImprovementType=?', (kind,)).fetchone(), 'No duplicate worker actions'
+        assert db.execute('SELECT LandmarkType FROM ArtDefine_LandmarkTypes WHERE Type=?', (art,)).fetchall() == [('Improvement',)]
+        assert db.execute('SELECT TileType, Asset FROM ArtDefine_StrategicView WHERE StrategicViewType=?', (art,)).fetchall() == [('Improvement', 'RO_OutpostStrategic.dds')]
+        fields = 'State, Scale, LayoutHandler, ResourceType, Model, TerrainContour, Tech'
+        native = db.execute(f'SELECT {fields} FROM ArtDefine_Landmarks WHERE ImprovementType=? AND Era=? ORDER BY State', ('ART_DEF_IMPROVEMENT_FORT', fallback)).fetchall()
+        actual = db.execute(f'SELECT {fields} FROM ArtDefine_Landmarks WHERE ImprovementType=? ORDER BY State', (art,)).fetchall()
+        assert actual == native and {r[0] for r in actual} == {'Constructed', 'UnderConstruction', 'Pillaged'}
+        assert db.execute('SELECT DISTINCT Era FROM ArtDefine_Landmarks WHERE ImprovementType=?', (art,)).fetchall() == [('Any',)]
+    assert db.execute("SELECT COUNT(*) FROM Improvements WHERE Description='TXT_KEY_RT_RESOURCE_OUTPOST' AND GraphicalOnly=0").fetchone() == (1,)
+    assert db.execute('SELECT Type FROM Builds WHERE ImprovementType=?', (legacy,)).fetchall() == [('BUILD_RT_RESOURCE_OUTPOST',)]
+    print('Outpost eras: eight gameplay-equivalent hidden variants, 24 fixed-era placeholder states, approved model slots and one public action/entry validated')
+
+
 def native_fort_art(db):
     """Guard native records so a custom icon cannot accidentally replace Forts."""
     return [db.execute(query).fetchall() for query in (
@@ -215,6 +250,7 @@ def validate_outposts(db, loc, tags):
     assert outpost and all(key in tags for key in outpost[:3])
     assert outpost[3:] == ('ART_DEF_IMPROVEMENT_RO_RESOURCE_OUTPOST', 1, 0, 50, 0, 0)
     validate_outpost_art(db)
+    validate_outpost_eras(db)
     outpost_build = db.execute("SELECT PrereqTech, ImprovementType, Time FROM Builds WHERE Type='BUILD_RT_RESOURCE_OUTPOST'").fetchone()
     assert outpost_build == ('TECH_ENGINEERING', 'IMPROVEMENT_RT_RESOURCE_OUTPOST', db.execute("SELECT Time FROM Builds WHERE Type='BUILD_FORT'").fetchone()[0])
     assert not db.execute("SELECT 1 FROM Unit_Builds WHERE BuildType='BUILD_RT_RESOURCE_OUTPOST'").fetchall()

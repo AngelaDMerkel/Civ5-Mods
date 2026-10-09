@@ -220,11 +220,19 @@ approved architectural revision 2 on 9 October 2026; this is recorded in the
 
 Each mesh has an open central garrison square, a common origin and no terrain
 plinth or connecting road. Construction and pillage use separate geometry.
-Surface refinement, native GR2 conversion, shader/scale calibration and in-game
-verification remain outstanding. The mesh source build does not install new era graphics
-or implement automatic era switching in the playable mod. That integration must
-follow the claimant's era on neutral plots and preserve resource accounting,
-upkeep, pillage status and stationed units through upgrades, capture and reload.
+Native GR2 conversion, shader/scale calibration and in-game verification remain
+outstanding. The playable mod now selects eight internal variants using the
+claimant's current era on neutral plots and the territorial owner's era after
+annexation. Capture can move a site to an earlier or later stage. The approved
+meshes are not yet installed: each variant still uses a stock Fort placeholder.
+
+`RO_Eras` synchronizes completed and pillaged sites inside the existing guarded
+reconciliation. AI, management and optional shelter recognize every variant.
+Resource accounting, upkeep, pillage status, upgrade progress and stationed units
+are preserved in regression tests. Construction retains its existing build ID and
+work progress, applying the current stage on completion. There is one public build
+action and one Civilopedia entry. See [ERA-VISUALS.md](ERA-VISUALS.md) for the native
+resource-link safeguard, old-save migration limit, event timing and mesh handoff.
 
 ## Verification
 
@@ -240,6 +248,12 @@ Separate Lua environments exercise actual event-based integration without shared
 mod globals. The game adapter suite verifies roadless shelter and overnight
 exposure/penalty clearing. RT alone and RO alone are also exercised.
 
+Era regressions cover all eight stages, inactive/unseen claimants, technology and
+turn callbacks, lower-era capture, annexation, pillaged sites, native resource/city
+links, reentrant callbacks, unchanged garrisons, old-save migration, reload,
+construction progress and extra future eras. The native setter mock follows BNW's
+repair/add/remove order; it does not establish actual renderer acceptance.
+
 `tools/validate.py --cache ...` clones installed BNW databases read-only into
 memory. It validates each package alone and both together in either SQL load
 order, resource definitions, fort work/defense, localization, isolated dependencies,
@@ -248,6 +262,8 @@ Ministry/Caravansary data and environmental rules untouched.
 
 Native acceptance checklist (not yet performed):
 
+- [ ] Complete the era-selection checks in [ERA-VISUALS.md](ERA-VISUALS.md), then
+      bind and inspect the converted models. These are separately deferred tasks.
 - [ ] Inspect the B portrait in Civilopedia, construction glyph, disabled/cancel
       states and management icons at 1024x768 and widescreen. Inspect outpost and
       ordinary Fort strategic markers, including pillage, capture and save/load.

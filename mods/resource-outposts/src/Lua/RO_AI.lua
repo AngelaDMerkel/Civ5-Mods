@@ -24,7 +24,7 @@ local function assignment(u, plot, role)
     local path = role and A.Path(u:GetPlot(), plot, u:GetOwner(), role == "workers");
     return { target = plot:GetPlotIndex(), identity = identity(u), lastProgress = Game.GetGameTurn(),
         bestDistance = path and #path - 1 or nil,
-        bestWork = role == "workers" and plot:GetBuildProgress(plot:GetImprovementType() == O.improvement and I.BUILD_REPAIR or O.build) or 0 };
+        bestWork = role == "workers" and plot:GetBuildProgress(O.IsOutpost(plot) and I.BUILD_REPAIR or O.build) or 0 };
 end
 
 local function hostile(plot, team)
@@ -138,7 +138,7 @@ local function stalled(ai, role, u, plot, job)
     if role == "guards" and u:GetPlot() == plot then return false; end
     local path = A.Path(u:GetPlot(), plot, u:GetOwner(), role == "workers");
     local remaining = path and #path - 1 or distance(u:GetPlot(), plot);
-    local work = role == "workers" and plot:GetBuildProgress(plot:GetImprovementType() == O.improvement and I.BUILD_REPAIR or O.build) or 0;
+    local work = role == "workers" and plot:GetBuildProgress(O.IsOutpost(plot) and I.BUILD_REPAIR or O.build) or 0;
     local escortGap;
     if role == "workers" then
         for id, escortJob in pairs(ai.escorts) do
@@ -195,17 +195,17 @@ local function nearCity(plot, player)
 end
 local function workerJob(plot, owner)
     if not plot then return false; end
-    if plot:GetImprovementType() == O.improvement then
+    if O.IsOutpost(plot) then
         return O.Owner(plot) == owner and plot:IsImprovementPillaged()
             and (plot:GetOwner() < 0 or plot:GetOwner() == owner);
     end
     return O.CanConstruct(plot, owner);
 end
 local function ownSite(plot, owner)
-    return plot and plot:GetImprovementType() == O.improvement and O.Owner(plot) == owner;
+    return plot and O.IsOutpost(plot) and O.Owner(plot) == owner;
 end
 local function capturable(plot, owner)
-    if not plot or plot:GetOwner() >= 0 or plot:GetImprovementType() ~= O.improvement then return false; end
+    if not plot or plot:GetOwner() >= 0 or not O.IsOutpost(plot) then return false; end
     local other = O.Owner(plot);
     return other >= 0 and other ~= owner and plot:IsVisible(Players[owner]:GetTeam(), false)
         and (not Players[other]:IsAlive() or Teams[Players[owner]:GetTeam()]:IsAtWar(Players[other]:GetTeam()));
@@ -419,7 +419,7 @@ function A.OnTurn(owner)
         elseif not escort and (not A.Safe(u:GetPlot(), owner) or not A.Path(u:GetPlot(), plot, owner)) then
             u:FinishMoves(); -- wait for protection, do not send a civilian alone
         elseif u:GetPlot() == plot then
-            if plot:GetImprovementType() == O.improvement then
+            if O.IsOutpost(plot) then
                 if u:GetMoves() > 0 and u:CanBuild(plot, I.BUILD_REPAIR, false, true) then u:PushMission(MissionTypes.MISSION_BUILD, I.BUILD_REPAIR); end
             elseif not RO_Orders.IsOrdered(u, "outpost") then RO_Orders.Start(u, "outpost", true); end
             if escort then escort:FinishMoves(); end

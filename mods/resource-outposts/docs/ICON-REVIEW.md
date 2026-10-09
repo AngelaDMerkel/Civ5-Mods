@@ -92,4 +92,6 @@ local environment with `lupa`, because this checkout has no `.venv`.
 Remaining native checks: icon sizing/alpha, disabled/cancel state, tooltips,
 strategic markers and fallback models during pillage/capture/save-load, and panel
 overlap at 1024×768 and widescreen with Terrain absent/present. Notifications keep
-the native generic symbol. Native era-model conversion/switching remains separate.
+the native generic symbol. Claimant-era switching is now implemented separately
+in [ERA-VISUALS.md](ERA-VISUALS.md); all eight internal variants reuse the selected
+B portrait and strategic emblem. Native era-model conversion remains deferred.

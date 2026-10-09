@@ -4,6 +4,7 @@ RO_Outposts = {};
 local O, I = RO_Outposts, GameInfoTypes;
 O.improvement = I.IMPROVEMENT_RT_RESOURCE_OUTPOST;
 O.build = I.BUILD_RT_RESOURCE_OUTPOST;
+O.IsOutpost = RO_Eras.IsOutpost;
 local saved = Modding.OpenSaveData();
 local KEY = "ResourceOutposts.v1.State";
 local record = saved:GetValue(KEY);
@@ -51,7 +52,7 @@ function O.Resource(plot, owner)
 end
 
 function O.Owner(plot)
-    if not plot or plot:GetImprovementType() ~= O.improvement then return -1; end
+    if not O.IsOutpost(plot) then return -1; end
     if plot:GetOwner() >= 0 then return plot:GetOwner(); end
     local site = state.sites[plot:GetPlotIndex()];
     return site and site.owner or -1;
@@ -114,12 +115,15 @@ function O.Reconcile()
     local desired, maintenance = {}, {};
     for id, site in pairs(state.sites) do
         local plot = Map.GetPlotByIndex(id);
-        if not plot or plot:GetImprovementType() ~= O.improvement then
+        if not O.IsOutpost(plot) then
             if plot and not site.converted then notifyTransition(plot, site.report, { owner = -1, amount = 0, mode = "removed", territory = -1 }, site.abandoned); end
             state.sites[id] = nil;
         else
             -- Annexed outposts follow native territorial ownership permanently.
             if plot:GetOwner() >= 0 then site.owner = plot:GetOwner(); end
+            -- Keep the ledger guard active through native art swaps: dirty/build
+            -- callbacks must not observe a temporary repair or bill the site twice.
+            RO_Eras.Sync(plot, site.owner);
             local report = O.Inspect(plot);
             notifyTransition(plot, site.report, report);
             site.report = report;
@@ -164,7 +168,7 @@ function O.OnBuilt(owner, x, y, improvement)
     local plot = Map.GetPlot(x, y);
     if not plot then return; end
     -- A road or repair must never change a surviving neutral site's owner.
-    if improvement == O.improvement and plot:GetImprovementType() == O.improvement
+    if RO_Eras.IsType(improvement) and O.IsOutpost(plot)
         and not state.sites[plot:GetPlotIndex()] then
         state.sites[plot:GetPlotIndex()] = { owner = owner };
     end
@@ -175,7 +179,7 @@ function O.OnMoved(owner, unitID)
     local player = Players[owner];
     local unit = player and player:GetUnitByID(unitID);
     local plot = unit and unit:GetPlot();
-    if plot and plot:GetImprovementType() == O.improvement and plot:GetOwner() < 0
+    if O.IsOutpost(plot) and plot:GetOwner() < 0
         and landTroop(unit) and not player:IsBarbarian() then
         local site = state.sites[plot:GetPlotIndex()];
         if site and site.owner ~= owner and (not Players[site.owner]:IsAlive()

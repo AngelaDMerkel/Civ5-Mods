@@ -18,7 +18,7 @@ PACKAGES = [
          actions=['Text/RT_Text.xml','SQL/RT_Promotions.sql','SQL/RT_ReliefStation.sql','SQL/RT_MinistryOfCoin.sql','SQL/RT_Trade.sql','SQL/RT_MotorizedCaravan.sql','SQL/RT_Irrigation.sql','SQL/RT_Art.sql'], entry='UI/RT_Environment.xml'),
     dict(source=OUTPOSTS, components=[], stage=ROOT/'build/resource-outposts', name='Resource Outposts', slug='Resource-Outposts', version=1, id=RO_ID,
          description='Independent worker-built outposts claim neutral strategic and luxury deposits. Includes an outpost overview, upkeep, abandonment previews, territorial conversion, resource notifications and AI expeditions with escorts, recovery and stalled-order handling. No roads or supply connections required. Optional Realistic Terrain integration adds garrison shelter only. Requires Brave New World. Single-player alpha; start a new game.',
-         actions=['Text/RO_Text.xml','SQL/RO_Outposts.sql','SQL/RO_Art.sql'], entry='UI/RO_UI.xml', reload_strategic_view=True),
+         actions=['Text/RO_Text.xml','SQL/RO_Outposts.sql','SQL/RO_Art.sql','SQL/RO_Eras.sql'], entry='UI/RO_UI.xml', reload_strategic_view=True),
 ]
 
 

@@ -14,7 +14,12 @@ The current package blocks the old Terrain v1 that bundled outposts.
 The eight revised era designs are approved in
 `shared/art/outpost-era-concepts-v1/approved.json`. Shared mesh builders and
 validators stay in `tools/`; generated models stay in `output/models/outpost-eras-v1/`.
-Native GR2 conversion, era switching and in-game visuals remain pending.
+Automatic claimant-era selection is implemented for completed and pillaged
+outposts, including capture, annexation and reload. Eight internal variants retain
+one public build action and Civilopedia entry. Construction keeps its existing
+progress and selects the current era on completion. Native Fort models remain as
+placeholders; GR2 conversion and in-game visuals are deferred. Implementation,
+compatibility and conversion handoff: [docs/ERA-VISUALS.md](docs/ERA-VISUALS.md).
 
 The user-selected **Guarded storehouse B** emblem and construction glyph are
 exported and integrated into Civilopedia portraits, construction controls,

@@ -1,5 +1,6 @@
 include("RO_Serialize");
 include("RO_Integration");
+include("RO_Eras");
 include("RO_Outposts");
 include("RO_Orders");
 include("RO_AI");

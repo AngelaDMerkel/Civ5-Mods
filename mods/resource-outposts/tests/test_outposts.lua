@@ -28,7 +28,13 @@ GameInfoTypes = { TECH_ENGINEERING = 10, TECH_MINING = 11, TECH_BRONZE_WORKING =
     UNIT_WORKER = 40, UNIT_WARRIOR = 41, UNIT_UNIQUE_WARRIOR = 42, UNITCLASS_WORKER = 50, UNITCLASS_WARRIOR = 51,
     BUILDING_CARAVANSARY = 60, FEATURE_FOREST = 70 };
 local I = GameInfoTypes;
+local eraRows = {};
+for n, name in ipairs({ "ANCIENT", "CLASSICAL", "MEDIEVAL", "RENAISSANCE", "INDUSTRIAL", "MODERN", "POSTMODERN", "FUTURE" }) do
+    I["ERA_" .. name], I["IMPROVEMENT_RO_OUTPOST_" .. name] = n - 1, 99 + n;
+    eraRows[n] = { EraType = "ERA_" .. name, ImprovementType = "IMPROVEMENT_RO_OUTPOST_" .. name };
+end
 GameInfo = {
+    RO_OutpostEras = database(eraRows),
     Leaders = { [0] = { Type = "LEADER_TEST" }, [1] = { Type = "LEADER_BONUS" } },
     Leader_Traits = database({ { LeaderType = "LEADER_BONUS", TraitType = "TRAIT_BONUS" } }),
     Traits = { TRAIT_BONUS = { Type = "TRAIT_BONUS" } },
@@ -92,6 +98,7 @@ for id = 0, 2 do
     function player:IsBarbarian() return self.id == 2; end
     function player:IsTurnActive() return self.active ~= false; end
     function player:GetTeam() return self.id; end
+    function player:GetCurrentEra() return self.era; end
     function player:GetCivilizationType() return 0; end
     function player:GetCivilizationShortDescription() return "Civ " .. self.id; end
     function player:GetUnitByID(id) return self.units[id]; end
@@ -118,6 +125,13 @@ for id = 0, 2 do
     function player:GetUnitClassMaking(id) return self.making[id] or 0; end
     function player:AddNotification(...) self.notices[#self.notices + 1] = {...}; end
 end
+local function tradesResource(improvement)
+    return RO_Eras.IsType(improvement) or improvement == I.IMPROVEMENT_MINE or improvement == I.IMPROVEMENT_PLANTATION;
+end
+local function nativeTradeTech(p)
+    local r = GameInfo.Resources[p.resource];
+    return p.owner >= 0 and r and (not r.TechCityTrade or Teams[p.owner].techs[I[r.TechCityTrade]]);
+end
 for id = 0, 18 do
     local p = { id = id }; plots[id] = p;
     function p:GetPlotIndex() return self.id; end
@@ -130,15 +144,39 @@ for id = 0, 18 do
     function p:IsWater() return self.water or false; end
     function p:IsMountain() return self.mountain or false; end
     function p:IsImpassable() return self.impassable or false; end
-    function p:SetImprovementType(value)
-        local had = self.improvement == I.IMPROVEMENT_RT_RESOURCE_OUTPOST or self.improvement == I.IMPROVEMENT_MINE or self.improvement == I.IMPROVEMENT_PLANTATION;
-        local has = value == I.IMPROVEMENT_RT_RESOURCE_OUTPOST or value == I.IMPROVEMENT_MINE or value == I.IMPROVEMENT_PLANTATION;
-        self.improvement = value;
-        if self.nativeAccounting and self.owner >= 0 and not self.pillaged then
-            Players[self.owner]:ChangeNumResourceTotal(self.resource, ((has and 1 or 0) - (had and 1 or 0)) * self.quantity);
+    function p:SetImprovementType(value, builder)
+        if value == self.improvement then return; end
+        -- Stock CvPlot order matters: reset pillage using the NEW improvement,
+        -- connect its resource, then remove the OLD credit and city link.
+        local had, has = tradesResource(self.improvement), tradesResource(value);
+        local gift = builder ~= nil and builder >= 0 and builder ~= self.owner;
+        self.improvement, self.upgrade = value, 0;
+        self.setCalls = self.setCalls + 1;
+        self:SetImprovementPillaged(false);
+        if self.nativeAccounting and self.owner >= 0 then
+            if has and (nativeTradeTech(self) or gift) then
+                Players[self.owner]:ChangeNumResourceTotal(self.resource, self.nativeQuantity or self.quantity);
+                self.linked = true;
+            end
+            if had and (nativeTradeTech(self) or self.gift) then
+                Players[self.owner]:ChangeNumResourceTotal(self.resource, -(self.nativeQuantity or self.quantity));
+                self.linked = false;
+            end
+        end
+        self.gift = gift;
+        if self.reenter then Events.SerialEventGameDataDirty.Fire(); end
+    end
+    function p:SetImprovementPillaged(value)
+        if self.pillaged == value then return; end
+        self.pillaged = value;
+        if self.nativeAccounting and nativeTradeTech(self) and tradesResource(self.improvement) then
+            Players[self.owner]:ChangeNumResourceTotal(self.resource, (value and -1 or 1) * (self.nativeQuantity or self.quantity));
+            self.linked = not value;
         end
         if self.reenter then Events.SerialEventGameDataDirty.Fire(); end
     end
+    function p:GetUpgradeProgress() return self.upgrade; end
+    function p:SetUpgradeProgress(value) self.upgrade = value; end
     function p:GetImprovementType() return self.improvement; end
     function p:IsImprovementPillaged() return self.pillaged or false; end
     function p:GetFeatureType() return self.feature or -1; end
@@ -222,7 +260,7 @@ local function city(owner, p)
 end
 local O, B, Orders, AI;
 local function loadModules()
-    for _, name in ipairs({ "RO_Serialize", "RO_Integration", "RO_Outposts", "RO_Orders", "RO_AI", "RO_Management" }) do
+    for _, name in ipairs({ "RO_Serialize", "RO_Integration", "RO_Eras", "RO_Outposts", "RO_Orders", "RO_AI", "RO_Management" }) do
         dofile(TEST_ROOT .. "/mods/resource-outposts/src/Lua/" .. name .. ".lua");
     end
     O, B, Orders, AI = RO_Outposts, RO_Outposts, RO_Orders, RO_AI;
@@ -233,6 +271,7 @@ local function reset()
     for id, player in pairs(Players) do
         player.dead, player.active, player.reenter = false, true, false;
         player.maintenance, player.gold, player.income = 0, 200, 30;
+        player.era = 0;
         player.leader, player.policies, player.blockedPolicies, player.exports, player.imports = 0, {}, {}, {}, {};
         player.units, player.cities, player.resources, player.used, player.making, player.notices, player.changes = {}, {}, {}, {}, {}, {}, 0;
         Teams[id].wars, Teams[id].techs = {}, { [10]=true, [11]=true, [12]=true, [13]=true };
@@ -242,6 +281,7 @@ local function reset()
         p.city, p.water, p.mountain, p.impassable, p.pillaged, p.feature = nil, false, false, false, false, -1;
         p.units, p.progress, p.total, p.revealed, p.visible = {}, {}, 300, true, true;
         p.terrain, p.workingCity, p.nativeAccounting, p.reenter, p.noBuild = 80, nil, false, false, false;
+        p.upgrade, p.setCalls, p.linked, p.gift, p.nativeQuantity = 0, 0, false, false, nil;
     end
     loadModules();
 end
@@ -281,7 +321,7 @@ worker.moves = 120; Orders.OnTurn(0); eq(p:GetBuildProgress(O.build), 200, "dupl
 loadModules(); yes(Orders.IsOrdered(worker, "outpost"), "order kind survives reload");
 Orders.OnTurn(0); eq(p:GetBuildProgress(O.build), 200, "reload cannot double work");
 turn = 2; worker.moves = 120; Orders.OnTurn(0);
-eq(p.improvement, O.improvement); eq(O.Owner(p), 0); eq(p.owner, -1, "no cultural ownership");
+eq(p.improvement, RO_Eras.Target(0)); eq(O.Owner(p), 0); eq(p.owner, -1, "no cultural ownership");
 eq(plots[3].owner, -1, "neighbors remain neutral"); eq(total(0, 1), 6, "whole deposit credited");
 eq(Orders.IsOrdered(worker), false); eq(worker.moves, 0);
 local changes = Players[0].changes;
@@ -332,7 +372,7 @@ print("Outpost construction, accounting and capture: " .. count .. " assertions 
 
 -- AI world: a nearby surplus and a farther missing luxury. Leave one worker
 -- for the homeland; protect the city garrison and existing Caravansary patrol.
-reset();
+reset(); Players[1].era = I.ERA_MODERN;
 local capital = city(1, plots[0]);
 local w1, w2 = unit(10, 1, plots[1], true), unit(11, 1, plots[0], true);
 local guard = unit(12, 1, plots[1], false);
@@ -348,7 +388,7 @@ eq(O.state.ai[1].workers[11], nil, "one worker stays home"); yes(AI.Reserved(w1)
 eq(w1:GetPlot().id, 2, "worker uses revealed safe land step");
 local moves = #w1.missions; AI.OnTurn(1); eq(#w1.missions, moves, "AI duplicate-turn guard");
 for _ = 1, 8 do nextTurn(1); end
-eq(plots[5].improvement, O.improvement, "AI completes real worker construction"); eq(total(1, 2), 1);
+eq(plots[5].improvement, RO_Eras.Target(1), "AI completes real worker construction"); eq(total(1, 2), 1);
 eq(#cityGuard.missions, 0, "city garrison never reassigned");
 for _ = 1, 7 do nextTurn(1); end
 eq(guard:GetPlot(), plots[5], "AI garrisons completed outpost"); yes(guard.fortified, "AI fortifies");
@@ -642,7 +682,7 @@ Controls.OutpostButton.callback(); yes(Orders.IsOrdered(worker, "outpost"));
 yes(string.find(Controls.OutpostButtonLabel.text, "CANCEL"), "cancel label shown");
 Controls.OutpostButton.callback(); eq(Orders.IsOrdered(worker), false, "UI cancels order");
 turn = 1; worker.moves = 120; Controls.OutpostButton.callback(); nextTurn(0);
-eq(p.improvement, O.improvement, "UI-started order completes");
+eq(p.improvement, RO_Eras.Target(0), "UI-started order completes");
 Events.SerialEventUnitInfoDirty.Fire(); eq(Controls.OutpostPanel.hidden, false, "claim status visible");
 yes(string.find(Controls.OutpostStatus.text, "ACTIVE"), "extraction status");
 Events.SerialEventEnterCityScreen.Fire(); eq(Controls.OutpostPanel.hidden, true); eq(Controls.ConstructionPanel.hidden, true);
@@ -650,7 +690,7 @@ Events.SerialEventExitCityScreen.Fire(); eq(Controls.OutpostPanel.hidden, false)
 selected = nil; Events.UnitSelectionCleared.Fire(); eq(Controls.OutpostPanel.hidden, true);
 Controls.Manage.callback(); eq(Controls.OverviewPanel.hidden, false); eq(#rows, 1);
 rows[1].SiteManage.callback(); eq(Controls.OutpostPanel.hidden, false, "manage without selecting a garrison");
-Controls.Abandon.callback(); eq(p.improvement, O.improvement, "first click asks confirmation");
+Controls.Abandon.callback(); eq(p.improvement, RO_Eras.Target(0), "first click asks confirmation");
 Controls.Abandon.callback(); eq(p.improvement, -1, "second click abandons");
 eq(Controls.Manage.disabled, true, "last site removed"); eq(Players[0].maintenance, 0);
 -- Overview rows represent every owned site and dispatch the correct location.
@@ -667,14 +707,114 @@ rows[1].SiteManage.callback(); eq(Controls.OverviewPanel.hidden, true); eq(Contr
 Players[0].used[1] = 4; Events.SerialEventUnitInfoDirty.Fire();
 yes(string.find(Controls.Impact.text, "SHORTAGE", 1, true), "visible abandonment shortage warning");
 Controls.Abandon.callback(); Players[0].used[1] = 5;
-Controls.Abandon.callback(); eq(plots[2].improvement, O.improvement, "changed consequences require fresh confirmation");
+Controls.Abandon.callback(); eq(plots[2].improvement, RO_Eras.Target(0), "changed consequences require fresh confirmation");
 Controls.Abandon.callback(); eq(plots[2].improvement, -1);
 rows[1].SiteManage.callback(); plots[7].pillaged = false; O.Reconcile(); Events.SerialEventUnitInfoDirty.Fire();
 yes(string.find(Controls.Impact.text, "LAST_LUXURY", 1, true), "visible last-copy warning");
 plots[7].owner = 0; Players[0]:ChangeNumResourceTotal(2, 1); O.Reconcile(); Events.SerialEventUnitInfoDirty.Fire();
 eq(Controls.Convert.disabled, false, "annexation unlocks conversion control");
-Controls.Convert.callback(); eq(plots[7].improvement, O.improvement, "conversion confirmation is explicit");
+Controls.Convert.callback(); eq(plots[7].improvement, RO_Eras.Target(0), "conversion confirmation is explicit");
 yes(string.find(Controls.Impact.text, "CONVERT_PREVIEW", 1, true));
 Controls.Convert.callback(); eq(plots[7].improvement, I.IMPROVEMENT_PLANTATION);
 eq(Players[0].maintenance, 0); eq(#rows, 0, "converted installation leaves overview");
 print("Outposts including UI: " .. count .. " assertions passed");
+
+-- Claimant-era art: real Lua with the native setter's repair/resource/link order.
+reset(); p = plots[4]; Players[0].era = I.ERA_FUTURE; Players[1].era = I.ERA_CLASSICAL;
+build(1, p); eq(p.improvement, I.IMPROVEMENT_RO_OUTPOST_CLASSICAL, "completion uses inactive claimant, not active player's era");
+O.Initialize(); p.revealed, p.visible = false, false;
+for _, row in ipairs(eraRows) do
+    Players[1].era = I[row.EraType]; GameEvents.TeamTechResearched.Fire(1, 10, 1);
+    eq(p.improvement, I[row.ImprovementType], "technology event selects " .. row.EraType);
+    eq(O.Owner(p), 1); eq(total(1, 1), 6); eq(Players[1].maintenance, 2);
+end
+eq(p.owner, -1, "art never claims cultural territory");
+eq(p.revealed, false, "art does not reveal the claimant's plot");
+Players[1].era = 10; O.Reconcile(); eq(p.improvement, I.IMPROVEMENT_RO_OUTPOST_FUTURE, "extra future eras retain latest supported art");
+local swaps = p.setCalls; O.Reconcile(); O.Reconcile(); eq(p.setCalls, swaps, "unchanged era never invokes native setter");
+Players[1].dead = true; Players[1].era = 0; O.Reconcile(); eq(p.setCalls, swaps, "dead claimant cannot change art");
+eq(RO_Eras.Target(2), nil, "barbarians have no outpost art stage");
+
+reset(); p = plots[4]; build(0, p); O.Initialize();
+guard = unit(300, 0, p, false); guard.damage, guard.moves = 37, 60;
+p.upgrade, p.duration, p.route, p.feature, p.progress[25] = 17, 12, 9, I.FEATURE_FOREST, 75;
+Players[0].resources[1] = 15; Players[0].resources[2] = 3;
+Players[0].policies[1], Players[0].exports[1], Players[0].imports[1], Players[0].used[1] = true, 2, 4, 5;
+local available = Players[0]:GetNumResourceAvailable(1);
+mutations, oldNotices = Players[0].changes, #Players[0].notices;
+p.reenter = true; Players[0].era = I.ERA_MODERN;
+GameEvents.PlayerDoTurn.Fire(1); -- fallback works even outside claimant's turn
+eq(p.improvement, I.IMPROVEMENT_RO_OUTPOST_MODERN);
+eq(Players[0].changes, mutations, "neutral visual swap never touches resource ledger");
+eq(Players[0]:GetNumResourceAvailable(1), available, "policy/import/export/consumption unchanged");
+eq(total(0, 2), 3); eq(O.state.credited[0][1], 6); eq(Players[0].maintenance, 2);
+eq(#Players[0].notices, oldNotices, "no cosmetic supply notice");
+eq(p.upgrade, 17); eq(p.duration, 12); eq(p.route, 9); eq(p.feature, I.FEATURE_FOREST); eq(p.progress[25], 75);
+eq(guard:GetPlot(), p); eq(guard.damage, 37); eq(guard.moves, 60, "garrison untouched");
+p.pillaged = true; O.Reconcile(); oldNotices = #Players[0].notices;
+Players[0].era = I.ERA_POSTMODERN; Events.SerialEventGameDataDirty.Fire();
+eq(p.improvement, I.IMPROVEMENT_RO_OUTPOST_POSTMODERN); yes(p.pillaged, "native setter cannot repair ruins during art swap");
+eq(total(0, 1), 9); eq(#Players[0].notices, oldNotices, "temporary native repair does not notify or supply");
+
+-- Capture changes the stage immediately, including a less advanced captor.
+reset(); p = plots[4]; Players[0].era = I.ERA_FUTURE; Players[1].era = I.ERA_MEDIEVAL;
+build(0, p); p.pillaged = true; O.Reconcile(); O.Initialize();
+enemy = unit(301, 1, p, false); Teams[0].wars[1], Teams[1].wars[0] = true, true;
+GameEvents.UnitSetXY.Fire(1, 301);
+eq(p.improvement, I.IMPROVEMENT_RO_OUTPOST_MEDIEVAL); eq(O.Owner(p), 1); yes(p.pillaged);
+eq(total(0, 1), 0); eq(total(1, 1), 0); eq(Players[0].maintenance, 0); eq(Players[1].maintenance, 2);
+p.pillaged = false; O.OnBuilt(0, p.id, 0, -1);
+eq(O.Owner(p), 1, "repair of a variant retains claimant"); eq(total(1, 1), 6);
+eq(RO_Management.Preview(1, p).loss, 6, "management recognizes captured variant");
+
+-- Territorial ownership supersedes the ledger; native bonuses and city links
+-- must survive a swap even when the native credit differs from deposit quantity.
+reset(); p = plots[4]; Players[1].era = I.ERA_POSTMODERN; build(0, p); O.Initialize();
+p.owner, p.nativeAccounting, p.nativeQuantity, p.linked = 1, true, 24, true;
+Players[1].resources[1], Players[1].resources[2] = 31, 5;
+p.reenter, Players[1].reenter = true, true;
+GameEvents.CityBoughtPlot.Fire(1, 0, p.id, 0);
+eq(O.Owner(p), 1); eq(p.improvement, I.IMPROVEMENT_RO_OUTPOST_POSTMODERN);
+eq(total(0, 1), 0); eq(total(1, 1), 31, "native trait/terrain credit unchanged after annexation swap");
+yes(p.linked, "new variant retains active city resource link"); eq(total(1, 2), 5);
+eq(Players[0].maintenance, 0); eq(Players[1].maintenance, 2);
+p:SetImprovementPillaged(true); eq(total(1, 1), 7); O.Reconcile();
+Players[1].era = I.ERA_FUTURE; GameEvents.TeamTechResearched.Fire(1, 10, 1);
+yes(p.pillaged); eq(total(1, 1), 7, "owned ruin retains zero native credit"); eq(p.linked, false);
+p:SetImprovementPillaged(false); O.OnBuilt(0, p.id, 0, -1);
+eq(total(1, 1), 31); yes(p.linked); eq(O.Owner(p), 1);
+
+-- Persisted variants and old canonical sites migrate from the same save keys.
+reset(); p = plots[4]; build(0, p); swaps = p.setCalls;
+Players[0].era = I.ERA_INDUSTRIAL; loadModules(); O.Initialize(); Events.LoadScreenClose.Fire();
+eq(p.improvement, I.IMPROVEMENT_RO_OUTPOST_INDUSTRIAL); eq(p.setCalls, swaps + 1);
+eq(total(0, 1), 6); eq(Players[0].maintenance, 2); eq(#Players[0].notices, 0);
+p.improvement, p.gift = I.IMPROVEMENT_RT_RESOURCE_OUTPOST, true; -- old neutral save
+loadModules(); O.Initialize();
+eq(p.improvement, I.IMPROVEMENT_RO_OUTPOST_INDUSTRIAL); eq(p.gift, false);
+eq(total(0, 1), 6, "legacy claim is not credited twice");
+
+-- Old canonical/gifted annexed sites need a one-time tech safety gate. Native
+-- removal otherwise subtracts a resource the territorial owner never received.
+reset(); p = plots[4]; build(0, p); p.owner = 1; Teams[1].techs[12] = false;
+O.Reconcile(); p.improvement, p.gift, p.nativeAccounting = I.IMPROVEMENT_RT_RESOURCE_OUTPOST, true, true;
+Players[1].era = I.ERA_MODERN; Players[1].resources[1] = 7;
+loadModules(); O.Initialize();
+eq(p.improvement, I.IMPROVEMENT_RT_RESOURCE_OUTPOST, "unsafe legacy migration waits for resource technology");
+eq(total(1, 1), 7); eq(Players[1].maintenance, 2);
+Teams[1].techs[12] = true; Players[1]:ChangeNumResourceTotal(1, 6); p.linked = true;
+GameEvents.TeamTechResearched.Fire(1, 12, 1);
+eq(p.improvement, I.IMPROVEMENT_RO_OUTPOST_MODERN); eq(total(1, 1), 13); yes(p.linked); eq(p.gift, false);
+Teams[1].techs[12] = false; Players[1].resources[1] = 7; p.linked = false;
+Players[1].era = I.ERA_POSTMODERN; O.Reconcile();
+eq(p.improvement, I.IMPROVEMENT_RO_OUTPOST_POSTMODERN, "normalized variant has no legacy tech gate"); eq(total(1, 1), 7);
+
+-- Construction keeps one native build ID so an era change cannot erase work.
+reset(); p = plots[4]; p.resource = 1; worker = unit(302, 0, p, true);
+Orders.Initialize(); O.Initialize(); Orders.Start(worker);
+Players[0].era = I.ERA_FUTURE; GameEvents.TeamTechResearched.Fire(0, 10, 1);
+eq(p:GetBuildProgress(O.build), 100); eq(p.improvement, -1);
+nextTurn(0); nextTurn(0); eq(p.improvement, I.IMPROVEMENT_RO_OUTPOST_FUTURE); eq(total(0, 1), 1);
+yes(O.Abandon(0, p)); Players[0].era = 0; O.Reconcile();
+eq(p.improvement, -1, "era sync never resurrects an abandoned site"); eq(total(0, 1), 0);
+print("Outposts including claimant-era transitions: " .. count .. " assertions passed");
