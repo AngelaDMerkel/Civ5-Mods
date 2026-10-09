@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <GameData>
   <Language_en_US>
+    <Row Tag="TXT_KEY_RT_TRADE_TITLE"><Text>Trade and logistics</Text></Row>
+    <Row Tag="TXT_KEY_RT_TRADE_EMBARGO"><Text>World Congress embargo prohibits this route</Text></Row>
+    <Row Tag="TXT_KEY_RT_TRADE_EMBARGO_RECALL"><Text>Route recalled: World Congress embargo; trade unit returned</Text></Row>
     <Row Tag="TXT_KEY_RT_RELIEF_STATION"><Text>Caravansary</Text></Row>
     <Row Tag="TXT_KEY_RT_BUILD_RELIEF_STATION"><Text>Build Caravansary</Text></Row>
     <Row Tag="TXT_KEY_RT_RELIEF_CONNECTED"><Text>Caravansary: resupply next turn</Text></Row>

@@ -19,7 +19,7 @@ local function city(id) local p = plot(id); return p and p:GetPlotCity(); end
 local function notify(owner, message, p)
     local player = Players[owner];
     if player and player:IsHuman() then player:AddNotification(NotificationTypes.NOTIFICATION_GENERIC,
-        message, "Trade and logistics", p and p:GetX() or -1, p and p:GetY() or -1); end
+        Locale.ConvertTextKey(message), Locale.ConvertTextKey("TXT_KEY_RT_TRADE_TITLE"), p and p:GetX() or -1, p and p:GetY() or -1); end
 end
 local function sameSide(a, b)
     local x, y = Players[a], Players[b];
@@ -60,6 +60,24 @@ function T.Capacity(owner)
 end
 function T.Used(owner)
     local n = 0; for _, route in pairs(state.routes) do if route.owner == owner then n = n + 1; end end; return n;
+end
+-- BNW exposes active resolutions, but not IsTradeEmbargoed itself. Match
+-- CvGameLeagues/CvLeague: only a member's outgoing international routes,
+-- city-state sanctions separately from sanctions between major civilizations.
+function T.IsEmbargoed(owner, recipient)
+    if owner == recipient or not Game.GetActiveLeague then return false; end
+    local league = Game.GetActiveLeague();
+    if not league or not league:IsMember(owner) then return false; end
+    local minor = Players[owner]:IsMinorCiv() or Players[recipient]:IsMinorCiv();
+    for _, resolution in pairs(league:GetActiveResolutions()) do
+        local rule = GameInfo.Resolutions[resolution.Type];
+        if rule then
+            if minor and (rule.EmbargoCityStates == true or rule.EmbargoCityStates == 1) then return true; end
+            if not minor and (rule.EmbargoPlayer == true or rule.EmbargoPlayer == 1)
+                and (resolution.ProposerDecision == owner or resolution.ProposerDecision == recipient) then return true; end
+        end
+    end
+    return false;
 end
 function T.MaintenanceFactor(owner)
     if owner < 0 then return 0; end
@@ -102,6 +120,9 @@ function T.Quote(from, to, domain, kind, existingPath, context, unitType)
     end
     if owner ~= to:GetOwner() and not T.HasAgreement(owner, to:GetOwner()) then
         return { valid = false, reason = "Trade agreement required" };
+    end
+    if T.IsEmbargoed(owner, to:GetOwner()) then
+        return { valid = false, reason = "TXT_KEY_RT_TRADE_EMBARGO" };
     end
     if owner == to:GetOwner() then
         if kind ~= "food" and kind ~= "production" then return { valid = false, reason = "Choose food or production for domestic trade" }; end
@@ -166,6 +187,14 @@ function T.Settlement(extra)
     end
     return E.Settle(routes, assets);
 end
+function T.Forecast(owner, ledger)
+    local account = (ledger or T.Settlement()).players[owner];
+    local native = Players[owner]:CalculateGoldRateTimes100();
+    local payment = account and account.payment100 or 0;
+    -- Native GPT already deducts maintenance. Adding ledger.net100 would charge
+    -- the same infrastructure twice; only the treasury credit is additional.
+    return { native100 = native, payment100 = payment, total100 = native + payment };
+end
 function T.Launch(unit, targetID, kind)
     if not T.IsTradeUnit(unit) then return false, "Select an idle Caravan, Motorized Caravan or Cargo Ship"; end
     local owner = unit:GetOwner(); local from, to = unit:GetPlot():GetPlotCity(), city(targetID);
@@ -217,9 +246,15 @@ function T.ValidateRoutes()
         local a, b = string.match(key, "^(%d+):(%d+)$");
         if a and not sameSide(tonumber(a), tonumber(b)) then state.agreements[key], state.offers[key] = nil, nil; end
     end
-    local ended = {};
-    for id, route in pairs(state.routes) do if not routeAuthorized(route) then ended[#ended + 1] = id; end end
-    table.sort(ended); for _, id in ipairs(ended) do T.EndRoute(id, "Route recalled: city ownership or trade agreement changed", false); end
+    local ended, reasons = {}, {};
+    for id, route in pairs(state.routes) do
+        if T.IsEmbargoed(route.owner, route.recipient) then
+            ended[#ended + 1] = id; reasons[id] = "TXT_KEY_RT_TRADE_EMBARGO_RECALL";
+        elseif not routeAuthorized(route) then
+            ended[#ended + 1] = id; reasons[id] = "Route recalled: city ownership or trade agreement changed";
+        end
+    end
+    table.sort(ended); for _, id in ipairs(ended) do T.EndRoute(id, reasons[id], false); end
 end
 function T.Raid(route)
     local p = plot(route.path[route.position]);

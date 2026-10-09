@@ -3,6 +3,7 @@ local count=0;
 local function eq(a,b,why) count=count+1;assert(a==b,why..": "..tostring(a).." ~= "..tostring(b));end
 local function check(a,why) eq(not not a,true,why);end
 local turn, values = 0, {};
+Locale={ConvertTextKey=function(key)return key;end};
 Game={GetGameTurn=function()return turn;end,GetActivePlayer=function()return 0;end,GetGameSpeedType=function()return 0;end};
 GameDefines={MAX_CIV_PLAYERS=3};DomainTypes={DOMAIN_LAND=0,DOMAIN_SEA=1};
 NotificationTypes={NOTIFICATION_GENERIC=1};OrderTypes={ORDER_TRAIN=1,ORDER_CONSTRUCT=2};MissionTypes={MISSION_MOVE_TO=1,MISSION_BUILD=2};
@@ -58,6 +59,8 @@ for id=0,2 do
     function p:IsAlive()return true;end
     function p:IsBarbarian()return self.id==2;end
     function p:IsHuman()return self.id==0;end
+    function p:IsMinorCiv()return self.minor or false;end
+    function p:CalculateGoldRateTimes100()return -375;end
     function p:IsTurnActive()return true;end
     function p:GetTeam()return self.id;end
     function p:IsDenouncedPlayer()return self.denounced or false;end
@@ -354,3 +357,39 @@ for _,r in ipairs(rows)do
 end
 check(motorLaunch,"planner offers motorized destination");motorLaunch();check(selected.dead,"planner invests motorized unit");
 print("Replacement trade including Motorized Caravan: "..count.." assertions passed");
+
+-- Real settlement/launch/pay paths must all respect current Congress decisions.
+local resolutionRows, member = {}, true;
+GameInfo.Resolutions={[10]={EmbargoPlayer=true},[11]={EmbargoCityStates=1},[12]={EmbargoPlayer=0,EmbargoCityStates=false}};
+Game.GetActiveLeague=function()return{IsMember=function(_,owner)return member and owner~=2;end,
+    GetActiveResolutions=function()return resolutionRows;end};end;
+local account=T.Settlement().players[0];local forecast=T.Forecast(0);
+eq(forecast.native100,-375,"forecast preserves native maintenance and deficit");
+eq(forecast.payment100,account.payment100,"forecast adds gross treasury credit");
+eq(forecast.total100,-375+account.payment100,"forecast does not deduct infrastructure expenses twice");
+local beforeEmbargo=Players[0].created;
+resolutionRows={{Type=10,ProposerDecision=1}};
+check(T.IsEmbargoed(0,1),"targeted recipient is embargoed");
+check(T.IsEmbargoed(1,0),"targeted origin is embargoed");
+eq(T.IsEmbargoed(0,0),false,"domestic trade is exempt");
+eq(T.IsEmbargoed(2,1),false,"nonmember outgoing trade is exempt");
+member=false;eq(T.IsEmbargoed(0,1),false,"Congress membership is required");member=true;
+Players[1].minor=true;eq(T.IsEmbargoed(0,1),false,"major sanctions do not also embargo city states");
+resolutionRows={{Type=11,ProposerDecision=-1}};check(T.IsEmbargoed(0,1),"city-state embargo applies");
+Players[1].minor=false;eq(T.IsEmbargoed(0,1),false,"city-state embargo does not target majors");
+resolutionRows={{Type=12,ProposerDecision=1},{Type=999,ProposerDecision=1}};
+eq(T.IsEmbargoed(0,1),false,"zero SQL booleans and unrelated/unknown resolutions are ignored");
+resolutionRows={{Type=10,ProposerDecision=1}};
+eq(T.Quote(from,to,0,"international",{0,1,2,3,4,5,6},nil,I.UNIT_RT_MOTORIZED_CARAVAN).reason,"TXT_KEY_RT_TRADE_EMBARGO","saved paths do not bypass embargoes");
+truck=unit(0,0,I.UNIT_RT_MOTORIZED_CARAVAN);
+eq(T.Launch(truck,6,"international"),false,"embargo prevents new launch");eq(truck.dead,nil,"rejection preserves idle unit");
+eq(T.Forecast(0).payment100,0,"embargoed routes cannot earn before recall runs");
+turn=turn+1;local cashBefore=Players[0].gold;T.Pay(0);
+eq(Players[0].gold,cashBefore,"no embargoed income is paid");
+T.ValidateRoutes();eq(T.Used(0),0,"active embargoed routes recalled");
+eq(Players[0].created,beforeEmbargo+1,"recall returns exactly one invested trade unit");
+check(T.HasAgreement(0,1),"sanctions preserve signed commercial agreements");
+T.ValidateRoutes();eq(Players[0].created,beforeEmbargo+1,"repeat validation cannot duplicate returned unit");
+resolutionRows={};check(T.Quote(from,to,0,"international",nil,nil,I.UNIT_RT_MOTORIZED_CARAVAN).valid,"repeal reopens planning");
+Game.GetActiveLeague=function()return nil;end;eq(T.IsEmbargoed(0,1),false,"pre-Congress game permits trade");
+print("Congress enforcement and income forecast: "..count.." assertions passed");
