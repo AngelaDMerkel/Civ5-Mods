@@ -1,20 +1,37 @@
 # Resource Outposts: player guide
 
-[Installation and mod selection](../../../docs/GAMEPLAY.md) · [Mod introduction](../README.md)
+[Mod collection](../../../README.md) · [Installation](../../../docs/GAMEPLAY.md#install-a-packaged-test-build)
 
-A Resource Outpost claims a strategic or luxury deposit in neutral land without
-founding a city or expanding your borders. It gives your empire access to that
-resource, at the cost of upkeep and the risk of maintaining a remote position.
+## Goals
 
-This guide describes the experimental v1 build for a new single-player Brave New
-World game. In-game testing is still pending.
+Make distant resources worth competing for without requiring a new city at every
+deposit. Resource Outposts let you weigh the value of a remote claim against its
+upkeep, vulnerability and the troops needed to hold it.
+
+## What the mod adds
+
+- **Worker-built resource claims** on strategic and luxury deposits in neutral
+  land, supplying your empire without expanding its borders.
+- **Defended positions** with a +50% defensive bonus and 2 gold base upkeep per
+  turn; roads and a garrison are optional.
+- **An outpost overview** for locating sites, checking resources and defenders,
+  abandoning claims or converting sites after your borders expand.
+- **AI expeditions** that build, guard and repair remote claims.
+
+**Status:** experimental v1 build for a new single-player Brave New World game.
+Works independently or with Realistic Terrain; in-game testing is still pending.
 
 <img src="../../../shared/art/resource-outpost-icons-v1/identity-b.png" width="240" alt="Resource Outposts emblem: a guarded storehouse with a watchtower and supply crates">
 
 *The selected Guarded Storehouse emblem is included in the mod's portraits,
 management controls and strategic-view marker. It is an icon, not a map model.*
 
-## Build your first outpost
+## How it works
+
+[Construction](#build-your-first-outpost) · [Resources and upkeep](#resources-and-upkeep) ·
+[Defense](#defending-a-remote-claim) · [Management](#locate-and-manage-your-sites)
+
+### Build your first outpost
 
 1. Research **Engineering**, reveal the resource, and research its normal
    extraction technology, such as Mining or Calendar.
@@ -30,7 +47,7 @@ A garrison is optional for extraction. Moving the worker, cancelling constructio
 or giving another job ends its assignment; partial progress and continuing orders
 survive saving and loading.
 
-## What you gain—and what it costs
+### Resources and upkeep
 
 | Feature | Rule |
 | --- | --- |
@@ -56,7 +73,7 @@ modifiers. A pillaged, blockaded or annexed outpost still costs upkeep. A defend
 ordinary unit upkeep is separate. If a site is no longer useful, abandonment can
 stop its ongoing cost.
 
-## Defending a remote claim
+### Defending a remote claim
 
 Move a land military unit onto the outpost and fortify it normally. The site is
 an improvement, not a city: it has no city health bar, ranged bombardment or
@@ -79,14 +96,14 @@ Capture does not repair a pillaged site. Notifications report resource access
 lost or restored, capture and other ownership changes. If your own borders absorb
 your outpost, you should retain access rather than receive the resource twice.
 
-## Locate and manage your sites
+### Locate and manage your sites
 
 The **Resource Outposts** button opens an overview of every site you own. It shows
 the resource and quantity, extraction status, defender and health, and base upkeep.
 Use **Locate** to center the map or **Manage** to inspect the site's options.
 You do not need a selected unit or a stationed garrison to manage an outpost.
 
-### Abandon an outpost
+#### Abandon an outpost
 
 The management panel previews the resource access you would lose and the base
 upkeep you would save. It warns if abandonment would remove your last available
@@ -97,7 +114,7 @@ confirm, review the new result. The action removes the outpost and its upkeep;
 if the tile has already joined your borders, the tile remains yours. Check active
 exports and unit requirements before giving up a resource you depend on.
 
-### Convert after your borders expand
+#### Convert after your borders expand
 
 Once an intact outpost is inside your borders, **Convert improvement** can turn
 it into the ordinary Mine, Quarry, Pasture, Camp, Plantation or Well for that
@@ -110,7 +127,7 @@ The management panel explains the change before confirmation. Keep the outpost
 if its defensive position is worth the cost; convert it if you prefer an ordinary
 resource improvement.
 
-## Playing alongside Realistic Terrain
+### Playing alongside Realistic Terrain
 
 Outposts work independently. If **Realistic Terrain v2** is also enabled, an intact
 outpost shelters its owner's military unit on that exact tile. Exposure and its
@@ -120,7 +137,7 @@ Shelter has no adjacent radius and stops when the outpost is pillaged. It still
 needs no road or city connection. Outposts do not become Caravansary trade relays
 or road-patrol stations.
 
-## What the AI does
+### What the AI does
 
 AI civilizations prioritize repairs and resources they lack. They can send workers
 with escorts, station guards and replace wounded defenders. Their number of
@@ -131,7 +148,7 @@ Those planning limits do not cap human outposts. Each additional site still
 brings its own upkeep and defense needs. Overseas expeditions are outside the
 current AI's scope, and long-game behavior still needs playtesting.
 
-## Appearance
+### Appearance
 
 ![Medieval outpost concept with a fortified courtyard and corner towers](../../../shared/art/outpost-era-concepts-v1/03-medieval-b.png)
 
@@ -139,7 +156,7 @@ current AI's scope, and long-game behavior still needs playtesting.
 uses Civ V's Fort models. Automatic era changes and the custom structures shown
 here are not yet in the game.*
 
-## Common questions
+### Common questions
 
 **Why can't I build on this resource?** Check that it is revealed, on neutral
 land, unimproved, and a supported strategic or luxury deposit. You need Engineering
@@ -156,4 +173,4 @@ the site; maintaining an outpost does not reserve that territory permanently.
 **Can I build one without a road or defender?** Yes. Neither is required for
 construction or extraction, but an unguarded neutral site is easier to disrupt.
 
-[Back to player guides](../../../docs/GAMEPLAY.md)
+[Back to the mod collection](../../../README.md) · [Installation and compatibility](../../../docs/GAMEPLAY.md)

@@ -11,9 +11,9 @@ and supplied Caravansaries help keep them fighting.
 
 **Experimental v2 build.** Requires Brave New World and a new single-player game.
 In-game testing is pending. This mod changes standard trade behavior; read the
-trade guide before playing.
+trade section of the guide before playing.
 
-**[Player guide](docs/GUIDE.md)** · **[Trade guide](docs/TRADE-GUIDE.md)** ·
+**[Player guide](docs/GUIDE.md)** ·
 **[Installation](../../docs/GAMEPLAY.md#install-a-packaged-test-build)**
 
 [Development notes](docs/DEVELOPMENT.md)

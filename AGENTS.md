@@ -101,10 +101,13 @@ visual acceptance are distinct states.
 
 ## Player documentation
 
-Keep the root and mod READMEs brief and player-facing. Follow
-`shared/requirements/DOCUMENTATION.md`. The player entry point is
-`docs/GAMEPLAY.md`; detailed mod guides are `mods/<mod>/docs/GUIDE.md`, with
-Terrain's trade guide in `docs/TRADE-GUIDE.md` under that mod.
+Present the root README as AngelaDMerkel's custom mod collection, with a brief
+illustrated overview of each mod and a direct link to its detailed guide. Keep
+individual mod READMEs brief and player-facing. Follow
+`shared/requirements/DOCUMENTATION.md`. Each mod has one public documentation
+page at `mods/<mod>/docs/GUIDE.md`, beginning with goals, then what the mod adds,
+then how its features work. Terrain's trade rules belong in that same guide.
+`docs/GAMEPLAY.md` covers shared installation and links to the four mod guides.
 
 Explain game purpose, requirements, units, buildings, worker actions and results
 in Civilization V terms. Update the guides alongside gameplay changes. Label

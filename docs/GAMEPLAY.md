@@ -8,8 +8,7 @@ v2** and **Resource Outposts v1** builds for Civilization V: Brave New World.
 
 | Guide | What you will learn | Current availability |
 | --- | --- | --- |
-| [Realistic Terrain](../mods/realistic-terrain/docs/GUIDE.md) | Protect armies from exposure; build Caravansaries and a Ministry of Coin | Experimental Terrain v2 build |
-| [Trade and logistics](../mods/realistic-terrain/docs/TRADE-GUIDE.md) | Launch Caravans, Motorized Caravans and Cargo Ships; improve income and protect routes | Included with Terrain v2 |
+| [Realistic Terrain](../mods/realistic-terrain/docs/GUIDE.md) | Exposure, Caravansaries, Ministry of Coin, trade units and route management | Experimental Terrain v2 build |
 | [Resource Outposts](../mods/resource-outposts/docs/GUIDE.md) | Claim resources, defend sites, manage upkeep and abandon or convert an outpost | Experimental Outposts v1 build |
 | [Irrigated Farm](../mods/irrigated-farm/docs/GUIDE.md) | Build Irrigation Works, connect farms to water and repair broken networks | Included with Terrain v2 |
 | [Climate Change](../mods/climate-change/docs/GUIDE.md) | Understand the proposed warming-or-cooling system | Planned; no playable build |
@@ -59,7 +58,7 @@ assuming a long expedition can cross desert or snow without support.
 
 For trade, use **Trade and logistics** near the upper right. Select a ready trade
 unit in one of your cities, sign any required agreements, then use **Plan routes**.
-The [trade guide](../mods/realistic-terrain/docs/TRADE-GUIDE.md) explains the
+The [trade section](../mods/realistic-terrain/docs/GUIDE.md#trade-and-logistics) explains the
 differences from ordinary Brave New World trade.
 
 At **Engineering**, workers can begin the new construction actions once their
@@ -76,7 +75,7 @@ buildings may conflict. Start with these packages alone when testing.
 
 Terrain changes how trade operates: active routes are managed in its planner,
 and some standard trade effects are absent. Read the
-[trade differences](../mods/realistic-terrain/docs/TRADE-GUIDE.md#differences-from-standard-trade)
+[trade differences](../mods/realistic-terrain/docs/GUIDE.md#differences-from-standard-trade)
 before choosing it for a game. Outposts by itself leaves standard trade unchanged.
 
 ## Common questions

@@ -1,12 +1,14 @@
 # Player-guide image provenance
 
-The guide uses existing original project images. No new artwork was generated
-and no source image was altered for this documentation pass.
+The guides and collection README reuse existing original project images without
+altering them. A small original SVG diagram illustrates Climate Change's confirmed
+warming-or-cooling direction; it is documentation, not proposed game artwork.
 
 | Local image | Original location | Meaning |
 | --- | --- | --- |
 | `caravansary-preview.jpg` | `output/models/revised-v2/RT_Caravansary_Ancient-preview.jpg` | Render of the approved source model; native integration pending |
 | `motorized-caravan-preview.jpg` | `output/models/revised-v2/RT_MotorizedCaravan-preview.jpg` | Render of the approved source model; native integration pending |
+| `climate-direction.svg` | Authored directly as an SVG for the collection README | Diagram of the confirmed one-direction-per-game requirement; no gameplay or visual-asset claim |
 
 These two unchanged previews are versioned here so player-guide images work in a
 fresh checkout. The guides also reference versioned originals directly in

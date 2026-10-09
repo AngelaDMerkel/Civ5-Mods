@@ -35,15 +35,17 @@ See [the shared tool catalog](../tools/README.md) for art tooling,
 
 ## Documentation audiences
 
-The root and mod READMEs are short introductions for players. Mod player guides
-explain gameplay, units, buildings and actions with captioned project images.
+The root README presents AngelaDMerkel's collection with an illustrated overview
+of each mod. Individual mod READMEs remain short introductions. Each mod has one
+public guide, beginning with goals, then additions, then detailed gameplay mechanics.
+Terrain's guide includes trade. Use captioned project images throughout.
 Follow [the documentation requirements](../shared/requirements/DOCUMENTATION.md).
 
 Ownership, source details and model pipeline status are retained in each mod's
 `docs/DEVELOPMENT.md`. Detailed implementation notes remain in `TRADE.md`,
 `OUTPOSTS.md`, `IRRIGATION.md` and climate `REQUIREMENTS.md`. The former combined
 technical/art guide is preserved in [package notes](technical/PACKAGE-NOTES.md).
-These contributor records are distinct from `GUIDE.md` and `TRADE-GUIDE.md`.
+These contributor records are separate from each mod's single public `GUIDE.md`.
 
 The player guides describe the currently integrated experimental packages. Update
 them when a feature is integrated; keep unmerged experiments and future visual
