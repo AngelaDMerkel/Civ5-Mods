@@ -95,6 +95,9 @@ from refine_materials import make_atlas
 
 def export(mesh, folder):
     folder = folder / mesh.name; folder.mkdir(parents=True, exist_ok=True)
+    # Opaque parts may be reordered: keep the offline viewer's draw-call count
+    # proportional to component types rather than individual plant leaves.
+    mesh.faces.sort(key=lambda face: face[4])
     p,n,uv = mesh.arrays()
     groups=[]
     for i,f in enumerate(mesh.faces):

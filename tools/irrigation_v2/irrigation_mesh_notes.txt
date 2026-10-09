@@ -1,4 +1,4 @@
-IRRIGATED FARM — MODULAR SOURCE MESH KIT v1
+IRRIGATED FARM — MODULAR SOURCE MESH KIT v2
 Based on the user's approved terraced-terrain concept, 9 October 2026.
 
 DELIVERY
@@ -20,14 +20,35 @@ not generated concept illustrations. Review both the individual tiles and the
 connected district before converting.
 
 CIV V ART DIRECTION AND REFERENCES
-The design follows the native farm's broad crop patches and the Incan terrace
-farm's angular planted shelves, low retaining walls and subdued materials.
-Crop rows are diffuse texture detail, not individual high-poly plants. Date
-palms use narrow opaque frond ribbons; fruit trees use small faceted canopies.
-The kit has one original 1024x1024 diffuse atlas. It contains no extracted
-Firaxis geometry or pixels. The atlas and renders were made procedurally from
-the actual source meshes. The neutral normal/specular DDS files are source
-placeholders; they do not claim a validated native Civ V shader setup.
+The first mesh pass did not reproduce the native game's visual density. This
+revision addresses the gap with planted parcel interiors, fine broken crop
+rows, worn earth margins, low three-dimensional crop clusters, modeled palm
+leaflets, clustered fruit-tree crowns, and a small mudbrick store with a reed
+shade, jars and harvest sheaves. Irrigated desert crops remain barley, low
+vegetables/legumes, date palms and orchard trees. Empty soil and stubble plots
+break up the greenery. Hill orchards are moved onto usable benches instead of
+being deleted whenever their original placement crosses a wall.
+
+The normal Farm screenshot informed the parcel shading, color variation and
+small agricultural props. The Incan Terrace Farm screenshot and installed
+texture informed angular planted shelves and subdued masonry. The terraces
+now have unequal widths, asymmetric outlines and off-center summits. Shared
+edges still use the same world crop grid. Tree trunks and store footprints
+are smaller visual accents; no monumental basins or waterfalls were added.
+
+The kit has one original 2048x2048 diffuse atlas (sixteen 512-square material
+cells). Fine foliage and crop detail is deliberately present in the texture
+as well as the silhouette. No extracted Firaxis geometry or pixels are used.
+The neutral normal/specular DDS files remain source placeholders, not a
+validated native Civ V shader setup. The preview's shadows are calculated
+from the exported geometry. The interactive viewer has simpler lighting.
+
+LOD0 farm meshes are approximately 6,400-8,100 triangles; the authored wet
+LOD1 variants are approximately 1,300-2,000. These are review targets chosen
+for this source kit, NOT measurements of native Civ V meshes and NOT proof of
+an acceptable in-game rendering budget. Actual runtime profiling and a
+texture/decal-focused native LOD pass are still required. Higher polygon
+counts alone are not the criterion for visual equivalence.
 
 Real-game references examined directly:
   Medieval_Farm.fxsxml in Resource/Common/ImprovementModels.fpk references
@@ -91,7 +112,7 @@ vegetation, and state-specific construction or repair props.
 Each BR2 has one World bone, complete rigid weights, UV-derived tangents and
 bitangents. BR2 and OBJ are Z-up. GLB applies a root rotation for standard
 Y-up viewers. Do not apply that GLB root transform twice when round-tripping.
-LOD1 reduces vegetation/frond and arch segmentation while preserving terrace
+LOD1 removes crop relief and reduces vegetation/frond and arch segmentation while preserving terrace
 boundaries and connector endpoints. These are authoring LODs; native automatic
 LOD selection is not configured.
 
@@ -120,8 +141,8 @@ REBUILD
 Requires Python 3, NumPy and Pillow. No Blender installation is required to
 reproduce the sources, viewer, original atlas and review renders.
 In the repository:
-  python tools/build_irrigation_meshes.py
-  python tools/validate_irrigation_meshes.py
+  python tools/irrigation_v2/build_irrigation_meshes.py
+  python tools/irrigation_v2/validate_irrigation_meshes.py
 From this kit:
   python source/build_irrigation_meshes.py --output rebuilt
   python source/validate_irrigation_meshes.py --output rebuilt
