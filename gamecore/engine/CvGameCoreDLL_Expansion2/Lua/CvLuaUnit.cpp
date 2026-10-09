@@ -4097,9 +4097,9 @@ int CvLuaUnit::lIsFeatureDoubleMove(lua_State* L)
 int CvLuaUnit::lGetScriptData(lua_State* L)
 {
 	CvUnit* pkUnit = GetInstance(L);
-	const char* szScriptData = pkUnit->getScriptData().c_str();
+	const std::string scriptData = pkUnit->getScriptData();
 
-	lua_pushstring(L, szScriptData);
+	lua_pushstring(L, scriptData.c_str());
 	return 1;
 }
 //------------------------------------------------------------------------------

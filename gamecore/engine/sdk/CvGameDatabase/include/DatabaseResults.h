@@ -122,8 +122,17 @@ namespace Database{
 		const char* m_szColumns;
 		bool m_bSingleQuery;
 
+		#if defined(__APPLE__)
+		LegacyTR1UnorderedMapStorage m_hshColumnPositions;
+		#else
 		stdext::hash_map<std::string, int> m_hshColumnPositions;
+		#endif
 	};
+
+	#if defined(__APPLE__)
+	static_assert(sizeof(Results) == 112,
+		"Database::Results must match Aspyr's x86_64 ABI");
+	#endif
 
 	class SingleResult : public Results
 	{

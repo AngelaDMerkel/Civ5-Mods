@@ -14,6 +14,8 @@
 //  PURPOSE: Group of functions to load in the xml files for Civilization 5
 //
 #include "CvGameCoreDLLPCH.h"
+#include "../../include/C5M_CoreContext.h"
+#include "../../include/C5M_Host.h"
 #include <algorithm>
 #include "CvDLLDatabaseUtility.h"
 #include "CvDllContext.h"
@@ -169,6 +171,14 @@ bool CvDllDatabaseUtility::CacheGameDatabaseData()
 
 	bSuccess &= SetGlobalActionInfo();
 
+	if(bSuccess)
+	{
+		bSuccess = C5M::ConfigureDatabase(DB) && C5M::Core().Freeze();
+		if(!bSuccess) LogMsg("%s", C5M::Core().Error().c_str());
+	}
+	else
+		C5M::Core().Reject("BNW gameplay database caching failed");
+
 	//Clear out database cache and tune for runtime use.
 	DB.ClearCountCache();
 
@@ -185,6 +195,7 @@ bool CvDllDatabaseUtility::CacheGameDatabaseData()
 //------------------------------------------------------------------------------
 bool CvDllDatabaseUtility::FlushGameDatabaseData()
 {
+	C5M::Core().Reset();
 	m_bGameDatabaseNeedsCaching = true;
 	return true;
 }
@@ -577,7 +588,7 @@ bool CvDllDatabaseUtility::ValidateGameDatabase()
 
 
 #define ValidateCount(func) if(func() <= 0){bError = true, LogMsg("ERROR: %s <= 0", #func);}
-#define ValidateVectorSize(vec) ValidateCount(gc.##vec);
+#define ValidateVectorSize(vec) ValidateCount(gc.vec);
 bool CvDllDatabaseUtility::ValidatePrefetchProcess()
 {
 	bool bError = false;

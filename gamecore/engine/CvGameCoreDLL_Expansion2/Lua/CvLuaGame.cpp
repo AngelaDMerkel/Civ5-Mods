@@ -14,6 +14,7 @@
 //!
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #include "CvGameCoreDLLPCH.h"
+#include "../../../include/C5M_Host.h"
 #include "CvLuaSupport.h"
 #include "CvLuaCity.h"
 #include "CvLuaGame.h"
@@ -42,6 +43,7 @@ CvGame* CvLuaGame::GetInstance(lua_State* L, int idx)
 //------------------------------------------------------------------------------
 void CvLuaGame::RegisterMembers(lua_State* L)
 {
+	C5M::RegisterLuaMembers(L);
 	Method(CanHandleAction);
 	Method(HandleAction);
 	Method(UpdateScore);

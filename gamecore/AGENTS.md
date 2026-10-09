@@ -20,5 +20,8 @@ source, not another gameplay mod or a copy of Terrain's Lua runtime.
 - Keep C++ compatible with the chosen BNW toolchain. The current registry uses
   C++03 and the standard library; it has no DLL/plugin ABI or SDK dependency.
 
-Run `python3 gamecore/tests/run.py` for the native foundation. See README.md for
-the implementation boundary and `docs/SHARED-GAMECORE.md` for the design.
+Run `python3 gamecore/tests/run.py`, the sanitizer allocator test and the real
+Lua binding test listed in README.md. Engine changes also require the full native
+build and ABI validation. See README.md for the implementation boundary and
+`docs/SHARED-GAMECORE.md` for the design. Never install or launch Civ V as an
+incidental build check; native acceptance remains separately deferred.

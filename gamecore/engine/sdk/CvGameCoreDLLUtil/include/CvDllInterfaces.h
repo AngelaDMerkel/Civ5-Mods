@@ -1450,6 +1450,11 @@ public:
 	virtual const CvString DLLCALL emailAddress() = 0; 
 	virtual float DLLCALL endTurnTimerLength() = 0; 
 	virtual EraTypes DLLCALL era() = 0;
+	#if defined(__APPLE__)
+	// Present in Aspyr's x86_64 ICvPreGame1 ABI but omitted from the
+	// Windows SDK headers. Without this slot every later virtual is shifted.
+	virtual const CvString DLLCALL smtpHost() = 0;
+	#endif
 	virtual PlayerTypes DLLCALL findPlayerByNickname(const char * const name) = 0;
 	virtual GameMode DLLCALL gameMode() = 0;
 	virtual const CvString DLLCALL  gameName() = 0;

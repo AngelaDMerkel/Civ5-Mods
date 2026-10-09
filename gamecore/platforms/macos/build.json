@@ -1,0 +1,14 @@
+{
+  "product": "civ5-mods",
+  "source_dir": "../../engine/CvGameCoreDLL_Expansion2",
+  "sdk_dir": "../../engine/sdk",
+  "output_dir": "../../../build/gamecore/macos",
+  "extra_sources": [
+    "C5M_MacLifecycle.cpp",
+    "../../src/C5M_ModuleRegistry.cpp",
+    "../../src/C5M_CoreContext.cpp",
+    "../../src/C5M_Host.cpp",
+    "../../src/C5M_Lua.cpp"
+  ],
+  "extra_flags": []
+}

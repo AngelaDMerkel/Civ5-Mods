@@ -2663,7 +2663,7 @@ int JoinLandmass(CvAStarNode* parent, CvAStarNode* node, int data, const void* p
 /// Constructor
 CvTwoLayerPathFinder::CvTwoLayerPathFinder()
 {
-	CvAStar::CvAStar();
+	// CvAStar is initialized by the normal base-class constructor.
 	m_ppaaPartialMoveNodes = NULL;
 }
 

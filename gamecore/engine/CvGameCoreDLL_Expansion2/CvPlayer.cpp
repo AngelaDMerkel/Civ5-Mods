@@ -4804,7 +4804,7 @@ const CvCity* CvPlayer::getBusyCity() const
 		}
 	}
 
-	return false;
+	return NULL;
 }
 
 //	----------------------------------------------------------------------------
@@ -10607,7 +10607,7 @@ void CvPlayer::DoResetCityRevoltCounter()
 		CvNotifications* pNotifications = GetNotifications();
 		if(pNotifications && isHuman())
 		{
-			Localization::String strMessage = GetLocalizedText("TXT_KEY_NOTIFICATION_POSSIBLE_CITY_REVOLT", iTurns, pMostUnhappyCity->getName(), GET_PLAYER(eRecipient).getCivilizationShortDescription());
+			Localization::String strMessage = GetLocalizedText("TXT_KEY_NOTIFICATION_POSSIBLE_CITY_REVOLT", iTurns, pMostUnhappyCity->getName(), GET_PLAYER(eRecipient).getCivilizationShortDescription()).c_str();
 			Localization::String strSummary = Localization::Lookup("TXT_KEY_NOTIFICATION_POSSIBLE_CITY_REVOLT_SUMMARY");
 			pNotifications->Add(NOTIFICATION_CITY_REVOLT_POSSIBLE, strMessage.toUTF8(), strSummary.toUTF8(), pMostUnhappyCity->getX(), pMostUnhappyCity->getY(), -1);
 		}
@@ -14585,7 +14585,7 @@ void CvPlayer::SetHasLostCapital(bool bValue, PlayerTypes eConqueror)
 				// and finding out who owns their original capital.
 				typedef std::tr1::array<int, MAX_CIV_TEAMS> CivTeamArray;
 				CivTeamArray aTeamCityCount;
-				aTeamCityCount.assign(0);
+				std::fill(aTeamCityCount.begin(), aTeamCityCount.end(), 0);
 
 				CvMap& kMap = GC.getMap();
 				for (int iLoopPlayer = 0; iLoopPlayer < MAX_MAJOR_CIVS; ++iLoopPlayer)
@@ -19115,7 +19115,7 @@ CvCity* CvPlayer::GetFirstCityWithBuildingClass(BuildingClassTypes eBuildingClas
 			}
 		}
 	}
-	return false;
+	return NULL;
 }
 
 //	--------------------------------------------------------------------------------

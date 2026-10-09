@@ -35,10 +35,18 @@ private:
 
 	Database::Connection& m_db;
 
+	#if defined(__APPLE__)
+	Database::LegacyTR1UnorderedMapStorage m_storedResults;
+	#else
 	typedef std::tr1::unordered_map<std::string, Results*> ResultsMap;
 	ResultsMap m_storedResults;
+	#endif
 };
+
+#if defined(__APPLE__)
+static_assert(sizeof(ResultsCache) == 80,
+	"Database::ResultsCache must match Aspyr's x86_64 ABI");
+#endif
 
 
 }	//namespace Database
-

@@ -76,6 +76,7 @@ const CvClimateInfo&                       climateInfo();
 void                                       closeAllSlots();
 void                                       closeInactiveSlots();
 const CvString&                            emailAddress(PlayerTypes p);
+const CvString&                            smtpHost();
 const CvString&                            emailAddress();                      // setupdata
 float                                      endTurnTimerLength();                // setupdata
 EraTypes                                   era();
@@ -280,7 +281,7 @@ SlotStatus                                 slotStatus(PlayerTypes eID);
 unsigned int                               syncRandomSeed();
 int                                        targetScore();
 bool                                       transferredMap();                    // setupddata
-TeamTypes                                  teamType(PlayerTypes p);
+inline TeamTypes                           teamType(PlayerTypes p);
 const CvTurnTimerInfo&                     turnTimerInfo();
 TurnTimerTypes                             turnTimer();
 const std::string&                         versionString();
@@ -292,7 +293,7 @@ int										 getActiveSlotCount();
 int										 readActiveSlotCountFromSaveGame(FDataStream& loadFrom, bool bReadVersion);
 
 extern const std::vector<TeamTypes>& sr_TeamTypes;
-static TeamTypes     teamType(PlayerTypes p)
+inline TeamTypes     teamType(PlayerTypes p)
 {
 	if(p >= 0 && p < MAX_PLAYERS)
 		return sr_TeamTypes[p];

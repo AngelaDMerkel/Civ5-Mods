@@ -7,6 +7,7 @@
 	------------------------------------------------------------------------------------------------------- */
 
 #include "CvGameCoreDLLPCH.h"
+#include "../../include/C5M_RandomSeed.h"
 #include "CvRandom.h"
 #include "CvGlobals.h"
 #include "FCallStack.h"
@@ -108,7 +109,7 @@ void CvRandom::reset(unsigned long ulSeed)
 	uninit();
 
 	recordCallStack();
-	m_ulRandomSeed = ulSeed;
+	m_ulRandomSeed = C5M::NormalizeRandomSeed(ulSeed);
 	m_ulResetCount++;
 }
 
@@ -117,7 +118,7 @@ unsigned short CvRandom::get(unsigned short usNum, const char* pszLog)
 	recordCallStack();
 	m_ulCallCount++;
 
-	unsigned long ulNewSeed = ((RANDOM_A * m_ulRandomSeed) + RANDOM_C);
+	unsigned long ulNewSeed = C5M::NextRandomSeed(m_ulRandomSeed, RANDOM_A, RANDOM_C);
 	unsigned short us = ((unsigned short)((((ulNewSeed >> RANDOM_SHIFT) & MAX_UNSIGNED_SHORT) * ((unsigned long)usNum)) / (MAX_UNSIGNED_SHORT + 1)));
 
 	if(GC.getLogging())
@@ -138,7 +139,7 @@ unsigned short CvRandom::get(unsigned short usNum, const char* pszLog)
 				if(pLog)
 				{
 					char szOut[1024] = {0};
-					sprintf_s(szOut, "%d, %d, %u, %u, %u, %8x, %s, %s\n", kGame.getGameTurn(), kGame.getTurnSlice(), (uint)usNum, (uint)us, getSeed(), (uint)this, m_bSynchronous?"sync":"async", (pszLog != NULL)?pszLog:"Unknown");
+					sprintf_s(szOut, "%d, %d, %u, %u, %lu, %p, %s, %s\n", kGame.getGameTurn(), kGame.getTurnSlice(), (uint)usNum, (uint)us, getSeed(), (void*)this, m_bSynchronous?"sync":"async", (pszLog != NULL)?pszLog:"Unknown");
 					pLog->Msg(szOut);
 
 #if !defined(FINAL_RELEASE)
@@ -185,7 +186,7 @@ void CvRandom::reseed(unsigned long ulNewValue)
 {
 	recordCallStack();
 	m_ulResetCount++;
-	m_ulRandomSeed = ulNewValue;
+	m_ulRandomSeed = C5M::NormalizeRandomSeed(ulNewValue);
 }
 
 

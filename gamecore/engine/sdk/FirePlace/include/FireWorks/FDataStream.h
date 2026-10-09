@@ -275,20 +275,20 @@ inline FDataStream& FDataStream::operator >>( T& kData )
 		  in serialization.
 
                                     ________
-                              , -‘”          ``~ ,
-                          , -”                    “- ,
-                        ,/                           ”:,
+                              , -â€˜â€          ``~ ,
+                          , -â€                    â€œ- ,
+                        ,/                           â€:,
                      ,?                                 \,
                     /                                    ,}
                   /                               ,:`^`  }
-                /                              ,:”       /
+                /                              ,:â€       /
                ?    __                        :`        /
-              /__ (   “~-,_                 ,:`        /
-             /(_  ”~,_    “~,_             ,:`       _/
-            {  _$;_  ”=,_    “-,_     ,-~-,}, ~”;/  }
-             ((   *~_  ”=- _    “;,, /`  /”          /
-     ,,,___ \`~,     “~ ,           `     }         /
-              (  `=-,,   `                 (  ;_,,-”
+              /__ (   â€œ~-,_                 ,:`        /
+             /(_  â€~,_    â€œ~,_             ,:`       _/
+            {  _$;_  â€=,_    â€œ-,_     ,-~-,}, ~â€;/  }
+             ((   *~_  â€=- _    â€œ;,, /`  /â€          /
+     ,,,___ \`~,     â€œ~ ,           `     }         /
+              (  `=-,,   `                 (  ;_,,-â€
               / `~,      `-                 \   /\
                \`~ *-,                       |, / \,__
   ,,_          } >- _\                      |         `=~-,
@@ -523,6 +523,16 @@ FDataStream & operator>>(FDataStream & loadFrom, ArrayWrapper<ValueType> & v)
 	return loadFrom;
 }
 
+#if __cplusplus >= 201103L
+// MSVC accepts a temporary wrapper here. Its lifetime covers the entire read,
+// and the wrapper only mutates the caller-owned array.
+template<typename ValueType>
+FDataStream & operator>>(FDataStream & loadFrom, ArrayWrapper<ValueType> && v)
+{
+	return loadFrom >> v;
+}
+#endif
+
 template<typename ValueType>
 FDataStream & operator<<(FDataStream & saveTo, const ArrayWrapperConst<ValueType> & v)
 {
@@ -639,4 +649,3 @@ FDataStream & operator << ( FDataStream & kStream, const FStaticVector< T, L, bP
 }
 
 #endif	//FDATASTREAM_H
-

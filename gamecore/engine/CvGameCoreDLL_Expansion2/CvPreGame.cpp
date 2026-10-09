@@ -845,6 +845,11 @@ const CvString& emailAddress(PlayerTypes p)
 	return empty;
 }
 
+const CvString& smtpHost()
+{
+	return s_smtpHost;
+}
+
 const CvString& emailAddress()
 {
 	return s_localPlayerEmailAddress;

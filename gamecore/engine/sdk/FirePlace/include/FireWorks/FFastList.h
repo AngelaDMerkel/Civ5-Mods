@@ -121,6 +121,7 @@ public:
 	typedef FFastList< T, AllocPool, SubID > TYPE;
 	typedef FFastAllocator< MultiListNodePolicy< T >, false, AllocPool, SubID > ALLOC_TYPE;
 	typedef FCustomList< MultiListNodePolicy< T >, ALLOC_TYPE > BASE_TYPE;
+	using BASE_TYPE::m_uiFirst;
 
 
 	////////////////////////////////////////////////////////////////////////
@@ -158,7 +159,7 @@ public:
 	////////////////////////////////////////////////////////////////////////
 	explicit FFastList() : BASE_TYPE() {};
 	explicit FFastList( unsigned int uiCapacity ) : BASE_TYPE(uiCapacity) {};
-	explicit TYPE( const TYPE& rhs ) : BASE_TYPE( rhs ) {};
+	FFastList( const TYPE& rhs ) : BASE_TYPE( rhs ) {};
 
 	//Copy operator
 	const TYPE& operator = ( const TYPE& rhs ){  
@@ -243,8 +244,8 @@ public:
 	const T& get_element( unsigned int i ) const{ return BASE_TYPE::get_element( i ).data; };
 
 
-	const ALLOC_TYPE& get_allocator() const{ return m_kAllocator; };
-	ALLOC_TYPE& get_allocator(){ return m_kAllocator; };
+	const ALLOC_TYPE& get_allocator() const{ return BASE_TYPE::get_allocator(); };
+	ALLOC_TYPE& get_allocator(){ return BASE_TYPE::get_allocator(); };
 
 };
 
@@ -264,6 +265,7 @@ template< class T, class T_ALLOCATOR, class TAIL >class FCustomList_Core : publi
 {
 public:
 	typedef FCustomList_Core< T, T_ALLOCATOR, TAIL > TYPE;
+	using TAIL::get_allocator;
 
 	////////////////////////////////////////////////////////////////////////
 	// iterator tail determines whether the iterator has const or non-const access
@@ -284,17 +286,18 @@ public:
 	// Base iterator class which defined all iterator-ness except whether
 	// access is const or non-const.
 	////////////////////////////////////////////////////////////////////////
-	template< class TAIL >
+	template< class IteratorTail >
 	class base_iterator : 
 		public std::iterator<std::bidirectional_iterator_tag, MultiListNodePolicy<T> >, 
-		public TAIL
+		public IteratorTail
 	{
 	public:
-		explicit base_iterator() : m_uiCurrPos( ANCHOR_NODE_INDEX ), TAIL(NULL) {};
+		explicit base_iterator() : m_uiCurrPos( ANCHOR_NODE_INDEX ), IteratorTail(NULL) {};
 		explicit base_iterator( unsigned int uiPos, TYPE* pVec )
-			: m_uiCurrPos( uiPos ), TAIL( pVec ) {};
+			: m_uiCurrPos( uiPos ), IteratorTail( pVec ) {};
 		explicit base_iterator( unsigned int uiPos, const TYPE* pVec )
-			: m_uiCurrPos( uiPos ), TAIL( pVec ) {};
+			: m_uiCurrPos( uiPos ), IteratorTail( pVec ) {};
+		using IteratorTail::m_pFastList;
 
 		~base_iterator(){};
 
@@ -361,7 +364,7 @@ public:
 
 	protected:
 		unsigned int m_uiCurrPos;
-		friend class TYPE;
+		friend TYPE;
 	};
 
 	////////////////////////////////////////////////////////////////////////
@@ -370,6 +373,8 @@ public:
 	class iterator : public base_iterator< base_iterator_tail >{
 	public:
 		typedef base_iterator< base_iterator_tail > BASE;
+		using BASE::m_pFastList;
+		using BASE::m_uiCurrPos;
 
 		explicit iterator(){};
 		explicit iterator( unsigned int uiPos, TYPE* pVec )
@@ -390,6 +395,8 @@ public:
 	class const_iterator : public base_iterator< base_iterator_tail_const >{
 	public:
 		typedef base_iterator< base_iterator_tail_const > BASE;
+		using BASE::m_pFastList;
+		using BASE::m_uiCurrPos;
 
 		explicit const_iterator(){};
 		explicit const_iterator( unsigned int uiPos, const TYPE* pVec )
@@ -1131,7 +1138,7 @@ protected:
 		unsigned int m_uiCurrList;
 		unsigned int m_uiCurrPos;
 		const TYPE* m_pFastList;
-		friend class TYPE;
+		friend TYPE;
 	};
 
 public:

@@ -15,11 +15,16 @@
 #include "LintFree.h"
 
 //------------------------------------------------------------------------------
+#if defined(__APPLE__)
+extern "C" __attribute__((visibility("default"))) ICvGameContext1* DllGetGameContext()
+#else
 extern "C" ICvGameContext1* DllGetGameContext()
+#endif
 {
 	return CvDllGameContext::GetSingleton();
 }
 //------------------------------------------------------------------------------
+#if !defined(__APPLE__)
 BOOL APIENTRY DllMain(HANDLE hModule,
                       DWORD  ul_reason_for_call,
                       LPVOID)
@@ -54,3 +59,5 @@ BOOL APIENTRY DllMain(HANDLE hModule,
 
 	return TRUE;	// success
 }
+
+#endif

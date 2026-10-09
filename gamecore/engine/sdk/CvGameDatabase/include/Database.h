@@ -16,6 +16,16 @@ struct sqlite3_stmt;
 
 
 namespace Database{
+	#if defined(__APPLE__)
+	// Aspyr built Civ V with libc++'s legacy TR1 hash containers. Their x86_64
+	// object size is 72 bytes, while a current std::unordered_map is 40 bytes.
+	// Connection's methods and lifetime are owned by the game executable, so the
+	// DLL must reserve the original storage without constructing a modern map.
+	struct alignas(void*) LegacyTR1UnorderedMapStorage
+	{
+		unsigned char bytes[72];
+	};
+	#endif
 
 	class Results;		//Forward declaration.
 	class Connection;	//Forward declaration.
@@ -169,12 +179,22 @@ namespace Database{
 		std::string m_strMemoryStats;
 
 		//! Hash map of count statements indexed by table name.
+		#if defined(__APPLE__)
+		LegacyTR1UnorderedMapStorage m_hshCountStatements;
+		LegacyTR1UnorderedMapStorage m_hshCountValues;
+		#else
 		std::tr1::unordered_map<std::string, sqlite3_stmt*> m_hshCountStatements;
 		std::tr1::unordered_map<std::string, int> m_hshCountValues;
+		#endif
 
 		static char ms_pPageCacheBuffer[DB_PAGECACHE_SIZE * DB_NUM_PAGES];
 		static char ms_pScratchBuffer[DB_PAGECACHE_SIZE * DB_NUM_THREADS * 6];	
 
 		mutable std::auto_ptr<IDatabaseLogger> m_pkDatabaseLogger;
 	};
+
+	#if defined(__APPLE__)
+	static_assert(sizeof(Connection) == 184,
+		"Database::Connection must match Aspyr's x86_64 ABI");
+	#endif
 }

@@ -19,11 +19,14 @@
 #include <tchar.h>
 #include <stdio.h>
 #include <assert.h>
+#if defined(__APPLE__)
+#include <functional>
+#endif
 
 class FCriticalSection;
 
 // Kind of like an assert for the compiler.  If the condition is not true then a compilation error is caused.
-#define FLUA_COMPILE_TIME_CONDITION(CONDITION, ERR_NAME) typedef int ERROR_##ERR_NAME##[(CONDITION)? 1 : -1]
+#define FLUA_COMPILE_TIME_CONDITION(CONDITION, ERR_NAME) typedef int ERROR_##ERR_NAME[(CONDITION)? 1 : -1]
 
 // Forces a compile time error.  Useful for template specializations that aren't suppose to compile.
 #define FLUA_COMPILE_TIME_ERROR(ERR_NAME) FLUA_COMPILE_TIME_CONDITION(false, ERR_NAME)
@@ -69,6 +72,24 @@ namespace FLua
 	public:
 		typedef void(*ErrorHandlerStaticFunc)(const TCHAR*);
 
+	#if defined(__APPLE__)
+		ErrorHandler(ErrorHandlerStaticFunc pfn) : m_handler(pfn) { assert(pfn); }
+
+		template<class T, class TFuncOwner>
+		ErrorHandler(T *p, void(TFuncOwner::*pfn)(const TCHAR*)) :
+			m_handler([p, pfn](const TCHAR* text) { (p->*pfn)(text); })
+			{ assert(p && pfn); }
+
+		template<class T, class TFuncOwner>
+		ErrorHandler(const T *p, void(TFuncOwner::*pfn)(const TCHAR*)const) :
+			m_handler([p, pfn](const TCHAR* text) { (p->*pfn)(text); })
+			{ assert(p && pfn); }
+
+		void operator()( _In_z_ const TCHAR *szError) const { m_handler(szError); }
+
+	private:
+		std::function<void(const TCHAR*)> m_handler;
+	#else
 		// Static functions
 		ErrorHandler(ErrorHandlerStaticFunc pfn) :
 			m_pkClass(NULL),
@@ -97,6 +118,7 @@ namespace FLua
 		typedef void(ErrorHandlerClass::*ErrorHandlerFunc)(const TCHAR*);
 		ErrorHandlerClass *m_pkClass;
 		ErrorHandlerFunc m_pfnFunc;
+	#endif
 	};
 
 	namespace Details {
@@ -198,7 +220,7 @@ namespace FLua
 			T ret = T(); // Don't use with reference types!!! ...EVER!!!
 
 			// Get the lua analog for this type off of the lua stack
-			typedef Details::LuaAnalog<T>::Result Analog;
+			typedef typename Details::LuaAnalog<T>::Result Analog;
 			Analog analog = Details::Get<Analog>(m_pkLuaState, m_iStackIndex);
 
 			// Validate the value from lua
@@ -470,7 +492,9 @@ namespace FLua
 		// Get functions for primitive types
 		template<> static inline bool Get(lua_State *L, int idx) { return lua_toboolean(L, idx) != 0; }
 		template<> static inline lua_Integer Get(lua_State *L, int idx) { return lua_tointeger(L, idx); }
+		#if !defined(__APPLE__) || !defined(__LP64__)
 		template<> static inline long Get(lua_State *L, int idx) { return (long)lua_tointeger(L, idx); }
+		#endif
 		template<> static inline lua_Number Get(lua_State *L, int idx) { return lua_tonumber(L, idx); }
 		template<> static inline float Get(lua_State *L, int idx) { return (float)lua_tonumber(L, idx); }
 		template<> static inline const char *Get(lua_State *L, int idx) { return lua_tostring(L, idx); }

@@ -11,6 +11,14 @@ protected:
 	//These are helper templates that will allow for quick and easy member function wrapping when
 	//implementing a Lua method.
 	//They currently do not support non-native types or optional values so the scope is quite limited.
+	//Accept methods inherited from a base class as well as methods declared directly
+	//on InstanceType. Standard C++ preserves the declaring class in a pointer-to-member;
+	//MSVC historically converted these implicitly at the call site.
+	template<typename ret, typename MethodOwner, typename... args>
+	static int BasicLuaMethod(lua_State* L, ret (MethodOwner::*func)(args...) const);
+	template<typename ret, typename MethodOwner, typename... args>
+	static int BasicLuaMethod(lua_State* L, ret (MethodOwner::*func)(args...));
+
 	//regular variations (const)
 	template<typename ret>
 	static int BasicLuaMethod(lua_State* L, ret (InstanceType::*func)() const);
@@ -61,6 +69,24 @@ protected:
 //------------------------------------------------------------------------------
 // template members
 //------------------------------------------------------------------------------
+template<class Derived, class InstanceType>
+template<typename ret, typename MethodOwner, typename... args>
+int CvLuaMethodWrapper<Derived, InstanceType>::BasicLuaMethod(
+	lua_State* L, ret (MethodOwner::*func)(args...) const)
+{
+	ret (InstanceType::*adapted)(args...) const = func;
+	return BasicLuaMethod(L, adapted);
+}
+
+template<class Derived, class InstanceType>
+template<typename ret, typename MethodOwner, typename... args>
+int CvLuaMethodWrapper<Derived, InstanceType>::BasicLuaMethod(
+	lua_State* L, ret (MethodOwner::*func)(args...))
+{
+	ret (InstanceType::*adapted)(args...) = func;
+	return BasicLuaMethod(L, adapted);
+}
+
 //------------------------------------------------------------------------------
 // regular variations (const)
 //------------------------------------------------------------------------------

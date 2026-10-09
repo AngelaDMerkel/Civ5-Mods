@@ -570,7 +570,13 @@ extern "C"
 	__declspec(dllexport) extern FStringA::FStringAData* FStringA_GetStringInitData();
 }
 #else
+#if defined(__APPLE__)
+extern "C" {
+#endif
 FStringA::FStringAData* FStringA_GetStringInitData();
+#if defined(__APPLE__)
+}
+#endif
 #endif
 
 // Friendly helpers
@@ -1062,7 +1068,13 @@ extern "C"
 	__declspec(dllexport) extern FStringW::FStringWData* FStringW_GetStringInitData();
 }
 #else
+#if defined(__APPLE__)
+extern "C" {
+#endif
 FStringW::FStringWData* FStringW_GetStringInitData();
+#if defined(__APPLE__)
+}
+#endif
 #endif
 
 // Friendly helpers

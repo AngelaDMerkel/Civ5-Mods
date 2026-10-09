@@ -23,6 +23,11 @@
 
 namespace Localization
 {
+#if defined(__APPLE__)
+	typedef long LocalizationInt64;
+#else
+	typedef __int64 LocalizationInt64;
+#endif
 
 	//Public Enumerations
 	enum Gender{
@@ -78,13 +83,13 @@ namespace Localization
 		ParameterArgument(const ParameterArgument& other);
 		ParameterArgument(const String& strText);
 		ParameterArgument(const int val);
-		ParameterArgument(const __int64 val);
+		ParameterArgument(const LocalizationInt64 val);
 		ParameterArgument(const float val);
 		ParameterArgument(const double val);
 
 		union {
 			int		i;
-			__int64	i64;
+			LocalizationInt64	i64;
 			float	f;
 			double	d;
 		} m_value;
@@ -335,7 +340,7 @@ namespace Localization
 		CvLocalizationAPI bool PushArgument(_In_z_ const char* szText);
 		CvLocalizationAPI bool PushArgument(_In_bytecount_(length) const char* szText, size_t length);
 		CvLocalizationAPI bool PushArgument(const int val);
-		CvLocalizationAPI bool PushArgument(const __int64 val);
+		CvLocalizationAPI bool PushArgument(const LocalizationInt64 val);
 		CvLocalizationAPI bool PushArgument(const float val);
 		CvLocalizationAPI bool PushArgument(const double val);
 		CvLocalizationAPI bool PushArgument(const String& strText);

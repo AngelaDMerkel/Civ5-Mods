@@ -77,8 +77,9 @@ Climate has no runtime package. Actual playable test combinations follow
 2. After native content validation, resolve requests once, reject unavailable or
    incompatible modules/dependencies/conflicts, then freeze the selection before
    gameplay. No UI-driven registration or mid-game module toggling.
-3. Expose the resulting capabilities through a namespaced Lua API. Its public
-   names and bindings are still to be implemented; the current registry is C++ only.
+3. Expose the resulting capabilities through a namespaced Lua API. Version 0.1.0
+   implements `Game.C5MGetCoreInfo`, `Game.C5MGetModules` and
+   `Game.C5MHasCapability`; only core introspection is currently advertised.
 4. Add narrow host call sites and typed services for actual native operations.
    Define ordering/ownership when modules affect the same tile or unit; report
    conflicts explicitly rather than letting the last handler silently win.
@@ -108,17 +109,20 @@ and a direct install/restore path. WSDLC is optional, not an activation requirem
 
 ## Implemented milestone and next work
 
-`gamecore/` now contains a compiled, tested capability/module-selection registry
-and a pinned bootstrap to the existing Mac compatibility repository. It has no
-production gameplay providers and is not a loadable GameCore binary.
+`gamecore/` now contains the pinned BNW 1.0.3.279 engine/SDK source, the adapted Mac
+ABI layer, a full native build entry point, database lifecycle integration, and
+Lua capability queries backed by the compiled registry. It has its own DLL GUID.
+The first native artifact is a developer build; launch and gameplay acceptance
+are still deferred. No mod simulation provider is advertised, no new gameplay
+state is serialized, and current Lua packages have not switched backends.
 
 Remaining implementation order:
 
-1. Audit and pin BNW gameplay source plus the required consumer-side Mac fixes;
-   wire it to the existing build driver. Establish unchanged-gameplay baseline
-   build/ABI evidence. Native launch/acceptance remains deferred by the user.
-2. Bind initialization, capability reporting and versioned save state to that
-   engine host. Add feature calls only as their implementations exist.
+1. Complete the separately deferred native launch/acceptance of the BNW baseline
+   and direct install/restore path. Do not inherit acceptance from another port.
+2. Add versioned gameplay/save state before enabling simulation providers.
+   Configuration and discovery are implemented; save migration/rejection for
+   additional module state is not. Add feature calls only with implementations.
 3. Implement Terrain's [native trade contract](../mods/realistic-terrain/docs/NATIVE-TRADE-CONTRACT.md)
    against genuine engine routes, preserving and extending existing rule tests.
 4. Integrate narrowly needed hooks for the other three owners, retaining their

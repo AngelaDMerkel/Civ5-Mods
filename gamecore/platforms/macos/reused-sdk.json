@@ -1,0 +1,30 @@
+{
+  "repository": "https://github.com/AngelaDMerkel/Lekmod",
+  "commit": "181b7232160a5661424c275f2a62deb5c56a7a34",
+  "sdk_files": [
+    "CvGameCoreDLLUtil/include/CvDllInterfaces.h",
+    "CvGameCoreDLLUtil/include/CvLuaMethodWrapper.h",
+    "CvGameCoreDLLUtil/include/CvString.h",
+    "CvGameDatabase/include/Database.h",
+    "CvGameDatabase/include/DatabaseResults.h",
+    "CvGameDatabase/include/ResultsCache.h",
+    "CvLocalization/include/CvLocalization.h",
+    "FirePlace/include/FireWorks/FBatchAllocate.h",
+    "FirePlace/include/FireWorks/FDataStream.h",
+    "FirePlace/include/FireWorks/FFastAllocator.h",
+    "FirePlace/include/FireWorks/FFastList.h",
+    "FirePlace/include/FireWorks/FFastVector.h",
+    "FirePlace/include/FireWorks/FFireTypes.h",
+    "FirePlace/include/FireWorks/FInputDevice.h",
+    "FirePlace/include/FireWorks/FObjectHandle.h",
+    "FirePlace/include/FireWorks/FRemark.h",
+    "FirePlace/include/FireWorks/FStlContainerSerialization.h",
+    "FirePlace/include/FireWorks/FString.h",
+    "FirePlace/include/FireWorks/FTempHeap.h",
+    "FirePlace/include/FireWorks/Flua/include/FLuaCommon.h",
+    "FirePlace/include/FireWorks/Flua/include/FLuaGlobalData.h",
+    "FirePlace/include/FireWorks/Flua/include/FLuaTypeExposure.h",
+    "FirePlace/include/FireWorks/Flua/include/FLuaTypes.h",
+    "FirePlace/include/FireWorks/Win32/FKBInputDevice.h"
+  ]
+}

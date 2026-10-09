@@ -177,6 +177,9 @@ EraTypes CvDllPreGame::era()
 	return CvPreGame::era();
 }
 //------------------------------------------------------------------------------
+#if defined(__APPLE__)
+const CvString CvDllPreGame::smtpHost() { return CvPreGame::smtpHost(); }
+#endif
 PlayerTypes CvDllPreGame::findPlayerByNickname(const char* const name)
 {
 	return CvPreGame::findPlayerByNickname(name);

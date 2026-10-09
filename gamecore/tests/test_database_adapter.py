@@ -14,7 +14,6 @@ ADAPTER = r'''
 #pragma once
 #include <sqlite3.h>
 namespace Database {
-enum ColumnTypes { COLTYPE_NULL=5, COLTYPE_INT=1, COLTYPE_FLOAT=2, COLTYPE_TEXT=3 };
 class Connection;
 class Results {
 public:
@@ -22,8 +21,6 @@ public:
     Connection* owner = nullptr;
     ~Results() { sqlite3_finalize(stmt); }
     bool Step();
-    ColumnTypes ColumnType(int c) { return static_cast<ColumnTypes>(sqlite3_column_type(stmt,c)); }
-    long long GetInt64(int c) { return sqlite3_column_int64(stmt,c); }
     int GetInt(int c) { return sqlite3_column_int(stmt,c); }
     const char* GetText(int c) { return reinterpret_cast<const char*>(sqlite3_column_text(stmt,c)); }
 };
@@ -38,7 +35,6 @@ public:
         code = sqlite3_prepare_v2(db, sql, -1, &r.stmt, nullptr);
         return code == SQLITE_OK;
     }
-    int ErrorCode() const { return code; }
 };
 inline bool Results::Step() {
     if (++owner->steps == owner->failAt) {
@@ -83,7 +79,8 @@ int main() {
         "('terrain.native-trade',1)", "('c5m.core',2)", "('c5m.core',0)",
         "('c5m.core',-1)", "('c5m.core',1.5)", "('c5m.core','1')",
         "('c5m.core',4294967297)", "('c5m.core',NULL)", "(NULL,1)",
-        "('',1)", "('bad%s',1)", "('c5m.core',1),('c5m.core',1)"
+        "('',1)", "('bad%s',1)", "('c5m.core',1),('c5m.core',1)",
+        "('c5m.core'||char(0)||'fake',1)"
     };
     for (const char* values : invalid) {
         const std::string sql = std::string("CREATE TABLE C5M_EnabledModules(Module, APIVersion);") +
@@ -96,7 +93,7 @@ int main() {
     check("CREATE TABLE C5M_EnabledModules(Module, APIVersion);"
           "INSERT INTO C5M_EnabledModules VALUES('c5m.core',1)", false, 3);
     check("", true);
-    std::cout << "19 SQL configuration and read-error cases passed\n";
+    std::cout << "20 SQL configuration and read-error cases passed\n";
 }
 '''
 

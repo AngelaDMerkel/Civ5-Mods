@@ -19,7 +19,7 @@
 // FLUA_EXPOSE_GLOBAL_DATA(PTR, NAME)
 // Exposes PTR to lua with NAME as the global variable name in lua
 #define FLUA_EXPOSE_GLOBAL_DATA(DATA_PTR, NAME) \
-	static FLua::GlobalData::Registrar LuaReg_Data_##NAME##(#NAME, (##DATA_PTR##))
+	static FLua::GlobalData::Registrar LuaReg_Data_##NAME(#NAME, (DATA_PTR))
 
 namespace FLua
 {

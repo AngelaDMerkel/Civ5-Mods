@@ -5038,7 +5038,7 @@ void CvUnit::DoAttrition()
 					GetReligionData()->SetReligiousStrength(iStrength - iStrengthLoss);
 					if (pPlot && pPlot->GetActiveFogOfWarMode() == FOGOFWARMODE_OFF)
 					{
-						Localization::String string = GetLocalizedText("TXT_KEY_MISC_YOU_UNIT_WAS_DAMAGED_ATTRITION");
+						Localization::String string = GetLocalizedText("TXT_KEY_MISC_YOU_UNIT_WAS_DAMAGED_ATTRITION").c_str();
 
 						char text[256];
 						sprintf_s (text, "%s [COLOR_WHITE]-%d [ICON_PEACE][ENDCOLOR]", string.toUTF8(), iStrengthLoss);

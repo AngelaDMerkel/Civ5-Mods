@@ -26,7 +26,21 @@ requires a prepared DLC payload. It is not a ready-made release path for this
 shared core or the standard Workshop packages; adapt only the relevant packaging
 pieces when a native artifact exists, keeping direct installation independent.
 
-## Port-specific work to adapt after baseline selection
+## Consumer Mac work adapted into the selected baseline
+
+The clean BNW/SDK inputs are pinned in `engine/upstream.json`. The Mac target now
+adapts the relevant SDK/compiler/ABI fixes from the following port; the input list
+is `platforms/macos/reused-sdk.json`. Unused overhaul-specific SDK branches were
+removed. The shared compatibility driver, runtime shims and validator are used
+directly from the dependency cache. No remote project or installed game was edited.
+
+The 32-bit RNG normalization and Lua unit script-data lifetime fix are also
+adapted. `tests/random_seed.cpp` checks six million BNW transitions against a
+fixed-width reference. General engine fixes spell null pointer returns correctly,
+use portable array filling and pass C strings explicitly to variadic/translated
+string APIs. See `platforms/macos/README.md` for the native acceptance boundary.
+
+## Port references for subsequent native acceptance
 
 Lekmod inspected at `181b7232160a5661424c275f2a62deb5c56a7a34`:
 

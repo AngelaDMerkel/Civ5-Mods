@@ -123,10 +123,11 @@ bool ModuleRegistry::Resolve(const std::vector<Requirement>& requests,
     key << "c5m-selection-v1";
     for (std::map<std::string, const Module*>::const_iterator it = selected.begin();
          it != selected.end(); ++it)
-        key << "|m:" << it->first << ':' << it->second->apiVersion << ':' << it->second->stateVersion;
+        key << "|m:" << it->first << ':' << static_cast<unsigned long>(it->second->apiVersion)
+            << ':' << static_cast<unsigned long>(it->second->stateVersion);
     for (std::map<std::string, unsigned int>::const_iterator it = result.m_capabilities.begin();
          it != result.m_capabilities.end(); ++it)
-        key << "|c:" << it->first << ':' << it->second;
+        key << "|c:" << it->first << ':' << static_cast<unsigned long>(it->second);
     result.m_key = key.str();
     output = result;
     return true;
