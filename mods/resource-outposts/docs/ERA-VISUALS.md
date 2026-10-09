@@ -1,7 +1,9 @@
 # Claimant-era outpost selection
 
 Status, 9 October 2026: **item 2 implemented and automatically tested**. The user
-deferred item 1 (native GR2/FXSXML conversion) and item 3 (actual BNW testing).
+has now authorized native conversion, visual checks and integration. All 24
+states convert and independently verify; the native review fixtures are ready.
+See [the current integration review](NATIVE-ART-REVIEW.md) for evidence and status.
 The eight approved mesh designs and selected B icons are unchanged. The playable
 package still displays stock Fort placeholders; eight different runtime stage
 IDs do not yet mean eight different installed meshes.
@@ -83,7 +85,7 @@ side-table equivalence, hidden entries, a single public action and 24 art states
 against installed BNW data, alone and with Terrain in either load order.
 No Terrain source or bridge change is needed.
 
-## Native mesh conversion handoff — deferred item 1
+## Native mesh integration handoff
 
 `RO_OutpostEras` is the authoritative binding table. Internal improvement and art
 names end in the corresponding engine era suffix. Atomic is `POSTMODERN` and
@@ -108,7 +110,7 @@ is prepared for later work but is not selected by a new era-specific build actio
 Update the placeholder-specific validator assertions when genuine native assets
 are integrated, retaining gameplay equivalence and unchanged native Fort checks.
 
-## Verification and deferred item 3
+## Verification and remaining native checks
 
 Completed: full Lua 5.1 suite, including **382 Outpost assertions**; package build
 and source/ZIP/hash parity; **six package unit tests**; installed BNW database
