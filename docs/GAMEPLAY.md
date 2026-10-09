@@ -260,10 +260,10 @@ See [OUTPOSTS.md](../mods/resource-outposts/docs/OUTPOSTS.md) for accounting, AI
 
 This release replaces native Caravan/Cargo Ship trade to retain **native Mac
 support without a DLL**. Use the **Trade and logistics** button near the upper
-right. Active caravans are simulated route entities with positions in this
-planner; they are not animated, capturable native units on the map. Idle trade
-units remain ordinary map units. Native trade missions are disabled so they
-cannot bypass the rules.
+right. Active caravans are simulated route entities with moving map portraits;
+select a portrait to open their route manager. Foreign traffic requires current
+vision. Idle trade units remain ordinary map units. Native trade missions are
+disabled so they cannot bypass the rules.
 
 - **Agreements:** reciprocal commercial agreements are mandatory for international
   land and sea routes and for crossing another player's territory. They do not
@@ -308,14 +308,21 @@ cannot bypass the rules.
   queries and is credited through research progress.
 - **Planner:** shows agreements, eligibility, penalties, marginal net income,
   patrol coverage, current positions, recall controls, and an income ledger.
+  Accounts combines native GPT with route treasury payments, counting upkeep once.
+- **Congress:** embargoes block affected international routes and their income,
+  with invested units recalled during turn validation. Agreements survive sanctions;
+  establish a new route after repeal. Domestic routes remain available.
 
 **Start a new game.** Earlier alpha saves and native routes are not migrated.
 This is a functional implementation with automated API-boundary tests, not a
 native-tested release. The replacement does **not** participate in every stock
-trade subsystem: native trade overview/GPT forecasts, religious pressure,
-tourism connections, World Congress embargo enforcement, and trade-route quests
-are not reproduced. Its income is credited each owner-turn and displayed in the
-custom ledger. Native game testing and Workshop publication remain deferred.
+trade subsystem: the native overview and top bar do not include these routes,
+and native religious pressure, tourism connections and trade-route quests are
+not reproduced. Its income is credited each owner-turn and displayed in the
+custom ledger and combined forecast. Native game testing, 3D convoy models and
+Workshop publication remain deferred. The user's Mac GameCore work offers a
+[possible native integration path](../mods/realistic-terrain/docs/NATIVE-INTEGRATION.md),
+without changing the dependencies of this standalone edition.
 
 ## Selected artwork and map-model sources
 

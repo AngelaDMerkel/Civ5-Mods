@@ -53,3 +53,11 @@ defines member and city-state embargo semantics.
 The production Lua adapter and marker module are covered by deterministic tests,
 including movement events, fog transitions, player/view changes and marker cleanup.
 These tests do not establish rendering quality, frame rate or native event timing.
+
+## Release and external integration
+
+The current listing, package instructions and remaining acceptance evidence are
+in [RELEASE.md](RELEASE.md). The user's WSDLC/native Mac GameCore repositories
+were inspected read-only; [NATIVE-INTEGRATION.md](NATIVE-INTEGRATION.md) records
+the proposed route to native religion, tourism and quest parity. No dependency,
+publication, engine installation or cross-repository change was made.

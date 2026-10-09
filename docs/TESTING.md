@@ -204,6 +204,15 @@ Still run inside a new disposable BNW game before release:
       across hills/jungle and AI production of each type on suitable corridors.
 - [ ] Open the custom planner at 1024x768 and a widescreen resolution; inspect long
       city names, tooltips, scrolling, city-screen entry/exit and all four tabs.
+- [ ] Watch map portraits follow land and sea paths, including wrapped map edges.
+      Click to open routes; check city/strategic view, save/load and route cleanup.
+      Foreign traffic must disappear in fog even when destined for your city.
+      Check the Terrain and optional Outposts worker panels together.
+- [ ] Enact/repeal both major-civilization and city-state Congress embargoes.
+      Check blocked launches, no further affected income, one returned unit per
+      recalled route, domestic exemptions and agreement persistence after repeal.
+- [ ] Compare Accounts' combined forecast with native GPT plus gross mod payment.
+      Verify maintenance is counted once; observe fractional income over turns.
 - [ ] Sign and revoke agreements with AI majors and city-states. Check transit
       through a third party and verify military Open Borders remain separate.
 - [ ] Establish land and sea routes; check capacity, native city range bonuses,

@@ -2,6 +2,9 @@
 
 Realistic Terrain v2 and Resource Outposts v1 are packaged locally. Nothing has been published or uploaded.
 
+Terrain's current [listing and release checklist](../mods/realistic-terrain/docs/RELEASE.md)
+include the moving convoy markers, Congress embargoes and combined income forecast.
+
 ## Files and workflow
 
 - `dist/Realistic-Terrain-v2.zip`: Realistic Terrain v2, UUID
@@ -79,7 +82,8 @@ armies home to recover.
   Mountains, water, agreements, range and raids still matter. Stock Caravan artwork
   is used for this first version.
 - Up to 80% infrastructure penalties, shared cost compensation, and permanent dividends.
-- Custom trade planner, route positions, income ledger, and deliberate AI logistics.
+- Custom trade planner, moving map portrait markers, combined income forecast,
+  Congress embargo enforcement, and deliberate AI logistics.
 - Optional Resource Outposts companion: an intact outpost shelters its own stationed
   military unit, with no roads required. Resource claims belong to the companion mod.
 - Selected-unit status panel with exposure details and a next-turn forecast.
@@ -96,13 +100,15 @@ than resetting it.
 
 ## Replacement-trade disclosure
 
-The Workshop listing must explain that this replaces native trade. Active caravans
-are simulated and located through the custom planner, not animated native map
-units. Income is credited each owner-turn. Native trade overview/GPT forecasts,
-religious pressure, tourism connections, World Congress embargo enforcement and
-trade-route quests are not reproduced. Start a new game; earlier alpha saves are
-not migrated. Do not describe native rendering, AI balance or engine timing as
-verified until the native game acceptance tests pass.
+The Workshop listing must explain that this replaces native trade. Moving map
+portraits represent simulated convoys; native animated 3D units remain deferred.
+Income is credited each owner-turn and Accounts supplies a combined empire
+forecast. Congress embargoes are enforced. Native trade overview/top-bar GPT,
+religious pressure, tourism connections and trade-route quests do not integrate
+these routes. Start a new game; earlier alpha saves are not migrated. Do not
+describe native rendering, AI balance or engine timing as verified until the
+native game acceptance tests pass. WSDLC/native GameCore integration is a
+[separate proposed path](../mods/realistic-terrain/docs/NATIVE-INTEGRATION.md).
 
 ## Resource Outposts listing draft
 

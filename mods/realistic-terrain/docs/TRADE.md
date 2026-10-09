@@ -12,8 +12,15 @@ Launch and manage routes with **Trade and logistics**. Start a new game.
   Agreements continue until revoked or broken by war; peace requires a new one.
 - A saved route invests a real Caravan, Motorized Caravan or Cargo Ship, occupies a native-capacity slot,
   follows a revealed permitted path, and returns the unit after completion/recall.
-  Destruction permanently consumes it. Active units exist as simulated positions
-  in the planner, not native map units; Locate centers the map on that position.
+  Destruction permanently consumes it. Active convoys have moving map portrait
+  markers following their saved positions; selecting one opens the route manager.
+  Locate centers the map on the current position. They are simulated routes, not
+  capturable native proxy units. Native 3D model conversion remains deferred.
+- Active Congress embargoes reject new routes, stop affected route income and
+  recall the invested unit at turn validation. Domestic routes are exempt.
+  Sanctions preserve agreements; after repeal, a new route can be established.
+  Endpoint sanctions follow stock Congress membership and city-state rules;
+  they do not independently revoke third-party transit agreements.
 - Ordinary Caravans need roads in neutral land until **Caravan Logistics** (Engineering
   prerequisite, Medieval, base research 275). A new invalid route is refused.
   An existing caravan dies when it enters a newly invalid neutral tile.
@@ -98,6 +105,11 @@ treasury once per owner-turn, preserving fractional gold in the save. It does no
 subtract those expenses a second time. A route preview reports the change in net
 income compared with the existing network, so shared assets are not billed twice.
 
+**Accounts → Empire forecast** adds the native gold forecast to the mod's gross
+route payment. Maintenance is already included in the native forecast and is not
+deducted again. This is a projection at current conditions, not a guaranteed
+payment: raids, route completion, sanctions and infrastructure changes affect it.
+
 Initial tunable values in `mods/realistic-terrain/src/Lua/RT_TradeEconomy.lua`:
 
 | Component | Initial value |
@@ -134,11 +146,13 @@ functions and credits research progress, with fractional beakers retained.
 ## Native-game differences and release limits
 
 - The native trade overview and top-bar GPT forecast do not know these routes;
-  use the custom ledger. The treasury receives their income each owner-turn.
-- Active caravans have no animated native unit or native plunder command. The
-  mod performs raid detection against their simulated positions instead.
-- Religious pressure, tourism connections, World Congress trade embargo
-  enforcement, trade-route quests and every civilization/policy interaction that
+  Accounts supplies a combined empire forecast. The treasury receives route
+  income each owner-turn.
+- Moving map portraits represent active caravans; there is no animated native
+  3D unit or native plunder command. The mod checks raids at simulated positions.
+  Foreign traffic requires current vision, even when headed to your city.
+  Markers hide in strategic/city views and reconstruct on load.
+- Religious pressure, tourism connections, trade-route quests and every civilization/policy interaction that
   depends on native route objects are not reproduced. Native gold/science quote
   functions preserve many baseline bonuses but cannot provide complete parity.
 - Recall returns a trade unit immediately to the origin, or its capital if the
@@ -152,6 +166,11 @@ functions and credits research progress, with fractional beakers retained.
 These limits must accompany the Workshop listing. This is an implementation of
 the requested logistics rules, not a claim of full replacement of every BNW
 trade-related subsystem.
+
+The stock-Mac limits above are not a claim that a custom Mac GameCore is
+impossible. The user's WSDLC and native GameCore projects provide a separate
+integration path; see [the assessment](NATIVE-INTEGRATION.md). This version has
+no dependency on those projects and has not been validated by their DLC packer.
 
 ## Source evidence
 
