@@ -23,6 +23,23 @@ The user rejected an **A monogram** as an unhelpful icon. The earlier dark
 slate/gold/ivory proposal was the assistant's incorrect palette assumption and
 is superseded. Do not reuse it as a WSDLC reference.
 
+## Voice and collection introduction
+
+The user's direction is quirky, self-aware and **very moderately condescending**.
+The collection introduction is:
+
+> Quirky, self-aware and very moderately condescending mods, made by a person
+> who wants something but doesn't want to do it.
+
+Preserve the deliberate contradiction: the author has specific wants and little
+inclination to do the work. Use dry understatement and occasional mild smugness;
+keep the joke mostly at the author's expense. Avoid a grand, earnest product
+pitch or a stream of forced jokes. Keep gameplay instructions clear and factual.
+
+The README carries this introduction as selectable text below the collection
+name. Keep the standalone icon and wordmark concise. This voice direction does
+not select either pending pictorial design.
+
 ## Deliverables and review
 
 - A README masthead with the exact name **AngelaDMerkel's Mods**.

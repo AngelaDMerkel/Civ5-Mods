@@ -8,6 +8,11 @@ Name the author and collection clearly; do not reduce the page to a generic them
 description or a directory table. A collection overview can be longer than an
 individual mod's introduction while remaining easy to scan.
 
+Use the [collection voice](BRANDING.md#voice-and-collection-introduction): quirky,
+self-aware and very moderately condescending, with dry humour used sparingly.
+Keep the personality in introductions and occasional asides; explain gameplay,
+installation and limitations plainly so the joke never obscures what to do.
+
 Every mod README is also for potential players. Keep these introductions short:
 explain the gameplay purpose, principal features, requirements, current availability,
 and links to the guide and installation instructions. Keep chat ownership, source

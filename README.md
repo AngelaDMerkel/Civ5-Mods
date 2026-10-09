@@ -1,8 +1,9 @@
 # AngelaDMerkel's Mods
 
+*Quirky, self-aware and very moderately condescending mods, made by a person
+who wants something but doesn't want to do it.*
+
 Custom mods by **AngelaDMerkel** for **Civilization V: Brave New World**.
-Explore the projects below for a look at what each adds to your game, then follow
-the guides for the goals, features and full rules of each mod.
 
 **In development.** The current builds target new single-player games; in-game
 testing is still pending. Images below are project artwork or diagrams.
