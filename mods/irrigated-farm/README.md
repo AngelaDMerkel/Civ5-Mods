@@ -62,5 +62,13 @@ steep-hill and rocky-foothill terrain. Channels follow selected parcel boundarie
 most seams stay dry. Each sheet includes exposed/source and connected views.
 These are generated visual samples, not native mesh/UV fitting evidence.
 
+Actual native import is now implemented in
+`tools/irrigation_native/import_native_farms.py`. Five installed Farm/Terrace Farm
+assets export to editable GLBs and experimental GR2 files with verified vertex,
+UV, index, transform and complete decoded-graph parity. Local extracts and renders
+are ignored; they are not distributable mod assets. Ordinary farm crop decals are
+separate from their GR2 props, as recorded in the installed `farm_types.xml`.
+Native engine loading and terrain/adjacency integration are still pending.
+
 See the [development guide](../../docs/DEVELOPMENT.md) for the remaining standalone
 packaging work and the [tool catalog](../../tools/README.md) for validation.

@@ -50,9 +50,9 @@ earth ends, and no white waterfall effects are included in the meshes.
 Native GR2 conversion, matching actual native mesh/UV geometry, terrain fitting,
 material binding, overlay placement and in-game distance review are still pending.
 The terrace header is an adjustable component, not a claim of native hill fit.
-No native base mesh has been decoded/imported in this pass. Source validation
-checks exported geometry, grade, junctions, edge closure and aqueduct preservation;
-it cannot validate terrain clearance without the native base. Current playable
+The earlier overlay pass did not decode the native base. The native importer
+described below now supplies actual geometry for fitting. The earlier source
+validator still checks only its original component geometry and connectivity. Current playable
 flat-desert irrigation still uses the existing ordinary Farm art reference.
 
 Run from the repository root with Python, NumPy and Pillow:
@@ -63,3 +63,47 @@ python tools/irrigation_native/validate_overlays.py
 ```
 
 Use `--quick` to omit preview renders or `--output PATH` to choose an output.
+
+
+## Native asset pipeline — 2026-10-09
+
+The preceding generated images did **not** use native farm meshes or preserve
+native UVs. `import_native_farms.py` now reads the owner's installed FPK archives,
+decodes little-endian Granny 7/Oodle1 data and resolves hashed names using the
+corresponding GSD database. The open-source decoder and license are in
+`vendor/opengr2/`; no Granny SDK or proprietary binaries are distributed.
+
+```sh
+python tools/irrigation_native/import_native_farms.py --game-assets "/path/to/Civ V/Assets"
+python tools/irrigation_native/validate_native_import.py
+```
+
+Requires Python, NumPy, Pillow and a C compiler. The Assets path must contain
+`Resource/Common` and `Resource/DX9`. Output defaults to the ignored
+`output/models/irrigated-farm-native-fit/`. It contains private local extracts,
+editable GLBs, native mesh renders, crop-decal references and experimental
+uncompressed GR2 round trips. **Do not redistribute this output directory.**
+
+Verified against the installed macOS BNW assets:
+
+- Medieval and modern ordinary Farm props imported with original material maps.
+- Constructed, unfinished and pillaged Incan Terrace Farm meshes imported.
+- Native positions, normals, tangent/binormal vectors, all three UV components,
+  triangle indices, individual model placement and reflected material parameters
+  survive the GR2 round trip. GLB keeps indexed vertices and native transforms;
+  a separate flattened review copy packs textures only for CPU rendering.
+- Tree-cut stencil helpers stay in native GR2 but are excluded from visible GLBs.
+- The constructed terrace has seven visible meshes, 1,817 vertices and 1,066
+  triangles. Its large downward wall skirts are actual game geometry; the game
+  terrain normally hides much of them. A source render is not a terrain capture.
+- Ordinary farm GR2 files supply props. `Common/MiscData.fpk: farm_types.xml`
+  separately lists regional crop decals from `DX9/DecalTextures.fpk`. Preserve
+  that engine field system; don't substitute an invented field mesh. The local
+  contact sheet shows the eight actual `Crops_Africa` textures.
+
+`gr2_writer.py` emits real version-7 GR2 containers, relocation tables, reflected
+schemas and ordinary UTF-8 strings. Full decoded graph equality is verified after
+readback without a GSD. This is an **experimental exporter**, not certification by
+Granny/Nexus or Civ V. Native material rendering, terrain contouring, engine
+loading, states and dynamic adjacency still require engine tests. No runtime
+art definition or gameplay rule is changed by these tools.
