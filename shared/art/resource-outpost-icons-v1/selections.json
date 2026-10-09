@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-09",
+  "selected_by": "user",
+  "user_message": "Resource Outposts icon selection: main emblem B; construction glyph B. Reuse the selected emblem for management and strategic view.",
+  "status": "selected originals preserved; eleven DDS textures exported and integrated; native game rendering pending",
+  "source_base": ".",
+  "prompt_set": "prompts.json",
+  "export_manifest": "exports.json",
+  "crop_format": "x, y, width, height in source pixels; same alpha >=8 bounds used in reviewed gallery",
+  "selections": [
+    {
+      "id": "emblem",
+      "option": "B",
+      "title": "Guarded storehouse",
+      "source": "identity-b.png",
+      "sha256": "ec25e162956f7f5b37ea302299c00c4448d7fc31d7abf7af2d3e5ad1016c0720",
+      "review_crop": [
+        165,
+        176,
+        924,
+        921
+      ],
+      "reuse": [
+        "Civilopedia",
+        "improvement portraits",
+        "management",
+        "strategic view"
+      ]
+    },
+    {
+      "id": "construction",
+      "option": "B",
+      "title": "Guarded storehouse",
+      "source": "worker-b.png",
+      "sha256": "0d3a2d4582b66670e2f5e0cb814a28c5e2fdee2afcf2272e0d9e7e47c30b5b9c",
+      "review_crop": [
+        49,
+        227,
+        1174,
+        883
+      ],
+      "reuse": [
+        "worker action",
+        "construction UI"
+      ]
+    }
+  ],
+  "notes": [
+    "Approved originals are preserved byte for byte.",
+    "One UI identity across eras; independent of approved model progression.",
+    "Reference image paths in prompts are provenance only; no stock pixels are included."
+  ]
+}

@@ -16,4 +16,10 @@ The eight revised era designs are approved in
 validators stay in `tools/`; generated models stay in `output/models/outpost-eras-v1/`.
 Native GR2 conversion, era switching and in-game visuals remain pending.
 
+The user-selected **Guarded storehouse B** emblem and construction glyph are
+exported and integrated into Civilopedia portraits, construction controls,
+management panels and strategic view. [Icon records](docs/ICON-REVIEW.md) preserve
+the originals, selection and export hashes. Native in-game rendering is pending;
+notifications retain their existing generic symbol.
+
 Build and validation commands are in the [root README](../../README.md).

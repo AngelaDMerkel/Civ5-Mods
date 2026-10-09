@@ -1,20 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Context Name="RO_UI" ColorSet="Beige_Black" Font="TwCenMT16" FontStyle="Shadow">
   <Grid ID="ConstructionPanel" Anchor="C,T" Offset="0,64" Size="350,95" Style="Grid9DetailFive140" Hidden="1">
-    <GridButton ID="OutpostButton" Anchor="C,T" Offset="0,10" Size="310,36" Style="BaseButton"><Label ID="OutpostButtonLabel" Anchor="C,C"/></GridButton>
+    <GridButton ID="OutpostButton" Anchor="C,T" Offset="0,10" Size="310,36" Style="BaseButton">
+      <Image ID="OutpostBuildIcon" Anchor="L,C" Offset="6,0" Size="32,32" Texture="RO_OutpostAction32.dds" ConsumeMouse="0"/>
+      <Label ID="OutpostButtonLabel" Anchor="C,C" Offset="18,0"/>
+    </GridButton>
     <Label ID="OutpostProgress" Anchor="C,T" Offset="0,54"/>
   </Grid>
-  <GridButton ID="Manage" Anchor="R,T" Offset="14,108" Size="180,32" Style="BaseButton"><Label Anchor="C,C" String="TXT_KEY_RO_MANAGE"/></GridButton>
+  <GridButton ID="Manage" Anchor="R,T" Offset="14,108" Size="200,32" Style="BaseButton">
+    <Image ID="ManageIcon" Anchor="L,C" Offset="4,0" Size="32,32" Texture="RO_OutpostPortrait32.dds" ConsumeMouse="0"/>
+    <Label Anchor="C,C" Offset="16,0" String="TXT_KEY_RO_MANAGE"/>
+  </GridButton>
   <Instance Name="ROOverviewRow">
     <Grid ID="Root" Anchor="L,T" Size="740,88" Style="Grid9DetailFive140">
-      <Label ID="Title" Anchor="L,T" Offset="12,9" Font="TwCenMT18" WrapWidth="560"/>
-      <Label ID="Detail" Anchor="L,T" Offset="12,34" WrapWidth="560"/>
+      <Image ID="SiteIcon" Anchor="L,C" Offset="6,0" Size="45,45" Texture="RO_OutpostPortrait45.dds" ConsumeMouse="0"/>
+      <Label ID="Title" Anchor="L,T" Offset="58,9" Font="TwCenMT18" WrapWidth="510"/>
+      <Label ID="Detail" Anchor="L,T" Offset="58,34" WrapWidth="510"/>
       <GridButton ID="SiteManage" Anchor="R,T" Offset="12,10" Size="130,30" Style="BaseButton"><Label Anchor="C,C" String="TXT_KEY_RO_MANAGE_SITE"/></GridButton>
       <GridButton ID="Locate" Anchor="R,B" Offset="12,10" Size="130,30" Style="BaseButton"><Label Anchor="C,C" String="TXT_KEY_RO_LOCATE"/></GridButton>
     </Grid>
   </Instance>
   <Grid ID="OverviewPanel" Anchor="C,C" Size="800,560" Style="Grid9DetailFive140" ConsumeMouse="1" Hidden="1">
-    <Label Anchor="C,T" Offset="0,18" Font="TwCenMT22" String="TXT_KEY_RO_MANAGE"/>
+    <Grid Anchor="C,T" Offset="0,10" Size="300,42" ConsumeMouse="0">
+      <Image ID="OverviewIcon" Anchor="L,C" Size="45,45" Texture="RO_OutpostPortrait45.dds" ConsumeMouse="0"/>
+      <Label Anchor="C,C" Offset="18,0" Font="TwCenMT22" String="TXT_KEY_RO_MANAGE"/>
+    </Grid>
     <Label ID="OverviewSummary" Anchor="C,T" Offset="0,52" WrapWidth="750"/>
     <ScrollPanel ID="OverviewScroll" Anchor="L,T" Offset="20,86" Size="760,410" Vertical="1" AutoScrollBar="0">
       <ScrollBar Style="VertSlider" Length="367" Offset="0,18" Anchor="R,T"/>
@@ -24,7 +34,10 @@
     <GridButton ID="OverviewClose" Anchor="C,B" Offset="0,16" Size="180,30" Style="BaseButton"><Label Anchor="C,C" String="TXT_KEY_RO_CLOSE"/></GridButton>
   </Grid>
   <Grid ID="OutpostPanel" Anchor="R,T" Offset="14,150" Size="350,445" Style="Grid9DetailFive140" Hidden="1">
-    <Label Anchor="C,T" Offset="0,10" String="TXT_KEY_RT_RESOURCE_OUTPOST" Font="TwCenMT18"/>
+    <Grid Anchor="C,T" Offset="0,4" Size="280,32" ConsumeMouse="0">
+      <Image ID="OutpostSiteIcon" Anchor="L,C" Size="32,32" Texture="RO_OutpostPortrait32.dds" ConsumeMouse="0"/>
+      <Label Anchor="C,C" Offset="16,0" String="TXT_KEY_RT_RESOURCE_OUTPOST" Font="TwCenMT18"/>
+    </Grid>
     <Label ID="OutpostStatus" Anchor="C,T" Offset="0,40" WrapWidth="320"/>
     <Label ID="Deposit" Anchor="C,T" Offset="0,82" WrapWidth="320"/>
     <Label ID="Upkeep" Anchor="C,T" Offset="0,108"/>

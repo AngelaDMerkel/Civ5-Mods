@@ -9,6 +9,7 @@ one mod. Do not move them into a playable package.
 | Current playable releases | `python3 tools/build.py` | `python3 tools/validate.py` | Complete projects in `build/`, packages in `dist/` |
 | Gameplay tests | — | `.venv/bin/python tools/test.py` | Lua 5.1 assertions against production files |
 | Selected Terrain 2D art | `tools/export_art.py` | Decodes exports; package validator checks bindings | `mods/realistic-terrain/src/Art/` |
+| Selected Outpost 2D art | `tools/export_outpost_icons.py` | Verifies approved hashes and lossless DDS readback; package validator checks bindings and native Fort preservation | `mods/resource-outposts/src/Art/` |
 | Historical first mesh pass | `tools/build_models.py` | `tools/validate_models.py` | `output/models/first-pass/` |
 | Approved Terrain source models | `tools/build_models_v2.py` | `tools/validate_models_v2.py` | `output/models/revised-v2/` |
 | Terrain comparison sheets | `tools/review_models_v2.py` | Checks original art hashes | `output/model-review/approved-art-alignment/` |

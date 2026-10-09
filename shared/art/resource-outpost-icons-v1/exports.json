@@ -1,0 +1,111 @@
+{
+  "format": "legacy A8R8G8B8 DDS; straight alpha; no mipmaps",
+  "selection_manifest": "shared/art/resource-outpost-icons-v1/selections.json",
+  "preparation": "reviewed crops; alpha below 8 removed; proportional Lanczos resize; centered transparent padding",
+  "source_sha256": {
+    "identity-b.png": "ec25e162956f7f5b37ea302299c00c4448d7fc31d7abf7af2d3e5ad1016c0720",
+    "worker-b.png": "0d3a2d4582b66670e2f5e0cb814a28c5e2fdee2afcf2272e0d9e7e47c30b5b9c"
+  },
+  "files": [
+    {
+      "file": "Art/RO_OutpostPortrait32.dds",
+      "role": "emblem",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "94ae87d06792c1cb984ebc0e7921d1cf97b4fef5ec1ee52c51e459922c581445"
+    },
+    {
+      "file": "Art/RO_OutpostPortrait45.dds",
+      "role": "emblem",
+      "size": [
+        45,
+        45
+      ],
+      "sha256": "37aca967e1082770b9865764e9a6705054a36e2c609dfadc8ac7ec7836949224"
+    },
+    {
+      "file": "Art/RO_OutpostPortrait64.dds",
+      "role": "emblem",
+      "size": [
+        64,
+        64
+      ],
+      "sha256": "5756cb8de2fcecde94beba179a892ea58857aa92ee33d0643c3fb742b3e85bb4"
+    },
+    {
+      "file": "Art/RO_OutpostPortrait80.dds",
+      "role": "emblem",
+      "size": [
+        80,
+        80
+      ],
+      "sha256": "2bb3334f1bd69f1e39652054642384dab32666a0c9a767ad6531310d45657335"
+    },
+    {
+      "file": "Art/RO_OutpostPortrait128.dds",
+      "role": "emblem",
+      "size": [
+        128,
+        128
+      ],
+      "sha256": "8fc41d73be1d0f916b0615d1c334b87abadac2410d5e7bc34e0ce3df01f101b7"
+    },
+    {
+      "file": "Art/RO_OutpostPortrait214.dds",
+      "role": "emblem",
+      "size": [
+        214,
+        214
+      ],
+      "sha256": "41e12aca6eecef8161349d82150a9cdf674d716afaf88c4be209383ffde7456e"
+    },
+    {
+      "file": "Art/RO_OutpostPortrait256.dds",
+      "role": "emblem",
+      "size": [
+        256,
+        256
+      ],
+      "sha256": "f23f9b944a202ee4e1da57237c452f9631f95cddb029b842a81e4515b2ade053"
+    },
+    {
+      "file": "Art/RO_OutpostAction32.dds",
+      "role": "construction",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "2d0888ef77d7b117abf80df1f9daea0d1ac4bd6c63febee2d5bb3605a5955408"
+    },
+    {
+      "file": "Art/RO_OutpostAction45.dds",
+      "role": "construction",
+      "size": [
+        45,
+        45
+      ],
+      "sha256": "c284ace2c3fd299232026dc69c1e72ff28b74cce2655aa9274ef078223dfb131"
+    },
+    {
+      "file": "Art/RO_OutpostAction64.dds",
+      "role": "construction",
+      "size": [
+        64,
+        64
+      ],
+      "sha256": "a6502d5d421857658820f77b41287b9487d9afdc39520c51c97f308d64be3032"
+    },
+    {
+      "file": "Art/RO_OutpostStrategic.dds",
+      "role": "strategic view",
+      "size": [
+        256,
+        256
+      ],
+      "sha256": "c9678196ea050dcaedfa195d05b9719200150f4c4a4aa021be1a337596a1191f"
+    }
+  ],
+  "native_rendering": "pending in-game verification"
+}

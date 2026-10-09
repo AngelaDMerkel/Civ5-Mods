@@ -29,7 +29,7 @@ def manifest(files, spec):
         "MinCompatibleSaveVersion": str(spec["version"]), "SupportsSinglePlayer": "1",
         "SupportsMultiplayer": "0", "SupportsHotSeat": "0", "SupportsMac": "1",
         "SupportsLeaderboards": "0", "ReloadLandmarkSystem": "1",
-        "ReloadStrategicViewSystem": "0", "ReloadUnitSystem": "0",
+        "ReloadStrategicViewSystem": "1" if spec.get("reload_strategic_view") else "0", "ReloadUnitSystem": "0",
     }.items():
         ET.SubElement(props, key).text = value
     deps = ET.SubElement(mod, "Dependencies")

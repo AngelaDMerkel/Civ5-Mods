@@ -2,6 +2,7 @@
 """Validate the package and optionally its SQL/XML against installed Civ V databases."""
 import argparse
 import hashlib
+import json
 from pathlib import Path
 import sqlite3
 import struct
@@ -36,6 +37,60 @@ def validate_art(db):
     assert button.find('Image').attrib['Texture'] == 'RT_CaravansaryAction32.dds'
     assert button.find('Image').attrib['Texture'] in vfs
     print('Selected artwork: three portraits, worker button/action, wonder splash, atlas sizes, DDS headers and VFS paths validated')
+
+
+def validate_outpost_art(db):
+    assert db.execute("SELECT IconAtlas, PortraitIndex FROM Improvements WHERE Type='IMPROVEMENT_RT_RESOURCE_OUTPOST'").fetchone() == ('RO_OUTPOST_PORTRAITS', 0)
+    assert db.execute("SELECT IconAtlas, IconIndex FROM Builds WHERE Type='BUILD_RT_RESOURCE_OUTPOST'").fetchone() == ('RO_OUTPOST_ACTION', 0)
+    stage = PACKAGES[1]['stage']
+    manifest = ET.parse(stage / 'Resource Outposts.modinfo').getroot()
+    assert manifest.findtext('Properties/ReloadLandmarkSystem') == '1'
+    assert manifest.findtext('Properties/ReloadStrategicViewSystem') == '1'
+    vfs = {Path(n.text).name: stage / n.text for n in manifest.find('Files') if n.attrib['import'] == '1'}
+    for atlas, sizes in [('RO_OUTPOST_PORTRAITS', {32, 45, 64, 80, 128, 214, 256}), ('RO_OUTPOST_ACTION', {32, 45, 64})]:
+        atlas_rows = db.execute('SELECT IconSize, Filename, IconsPerRow, IconsPerColumn FROM IconTextureAtlases WHERE Atlas=?', (atlas,)).fetchall()
+        assert len(atlas_rows) == len(sizes) and {r[0] for r in atlas_rows} == sizes
+        for size, filename, cols, rows in atlas_rows:
+            assert (int(cols), int(rows)) == (1, 1) and filename in vfs
+            validate_dds(vfs[filename], (size, size))
+    art = 'ART_DEF_IMPROVEMENT_RO_RESOURCE_OUTPOST'
+    assert db.execute('SELECT TileType, Asset FROM ArtDefine_StrategicView WHERE StrategicViewType=?', (art,)).fetchall() == [('Improvement', 'RO_OutpostStrategic.dds')]
+    validate_dds(vfs['RO_OutpostStrategic.dds'], (256, 256))
+    assert db.execute('SELECT LandmarkType FROM ArtDefine_LandmarkTypes WHERE Type=?', (art,)).fetchall() == [('Improvement',)]
+    fields = 'Era, State, Scale, LayoutHandler, ResourceType, Model, TerrainContour, Tech'
+    fallback = db.execute(f'SELECT {fields} FROM ArtDefine_Landmarks WHERE ImprovementType=? ORDER BY Era, State', ('ART_DEF_IMPROVEMENT_FORT',)).fetchall()
+    assert fallback and db.execute(f'SELECT {fields} FROM ArtDefine_Landmarks WHERE ImprovementType=? ORDER BY Era, State', (art,)).fetchall() == fallback
+    ui = ET.parse(stage / 'UI/RO_UI.xml').getroot()
+    expected = {'OutpostBuildIcon': ('RO_OutpostAction32.dds', '32,32'),
+                'ManageIcon': ('RO_OutpostPortrait32.dds', '32,32'),
+                'SiteIcon': ('RO_OutpostPortrait45.dds', '45,45'),
+                'OverviewIcon': ('RO_OutpostPortrait45.dds', '45,45'),
+                'OutpostSiteIcon': ('RO_OutpostPortrait32.dds', '32,32')}
+    for control, (texture, size) in expected.items():
+        image = ui.find(f".//Image[@ID='{control}']")
+        assert image is not None and image.get('Texture') == texture and texture in vfs
+        assert image.get('Size') == size and image.get('ConsumeMouse') == '0'
+    sources = ROOT / 'shared/art/resource-outpost-icons-v1'
+    selections = json.loads((sources / 'selections.json').read_text())
+    for selection in selections['selections']:
+        assert selection['option'] == 'B'
+        assert hashlib.sha256((sources / selection['source']).read_bytes()).hexdigest() == selection['sha256']
+    exports = json.loads((sources / 'exports.json').read_text())
+    assert len(exports['files']) == 11
+    for exported in exports['files']:
+        assert hashlib.sha256((stage / exported['file']).read_bytes()).hexdigest() == exported['sha256']
+    print('Outpost B artwork: 11 DDS exports, approved hashes, portraits/actions, five UI icons, unique strategic mapping and every Fort fallback state validated')
+
+
+def native_fort_art(db):
+    """Guard native records so a custom icon cannot accidentally replace Forts."""
+    return [db.execute(query).fetchall() for query in (
+        "SELECT * FROM Improvements WHERE Type='IMPROVEMENT_FORT'",
+        "SELECT * FROM Builds WHERE Type='BUILD_FORT'",
+        "SELECT * FROM ArtDefine_LandmarkTypes WHERE Type='ART_DEF_IMPROVEMENT_FORT'",
+        "SELECT * FROM ArtDefine_Landmarks WHERE ImprovementType='ART_DEF_IMPROVEMENT_FORT' ORDER BY Era, State",
+        "SELECT * FROM ArtDefine_StrategicView WHERE StrategicViewType='ART_DEF_IMPROVEMENT_FORT'",
+    )]
 
 
 def validate_dds(path, size):
@@ -158,7 +213,8 @@ def validate_irrigation(db, loc, tags):
 def validate_outposts(db, loc, tags):
     outpost = db.execute("SELECT Description, Help, Civilopedia, ArtDefineTag, OutsideBorders, DestroyedWhenPillaged, DefenseModifier, BuildableOnResources, GoldMaintenance FROM Improvements WHERE Type='IMPROVEMENT_RT_RESOURCE_OUTPOST'").fetchone()
     assert outpost and all(key in tags for key in outpost[:3])
-    assert outpost[3:] == ('ART_DEF_IMPROVEMENT_FORT', 1, 0, 50, 0, 0)
+    assert outpost[3:] == ('ART_DEF_IMPROVEMENT_RO_RESOURCE_OUTPOST', 1, 0, 50, 0, 0)
+    validate_outpost_art(db)
     outpost_build = db.execute("SELECT PrereqTech, ImprovementType, Time FROM Builds WHERE Type='BUILD_RT_RESOURCE_OUTPOST'").fetchone()
     assert outpost_build == ('TECH_ENGINEERING', 'IMPROVEMENT_RT_RESOURCE_OUTPOST', db.execute("SELECT Time FROM Builds WHERE Type='BUILD_FORT'").fetchone()[0])
     assert not db.execute("SELECT 1 FROM Unit_Builds WHERE BuildType='BUILD_RT_RESOURCE_OUTPOST'").fetchall()
@@ -200,6 +256,7 @@ def main():
         assert [n.text for n in manifest.findall("Actions/OnModActivated/UpdateDatabase")] == spec["actions"]
         assert manifest.find("Dependencies/Dlc").attrib["id"] == BNW_ID
         assert manifest.find("Dependencies/Mod") is None, "Both packages must work independently"
+        assert manifest.findtext('Properties/ReloadStrategicViewSystem') == ('1' if spec.get('reload_strategic_view') else '0')
         if spec["id"] != RT_ID:
             assert manifest.find("References/Mod").attrib["id"] == RT_ID
             assert manifest.find("References/Mod").attrib["minversion"] == "2"
@@ -222,6 +279,7 @@ def main():
     for specs in ([PACKAGES[0]], [PACKAGES[1]], PACKAGES, list(reversed(PACKAGES))):
         db = clone(args.cache / "Civ5DebugDatabase.db")
         loc = clone(args.cache / "Localization-Merged.db")
+        original_fort = native_fort_art(db)
         trade_fields = "PrereqTech, GoldMaintenance, TradeRouteLandDistanceModifier, TradeRouteLandGoldBonus, TradeRouteSeaDistanceModifier, TradeRouteSeaGoldBonus"
         original_trade = db.execute(f"SELECT {trade_fields} FROM Buildings WHERE Type='BUILDING_CARAVANSARY'").fetchone()
         original_building = db.execute("SELECT * FROM Buildings WHERE Type='BUILDING_CARAVANSARY'").fetchone()
@@ -236,6 +294,7 @@ def main():
                         loc.execute("INSERT INTO Language_en_US (Tag, Text) VALUES (?, ?)", (row.attrib["Tag"], row.findtext("Text")))
                         tags.add(row.attrib["Tag"])
         print("Database configuration: " + " + ".join(s["name"] for s in specs))
+        assert native_fort_art(db) == original_fort, 'Native Fort data/art must remain unchanged'
         if PACKAGES[0] in specs:
             validate_terrain(db, loc, tags, original_trade, trade_fields)
         else:

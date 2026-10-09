@@ -170,6 +170,26 @@ This planner does not replace tactical combat AI or conduct overseas expeditions
 Native AI may issue competing orders; congestion, healing and long-game balance
 still require playtesting.
 
+## Selected UI icons
+
+The user selected **Guarded storehouse B** for both the main emblem and worker
+construction glyph on 9 October 2026, explicitly reusing the emblem for management
+and strategic view. `shared/art/resource-outpost-icons-v1/` preserves the exact
+original PNGs, prompts, selection, hashes and DDS export report. See
+[ICON-REVIEW.md](ICON-REVIEW.md) for coverage and provenance.
+
+The package includes eleven original-art DDS textures: seven portrait sizes,
+three worker-action sizes, and a strategic-view icon. `SQL/RO_Art.sql` binds them
+to the existing improvement/build records and a new outpost-only art definition.
+That definition clones the native Fort model rows for every era/state as a
+fallback, while using the selected outpost strategic icon. Ordinary Fort data,
+models and icons remain unchanged. Management and construction controls use the
+same chosen art. Notifications still use the native generic symbol.
+
+`ReloadStrategicViewSystem` is enabled for Resource Outposts; Terrain's setting
+is unchanged. All existing gameplay/save identifiers and resource accounting are
+preserved. Native UI and strategic rendering still require a game check.
+
 ## Approved era concepts and source models
 
 The user approved these concepts on 9 October 2026:
@@ -201,7 +221,7 @@ approved architectural revision 2 on 9 October 2026; this is recorded in the
 Each mesh has an open central garrison square, a common origin and no terrain
 plinth or connecting road. Construction and pillage use separate geometry.
 Surface refinement, native GR2 conversion, shader/scale calibration and in-game
-verification remain outstanding. The source build does not install new graphics
+verification remain outstanding. The mesh source build does not install new era graphics
 or implement automatic era switching in the playable mod. That integration must
 follow the claimant's era on neutral plots and preserve resource accounting,
 upkeep, pillage status and stationed units through upgrades, capture and reload.
@@ -228,6 +248,10 @@ Ministry/Caravansary data and environmental rules untouched.
 
 Native acceptance checklist (not yet performed):
 
+- [ ] Inspect the B portrait in Civilopedia, construction glyph, disabled/cancel
+      states and management icons at 1024x768 and widescreen. Inspect outpost and
+      ordinary Fort strategic markers, including pillage, capture and save/load.
+      Confirm all native fallback construction/completed/pillaged models render.
 - [ ] Start separate new games with RT only, RO only and both; inspect Lua/database logs.
 - [ ] Build roadless outposts on iron, silk, horses, oil and feature-covered deposits.
       Check technology, work time, cancel/resume, saves and resource use/trade/happiness.
