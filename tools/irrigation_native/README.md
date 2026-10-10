@@ -270,3 +270,36 @@ full graph. The normal farmstead decal is separate from the crop fields. The
 import manifest records all four regular crop families from `farm_types.xml`;
 only the game's `FARM` handler can currently provide verified parcel placement
 and texture selection for a particular desert tile.
+
+
+### Regular-farm irrigation candidates
+
+After native import, run:
+
+```sh
+python3 tools/irrigation_native/build_regular_farms.py
+python3 tools/irrigation_native/validate_regular_farms.py
+```
+
+Use the art Python environment with NumPy/Pillow. Outputs are in the ignored
+`output/models/irrigated-farm-native-fit/regular-farm-review/`. The viewer shows
+the constructed regular buildings with their original farmstead ground decals;
+the irrigation checkbox reveals the unchanged underlying source. It deliberately
+does not draw fabricated crop parcels. Actual stock crop textures and parcel
+placement must be supplied by Civ V's `FARM` handler, which the six candidate art
+rows preserve along with native scale, era/state selection and terrain contouring.
+The candidate does not replace `farm_types.xml` or any crop DDS.
+
+Twelve local source-derived GR2 files cover three ordinary variants in each of
+the Ancient/Industrial bindings, wet and dry. A 418-triangle wet (348 dry) carrier
+and branch append one material group to the constructed mesh in its original
+local coordinate system. Native buildings, UVs, materials, stencil helpers,
+skeletons, model names and HB/PL states are preserved. Actual crop seam routing,
+terrain deformation, source socket connectivity, construction-state selection and
+native shader/loading checks remain pending. The source socket is explicitly
+unconnected in the offline candidate; this is not a finished hydraulic network.
+
+These native-derived files are local tests, not distributable originals or a
+playable mod package. Production Farm-art fallback and gameplay are unchanged.
+The earlier diagnostic terrain cases now also use constructed regular Farm1 props,
+but their authored field polygons remain historical fitting fixtures.

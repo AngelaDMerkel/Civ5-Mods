@@ -8,6 +8,7 @@ import json
 import xml.etree.ElementTree as ET
 import numpy as np
 from native_gr2 import Reader
+from build_regular_farms import constructed
 from native_scene import parts, world_arrays
 from build_native_fit import Surface
 from import_native_farms import OUT
@@ -43,7 +44,7 @@ def validate(output):
     for record in manifest['source_assets']:
         assert hashlib.sha256((output/'native-local'/record['entry']).read_bytes()).hexdigest() == record['sha256']
     native = parts(Reader(output/'incan_terrace_farm/incan_terrace_farm-uncompressed.gr2').root())
-    props = parts(Reader(output/'medieval_farm/medieval_farm-uncompressed.gr2').root())
+    props = parts(constructed(Reader(output/'medieval_farm1/medieval_farm1-uncompressed.gr2').root()))
     # The default review must show actual native source, with no authored hill
     # or crop polygons silently included in the supposed original comparison.
     html = (folder/'index.html').read_text()

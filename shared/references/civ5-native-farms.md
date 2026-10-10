@@ -59,3 +59,14 @@ compared byte-for-byte with their installed archive entries and match. This
 establishes authentic inputs, not that their authored combination reproduces a
 standard desert farm. Which crop family the renderer chooses on a particular
 desert tile and its actual parcel placement still require native observation.
+
+
+Regular-farm correction: the importer now reads `medieval_farm1/2/3.gr2` and
+`modern_farm1/2/3.gr2` with their original wrappers and visible-state textures.
+Each file bundles three native model states. Farm2's constructed model is named
+`Med_Farm1`, so state selection must inspect the graph rather than infer the name
+from the filename. The ordinary farmstead ground decal is not the surrounding
+crop-field texture. Native-derived irrigation candidates preserve that distinction
+and retain the `FARM` handler without overriding regional crop assets. Their local
+manifest records source and generated candidate hashes; no native pixels or
+source-derived meshes are checked into the repository or release packages.

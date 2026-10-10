@@ -62,7 +62,7 @@ def build_viewer(folder,cases):
     html=html.replace('Irrigated Farm — Mesh Studio','Native irrigation — terrain and transitions')
     html=html.replace('Original source meshes','Civ V native art · terrain and junctions')
     html=html.replace('Irrigated farm · v3','Native farm source comparison')
-    html=html.replace('</header>','</header><p style="margin:16px 30px;max-width:1000px;line-height:1.45">Source meshes before Civ V terrain contouring. The seven <strong>diagnostic fixtures are not original game farm layouts</strong>; their authored plots and terrain are not the accepted design baseline.</p>')
+    html=html.replace('</header>','</header><p style="margin:16px 30px;max-width:1000px;line-height:1.45"><a href="../regular-farm-review/index.html">Corrected regular Farm1/2/3 candidates</a>. Source meshes before Civ V terrain contouring. The seven <strong>diagnostic fixtures are not original game farm layouts</strong>; their authored plots and terrain are not the accepted design baseline.</p>')
     html=html.replace('Mesh / assembly','Source comparison / diagnostic fixtures')
     html=html.replace('<label class="check"><input id="trees" type="checkbox" checked>Vegetation</label>',
                       '<label class="check"><input id="terrain" type="checkbox" checked>Terrain context</label><label class="check"><input id="trees" type="checkbox" checked>Farm / crop layer</label><label class="check"><input id="irrigation" type="checkbox" checked>Irrigation additions</label>')

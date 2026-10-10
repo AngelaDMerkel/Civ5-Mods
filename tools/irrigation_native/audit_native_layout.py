@@ -42,7 +42,7 @@ def audit(output):
             'ordinary_farm_rows': rows, 'terrace_rows': terrace_rows,
             'regular_farm_bindings': bindings,
             'correction': 'Authored crop parcels and terrain fixtures are not original game farm layouts.',
-            'fixture_prop_mismatch': 'Medieval_Farm.gr2 is referenced by constructed wheat-resource farms; resource-free farms reference Medieval_Farm1/2/3.gr2.',
+            'historical_fixture_prop_mismatch': 'The earlier Medieval_Farm.gr2 prop was the wheat-resource variant. Current diagnostics use constructed Medieval_Farm1; regular candidates use all six Farm1/2/3 variants.',
             'remaining_engine_work': 'Preserve FARM placement and terrace terrain contouring; establish in-game stock baselines before evaluating irrigation changes.'}
 
 

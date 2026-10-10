@@ -9,6 +9,7 @@ import shutil
 import numpy as np
 from native_fpk import Archive
 from native_gr2 import Reader
+from build_regular_farms import constructed
 from native_scene import parts, diffuse, write_glb, review_glb
 from gr2_writer import Writer
 from import_native_farms import OUT
@@ -74,7 +75,7 @@ def route(mesh, name):
 
 def flat_context(props, center=(0,0), grass=False):
     return [ground('authored_flat_ground', lambda x,y:0.,
-                   'afri_grassland_d.dds' if grass else 'afri_desert_d.dds', center, subdivisions=1)] + crops(center) + translated(props, (center[0]-17,center[1]-17,0), 'native_flat_')
+                   'afri_grassland_d.dds' if grass else 'afri_desert_d.dds', center, subdivisions=1)] + crops(center) + translated(props, (center[0]-10,center[1]-10,0), 'native_flat_')
 
 
 def compose(key, native, props, wet=True):
@@ -185,7 +186,7 @@ def main():
     imported=json.loads((out/'native-import.json').read_text());cache=out/'native-local'
     provenance=extract_context(out,Path(imported['source_installation']))
     reader=Reader(out/'incan_terrace_farm/incan_terrace_farm-uncompressed.gr2');native=parts(reader.root())
-    props=parts(Reader(out/'medieval_farm/medieval_farm-uncompressed.gr2').root())
+    props=parts(constructed(Reader(out/'medieval_farm1/medieval_farm1-uncompressed.gr2').root()))
     for name in ['RT_IF_Diffuse.png','RT_IF_Native_Diff.dds','RT_IF_Native_SREF.dds']:
         shutil.copyfile(out/'irrigation-fit'/name,folder/name)
     keys=[args.only] if args.only else list(DESCRIPTIONS)

@@ -18,6 +18,7 @@ one mod. Do not move them into a playable package.
 | Irrigation mesh refinement v2 | `tools/irrigation_v2/build_irrigation_meshes.py` | `tools/irrigation_v2/validate_irrigation_meshes.py` | `output/models/irrigated-farm-v2/` |
 | Irrigation terrain/network review v3 (unapproved) | `tools/irrigation_v3/build_irrigation_meshes.py` | `tools/irrigation_v3/validate_irrigation_meshes.py` | `output/models/irrigated-farm-v3/` |
 | Native farm irrigation-only overlay study (unapproved) | `tools/irrigation_native/build_overlays.py` | `tools/irrigation_native/validate_overlays.py` | `output/models/irrigated-farm-native-overlay/` |
+| Regular native farm irrigation candidates (unapproved) | `tools/irrigation_native/build_regular_farms.py` | `tools/irrigation_native/validate_regular_farms.py` | `output/models/irrigated-farm-native-fit/regular-farm-review/` |
 | Native-art irrigation terrain and junction review (unapproved) | `tools/irrigation_native/build_terrain_cases.py` | `tools/irrigation_native/validate_terrain_cases.py` | `output/models/irrigated-farm-native-fit/terrain-review/` |
 
 Python files in this table are run with the Python interpreter for the appropriate
@@ -47,9 +48,9 @@ native farm mesh fitting and terrain clearance are not yet validated.
 Native irrigation source work now also has `irrigation_native/import_native_farms.py`,
 `validate_native_import.py`, `build_native_fit.py` and `validate_native_fit.py`.
 See [the native pipeline notes](irrigation_native/README.md) for the required
-installed-game path, compiler and sequence. These tools import five real native
-Farm/Terrace Farm sources and build the first constructed-terrace irrigation
-addition. All extracted art remains in ignored `output/`; the original overlay
+installed-game path, compiler and sequence. These tools import eleven real native
+Farm/Terrace Farm sources, including all six ordinary Farm1/2/3 variants, and
+build the first constructed-terrace irrigation addition. All extracted art remains in ignored `output/`; the original overlay
 exports are separate. Native engine acceptance is still pending.
 
 The terrain-case builder runs after native import and first fitting. It exports
@@ -58,3 +59,12 @@ crop/terrain textures in authored terrain fixtures. Its validator checks actual
 exported water geometry and hydraulic connections. The offline viewer exposes
 separate terrain, farm and irrigation layers. These checks do not validate the
 game's procedural flat-farm placement or dynamic terrain/adjacency art.
+
+The regular-farm builder runs after native import. It adds a material group only
+to the constructed stock building mesh, retaining the original farmstead decal
+and all native construction states. Its twelve wet/dry GR2 candidates, wrappers,
+and six FARM/terrain-contour art rows remain in ignored local output. The validator
+checks complete source-graph preservation after removing the appended group,
+GR2/GLB parity, building clearance, descending routes and closed outlets. It does
+not establish native crop-parcel fit. No crop texture or `farm_types.xml` override
+is generated; the proposed binding relies on the normal game layout.

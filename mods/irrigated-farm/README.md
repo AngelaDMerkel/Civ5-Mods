@@ -63,8 +63,8 @@ most seams stay dry. Each sheet includes exposed/source and connected views.
 These are generated visual samples, not native mesh/UV fitting evidence.
 
 Actual native import is now implemented in
-`tools/irrigation_native/import_native_farms.py`. Five installed Farm/Terrace Farm
-assets export to editable GLBs and experimental GR2 files with verified vertex,
+`tools/irrigation_native/import_native_farms.py`. Eleven installed Farm/Terrace Farm
+assets now export to editable GLBs and experimental GR2 files with verified vertex,
 UV, index, transform and complete decoded-graph parity. Local extracts and renders
 are ignored; they are not distributable mod assets. Ordinary farm crop decals are
 separate from their GR2 props, as recorded in the installed `farm_types.xml`.
@@ -108,11 +108,11 @@ change the native-derived terrace to integrate readable channels and aqueducts,
 while retaining recognizable Civ V farm character. This is design direction,
 not acceptance of a particular revised model.
 
-The current reference files are genuine installed game assets, but the assembled
+The earlier reference files are genuine installed game assets, but the assembled
 flat examples are not a verified standard desert-farm tile set. The terrace is
 the Incan Terrace Farm improvement. Flat examples use native `Crops_Africa`
 textures and `afri_desert_d.dds` with authored parcel placement; the prop reference
-is the wheat-resource variant. The inspected farm definitions separate regional
+was the wheat-resource variant (corrected to regular Farm1 in the current diagnostics). The inspected farm definitions separate regional
 crop families and era/resource model bindings, with no dedicated desert-farm row.
 Exact farm texture selection and placement on a desert tile remain unverified
 in-game; do not infer that `Crops_Africa` means a desert-specific farm asset.
@@ -127,3 +127,30 @@ The six ordinary variants use the installed farmstead decals/materials; the
 unsuffixed wheat Farm files are retained only as historical references. All four
 regular regional crop families are recorded without treating Africa as a
 terrain-specific selection. Native `FARM` placement must supply the actual fields.
+
+
+`build_regular_farms.py` now produces twelve local native-derived regular farm
+candidates: three variants in both era groups, wet and dry. The constructed stock
+mesh receives only the new irrigation material group; original building and
+farmstead-decal textures, geometry and all construction states remain intact.
+Six proposed art rows keep the native `FARM` layout and terrain contouring so the
+game can retain the regular crop textures and field arrangement on desert.
+No crop replacement is generated. The regular-farm viewer shows actual asset
+changes, with surrounding engine-generated fields explicitly absent.
+
+Validation covers original native-graph preservation, GR2/GLB geometry and UV
+parity, building clearance, descending water routes, capped outlets and bindings.
+The channels are a farmstead candidate; alignment with actual crop parcel seams,
+native terrain/lighting and runtime source connections still need in-game work.
+This turn stayed offline while Resource Outpost held the native-test session.
+Production fallback, approval records and gameplay remain unchanged.
+
+
+Regular-farm correction verification (2026-10-10): eleven native imports passed
+source graph and GLB parity; twelve regular wet/dry candidates passed their export,
+preservation and water-route validator; all fourteen rebuilt terrain diagnostics
+passed. Repository build, package validation, Lua 5.1 tests, Python syntax and
+viewer JavaScript syntax passed. Actual close/distance renders and browser layer
+controls were inspected. No game was launched or installed/user data changed by
+this chat; it holds no native-test lock or restoration journal. The independent
+Outpost native test work remains the current slot owner pending its release notice.
