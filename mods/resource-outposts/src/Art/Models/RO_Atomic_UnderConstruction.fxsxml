@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Asset>
+  <Mesh file="RO_Atomic_UnderConstruction.gr2" source="civ5-gr2" />
+  <Texture file="RO_Atomic_UnderConstruction_diffuse.dds" source="civ5-gr2" />
+  <Texture file="RO_Era_BlackSpec.dds" source="civ5-gr2" />
+</Asset>

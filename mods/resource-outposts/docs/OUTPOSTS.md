@@ -220,17 +220,19 @@ approved architectural revision 2 on 9 October 2026; this is recorded in the
 
 Each mesh has an open central garrison square, a common origin and no terrain
 plinth or connecting road. Construction and pillage use separate geometry.
-Native GR2 conversion, shader/scale calibration and in-game verification remain
-outstanding. The playable mod now selects eight internal variants using the
+Native GR2 conversion and scoped visual review are complete for all 24 states;
+the runtime package includes their GR2/FXSXML/DDS at scale 6. The mod selects eight internal variants using the
 claimant's current era on neutral plots and the territorial owner's era after
 annexation. Capture can move a site to an earlier or later stage. The approved
-meshes are not yet installed: each variant still uses a stock Fort placeholder.
+models replace Fort placeholders. See [NATIVE-ART-REVIEW.md](NATIVE-ART-REVIEW.md)
+for native evidence and its limits. Full campaign acceptance remains pending.
 
 `RO_Eras` synchronizes completed and pillaged sites inside the existing guarded
 reconciliation. AI, management and optional shelter recognize every variant.
 Resource accounting, upkeep, pillage status, upgrade progress and stationed units
 are preserved in regression tests. Construction retains its existing build ID and
-work progress, applying the current stage on completion. There is one public build
+work progress, applying the current stage on completion. The public build uses
+one shared Ancient scaffold across eras. There is one public build
 action and one Civilopedia entry. See [ERA-VISUALS.md](ERA-VISUALS.md) for the native
 resource-link safeguard, old-save migration limit, event timing and mesh handoff.
 
@@ -260,14 +262,17 @@ order, resource definitions, fort work/defense, localization, isolated dependenc
 VFS names, source/ZIP equality and manifest hashes. RO alone leaves native trade,
 Ministry/Caravansary data and environmental rules untouched.
 
-Native acceptance checklist (not yet performed):
+Native acceptance checklist:
 
-- [ ] Complete the era-selection checks in [ERA-VISUALS.md](ERA-VISUALS.md), then
-      bind and inspect the converted models. These are separately deferred tasks.
+- [x] Convert, bind and inspect all 24 approved model states; check representative
+      hill, desert/forest and remembered-fog scenes.
+- [x] Run production `RO_Eras` against native neutral plots through all eight eras,
+      preserving pillage, work progress, unit state and neutral ownership.
+- [ ] Complete the remaining campaign-era checks in [ERA-VISUALS.md](ERA-VISUALS.md).
 - [ ] Inspect the B portrait in Civilopedia, construction glyph, disabled/cancel
       states and management icons at 1024x768 and widescreen. Inspect outpost and
       ordinary Fort strategic markers, including pillage, capture and save/load.
-      Confirm all native fallback construction/completed/pillaged models render.
+      Check the public construction model through ordinary worker completion.
 - [ ] Start separate new games with RT only, RO only and both; inspect Lua/database logs.
 - [ ] Build roadless outposts on iron, silk, horses, oil and feature-covered deposits.
       Check technology, work time, cancel/resume, saves and resource use/trade/happiness.

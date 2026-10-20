@@ -4,7 +4,13 @@ The converter belongs to **all mods** in `tools/civ5_gr2/`. Resource Outposts is
 the first consumer. See [CLI/setup/validation](../../../tools/civ5_gr2/README.md)
 and [measured format/dependency findings](../../../tools/civ5_gr2/RESEARCH.md).
 
-## Confirmed state
+For subsequent consumer-side results, see [native art review](NATIVE-ART-REVIEW.md):
+all eight era/state sets now have native visual evidence, along with two terrain
+and fog scenes. The approved native models are integrated into the Outposts package.
+The historical converter findings below describe the initial converter milestone;
+the linked consumer review is authoritative for current acceptance and limits.
+
+## Initial converter milestone
 
 - The locally owned Fort container, rigid vertex stream, bindings, shader records
   and hashed texture/string references have been inspected. Extracts stay ignored.
@@ -24,8 +30,8 @@ in background Aspyr Civ V at scale 6. The precise hash and screenshot evidence a
 in the research record. All 24 variants then converted successfully and passed
 independent OpenGR2 geometry checks in `output/gr2-converted/outposts-v1/`.
 
-Final visual acceptance and production era/state integration remain outstanding.
-Do not promote the whole batch to accepted production art from this one probe.
+At that initial milestone, final visual acceptance and production era/state
+integration were still outstanding. That one probe alone did not accept the batch.
 Approved sources, textures, selection records and the archive remain unchanged.
 The native runner uses the pinned external Lekmod background harness, a shared
 test lock and the stock installed GameCore; it restores all temporary game files.
@@ -40,19 +46,19 @@ generated conversion notes that call selection unfinished. This tooling work doe
 not reimplement or replace that integration. Atomic/Information use Civ V's
 `ERA_POSTMODERN` / `ERA_FUTURE` identifiers; the selected art rows use `Era='Any'`.
 
-After native acceptance, bring the shared tooling commits from `main` into the
-mod's worktree, run the pinned batch from the repository root, and integrate only
-the accepted GR2/FXSXML/DDS runtime files into `src/Art/`. Use the existing era/state
-art definitions and unique `RO_` names. Keep conversion manifests, reference
+The Outposts worktree now includes the shared tooling commits and accepted runtime
+files in `src/Art/Models/`. To reproduce conversion, run the pinned batch from the
+repository root. Use the existing era/state art definitions and unique `RO_` names.
+Keep conversion manifests, reference
 extracts, source models and test harness files out of playable packages. Rebuild
 through `tools/build.py`, validate the package and run the mod's current era tests.
 
 The initial BuildingShader profile uses one diffuse plus one explicit SREF for
-every mesh. `RO_Era_BlackSpec.dds` is an unverified SREF candidate; the flat-normal
-export is not consumed by this profile. Landmark scale is separate from preserved
-source geometry. The fixture starts at scale 6 for measurement, not final approval.
-Texture orientation, SREF response, lighting, shadows, fog, terrain contact,
-construction/pillage states and all eight era selections need native review.
+every mesh. The flat-normal export is not consumed by this profile. Landmark scale
+is separate from preserved source geometry. The Outpost review retained scale 6
+and `RO_Era_BlackSpec.dds`; the observed views show no excessive gloss. That scoped
+review does not fully characterize SREF semantics, every face's texture orientation,
+all lighting/shadows or every terrain shape. Refer to its precise acceptance limits.
 
 Other mod owners can supply their own pinned batch manifests and namespace. The
 current profile requires a single identity bone with full root weights and rejects

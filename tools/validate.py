@@ -9,6 +9,7 @@ import struct
 import xml.etree.ElementTree as ET
 import zipfile
 from packages import PACKAGES, BNW_ID, RT_ID, package_files
+from outpost_native_art import validate_runtime as validate_outpost_native_art
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -57,9 +58,7 @@ def validate_outpost_art(db):
     assert db.execute('SELECT TileType, Asset FROM ArtDefine_StrategicView WHERE StrategicViewType=?', (art,)).fetchall() == [('Improvement', 'RO_OutpostStrategic.dds')]
     validate_dds(vfs['RO_OutpostStrategic.dds'], (256, 256))
     assert db.execute('SELECT LandmarkType FROM ArtDefine_LandmarkTypes WHERE Type=?', (art,)).fetchall() == [('Improvement',)]
-    fields = 'Era, State, Scale, LayoutHandler, ResourceType, Model, TerrainContour, Tech'
-    fallback = db.execute(f'SELECT {fields} FROM ArtDefine_Landmarks WHERE ImprovementType=? ORDER BY Era, State', ('ART_DEF_IMPROVEMENT_FORT',)).fetchall()
-    assert fallback and db.execute(f'SELECT {fields} FROM ArtDefine_Landmarks WHERE ImprovementType=? ORDER BY Era, State', (art,)).fetchall() == fallback
+    validate_outpost_landmarks(db, art, 'RO_Ancient')
     ui = ET.parse(stage / 'UI/RO_UI.xml').getroot()
     expected = {'OutpostBuildIcon': ('RO_OutpostAction32.dds', '32,32'),
                 'ManageIcon': ('RO_OutpostPortrait32.dds', '32,32'),
@@ -79,7 +78,15 @@ def validate_outpost_art(db):
     assert len(exports['files']) == 11
     for exported in exports['files']:
         assert hashlib.sha256((stage / exported['file']).read_bytes()).hexdigest() == exported['sha256']
-    print('Outpost B artwork: 11 DDS exports, approved hashes, portraits/actions, five UI icons, unique strategic mapping and every Fort fallback state validated')
+    print('Outpost B artwork: 11 DDS exports, approved hashes, portraits/actions, five UI icons and unique strategic mapping validated')
+
+
+def validate_outpost_landmarks(db, art, stem):
+    fields = 'Era, State, Scale, LayoutHandler, ResourceType, Model, TerrainContour, Tech'
+    actual = db.execute(f'SELECT {fields} FROM ArtDefine_Landmarks WHERE ImprovementType=? ORDER BY State', (art,)).fetchall()
+    expected = [('Any', state, 6, 'SNAPSHOT', 'ART_DEF_RESOURCE_ALL', stem + suffix + '.fxsxml', 0, None)
+                for state, suffix in [('Constructed', ''), ('Pillaged', '_Pillaged'), ('UnderConstruction', '_UnderConstruction')]]
+    assert actual == expected, (art, actual)
 
 
 def validate_outpost_eras(db):
@@ -107,14 +114,10 @@ def validate_outpost_eras(db):
         assert not db.execute('SELECT 1 FROM Builds WHERE ImprovementType=?', (kind,)).fetchone(), 'No duplicate worker actions'
         assert db.execute('SELECT LandmarkType FROM ArtDefine_LandmarkTypes WHERE Type=?', (art,)).fetchall() == [('Improvement',)]
         assert db.execute('SELECT TileType, Asset FROM ArtDefine_StrategicView WHERE StrategicViewType=?', (art,)).fetchall() == [('Improvement', 'RO_OutpostStrategic.dds')]
-        fields = 'State, Scale, LayoutHandler, ResourceType, Model, TerrainContour, Tech'
-        native = db.execute(f'SELECT {fields} FROM ArtDefine_Landmarks WHERE ImprovementType=? AND Era=? ORDER BY State', ('ART_DEF_IMPROVEMENT_FORT', fallback)).fetchall()
-        actual = db.execute(f'SELECT {fields} FROM ArtDefine_Landmarks WHERE ImprovementType=? ORDER BY State', (art,)).fetchall()
-        assert actual == native and {r[0] for r in actual} == {'Constructed', 'UnderConstruction', 'Pillaged'}
-        assert db.execute('SELECT DISTINCT Era FROM ArtDefine_Landmarks WHERE ImprovementType=?', (art,)).fetchall() == [('Any',)]
+        validate_outpost_landmarks(db, art, stem)
     assert db.execute("SELECT COUNT(*) FROM Improvements WHERE Description='TXT_KEY_RT_RESOURCE_OUTPOST' AND GraphicalOnly=0").fetchone() == (1,)
     assert db.execute('SELECT Type FROM Builds WHERE ImprovementType=?', (legacy,)).fetchall() == [('BUILD_RT_RESOURCE_OUTPOST',)]
-    print('Outpost eras: eight gameplay-equivalent hidden variants, 24 fixed-era placeholder states, approved model slots and one public action/entry validated')
+    print('Outpost eras: eight gameplay-equivalent hidden variants, 24 native model states and one public action/entry validated')
 
 
 def native_fort_art(db):
@@ -310,6 +313,7 @@ def main():
             for f in payload:
                 assert z.read(folder + "/" + f) == (mod / f).read_bytes() == (ROOT / "dist" / folder / f).read_bytes()
         print(f'{spec["name"]}: {len(files)} files, hashes, XML and ZIP/source parity valid')
+    validate_outpost_native_art(ROOT, PACKAGES[1]['stage'])
     if not args.cache: return
     # Also test both SQL load orders: optional integration cannot depend on one.
     for specs in ([PACKAGES[0]], [PACKAGES[1]], PACKAGES, list(reversed(PACKAGES))):

@@ -1,12 +1,12 @@
 # Claimant-era outpost selection
 
-Status, 9 October 2026: **item 2 implemented and automatically tested**. The user
-has now authorized native conversion, visual checks and integration. All 24
-states convert and independently verify; the native review fixtures are ready.
-See [the current integration review](NATIVE-ART-REVIEW.md) for evidence and status.
-The eight approved mesh designs and selected B icons are unchanged. The playable
-package still displays stock Fort placeholders; eight different runtime stage
-IDs do not yet mean eight different installed meshes.
+Status, 20 October 2026: **claimant-era selection and native meshes integrated**.
+All 24 approved states convert and independently verify. All eight era sets have
+passed native flat-ground visual review, with additional Ancient/Information hill,
+desert/forest and remembered-fog scenes. See [the integration review](NATIVE-ART-REVIEW.md)
+for exact evidence and the remaining campaign checks. The eight approved mesh
+designs, textures and selected B icons are unchanged; the package now includes
+the native GR2/FXSXML/DDS files instead of displaying Fort placeholders.
 
 ## Runtime behavior
 
@@ -26,9 +26,10 @@ reveal plots or force opponents' remembered art to refresh.
 
 Construction retains `BUILD_RT_RESOURCE_OUTPOST` and its original native work
 progress. An era change never replaces an in-progress build. On completion, the
-site receives its claimant's current stage. The under-construction placeholder
-continues to use the public improvement's stock art behavior. A future requirement
-for claimant-specific construction scaffolding needs a separate implementation.
+site receives its claimant's current stage. The public build uses the approved
+Ancient construction model in every era. The other seven construction models are
+packaged and native-reviewed but are not selected by separate build actions.
+Claimant-specific construction scaffolding needs a separate implementation.
 
 `RO_Outposts.IsOutpost(plot)` recognizes the canonical improvement and all eight
 internal variants. Claims, resource notifications, AI repair/guard/capture jobs,
@@ -63,8 +64,8 @@ Sources: Firaxis BNW mirrors for
 [plot setters and resource links](https://github.com/Gedemon/Civ5-DLL/blob/master/CvGameCoreDLL_Expansion2/CvPlot.cpp),
 [plot Lua bindings](https://github.com/Gedemon/Civ5-DLL/blob/master/CvGameCoreDLL_Expansion2/Lua/CvLuaPlot.cpp)
 and [player era access](https://github.com/Gedemon/Civ5-DLL/blob/master/CvGameCoreDLL_Expansion2/Lua/CvLuaPlayer.cpp).
-These behaviors are modeled in the regression suite; native execution is still
-unverified.
+These behaviors are modeled in the regression suite. The focused native probe is
+described in the integration review; it does not cover owned city resource links.
 
 ## Save and integration compatibility
 
@@ -91,7 +92,7 @@ No Terrain source or bridge change is needed.
 names end in the corresponding engine era suffix. Atomic is `POSTMODERN` and
 Information is `FUTURE`; do not substitute non-existent `ERA_ATOMIC` identifiers.
 
-| Engine era | Approved model stem | Current Fort fallback |
+| Engine era | Native model stem | Retained legacy fallback metadata |
 | --- | --- | --- |
 | `ERA_ANCIENT` | `RO_Ancient` | Ancient |
 | `ERA_CLASSICAL` | `RO_Classical` | Ancient |
@@ -104,19 +105,28 @@ Information is `FUTURE`; do not substitute non-existent `ERA_ATOMIC` identifiers
 
 Each art definition has `Constructed`, `UnderConstruction` and `Pillaged` rows
 with `Era='Any'`. Keep that fixed selector: Lua already chooses the era, including
-on unowned land. Replace the placeholder model/scale/shader bindings only after
-native conversion and validation of the approved sources. The construction row
-is prepared for later work but is not selected by a new era-specific build action.
-Update the placeholder-specific validator assertions when genuine native assets
-are integrated, retaining gameplay equivalence and unchanged native Fort checks.
+on unowned land. Every state now uses its own `ModelStem` FXSXML at scale 6 with
+the `SNAPSHOT` layout and `TerrainContour=0`. The BuildingShader profile uses the
+unchanged diffuse and shared black SREF textures. `FallbackEra` is retained for
+compatibility, but no longer selects art. The internal construction rows are not
+selected by new era-specific build actions. The public canonical improvement uses
+the three Ancient states; completed sites reconcile to the claimant's stage.
+
+`native-art-manifest.json` preserves conversion/source pins outside the playable
+tree. `tools/outpost_native_art.py`, called by the package validator, verifies all
+73 native files, FXSXML/texture references, shader profile, DDS data and VFS imports.
+Database checks retain full gameplay equivalence and unchanged native Fort checks.
 
 ## Verification and remaining native checks
 
 Completed: full Lua 5.1 suite, including **382 Outpost assertions**; package build
-and source/ZIP/hash parity; **six package unit tests**; installed BNW database
-checks for each package alone and both SQL load orders. The gameplay suite uses
-the existing environment with `lupa==2.8`. No in-game test or native mesh rendering
-has been performed for this change.
+and source/ZIP/hash parity; **37 Python tests**; installed BNW database checks for
+each package alone and both SQL load orders; all 24 source mesh/archive checks;
+native visual review of every era/state and the two mixed-terrain scenes. The
+production binding probe also passed all eight neutral-site era swaps with the
+active player in another era, preserved pillage/progress/unit state, backwards
+selection and repeated calls. The gameplay suite uses `lupa==2.8`; its mocks and
+the focused native probe are not full campaign acceptance evidence.
 
 Remaining native acceptance:
 
@@ -129,4 +139,4 @@ Remaining native acceptance:
 - Check old canonical sites, including annexed sites waiting for resource tech.
 - Inspect the one Civilopedia entry, normal worker action, strategic icons and AI
   repair/guard reservations. Repeat with Terrain enabled for roadless shelter.
-- After conversion, inspect all approved meshes, scale, shaders and state visuals.
+- Extend visual coverage to additional terrain shapes, lighting and camera angles.

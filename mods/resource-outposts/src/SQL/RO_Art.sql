@@ -17,17 +17,16 @@ WHERE Type = 'IMPROVEMENT_RT_RESOURCE_OUTPOST';
 UPDATE Builds SET IconAtlas = 'RO_OUTPOST_ACTION', IconIndex = 0
 WHERE Type = 'BUILD_RT_RESOURCE_OUTPOST';
 
--- A distinct art tag lets the strategic icon differ from the stock Fort.
--- Retain all native Fort era/state model rows until approved meshes are ready
--- for native integration. This changes neither the Fort nor the outpost rules.
+-- The public build uses shared Ancient scaffolding. Completed sites immediately
+-- select their claimant-era variant through RO_Eras; build progress is unchanged.
 INSERT INTO ArtDefine_LandmarkTypes (Type, LandmarkType, FriendlyName)
-SELECT 'ART_DEF_IMPROVEMENT_RO_RESOURCE_OUTPOST', LandmarkType, 'Resource Outpost'
-FROM ArtDefine_LandmarkTypes WHERE Type = 'ART_DEF_IMPROVEMENT_FORT';
+VALUES ('ART_DEF_IMPROVEMENT_RO_RESOURCE_OUTPOST', 'Improvement', 'Resource Outpost');
 INSERT INTO ArtDefine_Landmarks
     (Era, State, Scale, ImprovementType, LayoutHandler, ResourceType, Model, TerrainContour, Tech)
-SELECT Era, State, Scale, 'ART_DEF_IMPROVEMENT_RO_RESOURCE_OUTPOST',
-       LayoutHandler, ResourceType, Model, TerrainContour, Tech
-FROM ArtDefine_Landmarks WHERE ImprovementType = 'ART_DEF_IMPROVEMENT_FORT';
+VALUES
+    ('Any', 'Constructed', 6, 'ART_DEF_IMPROVEMENT_RO_RESOURCE_OUTPOST', 'SNAPSHOT', 'ART_DEF_RESOURCE_ALL', 'RO_Ancient.fxsxml', 0, NULL),
+    ('Any', 'UnderConstruction', 6, 'ART_DEF_IMPROVEMENT_RO_RESOURCE_OUTPOST', 'SNAPSHOT', 'ART_DEF_RESOURCE_ALL', 'RO_Ancient_UnderConstruction.fxsxml', 0, NULL),
+    ('Any', 'Pillaged', 6, 'ART_DEF_IMPROVEMENT_RO_RESOURCE_OUTPOST', 'SNAPSHOT', 'ART_DEF_RESOURCE_ALL', 'RO_Ancient_Pillaged.fxsxml', 0, NULL);
 INSERT INTO ArtDefine_StrategicView (StrategicViewType, TileType, Asset)
 VALUES ('ART_DEF_IMPROVEMENT_RO_RESOURCE_OUTPOST', 'Improvement', 'RO_OutpostStrategic.dds');
 UPDATE Improvements SET ArtDefineTag = 'ART_DEF_IMPROVEMENT_RO_RESOURCE_OUTPOST'

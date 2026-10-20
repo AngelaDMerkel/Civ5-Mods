@@ -61,13 +61,16 @@ WHERE f.ImprovementType = 'IMPROVEMENT_RT_RESOURCE_OUTPOST';
 INSERT INTO ArtDefine_LandmarkTypes (Type, LandmarkType, FriendlyName)
 SELECT ArtDefineTag, 'Improvement', 'Resource Outpost ' || ModelStem FROM RO_OutpostEras;
 -- Any prevents territorial/world-era art selection from overriding our stage.
--- These are STOCK PLACEHOLDERS, not the approved models. ModelStem identifies
--- the later converted mesh for each Constructed/UnderConstruction/Pillaged row.
+-- Native reviewed models retain their approved geometry/textures at scale 6.
+-- FallbackEra remains compatibility metadata; it no longer selects stock art.
 INSERT INTO ArtDefine_Landmarks
     (Era, State, Scale, ImprovementType, LayoutHandler, ResourceType, Model, TerrainContour, Tech)
-SELECT 'Any', f.State, f.Scale, e.ArtDefineTag, f.LayoutHandler, f.ResourceType,
-       f.Model, f.TerrainContour, f.Tech
-FROM RO_OutpostEras e JOIN ArtDefine_Landmarks f ON f.Era = e.FallbackEra
-WHERE f.ImprovementType = 'ART_DEF_IMPROVEMENT_FORT';
+SELECT 'Any', s.State, 6, e.ArtDefineTag, 'SNAPSHOT', 'ART_DEF_RESOURCE_ALL',
+       e.ModelStem || s.Suffix || '.fxsxml', 0, NULL
+FROM RO_OutpostEras e CROSS JOIN (
+    SELECT 'Constructed' AS State, '' AS Suffix
+    UNION ALL SELECT 'UnderConstruction', '_UnderConstruction'
+    UNION ALL SELECT 'Pillaged', '_Pillaged'
+) s;
 INSERT INTO ArtDefine_StrategicView (StrategicViewType, TileType, Asset)
 SELECT ArtDefineTag, 'Improvement', 'RO_OutpostStrategic.dds' FROM RO_OutpostEras;

@@ -17,10 +17,12 @@ validators stay in `tools/`; generated models stay in `output/models/outpost-era
 Automatic claimant-era selection is implemented for completed and pillaged
 outposts, including capture, annexation and reload. Eight internal variants retain
 one public build action and Civilopedia entry. Construction keeps its existing
-progress and selects the current era on completion. Native Fort models remain as
-placeholders while native visual checks are completed. All 24 approved model
-states now convert and independently verify using the shared macOS tooling;
-[native review scenes](docs/NATIVE-ART-REVIEW.md) are prepared. Implementation,
+progress and selects the current era on completion. All 24 approved native model
+states are now packaged, replacing the Fort placeholders. They passed independent
+conversion checks and [native visual review](docs/NATIVE-ART-REVIEW.md) for all
+eight eras, plus Ancient/Information terrain and fog scenes. The public build uses
+one shared Ancient scaffold; completed and pillaged sites use their claimant's era.
+Full campaign, UI and save/load acceptance remains separate. Implementation,
 compatibility and conversion handoff: [docs/ERA-VISUALS.md](docs/ERA-VISUALS.md).
 
 The user-selected **Guarded storehouse B** emblem and construction glyph are

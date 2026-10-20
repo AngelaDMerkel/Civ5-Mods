@@ -1,0 +1,756 @@
+{
+  "version": 1,
+  "profile": "civ5-building-static-v1",
+  "batch_sha256": "0242afa26004aeb9091fafaad002e3726c14577c6c53ab6e31f7dd7ad8e499ad",
+  "conversion": "completed",
+  "native_game": {
+    "status": "unverified"
+  },
+  "assets": [
+    {
+      "profile": "civ5-building-static-v1",
+      "name": "RO_Ancient",
+      "source_br2_sha256": "74151417eb1b708c0299b114b963f36c2257797aa3585f5f6a87ae6888989ed1",
+      "structural_validation": "passed",
+      "conversion": "completed",
+      "independent_reader": {
+        "status": "passed",
+        "reader": "OpenGR2",
+        "probe_sha256": "46523b4d525db6cd7014a6d94ec761a7c393b5d58a129321a6c9cf6007514ae3"
+      },
+      "native_game": {
+        "status": "unverified"
+      },
+      "units_per_meter": 1,
+      "meshes": [
+        {
+          "vertices": 7212,
+          "indices": 7212,
+          "vertex_crc32": 3987631773,
+          "index_crc32": 1638617673
+        }
+      ],
+      "geometry_policy": "float32 BR2 positions, normals, tangents, binormals, UVs and winding unchanged; UV third component zero; full root weights represented by rigid binding",
+      "files": {
+        "RO_Ancient.gr2": "30e871bfaaf4c5856681dbba32205ed96db8048bb270b58846ff5e20896ff509",
+        "RO_Ancient.fxsxml": "b312ea8c18538899a6656cd953ad7aea65d8c1e95c2b5fb3a700ba783aa98dee",
+        "RO_Ancient_diffuse.dds": "3dc0eb5eef9ddf01268b6d01be12f5aff18d3e0a11b7067009e893d7a8657d56",
+        "RO_Era_BlackSpec.dds": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+      }
+    },
+    {
+      "profile": "civ5-building-static-v1",
+      "name": "RO_Ancient_Pillaged",
+      "source_br2_sha256": "7ca083a584dae4fb6f0aff3e450be10c5466b5fc871b6b43979cc0991924ab87",
+      "structural_validation": "passed",
+      "conversion": "completed",
+      "independent_reader": {
+        "status": "passed",
+        "reader": "OpenGR2",
+        "probe_sha256": "46523b4d525db6cd7014a6d94ec761a7c393b5d58a129321a6c9cf6007514ae3"
+      },
+      "native_game": {
+        "status": "unverified"
+      },
+      "units_per_meter": 1,
+      "meshes": [
+        {
+          "vertices": 6705,
+          "indices": 6705,
+          "vertex_crc32": 3421732391,
+          "index_crc32": 2020097550
+        }
+      ],
+      "geometry_policy": "float32 BR2 positions, normals, tangents, binormals, UVs and winding unchanged; UV third component zero; full root weights represented by rigid binding",
+      "files": {
+        "RO_Ancient_Pillaged.gr2": "b6009a766ca1b4756b2079f9806ed66322121e85689ac5d1d7155d391cc21da9",
+        "RO_Ancient_Pillaged.fxsxml": "5e55599852c7125621e52dcb3d77025e6caa72d3113e3135a638fbdc9f34a49a",
+        "RO_Ancient_Pillaged_diffuse.dds": "be69fa4922038a0f520be966ebc57c4b525168b8f8831b29cb3fdcdd4b28dec0",
+        "RO_Era_BlackSpec.dds": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+      }
+    },
+    {
+      "profile": "civ5-building-static-v1",
+      "name": "RO_Ancient_UnderConstruction",
+      "source_br2_sha256": "01c3875d9ce498b497344fcd6b4581663fe76ffcb379681ed8c935b760e86ddc",
+      "structural_validation": "passed",
+      "conversion": "completed",
+      "independent_reader": {
+        "status": "passed",
+        "reader": "OpenGR2",
+        "probe_sha256": "46523b4d525db6cd7014a6d94ec761a7c393b5d58a129321a6c9cf6007514ae3"
+      },
+      "native_game": {
+        "status": "unverified"
+      },
+      "units_per_meter": 1,
+      "meshes": [
+        {
+          "vertices": 5484,
+          "indices": 5484,
+          "vertex_crc32": 2880187980,
+          "index_crc32": 1495465552
+        }
+      ],
+      "geometry_policy": "float32 BR2 positions, normals, tangents, binormals, UVs and winding unchanged; UV third component zero; full root weights represented by rigid binding",
+      "files": {
+        "RO_Ancient_UnderConstruction.gr2": "57f2ab8998cf68a28159ac1787bd1ba930ca7474c73156a3aed11bc56bbda032",
+        "RO_Ancient_UnderConstruction.fxsxml": "a09bca5e84e0a97a4bc8c451900aad400fafea5cf5bc8f26f6743eb2777938a9",
+        "RO_Ancient_UnderConstruction_diffuse.dds": "489d3c785d8577570011b88a904fb2dddb6f81e008db000f087129ca4da10739",
+        "RO_Era_BlackSpec.dds": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+      }
+    },
+    {
+      "profile": "civ5-building-static-v1",
+      "name": "RO_Atomic",
+      "source_br2_sha256": "0589101f0cea76873adc2fcba4c2b3a8b3277a2589932c1ee076082d0948a418",
+      "structural_validation": "passed",
+      "conversion": "completed",
+      "independent_reader": {
+        "status": "passed",
+        "reader": "OpenGR2",
+        "probe_sha256": "46523b4d525db6cd7014a6d94ec761a7c393b5d58a129321a6c9cf6007514ae3"
+      },
+      "native_game": {
+        "status": "unverified"
+      },
+      "units_per_meter": 1,
+      "meshes": [
+        {
+          "vertices": 12102,
+          "indices": 12102,
+          "vertex_crc32": 4025511729,
+          "index_crc32": 947534333
+        }
+      ],
+      "geometry_policy": "float32 BR2 positions, normals, tangents, binormals, UVs and winding unchanged; UV third component zero; full root weights represented by rigid binding",
+      "files": {
+        "RO_Atomic.gr2": "6a8c16f48196a0b650537da7387d9c7524a65f318f535d219ca814a429d47e66",
+        "RO_Atomic.fxsxml": "13a3f78e00a255a41443feb4362f4c9e22083e861af3a2e51d7162959cff5785",
+        "RO_Atomic_diffuse.dds": "91049d858ffdddc5302903619e6bafbe020abd6022e69ba2bf9a08cbc209b4b1",
+        "RO_Era_BlackSpec.dds": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+      }
+    },
+    {
+      "profile": "civ5-building-static-v1",
+      "name": "RO_Atomic_Pillaged",
+      "source_br2_sha256": "57209de9d87bfd8334c85969ed874487f276044bfec1822a3933d86a9a3f0e62",
+      "structural_validation": "passed",
+      "conversion": "completed",
+      "independent_reader": {
+        "status": "passed",
+        "reader": "OpenGR2",
+        "probe_sha256": "46523b4d525db6cd7014a6d94ec761a7c393b5d58a129321a6c9cf6007514ae3"
+      },
+      "native_game": {
+        "status": "unverified"
+      },
+      "units_per_meter": 1,
+      "meshes": [
+        {
+          "vertices": 2847,
+          "indices": 2847,
+          "vertex_crc32": 2744850136,
+          "index_crc32": 2599163377
+        }
+      ],
+      "geometry_policy": "float32 BR2 positions, normals, tangents, binormals, UVs and winding unchanged; UV third component zero; full root weights represented by rigid binding",
+      "files": {
+        "RO_Atomic_Pillaged.gr2": "100f1274209070d413611f713ad3fa20e5fdd614ef84fb332dab284beee7c305",
+        "RO_Atomic_Pillaged.fxsxml": "bb3c7e15c81c851604df2f4d24a374d39a2321c1fb7e545cbbc07ac35cd0e933",
+        "RO_Atomic_Pillaged_diffuse.dds": "d9d373b8791077ea552ed5eeb92a594316df4cfcc692f97d04595116ce672083",
+        "RO_Era_BlackSpec.dds": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+      }
+    },
+    {
+      "profile": "civ5-building-static-v1",
+      "name": "RO_Atomic_UnderConstruction",
+      "source_br2_sha256": "6d81554b786c49e162f2ef254d41e24e5c8a41011f065eef50c7c25bcaedca3c",
+      "structural_validation": "passed",
+      "conversion": "completed",
+      "independent_reader": {
+        "status": "passed",
+        "reader": "OpenGR2",
+        "probe_sha256": "46523b4d525db6cd7014a6d94ec761a7c393b5d58a129321a6c9cf6007514ae3"
+      },
+      "native_game": {
+        "status": "unverified"
+      },
+      "units_per_meter": 1,
+      "meshes": [
+        {
+          "vertices": 3066,
+          "indices": 3066,
+          "vertex_crc32": 2712244102,
+          "index_crc32": 1882563067
+        }
+      ],
+      "geometry_policy": "float32 BR2 positions, normals, tangents, binormals, UVs and winding unchanged; UV third component zero; full root weights represented by rigid binding",
+      "files": {
+        "RO_Atomic_UnderConstruction.gr2": "b588ad5284b1a9b3dd923f85acb8f9c16cd03efd256885aee2021f1ef0d025c3",
+        "RO_Atomic_UnderConstruction.fxsxml": "2e96d9086768f8c1b8f0e1a0103f943d62dbc1b21e0dae8cf30ff24adf849231",
+        "RO_Atomic_UnderConstruction_diffuse.dds": "d66b9cda25721210944d730a1bb7fd06e0314730039a4c12b1f7f1ce848a9abe",
+        "RO_Era_BlackSpec.dds": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+      }
+    },
+    {
+      "profile": "civ5-building-static-v1",
+      "name": "RO_Classical",
+      "source_br2_sha256": "d40098fa6ff58106e8b76a540770207cdbb686590aa94122344dee97ddd3336e",
+      "structural_validation": "passed",
+      "conversion": "completed",
+      "independent_reader": {
+        "status": "passed",
+        "reader": "OpenGR2",
+        "probe_sha256": "46523b4d525db6cd7014a6d94ec761a7c393b5d58a129321a6c9cf6007514ae3"
+      },
+      "native_game": {
+        "status": "unverified"
+      },
+      "units_per_meter": 1,
+      "meshes": [
+        {
+          "vertices": 7284,
+          "indices": 7284,
+          "vertex_crc32": 386287764,
+          "index_crc32": 2548035174
+        }
+      ],
+      "geometry_policy": "float32 BR2 positions, normals, tangents, binormals, UVs and winding unchanged; UV third component zero; full root weights represented by rigid binding",
+      "files": {
+        "RO_Classical.gr2": "9866c1bbcb81ce274e4329ee1e2170fcc15d363b3aa270f88fe23e2744124812",
+        "RO_Classical.fxsxml": "3cac6a5b46d745bf7c6d0f20d9b55dd03aa0a16c8c3a2a752d3fff9e33729ac8",
+        "RO_Classical_diffuse.dds": "30b87dc49d02f88d87eb4b829a34d2a8fca501b7333ca7847869d9012346d754",
+        "RO_Era_BlackSpec.dds": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+      }
+    },
+    {
+      "profile": "civ5-building-static-v1",
+      "name": "RO_Classical_Pillaged",
+      "source_br2_sha256": "ce56ba0f5ccc00ad72066f1ede757a0c0038ac792a988603ad156cc7386b652f",
+      "structural_validation": "passed",
+      "conversion": "completed",
+      "independent_reader": {
+        "status": "passed",
+        "reader": "OpenGR2",
+        "probe_sha256": "46523b4d525db6cd7014a6d94ec761a7c393b5d58a129321a6c9cf6007514ae3"
+      },
+      "native_game": {
+        "status": "unverified"
+      },
+      "units_per_meter": 1,
+      "meshes": [
+        {
+          "vertices": 6204,
+          "indices": 6204,
+          "vertex_crc32": 491906137,
+          "index_crc32": 2205136493
+        }
+      ],
+      "geometry_policy": "float32 BR2 positions, normals, tangents, binormals, UVs and winding unchanged; UV third component zero; full root weights represented by rigid binding",
+      "files": {
+        "RO_Classical_Pillaged.gr2": "86659b49b2eb6a1cb6de66a6c5ed5e6a89531d24d986905697b502c836a1002b",
+        "RO_Classical_Pillaged.fxsxml": "164c096ca9dfb7199090818540c25eaa607cf7676545c4ffa56211e491ce1970",
+        "RO_Classical_Pillaged_diffuse.dds": "af143bc5c41ee2b6ea9e3fe4e01e3c1b7eeca2e01fdcbad23449b2b157b97fea",
+        "RO_Era_BlackSpec.dds": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+      }
+    },
+    {
+      "profile": "civ5-building-static-v1",
+      "name": "RO_Classical_UnderConstruction",
+      "source_br2_sha256": "3c9b719bc8f11f0b2710ccd737d7cce21f6491776986ba642cb29c02c7a730fa",
+      "structural_validation": "passed",
+      "conversion": "completed",
+      "independent_reader": {
+        "status": "passed",
+        "reader": "OpenGR2",
+        "probe_sha256": "46523b4d525db6cd7014a6d94ec761a7c393b5d58a129321a6c9cf6007514ae3"
+      },
+      "native_game": {
+        "status": "unverified"
+      },
+      "units_per_meter": 1,
+      "meshes": [
+        {
+          "vertices": 6108,
+          "indices": 6108,
+          "vertex_crc32": 75075563,
+          "index_crc32": 761226496
+        }
+      ],
+      "geometry_policy": "float32 BR2 positions, normals, tangents, binormals, UVs and winding unchanged; UV third component zero; full root weights represented by rigid binding",
+      "files": {
+        "RO_Classical_UnderConstruction.gr2": "384a8b278b9b2ae8937c9f7eedb00da288350c74acb72a47c1da33006481292f",
+        "RO_Classical_UnderConstruction.fxsxml": "b2a2bbb5beeba1940ea58a0c31a35599c7c1ee2856aed1fd95c8460b2a3ed5cb",
+        "RO_Classical_UnderConstruction_diffuse.dds": "b910d68c3bc4d7ecc52241b8798f015405e90c1d9c85c1805a11166b26c3de41",
+        "RO_Era_BlackSpec.dds": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+      }
+    },
+    {
+      "profile": "civ5-building-static-v1",
+      "name": "RO_Industrial",
+      "source_br2_sha256": "4bdf8740f86f286b614cba274d34ffb69fa532988b2418fec501ba24ee73e31e",
+      "structural_validation": "passed",
+      "conversion": "completed",
+      "independent_reader": {
+        "status": "passed",
+        "reader": "OpenGR2",
+        "probe_sha256": "46523b4d525db6cd7014a6d94ec761a7c393b5d58a129321a6c9cf6007514ae3"
+      },
+      "native_game": {
+        "status": "unverified"
+      },
+      "units_per_meter": 1,
+      "meshes": [
+        {
+          "vertices": 5520,
+          "indices": 5520,
+          "vertex_crc32": 2013529089,
+          "index_crc32": 3907404318
+        }
+      ],
+      "geometry_policy": "float32 BR2 positions, normals, tangents, binormals, UVs and winding unchanged; UV third component zero; full root weights represented by rigid binding",
+      "files": {
+        "RO_Industrial.gr2": "2faf368c75290526069a8e04a73c5a3977c0c1af926b6191a8636a0f7e5e9c2e",
+        "RO_Industrial.fxsxml": "a0ec038a66bed6d516b7bf19c58f265a4925b95779844ccd373c3eb26a9f0e8e",
+        "RO_Industrial_diffuse.dds": "eb1026d6dc69a14ee6fad4ef79b4d5578a4a06e2b917e66f86604767e66cde3f",
+        "RO_Era_BlackSpec.dds": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+      }
+    },
+    {
+      "profile": "civ5-building-static-v1",
+      "name": "RO_Industrial_Pillaged",
+      "source_br2_sha256": "1063d1fc3a5796e4be1fcc49e1bda99e9ae33f6c66e5b6bfca0767d14502e969",
+      "structural_validation": "passed",
+      "conversion": "completed",
+      "independent_reader": {
+        "status": "passed",
+        "reader": "OpenGR2",
+        "probe_sha256": "46523b4d525db6cd7014a6d94ec761a7c393b5d58a129321a6c9cf6007514ae3"
+      },
+      "native_game": {
+        "status": "unverified"
+      },
+      "units_per_meter": 1,
+      "meshes": [
+        {
+          "vertices": 4008,
+          "indices": 4008,
+          "vertex_crc32": 3416679154,
+          "index_crc32": 2328738060
+        }
+      ],
+      "geometry_policy": "float32 BR2 positions, normals, tangents, binormals, UVs and winding unchanged; UV third component zero; full root weights represented by rigid binding",
+      "files": {
+        "RO_Industrial_Pillaged.gr2": "d5cf95e69ccad18864162083bb92e5aa60fc1307dc24e5f3065363620fa5f6dc",
+        "RO_Industrial_Pillaged.fxsxml": "cb247f761233546d31c6b4df07ea00dc85999edc1dad3b9139730e002c11d3e9",
+        "RO_Industrial_Pillaged_diffuse.dds": "8239a6c1b60d3071346ed22ec531691b4f472947815916faf84160c4955c5673",
+        "RO_Era_BlackSpec.dds": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+      }
+    },
+    {
+      "profile": "civ5-building-static-v1",
+      "name": "RO_Industrial_UnderConstruction",
+      "source_br2_sha256": "76fdec2064e03dc8a7bfb9ebbf29b13a48bf31baeeebb3f2858c3095cb7a95f9",
+      "structural_validation": "passed",
+      "conversion": "completed",
+      "independent_reader": {
+        "status": "passed",
+        "reader": "OpenGR2",
+        "probe_sha256": "46523b4d525db6cd7014a6d94ec761a7c393b5d58a129321a6c9cf6007514ae3"
+      },
+      "native_game": {
+        "status": "unverified"
+      },
+      "units_per_meter": 1,
+      "meshes": [
+        {
+          "vertices": 3972,
+          "indices": 3972,
+          "vertex_crc32": 3708377647,
+          "index_crc32": 597691624
+        }
+      ],
+      "geometry_policy": "float32 BR2 positions, normals, tangents, binormals, UVs and winding unchanged; UV third component zero; full root weights represented by rigid binding",
+      "files": {
+        "RO_Industrial_UnderConstruction.gr2": "789de7feda824a3f730010998983603f53c27f7052e0b78790e6cec228aacc74",
+        "RO_Industrial_UnderConstruction.fxsxml": "81c8c66695a1477e5d34f198856b51812a93583f5f7d21a4ead3d297031a31ff",
+        "RO_Industrial_UnderConstruction_diffuse.dds": "87fb384508866ba33ee169d1e4acbe0105685efb948fad0bd04d97568ae376b7",
+        "RO_Era_BlackSpec.dds": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+      }
+    },
+    {
+      "profile": "civ5-building-static-v1",
+      "name": "RO_Information",
+      "source_br2_sha256": "5dfcd5185a3c5a4f9e3b7d51c4f6c6c5c24528456c4575c3a57a6a5292f87c53",
+      "structural_validation": "passed",
+      "conversion": "completed",
+      "independent_reader": {
+        "status": "passed",
+        "reader": "OpenGR2",
+        "probe_sha256": "46523b4d525db6cd7014a6d94ec761a7c393b5d58a129321a6c9cf6007514ae3"
+      },
+      "native_game": {
+        "status": "unverified"
+      },
+      "units_per_meter": 1,
+      "meshes": [
+        {
+          "vertices": 5616,
+          "indices": 5616,
+          "vertex_crc32": 987464276,
+          "index_crc32": 1740526074
+        }
+      ],
+      "geometry_policy": "float32 BR2 positions, normals, tangents, binormals, UVs and winding unchanged; UV third component zero; full root weights represented by rigid binding",
+      "files": {
+        "RO_Information.gr2": "9495eef012ae4dfa0824abafcaf64627aa1a6f8d2e5b81bac7fe151a85e45fe4",
+        "RO_Information.fxsxml": "759fd82c5b42df54469b36aac491841bd4061efabc4781d4299d3b9ee148a2b0",
+        "RO_Information_diffuse.dds": "dc573d1ea43dcc9cf8f2f93e304d4f802b8724894e21348f5a258d0a33a5e1ab",
+        "RO_Era_BlackSpec.dds": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+      }
+    },
+    {
+      "profile": "civ5-building-static-v1",
+      "name": "RO_Information_Pillaged",
+      "source_br2_sha256": "639c5a002032786608f027c81546a13cc0bf98bf54c05a94349402b5ee973f61",
+      "structural_validation": "passed",
+      "conversion": "completed",
+      "independent_reader": {
+        "status": "passed",
+        "reader": "OpenGR2",
+        "probe_sha256": "46523b4d525db6cd7014a6d94ec761a7c393b5d58a129321a6c9cf6007514ae3"
+      },
+      "native_game": {
+        "status": "unverified"
+      },
+      "units_per_meter": 1,
+      "meshes": [
+        {
+          "vertices": 3261,
+          "indices": 3261,
+          "vertex_crc32": 3880901038,
+          "index_crc32": 1079186261
+        }
+      ],
+      "geometry_policy": "float32 BR2 positions, normals, tangents, binormals, UVs and winding unchanged; UV third component zero; full root weights represented by rigid binding",
+      "files": {
+        "RO_Information_Pillaged.gr2": "6bb1c007a1ae0ec8776ef1220487121bb44b9650718b1178865109e7ee4007c6",
+        "RO_Information_Pillaged.fxsxml": "cbe86303a95acb80154520ec760f229f34ee234ba8ec060c93ec71316bde0a31",
+        "RO_Information_Pillaged_diffuse.dds": "5965e87330534b0f80905b5a107395906858c9819c3baa697921d0d1454207f8",
+        "RO_Era_BlackSpec.dds": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+      }
+    },
+    {
+      "profile": "civ5-building-static-v1",
+      "name": "RO_Information_UnderConstruction",
+      "source_br2_sha256": "d4d7bef498d23cd8f50ebb79dd065cf3af5766d2031cf77aa3728b51a39d4977",
+      "structural_validation": "passed",
+      "conversion": "completed",
+      "independent_reader": {
+        "status": "passed",
+        "reader": "OpenGR2",
+        "probe_sha256": "46523b4d525db6cd7014a6d94ec761a7c393b5d58a129321a6c9cf6007514ae3"
+      },
+      "native_game": {
+        "status": "unverified"
+      },
+      "units_per_meter": 1,
+      "meshes": [
+        {
+          "vertices": 3480,
+          "indices": 3480,
+          "vertex_crc32": 506948888,
+          "index_crc32": 4107284531
+        }
+      ],
+      "geometry_policy": "float32 BR2 positions, normals, tangents, binormals, UVs and winding unchanged; UV third component zero; full root weights represented by rigid binding",
+      "files": {
+        "RO_Information_UnderConstruction.gr2": "6092ffe863a62aaf08352f2d7f8e3e01171e8e7a8926f22e05acd56f789d652e",
+        "RO_Information_UnderConstruction.fxsxml": "cc8bdccce7b999e9b21ad535aedadacde97b51f0ae236d02974e4ced2c96d42b",
+        "RO_Information_UnderConstruction_diffuse.dds": "4652a12479acb97598cbe31dc9895ff4ff3a83a6eedf8aa3dfa2751c68338c82",
+        "RO_Era_BlackSpec.dds": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+      }
+    },
+    {
+      "profile": "civ5-building-static-v1",
+      "name": "RO_Medieval",
+      "source_br2_sha256": "084ffaa9421a491bd3447411983890db8be63d31c7d40eaf29eab1a2e226807a",
+      "structural_validation": "passed",
+      "conversion": "completed",
+      "independent_reader": {
+        "status": "passed",
+        "reader": "OpenGR2",
+        "probe_sha256": "46523b4d525db6cd7014a6d94ec761a7c393b5d58a129321a6c9cf6007514ae3"
+      },
+      "native_game": {
+        "status": "unverified"
+      },
+      "units_per_meter": 1,
+      "meshes": [
+        {
+          "vertices": 9504,
+          "indices": 9504,
+          "vertex_crc32": 440895325,
+          "index_crc32": 2098344515
+        }
+      ],
+      "geometry_policy": "float32 BR2 positions, normals, tangents, binormals, UVs and winding unchanged; UV third component zero; full root weights represented by rigid binding",
+      "files": {
+        "RO_Medieval.gr2": "5ad4ba1e4b5b29c28f6babe9f7840523e15b1125ecb3f1392eff11ee732c1644",
+        "RO_Medieval.fxsxml": "0464048517d73f2b13d9bfd9788249f168a49739a968520c5d5ef4ef788fbfba",
+        "RO_Medieval_diffuse.dds": "cc2b007e7e72bf6a0a24fb1fc0e47fb381fc3fd8cfadc06dbbc2ec5224bc987a",
+        "RO_Era_BlackSpec.dds": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+      }
+    },
+    {
+      "profile": "civ5-building-static-v1",
+      "name": "RO_Medieval_Pillaged",
+      "source_br2_sha256": "07049fec9b81b554f0a86f2b59898407c3e3bcaa43addc1a412f7d644cf0f3e1",
+      "structural_validation": "passed",
+      "conversion": "completed",
+      "independent_reader": {
+        "status": "passed",
+        "reader": "OpenGR2",
+        "probe_sha256": "46523b4d525db6cd7014a6d94ec761a7c393b5d58a129321a6c9cf6007514ae3"
+      },
+      "native_game": {
+        "status": "unverified"
+      },
+      "units_per_meter": 1,
+      "meshes": [
+        {
+          "vertices": 8292,
+          "indices": 8292,
+          "vertex_crc32": 2308807010,
+          "index_crc32": 2587511676
+        }
+      ],
+      "geometry_policy": "float32 BR2 positions, normals, tangents, binormals, UVs and winding unchanged; UV third component zero; full root weights represented by rigid binding",
+      "files": {
+        "RO_Medieval_Pillaged.gr2": "168144980d8726b445f559313c84cfdab5ba0b6d61af4f1b6bce01e322849219",
+        "RO_Medieval_Pillaged.fxsxml": "ba9af30dc92ba2bf0534df84c87838ec1af969f89b229568476cc0b9a3fa492e",
+        "RO_Medieval_Pillaged_diffuse.dds": "bdd83b78c2c85151facd6a0ce844e488be6d9722fc6a3f8680716395738dbf2e",
+        "RO_Era_BlackSpec.dds": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+      }
+    },
+    {
+      "profile": "civ5-building-static-v1",
+      "name": "RO_Medieval_UnderConstruction",
+      "source_br2_sha256": "7a310138ad4319c208eed810ee8fc10f701bdc1c021e8b85a8d784a7acc55fae",
+      "structural_validation": "passed",
+      "conversion": "completed",
+      "independent_reader": {
+        "status": "passed",
+        "reader": "OpenGR2",
+        "probe_sha256": "46523b4d525db6cd7014a6d94ec761a7c393b5d58a129321a6c9cf6007514ae3"
+      },
+      "native_game": {
+        "status": "unverified"
+      },
+      "units_per_meter": 1,
+      "meshes": [
+        {
+          "vertices": 4368,
+          "indices": 4368,
+          "vertex_crc32": 1526404555,
+          "index_crc32": 781917006
+        }
+      ],
+      "geometry_policy": "float32 BR2 positions, normals, tangents, binormals, UVs and winding unchanged; UV third component zero; full root weights represented by rigid binding",
+      "files": {
+        "RO_Medieval_UnderConstruction.gr2": "e4e3aaaa9fdae356df10c031e9ff6bc637002b0025cab464213bef97e7e7e5b4",
+        "RO_Medieval_UnderConstruction.fxsxml": "688ac023813540d4faa1b6c7531baaa0c6c37970edaa755e934282a06e8a3f0c",
+        "RO_Medieval_UnderConstruction_diffuse.dds": "0b147d09c56faef768a751a581f5cda3deb0cb18343f00392c181140d57cf58a",
+        "RO_Era_BlackSpec.dds": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+      }
+    },
+    {
+      "profile": "civ5-building-static-v1",
+      "name": "RO_Modern",
+      "source_br2_sha256": "786686d883517d097de77947693f15a8370cea5cab0ad4dffc99fb9a0045ce4e",
+      "structural_validation": "passed",
+      "conversion": "completed",
+      "independent_reader": {
+        "status": "passed",
+        "reader": "OpenGR2",
+        "probe_sha256": "46523b4d525db6cd7014a6d94ec761a7c393b5d58a129321a6c9cf6007514ae3"
+      },
+      "native_game": {
+        "status": "unverified"
+      },
+      "units_per_meter": 1,
+      "meshes": [
+        {
+          "vertices": 6894,
+          "indices": 6894,
+          "vertex_crc32": 1877569592,
+          "index_crc32": 3426543745
+        }
+      ],
+      "geometry_policy": "float32 BR2 positions, normals, tangents, binormals, UVs and winding unchanged; UV third component zero; full root weights represented by rigid binding",
+      "files": {
+        "RO_Modern.gr2": "b2c9d2aa102e50ce746a2e20eb7314780d3da799625cc11ea40e63615e64ddb7",
+        "RO_Modern.fxsxml": "3fc30b3bceb6d56a5d500778724e7fdab71312ed44ddfbe13e915fb19009cb5a",
+        "RO_Modern_diffuse.dds": "336ee53fd1598ad460f4a50efe49915fdd80edc3b3331fc51135a9904fa64b92",
+        "RO_Era_BlackSpec.dds": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+      }
+    },
+    {
+      "profile": "civ5-building-static-v1",
+      "name": "RO_Modern_Pillaged",
+      "source_br2_sha256": "c6b305880823b5a2f8b5edb2ce67f7d562208136a97b0f8fb5412db6b4396c22",
+      "structural_validation": "passed",
+      "conversion": "completed",
+      "independent_reader": {
+        "status": "passed",
+        "reader": "OpenGR2",
+        "probe_sha256": "46523b4d525db6cd7014a6d94ec761a7c393b5d58a129321a6c9cf6007514ae3"
+      },
+      "native_game": {
+        "status": "unverified"
+      },
+      "units_per_meter": 1,
+      "meshes": [
+        {
+          "vertices": 3138,
+          "indices": 3138,
+          "vertex_crc32": 721336953,
+          "index_crc32": 1683922822
+        }
+      ],
+      "geometry_policy": "float32 BR2 positions, normals, tangents, binormals, UVs and winding unchanged; UV third component zero; full root weights represented by rigid binding",
+      "files": {
+        "RO_Modern_Pillaged.gr2": "842c5f4406386f1cdd3e8a275971cb725b816885a8e95e1dd60693b6a808e9f0",
+        "RO_Modern_Pillaged.fxsxml": "28ca4c5f0d0c9eae149b24d9991abfb37a919b1aecad71ae8d82e82cb13b56bf",
+        "RO_Modern_Pillaged_diffuse.dds": "57033464ef995199b0dda02964c9b1508488ce60c038e46ddac8147b6f68e82e",
+        "RO_Era_BlackSpec.dds": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+      }
+    },
+    {
+      "profile": "civ5-building-static-v1",
+      "name": "RO_Modern_UnderConstruction",
+      "source_br2_sha256": "b46cdd0d8b2e627d19dc67e87e376253c6a5d7568a0e6a62732c18021edf3983",
+      "structural_validation": "passed",
+      "conversion": "completed",
+      "independent_reader": {
+        "status": "passed",
+        "reader": "OpenGR2",
+        "probe_sha256": "46523b4d525db6cd7014a6d94ec761a7c393b5d58a129321a6c9cf6007514ae3"
+      },
+      "native_game": {
+        "status": "unverified"
+      },
+      "units_per_meter": 1,
+      "meshes": [
+        {
+          "vertices": 3066,
+          "indices": 3066,
+          "vertex_crc32": 1088385758,
+          "index_crc32": 1882563067
+        }
+      ],
+      "geometry_policy": "float32 BR2 positions, normals, tangents, binormals, UVs and winding unchanged; UV third component zero; full root weights represented by rigid binding",
+      "files": {
+        "RO_Modern_UnderConstruction.gr2": "ace8b859212e69403e18629292f70e2146311e7aeeb1318b825cfa31a783f9fc",
+        "RO_Modern_UnderConstruction.fxsxml": "f18708f199f9e252be447d884e03dbb77c42fa2604832ed8ce8e469cca535281",
+        "RO_Modern_UnderConstruction_diffuse.dds": "95834941ca6136eb686c355a12d4b44fe49e9f0f484b8344bd403642f8465739",
+        "RO_Era_BlackSpec.dds": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+      }
+    },
+    {
+      "profile": "civ5-building-static-v1",
+      "name": "RO_Renaissance",
+      "source_br2_sha256": "eaf5de5631e20a1a3ad08d385adf301df03b1ad6d78a353b08ff109eed0501d8",
+      "structural_validation": "passed",
+      "conversion": "completed",
+      "independent_reader": {
+        "status": "passed",
+        "reader": "OpenGR2",
+        "probe_sha256": "46523b4d525db6cd7014a6d94ec761a7c393b5d58a129321a6c9cf6007514ae3"
+      },
+      "native_game": {
+        "status": "unverified"
+      },
+      "units_per_meter": 1,
+      "meshes": [
+        {
+          "vertices": 6522,
+          "indices": 6522,
+          "vertex_crc32": 3192505700,
+          "index_crc32": 3062292563
+        }
+      ],
+      "geometry_policy": "float32 BR2 positions, normals, tangents, binormals, UVs and winding unchanged; UV third component zero; full root weights represented by rigid binding",
+      "files": {
+        "RO_Renaissance.gr2": "0d8d278a7a8681511ba414a7ba0ad31c0770a8e494ea9cba5ce9ca9febe1de40",
+        "RO_Renaissance.fxsxml": "d0769678ee98446d3684c4612cc869724fc5a4462264a147a8e260ceafc73aa4",
+        "RO_Renaissance_diffuse.dds": "3468fa3c96f670621f8de567e9557591b4c06cf5e82e9e325cc6e6b6d9e2478c",
+        "RO_Era_BlackSpec.dds": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+      }
+    },
+    {
+      "profile": "civ5-building-static-v1",
+      "name": "RO_Renaissance_Pillaged",
+      "source_br2_sha256": "7c045174ec2f01002b292ed6f7349e05065848590a604364f05428ed1d6a03dc",
+      "structural_validation": "passed",
+      "conversion": "completed",
+      "independent_reader": {
+        "status": "passed",
+        "reader": "OpenGR2",
+        "probe_sha256": "46523b4d525db6cd7014a6d94ec761a7c393b5d58a129321a6c9cf6007514ae3"
+      },
+      "native_game": {
+        "status": "unverified"
+      },
+      "units_per_meter": 1,
+      "meshes": [
+        {
+          "vertices": 5535,
+          "indices": 5535,
+          "vertex_crc32": 319504980,
+          "index_crc32": 1365094863
+        }
+      ],
+      "geometry_policy": "float32 BR2 positions, normals, tangents, binormals, UVs and winding unchanged; UV third component zero; full root weights represented by rigid binding",
+      "files": {
+        "RO_Renaissance_Pillaged.gr2": "5bb292890586bddaaa696f626a6243eb2b95d116058de4f032b2f87c82e9f483",
+        "RO_Renaissance_Pillaged.fxsxml": "be428eaadd9969322bde83ce6853777861b3b0761ea2292edfa2f301fe9793ee",
+        "RO_Renaissance_Pillaged_diffuse.dds": "f5740c96025bf5b3b6ad9a5c60813291283b0e0c47f28431acc6a0b77db1fa02",
+        "RO_Era_BlackSpec.dds": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+      }
+    },
+    {
+      "profile": "civ5-building-static-v1",
+      "name": "RO_Renaissance_UnderConstruction",
+      "source_br2_sha256": "5f00e5b6530fcfc5cc93c21280ce31ef676dcf1a61e4b4edeb5b88c12b57043d",
+      "structural_validation": "passed",
+      "conversion": "completed",
+      "independent_reader": {
+        "status": "passed",
+        "reader": "OpenGR2",
+        "probe_sha256": "46523b4d525db6cd7014a6d94ec761a7c393b5d58a129321a6c9cf6007514ae3"
+      },
+      "native_game": {
+        "status": "unverified"
+      },
+      "units_per_meter": 1,
+      "meshes": [
+        {
+          "vertices": 5052,
+          "indices": 5052,
+          "vertex_crc32": 1649508365,
+          "index_crc32": 1126361085
+        }
+      ],
+      "geometry_policy": "float32 BR2 positions, normals, tangents, binormals, UVs and winding unchanged; UV third component zero; full root weights represented by rigid binding",
+      "files": {
+        "RO_Renaissance_UnderConstruction.gr2": "f71d26f3af937dbbbc09b89127a9c91007a7932e91af55298224e671680e36bd",
+        "RO_Renaissance_UnderConstruction.fxsxml": "96aac80000a028d3dfc5b957f7a6e76fcb2e05a17adbc86718a555bd7bff204b",
+        "RO_Renaissance_UnderConstruction_diffuse.dds": "bdc22b202b7b03e1ab009df4af532a7bbcc4c2e30bda5a567689cf61f547f0f1",
+        "RO_Era_BlackSpec.dds": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+      }
+    }
+  ],
+  "native_review": "native-art-review.json; converter status above is intentionally preserved as structural evidence only"
+}

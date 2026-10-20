@@ -1,0 +1,621 @@
+{
+  "status": "scoped-native-art-integration-passed",
+  "converted_models": 24,
+  "reviewed_native_models": 24,
+  "production_integration": "passed-scoped-native-probe",
+  "scale": 6,
+  "reviews": [
+    {
+      "era": "Ancient",
+      "review": "passed-flat-scene",
+      "scale": 6,
+      "states": [
+        "Constructed",
+        "UnderConstruction",
+        "Pillaged"
+      ],
+      "screenshot": "progress-90.png",
+      "screenshot_sha256": "63f6d092216e49466a81675abcee70d92d71ff157ebac056c3e58dba09032634",
+      "observations": "Distinct textured intact tower/palisade, construction scaffold and dark broken ruin rendered at expected coordinates. Size comparable to Fort control, with stable geometry and ground contact on grass. Warrior formation occupies the outpost tile; figures overlap some architecture as a normal multi-figure formation. No obvious missing textures or inflated specular response.",
+      "limits": [
+        "fixed camera and grass terrain only",
+        "no production claimant-era transition exercised",
+        "not a proof of every-face UV orientation or shader semantics"
+      ],
+      "assets": {
+        "RO_Ancient": {
+          "RO_Ancient.gr2": "30e871bfaaf4c5856681dbba32205ed96db8048bb270b58846ff5e20896ff509",
+          "RO_Ancient.fxsxml": "b312ea8c18538899a6656cd953ad7aea65d8c1e95c2b5fb3a700ba783aa98dee",
+          "RO_Ancient_diffuse.dds": "3dc0eb5eef9ddf01268b6d01be12f5aff18d3e0a11b7067009e893d7a8657d56",
+          "RO_Era_BlackSpec.dds": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+        },
+        "RO_Ancient_UnderConstruction": {
+          "RO_Ancient_UnderConstruction.gr2": "57f2ab8998cf68a28159ac1787bd1ba930ca7474c73156a3aed11bc56bbda032",
+          "RO_Ancient_UnderConstruction.fxsxml": "a09bca5e84e0a97a4bc8c451900aad400fafea5cf5bc8f26f6743eb2777938a9",
+          "RO_Ancient_UnderConstruction_diffuse.dds": "489d3c785d8577570011b88a904fb2dddb6f81e008db000f087129ca4da10739",
+          "RO_Era_BlackSpec.dds": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+        },
+        "RO_Ancient_Pillaged": {
+          "RO_Ancient_Pillaged.gr2": "b6009a766ca1b4756b2079f9806ed66322121e85689ac5d1d7155d391cc21da9",
+          "RO_Ancient_Pillaged.fxsxml": "5e55599852c7125621e52dcb3d77025e6caa72d3113e3135a638fbdc9f34a49a",
+          "RO_Ancient_Pillaged_diffuse.dds": "be69fa4922038a0f520be966ebc57c4b525168b8f8831b29cb3fdcdd4b28dec0",
+          "RO_Era_BlackSpec.dds": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+        }
+      },
+      "binaries": {
+        "Contents/MacOS/Civilization V": "d56d6bfbc0ef517fcb7cbaff46c42d1bdfab809c084684045761bd9d85807ee9",
+        "Contents/MacOS/libCvGameCoreDLL_Expansion2_DLL.dylib": "0da6a5ffc283c3f147b20a7ec426e4ed85a6838ab891faf61b50af4e25c4a09c"
+      },
+      "runner_status": "timeout",
+      "restored": true,
+      "evidence_directory": "output/gr2-research/outpost-native-Ancient-02"
+    },
+    {
+      "era": "Classical",
+      "review": "passed-flat-scene",
+      "scale": 6,
+      "states": [
+        "Constructed",
+        "UnderConstruction",
+        "Pillaged"
+      ],
+      "screenshot": "progress-90.png",
+      "screenshot_sha256": "93aedd56484b21266715108999c0381fb46364c04f1c84bda1b425c55dc5fa98",
+      "observations": "Stone gate towers and terracotta roofs render clearly. Construction has exposed walls/scaffolding; pillage removes roofs and breaks masonry. Size comparable to the stock Fort, with no obvious missing material or displaced geometry on flat grass.",
+      "limits": [
+        "fixed camera and grass terrain only",
+        "native unit formation can overlap perimeter and roofs",
+        "no production claimant-era transition exercised",
+        "not a proof of every-face UV orientation or shader semantics"
+      ],
+      "assets": {
+        "RO_Classical": {
+          "RO_Classical.gr2": "9866c1bbcb81ce274e4329ee1e2170fcc15d363b3aa270f88fe23e2744124812",
+          "RO_Classical.fxsxml": "3cac6a5b46d745bf7c6d0f20d9b55dd03aa0a16c8c3a2a752d3fff9e33729ac8",
+          "RO_Classical_diffuse.dds": "30b87dc49d02f88d87eb4b829a34d2a8fca501b7333ca7847869d9012346d754",
+          "RO_Era_BlackSpec.dds": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+        },
+        "RO_Classical_UnderConstruction": {
+          "RO_Classical_UnderConstruction.gr2": "384a8b278b9b2ae8937c9f7eedb00da288350c74acb72a47c1da33006481292f",
+          "RO_Classical_UnderConstruction.fxsxml": "b2a2bbb5beeba1940ea58a0c31a35599c7c1ee2856aed1fd95c8460b2a3ed5cb",
+          "RO_Classical_UnderConstruction_diffuse.dds": "b910d68c3bc4d7ecc52241b8798f015405e90c1d9c85c1805a11166b26c3de41",
+          "RO_Era_BlackSpec.dds": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+        },
+        "RO_Classical_Pillaged": {
+          "RO_Classical_Pillaged.gr2": "86659b49b2eb6a1cb6de66a6c5ed5e6a89531d24d986905697b502c836a1002b",
+          "RO_Classical_Pillaged.fxsxml": "164c096ca9dfb7199090818540c25eaa607cf7676545c4ffa56211e491ce1970",
+          "RO_Classical_Pillaged_diffuse.dds": "af143bc5c41ee2b6ea9e3fe4e01e3c1b7eeca2e01fdcbad23449b2b157b97fea",
+          "RO_Era_BlackSpec.dds": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+        }
+      },
+      "binaries": {
+        "Contents/MacOS/Civilization V": "d56d6bfbc0ef517fcb7cbaff46c42d1bdfab809c084684045761bd9d85807ee9",
+        "Contents/MacOS/libCvGameCoreDLL_Expansion2_DLL.dylib": "0da6a5ffc283c3f147b20a7ec426e4ed85a6838ab891faf61b50af4e25c4a09c"
+      },
+      "runner_status": "timeout",
+      "restored": true,
+      "evidence_directory": "output/gr2-research/outpost-native-Classical-01"
+    },
+    {
+      "era": "Medieval",
+      "review": "passed-flat-scene",
+      "scale": 6,
+      "states": [
+        "Constructed",
+        "UnderConstruction",
+        "Pillaged"
+      ],
+      "screenshot": "progress-90.png",
+      "screenshot_sha256": "c41ae818ba04bea38efe5d90e31df1fd8f9de26a9ab6a874c96b9e49ad998196",
+      "observations": "Slate roofs, gatehouse, courtyard and crenellations remain distinct at game scale. Construction and broken-wall states render separately. No obvious missing texture, excessive gloss or detached geometry on flat grass.",
+      "limits": [
+        "fixed camera and grass terrain only",
+        "native unit formation can overlap perimeter and roofs",
+        "no production claimant-era transition exercised",
+        "not a proof of every-face UV orientation or shader semantics"
+      ],
+      "assets": {
+        "RO_Medieval": {
+          "RO_Medieval.gr2": "5ad4ba1e4b5b29c28f6babe9f7840523e15b1125ecb3f1392eff11ee732c1644",
+          "RO_Medieval.fxsxml": "0464048517d73f2b13d9bfd9788249f168a49739a968520c5d5ef4ef788fbfba",
+          "RO_Medieval_diffuse.dds": "cc2b007e7e72bf6a0a24fb1fc0e47fb381fc3fd8cfadc06dbbc2ec5224bc987a",
+          "RO_Era_BlackSpec.dds": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+        },
+        "RO_Medieval_UnderConstruction": {
+          "RO_Medieval_UnderConstruction.gr2": "e4e3aaaa9fdae356df10c031e9ff6bc637002b0025cab464213bef97e7e7e5b4",
+          "RO_Medieval_UnderConstruction.fxsxml": "688ac023813540d4faa1b6c7531baaa0c6c37970edaa755e934282a06e8a3f0c",
+          "RO_Medieval_UnderConstruction_diffuse.dds": "0b147d09c56faef768a751a581f5cda3deb0cb18343f00392c181140d57cf58a",
+          "RO_Era_BlackSpec.dds": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+        },
+        "RO_Medieval_Pillaged": {
+          "RO_Medieval_Pillaged.gr2": "168144980d8726b445f559313c84cfdab5ba0b6d61af4f1b6bce01e322849219",
+          "RO_Medieval_Pillaged.fxsxml": "ba9af30dc92ba2bf0534df84c87838ec1af969f89b229568476cc0b9a3fa492e",
+          "RO_Medieval_Pillaged_diffuse.dds": "bdd83b78c2c85151facd6a0ce844e488be6d9722fc6a3f8680716395738dbf2e",
+          "RO_Era_BlackSpec.dds": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+        }
+      },
+      "binaries": {
+        "Contents/MacOS/Civilization V": "d56d6bfbc0ef517fcb7cbaff46c42d1bdfab809c084684045761bd9d85807ee9",
+        "Contents/MacOS/libCvGameCoreDLL_Expansion2_DLL.dylib": "0da6a5ffc283c3f147b20a7ec426e4ed85a6838ab891faf61b50af4e25c4a09c"
+      },
+      "runner_status": "timeout",
+      "restored": true,
+      "evidence_directory": "output/gr2-research/outpost-native-Medieval-01"
+    },
+    {
+      "era": "Renaissance",
+      "review": "passed-flat-scene",
+      "scale": 6,
+      "states": [
+        "Constructed",
+        "UnderConstruction",
+        "Pillaged"
+      ],
+      "screenshot": "progress-90.png",
+      "screenshot_sha256": "cab002bedc699c614ee3d01002a12c3340375d63b52f4389f03f8449aaa9dc16",
+      "observations": "Bastioned footprint and round watchtower with green roof render clearly; scaffold and broken tower states differ. Normal map-scale footprint remains comparable to Fort. No obvious missing material or geometry explosion.",
+      "limits": [
+        "fixed camera and grass terrain only",
+        "native unit formation can overlap perimeter and roofs",
+        "no production claimant-era transition exercised",
+        "not a proof of every-face UV orientation or shader semantics"
+      ],
+      "assets": {
+        "RO_Renaissance": {
+          "RO_Renaissance.gr2": "0d8d278a7a8681511ba414a7ba0ad31c0770a8e494ea9cba5ce9ca9febe1de40",
+          "RO_Renaissance.fxsxml": "d0769678ee98446d3684c4612cc869724fc5a4462264a147a8e260ceafc73aa4",
+          "RO_Renaissance_diffuse.dds": "3468fa3c96f670621f8de567e9557591b4c06cf5e82e9e325cc6e6b6d9e2478c",
+          "RO_Era_BlackSpec.dds": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+        },
+        "RO_Renaissance_UnderConstruction": {
+          "RO_Renaissance_UnderConstruction.gr2": "f71d26f3af937dbbbc09b89127a9c91007a7932e91af55298224e671680e36bd",
+          "RO_Renaissance_UnderConstruction.fxsxml": "96aac80000a028d3dfc5b957f7a6e76fcb2e05a17adbc86718a555bd7bff204b",
+          "RO_Renaissance_UnderConstruction_diffuse.dds": "bdc22b202b7b03e1ab009df4af532a7bbcc4c2e30bda5a567689cf61f547f0f1",
+          "RO_Era_BlackSpec.dds": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+        },
+        "RO_Renaissance_Pillaged": {
+          "RO_Renaissance_Pillaged.gr2": "5bb292890586bddaaa696f626a6243eb2b95d116058de4f032b2f87c82e9f483",
+          "RO_Renaissance_Pillaged.fxsxml": "be428eaadd9969322bde83ce6853777861b3b0761ea2292edfa2f301fe9793ee",
+          "RO_Renaissance_Pillaged_diffuse.dds": "f5740c96025bf5b3b6ad9a5c60813291283b0e0c47f28431acc6a0b77db1fa02",
+          "RO_Era_BlackSpec.dds": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+        }
+      },
+      "binaries": {
+        "Contents/MacOS/Civilization V": "d56d6bfbc0ef517fcb7cbaff46c42d1bdfab809c084684045761bd9d85807ee9",
+        "Contents/MacOS/libCvGameCoreDLL_Expansion2_DLL.dylib": "0da6a5ffc283c3f147b20a7ec426e4ed85a6838ab891faf61b50af4e25c4a09c"
+      },
+      "runner_status": "timeout",
+      "restored": true,
+      "evidence_directory": "output/gr2-research/outpost-native-Renaissance-01"
+    },
+    {
+      "era": "Industrial",
+      "review": "passed-flat-scene",
+      "scale": 6,
+      "states": [
+        "Constructed",
+        "UnderConstruction",
+        "Pillaged"
+      ],
+      "screenshot": "progress-90.png",
+      "screenshot_sha256": "30a327a787b717763b501f69da333c6a9d8fc0e4425e4c2c4e55ea4294d0142b",
+      "observations": "Brick cylindrical blockhouses and metal roofs render distinctly from the earlier stone eras. Construction retains exposed brick and scaffolding, and pillage shows a low broken enclosure. Flat-ground contact is stable.",
+      "limits": [
+        "fixed camera and grass terrain only",
+        "native unit formation can overlap perimeter and roofs",
+        "no production claimant-era transition exercised",
+        "not a proof of every-face UV orientation or shader semantics"
+      ],
+      "assets": {
+        "RO_Industrial": {
+          "RO_Industrial.gr2": "2faf368c75290526069a8e04a73c5a3977c0c1af926b6191a8636a0f7e5e9c2e",
+          "RO_Industrial.fxsxml": "a0ec038a66bed6d516b7bf19c58f265a4925b95779844ccd373c3eb26a9f0e8e",
+          "RO_Industrial_diffuse.dds": "eb1026d6dc69a14ee6fad4ef79b4d5578a4a06e2b917e66f86604767e66cde3f",
+          "RO_Era_BlackSpec.dds": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+        },
+        "RO_Industrial_UnderConstruction": {
+          "RO_Industrial_UnderConstruction.gr2": "789de7feda824a3f730010998983603f53c27f7052e0b78790e6cec228aacc74",
+          "RO_Industrial_UnderConstruction.fxsxml": "81c8c66695a1477e5d34f198856b51812a93583f5f7d21a4ead3d297031a31ff",
+          "RO_Industrial_UnderConstruction_diffuse.dds": "87fb384508866ba33ee169d1e4acbe0105685efb948fad0bd04d97568ae376b7",
+          "RO_Era_BlackSpec.dds": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+        },
+        "RO_Industrial_Pillaged": {
+          "RO_Industrial_Pillaged.gr2": "d5cf95e69ccad18864162083bb92e5aa60fc1307dc24e5f3065363620fa5f6dc",
+          "RO_Industrial_Pillaged.fxsxml": "cb247f761233546d31c6b4df07ea00dc85999edc1dad3b9139730e002c11d3e9",
+          "RO_Industrial_Pillaged_diffuse.dds": "8239a6c1b60d3071346ed22ec531691b4f472947815916faf84160c4955c5673",
+          "RO_Era_BlackSpec.dds": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+        }
+      },
+      "binaries": {
+        "Contents/MacOS/Civilization V": "d56d6bfbc0ef517fcb7cbaff46c42d1bdfab809c084684045761bd9d85807ee9",
+        "Contents/MacOS/libCvGameCoreDLL_Expansion2_DLL.dylib": "0da6a5ffc283c3f147b20a7ec426e4ed85a6838ab891faf61b50af4e25c4a09c"
+      },
+      "runner_status": "timeout",
+      "restored": true,
+      "evidence_directory": "output/gr2-research/outpost-native-Industrial-01"
+    },
+    {
+      "era": "Modern",
+      "review": "passed-flat-scene",
+      "scale": 6,
+      "states": [
+        "Constructed",
+        "UnderConstruction",
+        "Pillaged"
+      ],
+      "screenshot": "progress-90.png",
+      "screenshot_sha256": "16aabd79e4d7dca782803fd7928ac34a969d3ed32a254d0d894d8ce55a68c1d4",
+      "observations": "Concrete radio post, antenna, hut and asymmetric perimeter render with their authored textures. Construction and ruin states omit the finished roof/mast details as intended. No obvious missing material or displaced geometry.",
+      "limits": [
+        "fixed camera and grass terrain only",
+        "native unit formation can overlap perimeter and roofs",
+        "no production claimant-era transition exercised",
+        "not a proof of every-face UV orientation or shader semantics"
+      ],
+      "assets": {
+        "RO_Modern": {
+          "RO_Modern.gr2": "b2c9d2aa102e50ce746a2e20eb7314780d3da799625cc11ea40e63615e64ddb7",
+          "RO_Modern.fxsxml": "3fc30b3bceb6d56a5d500778724e7fdab71312ed44ddfbe13e915fb19009cb5a",
+          "RO_Modern_diffuse.dds": "336ee53fd1598ad460f4a50efe49915fdd80edc3b3331fc51135a9904fa64b92",
+          "RO_Era_BlackSpec.dds": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+        },
+        "RO_Modern_UnderConstruction": {
+          "RO_Modern_UnderConstruction.gr2": "ace8b859212e69403e18629292f70e2146311e7aeeb1318b825cfa31a783f9fc",
+          "RO_Modern_UnderConstruction.fxsxml": "f18708f199f9e252be447d884e03dbb77c42fa2604832ed8ce8e469cca535281",
+          "RO_Modern_UnderConstruction_diffuse.dds": "95834941ca6136eb686c355a12d4b44fe49e9f0f484b8344bd403642f8465739",
+          "RO_Era_BlackSpec.dds": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+        },
+        "RO_Modern_Pillaged": {
+          "RO_Modern_Pillaged.gr2": "842c5f4406386f1cdd3e8a275971cb725b816885a8e95e1dd60693b6a808e9f0",
+          "RO_Modern_Pillaged.fxsxml": "28ca4c5f0d0c9eae149b24d9991abfb37a919b1aecad71ae8d82e82cb13b56bf",
+          "RO_Modern_Pillaged_diffuse.dds": "57033464ef995199b0dda02964c9b1508488ce60c038e46ddac8147b6f68e82e",
+          "RO_Era_BlackSpec.dds": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+        }
+      },
+      "binaries": {
+        "Contents/MacOS/Civilization V": "d56d6bfbc0ef517fcb7cbaff46c42d1bdfab809c084684045761bd9d85807ee9",
+        "Contents/MacOS/libCvGameCoreDLL_Expansion2_DLL.dylib": "0da6a5ffc283c3f147b20a7ec426e4ed85a6838ab891faf61b50af4e25c4a09c"
+      },
+      "runner_status": "timeout",
+      "restored": true,
+      "evidence_directory": "output/gr2-research/outpost-native-Modern-01"
+    },
+    {
+      "era": "Atomic",
+      "review": "passed-flat-scene",
+      "scale": 6,
+      "states": [
+        "Constructed",
+        "UnderConstruction",
+        "Pillaged"
+      ],
+      "screenshot": "progress-90.png",
+      "screenshot_sha256": "caf7604e2358f3599bfd7e8bd374ead3f0ec895dbcb8632e22ee940b60217234",
+      "observations": "The radar mesh, concrete post, hut and perimeter render without missing material or displaced geometry. The lattice radar is readable at map scale. Construction and pillage correctly omit the completed radar and upper details.",
+      "limits": [
+        "fixed grass scene and viewpoint",
+        "native formation overlaps some architecture",
+        "production selection and mixed terrain checked separately"
+      ],
+      "assets": {
+        "RO_Atomic": {
+          "RO_Atomic.gr2": "6a8c16f48196a0b650537da7387d9c7524a65f318f535d219ca814a429d47e66",
+          "RO_Atomic.fxsxml": "13a3f78e00a255a41443feb4362f4c9e22083e861af3a2e51d7162959cff5785",
+          "RO_Atomic_diffuse.dds": "91049d858ffdddc5302903619e6bafbe020abd6022e69ba2bf9a08cbc209b4b1",
+          "RO_Era_BlackSpec.dds": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+        },
+        "RO_Atomic_UnderConstruction": {
+          "RO_Atomic_UnderConstruction.gr2": "b588ad5284b1a9b3dd923f85acb8f9c16cd03efd256885aee2021f1ef0d025c3",
+          "RO_Atomic_UnderConstruction.fxsxml": "2e96d9086768f8c1b8f0e1a0103f943d62dbc1b21e0dae8cf30ff24adf849231",
+          "RO_Atomic_UnderConstruction_diffuse.dds": "d66b9cda25721210944d730a1bb7fd06e0314730039a4c12b1f7f1ce848a9abe",
+          "RO_Era_BlackSpec.dds": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+        },
+        "RO_Atomic_Pillaged": {
+          "RO_Atomic_Pillaged.gr2": "100f1274209070d413611f713ad3fa20e5fdd614ef84fb332dab284beee7c305",
+          "RO_Atomic_Pillaged.fxsxml": "bb3c7e15c81c851604df2f4d24a374d39a2321c1fb7e545cbbc07ac35cd0e933",
+          "RO_Atomic_Pillaged_diffuse.dds": "d9d373b8791077ea552ed5eeb92a594316df4cfcc692f97d04595116ce672083",
+          "RO_Era_BlackSpec.dds": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+        }
+      },
+      "binaries": {
+        "Contents/MacOS/Civilization V": "d56d6bfbc0ef517fcb7cbaff46c42d1bdfab809c084684045761bd9d85807ee9",
+        "Contents/MacOS/libCvGameCoreDLL_Expansion2_DLL.dylib": "0da6a5ffc283c3f147b20a7ec426e4ed85a6838ab891faf61b50af4e25c4a09c"
+      },
+      "runner_status": "timeout",
+      "restored": true,
+      "evidence_directory": "output/gr2-research/outpost-native-Atomic-01"
+    },
+    {
+      "era": "Information",
+      "review": "passed-flat-scene",
+      "scale": 6,
+      "states": [
+        "Constructed",
+        "UnderConstruction",
+        "Pillaged"
+      ],
+      "screenshot": "progress-90.png",
+      "screenshot_sha256": "90b707e78f6a9f0e2530713b2f54cc17ff460d41888de8fc2ceb30d46806124a",
+      "observations": "Sensor tower, solar-panel roof and asymmetric fortified perimeter render with authored textures. Construction lacks finished equipment; pillage reduces the site to low broken walls. Footprint comparable to stock Fort; no obvious missing textures, displaced geometry or exaggerated gloss. Native warrior formation overlaps parts of the courtyard and architecture.",
+      "limits": [
+        "fixed camera and grass terrain only",
+        "no production claimant-era transition exercised",
+        "not a proof of every-face UV orientation or shader semantics"
+      ],
+      "assets": {
+        "RO_Information": {
+          "RO_Information.gr2": "9495eef012ae4dfa0824abafcaf64627aa1a6f8d2e5b81bac7fe151a85e45fe4",
+          "RO_Information.fxsxml": "759fd82c5b42df54469b36aac491841bd4061efabc4781d4299d3b9ee148a2b0",
+          "RO_Information_diffuse.dds": "dc573d1ea43dcc9cf8f2f93e304d4f802b8724894e21348f5a258d0a33a5e1ab",
+          "RO_Era_BlackSpec.dds": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+        },
+        "RO_Information_UnderConstruction": {
+          "RO_Information_UnderConstruction.gr2": "6092ffe863a62aaf08352f2d7f8e3e01171e8e7a8926f22e05acd56f789d652e",
+          "RO_Information_UnderConstruction.fxsxml": "cc8bdccce7b999e9b21ad535aedadacde97b51f0ae236d02974e4ced2c96d42b",
+          "RO_Information_UnderConstruction_diffuse.dds": "4652a12479acb97598cbe31dc9895ff4ff3a83a6eedf8aa3dfa2751c68338c82",
+          "RO_Era_BlackSpec.dds": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+        },
+        "RO_Information_Pillaged": {
+          "RO_Information_Pillaged.gr2": "6bb1c007a1ae0ec8776ef1220487121bb44b9650718b1178865109e7ee4007c6",
+          "RO_Information_Pillaged.fxsxml": "cbe86303a95acb80154520ec760f229f34ee234ba8ec060c93ec71316bde0a31",
+          "RO_Information_Pillaged_diffuse.dds": "5965e87330534b0f80905b5a107395906858c9819c3baa697921d0d1454207f8",
+          "RO_Era_BlackSpec.dds": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+        }
+      },
+      "binaries": {
+        "Contents/MacOS/Civilization V": "d56d6bfbc0ef517fcb7cbaff46c42d1bdfab809c084684045761bd9d85807ee9",
+        "Contents/MacOS/libCvGameCoreDLL_Expansion2_DLL.dylib": "0da6a5ffc283c3f147b20a7ec426e4ed85a6838ab891faf61b50af4e25c4a09c"
+      },
+      "runner_status": "timeout",
+      "restored": true,
+      "evidence_directory": "output/gr2-research/outpost-native-Information-03"
+    }
+  ],
+  "remaining": [
+    "full campaign claims/economy, capture/annexation and save/load acceptance",
+    "ordinary worker completion and UI/strategic icon checks",
+    "additional terrain shapes, lighting and camera angles"
+  ],
+  "terrain_reviews": [
+    {
+      "era": "Ancient",
+      "review": "passed-mixed-terrain-scene",
+      "scale": 6,
+      "states": [
+        "Constructed",
+        "UnderConstruction",
+        "Pillaged"
+      ],
+      "screenshot": "scene.png",
+      "screenshot_sha256": "6ecf116966147ca6d9304f1a9f6fbefe3b95bc77bc6d8fe644b8b01579a8b3d5",
+      "observations": "Timber outpost follows hill placement without obvious floating or detached geometry. Construction renders on the desert transition. Preserved forest obscures much of the low ruin, as expected for this artificial stress scene. The remembered outpost is darkened by normal fog; native assertion confirms revealed and not visible after a temporary observing unit is removed.",
+      "limits": [
+        "one hill and desert/forest configuration, not every terrain shape",
+        "forest stress scene does not establish normal build eligibility or clearing",
+        "not a production unseen-era-change or save/load test"
+      ],
+      "assets": {
+        "RO_Ancient": {
+          "RO_Ancient.gr2": "30e871bfaaf4c5856681dbba32205ed96db8048bb270b58846ff5e20896ff509",
+          "RO_Ancient.fxsxml": "b312ea8c18538899a6656cd953ad7aea65d8c1e95c2b5fb3a700ba783aa98dee",
+          "RO_Ancient_diffuse.dds": "3dc0eb5eef9ddf01268b6d01be12f5aff18d3e0a11b7067009e893d7a8657d56",
+          "RO_Era_BlackSpec.dds": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+        },
+        "RO_Ancient_UnderConstruction": {
+          "RO_Ancient_UnderConstruction.gr2": "57f2ab8998cf68a28159ac1787bd1ba930ca7474c73156a3aed11bc56bbda032",
+          "RO_Ancient_UnderConstruction.fxsxml": "a09bca5e84e0a97a4bc8c451900aad400fafea5cf5bc8f26f6743eb2777938a9",
+          "RO_Ancient_UnderConstruction_diffuse.dds": "489d3c785d8577570011b88a904fb2dddb6f81e008db000f087129ca4da10739",
+          "RO_Era_BlackSpec.dds": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+        },
+        "RO_Ancient_Pillaged": {
+          "RO_Ancient_Pillaged.gr2": "b6009a766ca1b4756b2079f9806ed66322121e85689ac5d1d7155d391cc21da9",
+          "RO_Ancient_Pillaged.fxsxml": "5e55599852c7125621e52dcb3d77025e6caa72d3113e3135a638fbdc9f34a49a",
+          "RO_Ancient_Pillaged_diffuse.dds": "be69fa4922038a0f520be966ebc57c4b525168b8f8831b29cb3fdcdd4b28dec0",
+          "RO_Era_BlackSpec.dds": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+        }
+      },
+      "binaries": {
+        "Contents/MacOS/Civilization V": "d56d6bfbc0ef517fcb7cbaff46c42d1bdfab809c084684045761bd9d85807ee9",
+        "Contents/MacOS/libCvGameCoreDLL_Expansion2_DLL.dylib": "0da6a5ffc283c3f147b20a7ec426e4ed85a6838ab891faf61b50af4e25c4a09c"
+      },
+      "runner_status": "scene-placed-capture-unreviewed",
+      "restored": true,
+      "evidence_directory": "output/gr2-research/outpost-mixed-Ancient-05"
+    },
+    {
+      "era": "Information",
+      "review": "passed-mixed-terrain-scene",
+      "scale": 6,
+      "states": [
+        "Constructed",
+        "UnderConstruction",
+        "Pillaged"
+      ],
+      "screenshot": "scene.png",
+      "screenshot_sha256": "7f8188918777e67a57549e900f82aff8f229fb7eaf791039a32407f2588c4a85",
+      "observations": "Concrete sensor outpost remains grounded on the tested hill, with distinct tower, mast, solar roof and perimeter. Construction renders on the desert transition. Preserved forest partly obscures the low masonry ruin. The remembered outpost renders darkened with no visible material or geometry failure; native assertion confirms revealed but not visible.",
+      "limits": [
+        "one hill and desert/forest configuration, not every terrain shape",
+        "forest stress scene does not establish normal build eligibility or clearing",
+        "not a production unseen-era-change or save/load test"
+      ],
+      "assets": {
+        "RO_Information": {
+          "RO_Information.gr2": "9495eef012ae4dfa0824abafcaf64627aa1a6f8d2e5b81bac7fe151a85e45fe4",
+          "RO_Information.fxsxml": "759fd82c5b42df54469b36aac491841bd4061efabc4781d4299d3b9ee148a2b0",
+          "RO_Information_diffuse.dds": "dc573d1ea43dcc9cf8f2f93e304d4f802b8724894e21348f5a258d0a33a5e1ab",
+          "RO_Era_BlackSpec.dds": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+        },
+        "RO_Information_UnderConstruction": {
+          "RO_Information_UnderConstruction.gr2": "6092ffe863a62aaf08352f2d7f8e3e01171e8e7a8926f22e05acd56f789d652e",
+          "RO_Information_UnderConstruction.fxsxml": "cc8bdccce7b999e9b21ad535aedadacde97b51f0ae236d02974e4ced2c96d42b",
+          "RO_Information_UnderConstruction_diffuse.dds": "4652a12479acb97598cbe31dc9895ff4ff3a83a6eedf8aa3dfa2751c68338c82",
+          "RO_Era_BlackSpec.dds": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+        },
+        "RO_Information_Pillaged": {
+          "RO_Information_Pillaged.gr2": "6bb1c007a1ae0ec8776ef1220487121bb44b9650718b1178865109e7ee4007c6",
+          "RO_Information_Pillaged.fxsxml": "cbe86303a95acb80154520ec760f229f34ee234ba8ec060c93ec71316bde0a31",
+          "RO_Information_Pillaged_diffuse.dds": "5965e87330534b0f80905b5a107395906858c9819c3baa697921d0d1454207f8",
+          "RO_Era_BlackSpec.dds": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f"
+        }
+      },
+      "binaries": {
+        "Contents/MacOS/Civilization V": "d56d6bfbc0ef517fcb7cbaff46c42d1bdfab809c084684045761bd9d85807ee9",
+        "Contents/MacOS/libCvGameCoreDLL_Expansion2_DLL.dylib": "0da6a5ffc283c3f147b20a7ec426e4ed85a6838ab891faf61b50af4e25c4a09c"
+      },
+      "runner_status": "scene-placed-capture-unreviewed",
+      "restored": true,
+      "evidence_directory": "output/gr2-research/outpost-mixed-Information-01"
+    }
+  ],
+  "production_review": {
+    "review": "passed-production-era-binding-probe",
+    "evidence_directory": "output/gr2-research/outpost-production-native-01",
+    "screenshot": "scene.png",
+    "screenshot_sha256": "06e96f0a76a19643d56786fb704859bb52f9b4655f365f4ce2c9d4ef6d765074",
+    "lua_log_sha256": "0f2a55e2a2e359d6d0fc90cb023b21f585b61b6389ab6b46624f416ae3e48b21",
+    "binaries": {
+      "Contents/MacOS/Civilization V": "d56d6bfbc0ef517fcb7cbaff46c42d1bdfab809c084684045761bd9d85807ee9",
+      "Contents/MacOS/libCvGameCoreDLL_Expansion2_DLL.dylib": "0da6a5ffc283c3f147b20a7ec426e4ed85a6838ab891faf61b50af4e25c4a09c"
+    },
+    "runner_status": "scene-placed-capture-unreviewed",
+    "restored": true,
+    "eras": [
+      "ERA_ANCIENT",
+      "ERA_CLASSICAL",
+      "ERA_MEDIEVAL",
+      "ERA_RENAISSANCE",
+      "ERA_INDUSTRIAL",
+      "ERA_MODERN",
+      "ERA_POSTMODERN",
+      "ERA_FUTURE"
+    ],
+    "source_hashes": {
+      "Art/Models/RO_Ancient.fxsxml": "b312ea8c18538899a6656cd953ad7aea65d8c1e95c2b5fb3a700ba783aa98dee",
+      "Art/Models/RO_Ancient.gr2": "30e871bfaaf4c5856681dbba32205ed96db8048bb270b58846ff5e20896ff509",
+      "Art/Models/RO_Ancient_Pillaged.fxsxml": "5e55599852c7125621e52dcb3d77025e6caa72d3113e3135a638fbdc9f34a49a",
+      "Art/Models/RO_Ancient_Pillaged.gr2": "b6009a766ca1b4756b2079f9806ed66322121e85689ac5d1d7155d391cc21da9",
+      "Art/Models/RO_Ancient_Pillaged_diffuse.dds": "be69fa4922038a0f520be966ebc57c4b525168b8f8831b29cb3fdcdd4b28dec0",
+      "Art/Models/RO_Ancient_UnderConstruction.fxsxml": "a09bca5e84e0a97a4bc8c451900aad400fafea5cf5bc8f26f6743eb2777938a9",
+      "Art/Models/RO_Ancient_UnderConstruction.gr2": "57f2ab8998cf68a28159ac1787bd1ba930ca7474c73156a3aed11bc56bbda032",
+      "Art/Models/RO_Ancient_UnderConstruction_diffuse.dds": "489d3c785d8577570011b88a904fb2dddb6f81e008db000f087129ca4da10739",
+      "Art/Models/RO_Ancient_diffuse.dds": "3dc0eb5eef9ddf01268b6d01be12f5aff18d3e0a11b7067009e893d7a8657d56",
+      "Art/Models/RO_Atomic.fxsxml": "13a3f78e00a255a41443feb4362f4c9e22083e861af3a2e51d7162959cff5785",
+      "Art/Models/RO_Atomic.gr2": "6a8c16f48196a0b650537da7387d9c7524a65f318f535d219ca814a429d47e66",
+      "Art/Models/RO_Atomic_Pillaged.fxsxml": "bb3c7e15c81c851604df2f4d24a374d39a2321c1fb7e545cbbc07ac35cd0e933",
+      "Art/Models/RO_Atomic_Pillaged.gr2": "100f1274209070d413611f713ad3fa20e5fdd614ef84fb332dab284beee7c305",
+      "Art/Models/RO_Atomic_Pillaged_diffuse.dds": "d9d373b8791077ea552ed5eeb92a594316df4cfcc692f97d04595116ce672083",
+      "Art/Models/RO_Atomic_UnderConstruction.fxsxml": "2e96d9086768f8c1b8f0e1a0103f943d62dbc1b21e0dae8cf30ff24adf849231",
+      "Art/Models/RO_Atomic_UnderConstruction.gr2": "b588ad5284b1a9b3dd923f85acb8f9c16cd03efd256885aee2021f1ef0d025c3",
+      "Art/Models/RO_Atomic_UnderConstruction_diffuse.dds": "d66b9cda25721210944d730a1bb7fd06e0314730039a4c12b1f7f1ce848a9abe",
+      "Art/Models/RO_Atomic_diffuse.dds": "91049d858ffdddc5302903619e6bafbe020abd6022e69ba2bf9a08cbc209b4b1",
+      "Art/Models/RO_Classical.fxsxml": "3cac6a5b46d745bf7c6d0f20d9b55dd03aa0a16c8c3a2a752d3fff9e33729ac8",
+      "Art/Models/RO_Classical.gr2": "9866c1bbcb81ce274e4329ee1e2170fcc15d363b3aa270f88fe23e2744124812",
+      "Art/Models/RO_Classical_Pillaged.fxsxml": "164c096ca9dfb7199090818540c25eaa607cf7676545c4ffa56211e491ce1970",
+      "Art/Models/RO_Classical_Pillaged.gr2": "86659b49b2eb6a1cb6de66a6c5ed5e6a89531d24d986905697b502c836a1002b",
+      "Art/Models/RO_Classical_Pillaged_diffuse.dds": "af143bc5c41ee2b6ea9e3fe4e01e3c1b7eeca2e01fdcbad23449b2b157b97fea",
+      "Art/Models/RO_Classical_UnderConstruction.fxsxml": "b2a2bbb5beeba1940ea58a0c31a35599c7c1ee2856aed1fd95c8460b2a3ed5cb",
+      "Art/Models/RO_Classical_UnderConstruction.gr2": "384a8b278b9b2ae8937c9f7eedb00da288350c74acb72a47c1da33006481292f",
+      "Art/Models/RO_Classical_UnderConstruction_diffuse.dds": "b910d68c3bc4d7ecc52241b8798f015405e90c1d9c85c1805a11166b26c3de41",
+      "Art/Models/RO_Classical_diffuse.dds": "30b87dc49d02f88d87eb4b829a34d2a8fca501b7333ca7847869d9012346d754",
+      "Art/Models/RO_Era_BlackSpec.dds": "78ba67633a169c3d5151609e4207868336ae52d2bc88e7424c73a0452f2e638f",
+      "Art/Models/RO_Industrial.fxsxml": "a0ec038a66bed6d516b7bf19c58f265a4925b95779844ccd373c3eb26a9f0e8e",
+      "Art/Models/RO_Industrial.gr2": "2faf368c75290526069a8e04a73c5a3977c0c1af926b6191a8636a0f7e5e9c2e",
+      "Art/Models/RO_Industrial_Pillaged.fxsxml": "cb247f761233546d31c6b4df07ea00dc85999edc1dad3b9139730e002c11d3e9",
+      "Art/Models/RO_Industrial_Pillaged.gr2": "d5cf95e69ccad18864162083bb92e5aa60fc1307dc24e5f3065363620fa5f6dc",
+      "Art/Models/RO_Industrial_Pillaged_diffuse.dds": "8239a6c1b60d3071346ed22ec531691b4f472947815916faf84160c4955c5673",
+      "Art/Models/RO_Industrial_UnderConstruction.fxsxml": "81c8c66695a1477e5d34f198856b51812a93583f5f7d21a4ead3d297031a31ff",
+      "Art/Models/RO_Industrial_UnderConstruction.gr2": "789de7feda824a3f730010998983603f53c27f7052e0b78790e6cec228aacc74",
+      "Art/Models/RO_Industrial_UnderConstruction_diffuse.dds": "87fb384508866ba33ee169d1e4acbe0105685efb948fad0bd04d97568ae376b7",
+      "Art/Models/RO_Industrial_diffuse.dds": "eb1026d6dc69a14ee6fad4ef79b4d5578a4a06e2b917e66f86604767e66cde3f",
+      "Art/Models/RO_Information.fxsxml": "759fd82c5b42df54469b36aac491841bd4061efabc4781d4299d3b9ee148a2b0",
+      "Art/Models/RO_Information.gr2": "9495eef012ae4dfa0824abafcaf64627aa1a6f8d2e5b81bac7fe151a85e45fe4",
+      "Art/Models/RO_Information_Pillaged.fxsxml": "cbe86303a95acb80154520ec760f229f34ee234ba8ec060c93ec71316bde0a31",
+      "Art/Models/RO_Information_Pillaged.gr2": "6bb1c007a1ae0ec8776ef1220487121bb44b9650718b1178865109e7ee4007c6",
+      "Art/Models/RO_Information_Pillaged_diffuse.dds": "5965e87330534b0f80905b5a107395906858c9819c3baa697921d0d1454207f8",
+      "Art/Models/RO_Information_UnderConstruction.fxsxml": "cc8bdccce7b999e9b21ad535aedadacde97b51f0ae236d02974e4ced2c96d42b",
+      "Art/Models/RO_Information_UnderConstruction.gr2": "6092ffe863a62aaf08352f2d7f8e3e01171e8e7a8926f22e05acd56f789d652e",
+      "Art/Models/RO_Information_UnderConstruction_diffuse.dds": "4652a12479acb97598cbe31dc9895ff4ff3a83a6eedf8aa3dfa2751c68338c82",
+      "Art/Models/RO_Information_diffuse.dds": "dc573d1ea43dcc9cf8f2f93e304d4f802b8724894e21348f5a258d0a33a5e1ab",
+      "Art/Models/RO_Medieval.fxsxml": "0464048517d73f2b13d9bfd9788249f168a49739a968520c5d5ef4ef788fbfba",
+      "Art/Models/RO_Medieval.gr2": "5ad4ba1e4b5b29c28f6babe9f7840523e15b1125ecb3f1392eff11ee732c1644",
+      "Art/Models/RO_Medieval_Pillaged.fxsxml": "ba9af30dc92ba2bf0534df84c87838ec1af969f89b229568476cc0b9a3fa492e",
+      "Art/Models/RO_Medieval_Pillaged.gr2": "168144980d8726b445f559313c84cfdab5ba0b6d61af4f1b6bce01e322849219",
+      "Art/Models/RO_Medieval_Pillaged_diffuse.dds": "bdd83b78c2c85151facd6a0ce844e488be6d9722fc6a3f8680716395738dbf2e",
+      "Art/Models/RO_Medieval_UnderConstruction.fxsxml": "688ac023813540d4faa1b6c7531baaa0c6c37970edaa755e934282a06e8a3f0c",
+      "Art/Models/RO_Medieval_UnderConstruction.gr2": "e4e3aaaa9fdae356df10c031e9ff6bc637002b0025cab464213bef97e7e7e5b4",
+      "Art/Models/RO_Medieval_UnderConstruction_diffuse.dds": "0b147d09c56faef768a751a581f5cda3deb0cb18343f00392c181140d57cf58a",
+      "Art/Models/RO_Medieval_diffuse.dds": "cc2b007e7e72bf6a0a24fb1fc0e47fb381fc3fd8cfadc06dbbc2ec5224bc987a",
+      "Art/Models/RO_Modern.fxsxml": "3fc30b3bceb6d56a5d500778724e7fdab71312ed44ddfbe13e915fb19009cb5a",
+      "Art/Models/RO_Modern.gr2": "b2c9d2aa102e50ce746a2e20eb7314780d3da799625cc11ea40e63615e64ddb7",
+      "Art/Models/RO_Modern_Pillaged.fxsxml": "28ca4c5f0d0c9eae149b24d9991abfb37a919b1aecad71ae8d82e82cb13b56bf",
+      "Art/Models/RO_Modern_Pillaged.gr2": "842c5f4406386f1cdd3e8a275971cb725b816885a8e95e1dd60693b6a808e9f0",
+      "Art/Models/RO_Modern_Pillaged_diffuse.dds": "57033464ef995199b0dda02964c9b1508488ce60c038e46ddac8147b6f68e82e",
+      "Art/Models/RO_Modern_UnderConstruction.fxsxml": "f18708f199f9e252be447d884e03dbb77c42fa2604832ed8ce8e469cca535281",
+      "Art/Models/RO_Modern_UnderConstruction.gr2": "ace8b859212e69403e18629292f70e2146311e7aeeb1318b825cfa31a783f9fc",
+      "Art/Models/RO_Modern_UnderConstruction_diffuse.dds": "95834941ca6136eb686c355a12d4b44fe49e9f0f484b8344bd403642f8465739",
+      "Art/Models/RO_Modern_diffuse.dds": "336ee53fd1598ad460f4a50efe49915fdd80edc3b3331fc51135a9904fa64b92",
+      "Art/Models/RO_Renaissance.fxsxml": "d0769678ee98446d3684c4612cc869724fc5a4462264a147a8e260ceafc73aa4",
+      "Art/Models/RO_Renaissance.gr2": "0d8d278a7a8681511ba414a7ba0ad31c0770a8e494ea9cba5ce9ca9febe1de40",
+      "Art/Models/RO_Renaissance_Pillaged.fxsxml": "be428eaadd9969322bde83ce6853777861b3b0761ea2292edfa2f301fe9793ee",
+      "Art/Models/RO_Renaissance_Pillaged.gr2": "5bb292890586bddaaa696f626a6243eb2b95d116058de4f032b2f87c82e9f483",
+      "Art/Models/RO_Renaissance_Pillaged_diffuse.dds": "f5740c96025bf5b3b6ad9a5c60813291283b0e0c47f28431acc6a0b77db1fa02",
+      "Art/Models/RO_Renaissance_UnderConstruction.fxsxml": "96aac80000a028d3dfc5b957f7a6e76fcb2e05a17adbc86718a555bd7bff204b",
+      "Art/Models/RO_Renaissance_UnderConstruction.gr2": "f71d26f3af937dbbbc09b89127a9c91007a7932e91af55298224e671680e36bd",
+      "Art/Models/RO_Renaissance_UnderConstruction_diffuse.dds": "bdc22b202b7b03e1ab009df4af532a7bbcc4c2e30bda5a567689cf61f547f0f1",
+      "Art/Models/RO_Renaissance_diffuse.dds": "3468fa3c96f670621f8de567e9557591b4c06cf5e82e9e325cc6e6b6d9e2478c",
+      "Art/RO_OutpostAction32.dds": "2d0888ef77d7b117abf80df1f9daea0d1ac4bd6c63febee2d5bb3605a5955408",
+      "Art/RO_OutpostAction45.dds": "c284ace2c3fd299232026dc69c1e72ff28b74cce2655aa9274ef078223dfb131",
+      "Art/RO_OutpostAction64.dds": "a6502d5d421857658820f77b41287b9487d9afdc39520c51c97f308d64be3032",
+      "Art/RO_OutpostPortrait128.dds": "8fc41d73be1d0f916b0615d1c334b87abadac2410d5e7bc34e0ce3df01f101b7",
+      "Art/RO_OutpostPortrait214.dds": "41e12aca6eecef8161349d82150a9cdf674d716afaf88c4be209383ffde7456e",
+      "Art/RO_OutpostPortrait256.dds": "f23f9b944a202ee4e1da57237c452f9631f95cddb029b842a81e4515b2ade053",
+      "Art/RO_OutpostPortrait32.dds": "94ae87d06792c1cb984ebc0e7921d1cf97b4fef5ec1ee52c51e459922c581445",
+      "Art/RO_OutpostPortrait45.dds": "37aca967e1082770b9865764e9a6705054a36e2c609dfadc8ac7ec7836949224",
+      "Art/RO_OutpostPortrait64.dds": "5756cb8de2fcecde94beba179a892ea58857aa92ee33d0643c3fb742b3e85bb4",
+      "Art/RO_OutpostPortrait80.dds": "2bb3334f1bd69f1e39652054642384dab32666a0c9a767ad6531310d45657335",
+      "Art/RO_OutpostStrategic.dds": "c9678196ea050dcaedfa195d05b9719200150f4c4a4aa021be1a337596a1191f",
+      "Lua/RO_AI.lua": "f3c94f361fa0e45ee9cf863108bee6736aade77960e6c4127c274323e7bf728b",
+      "Lua/RO_Eras.lua": "93d4af0e14750f78876cb2f1e8fd505703020afc12e2128a44b3c5fbf9e5142e",
+      "Lua/RO_Integration.lua": "4263a54a6eda7e7f86875e9f70caec2050d0c00204953560c8a09cab012fbcec",
+      "Lua/RO_Management.lua": "d8da72ddbb92d6c3859e74913b3034c3693457fc2ca9c4c482b5ac12554c490f",
+      "Lua/RO_Orders.lua": "582c5f9dc482a9b2d3903b0b92b4637b85ac8707cacf49da8c6a6c03f2b1ad82",
+      "Lua/RO_Outposts.lua": "c419db5ed7b0d4788dbe744b9295197c16cf4b41b4e85daad62339d02c6c963e",
+      "Lua/RO_Serialize.lua": "4e8f8956f3be7c76aed9246a5143c0f5b52ceea47faa0067d8f5ed9b40a5bbad",
+      "SQL/RO_Art.sql": "2f809e8d24647d47aa290219302ff8211731a284e111f7a005bef0ff1db0a579",
+      "SQL/RO_Eras.sql": "0624b0e16d3750cf3a38fd09f884393aea01e8de276c4ffaa00a871c7f3d9556",
+      "SQL/RO_Outposts.sql": "1c5507512093319e56a00a9d28b397a8cfec16d2ddf245a601677feff199d21c",
+      "Text/RO_Text.xml": "e5933e3a53bdeeac4c7cb68143298c2adfd41c43dd021d1cae90b13c17f223b7",
+      "UI/RO_UI.lua": "940c9957e07bc4ba8d81d3036328e153cb3d75d18db06605400f4442f80252b3",
+      "UI/RO_UI.xml": "56bdd809f503ee89fc6b0737f5214e025df59d79782a6a9ababbdaea3175c73f"
+    },
+    "rows": {
+      "Improvements": 9,
+      "Builds": 1,
+      "Improvement_ResourceTypes": 216,
+      "Improvement_ValidFeatures": 0,
+      "BuildFeatures": 3,
+      "IconTextureAtlases": 10,
+      "ArtDefine_LandmarkTypes": 9,
+      "ArtDefine_Landmarks": 27,
+      "ArtDefine_StrategicView": 9,
+      "RO_OutpostEras": 8
+    },
+    "assertions": [
+      "all eight claimant-era targets and native improvement swaps",
+      "active player stays Ancient while another claimant advances",
+      "pillage and upgrade progress preserved",
+      "in-progress public build remains at progress 1 and incomplete",
+      "unit position, damage and moves preserved",
+      "neutral ownership remains -1",
+      "repeated same-era call does not swap",
+      "backwards claimant selection returns to Ancient"
+    ],
+    "observations": "Final native capture shows Information intact and pillaged models, shared Ancient construction and stock Fort completion sentinel. No missing textures or malformed geometry observed.",
+    "limits": [
+      "direct RO_Eras calls on neutral plots, not the full claim ledger or automatic gameplay event chain",
+      "no territorial annexation, city resource-link, economy or save/load assertions",
+      "test DLC serializes actual production SQL results; ordinary mod-menu activation and UI not exercised"
+    ]
+  }
+}
