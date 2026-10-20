@@ -26,7 +26,12 @@ back into this source tree. Resource Outposts shelter remains an optional bridge
 Build/test commands are in the [root README](../../README.md). Shared model tools
 are cataloged in [tools/README.md](../../tools/README.md); approved designs are in
 `shared/art/rt-models/` and selected icons in `shared/art/terrain-icons-round-3/`.
-Native model conversion, UI rendering and broader gameplay acceptance remain pending.
+Native model conversion and broader gameplay acceptance remain pending.
+A native widescreen review of the active-routes panel passed on 2026-10-20:
+route rows use the stock frame style without crossing the text, names render
+with “to”, and duration/recall help starts on a separate line. Evidence is
+`output/native-tests/terrain-stock-01/game.png` in the GameCore worktree.
+Other tabs, small-screen layouts and companion-panel overlap still need review.
 A bounded native desert-shelter test passed with the Outposts branch's older
 Terrain content; [the integration record](docs/NATIVE-INTEGRATION.md) defines its scope.
 

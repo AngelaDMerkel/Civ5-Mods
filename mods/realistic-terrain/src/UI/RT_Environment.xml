@@ -9,9 +9,9 @@
     </WorldAnchor>
   </Instance>
   <Instance Name="RTTradeRow">
-    <Grid ID="Root" Size="780,112" Anchor="L,T" Style="Grid9DetailFive140" Padding="8,8">
-      <Label ID="Title" Anchor="L,T" Offset="8,6" Font="TwCenMT18" WrapWidth="585"/>
-      <Label ID="Detail" Anchor="L,T" Offset="8,29" Font="TwCenMT16" WrapWidth="585"/>
+    <Grid ID="Root" Size="780,112" Anchor="L,T" Style="Grid9Frame27" Padding="0,0">
+      <Label ID="Title" Anchor="L,T" Offset="12,10" Font="TwCenMT18" WrapWidth="585"/>
+      <Label ID="Detail" Anchor="L,T" Offset="12,33" Font="TwCenMT16" WrapWidth="585"/>
       <GridButton ID="Action" Anchor="R,T" Offset="10,12" Size="155,32" Style="BaseButton"><Label ID="ActionLabel" Anchor="C,C"/></GridButton>
       <GridButton ID="Locate" Anchor="R,B" Offset="10,12" Size="155,28" Style="BaseButton"><Label Anchor="C,C" String="TXT_KEY_RT_TRADE_LOCATE"/></GridButton>
     </Grid>

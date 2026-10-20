@@ -9,8 +9,8 @@ local function row(title, detail, action, callback, enabled, locate)
     local r = instances:GetInstance();
     r.Title:SetText(title); r.Detail:SetText(detail); r.Root:SetToolTipString(detail);
     local titleHeight = r.Title:GetSizeY() or 18;
-    r.Detail:SetOffsetVal(8, titleHeight + 12);
-    r.Root:SetSizeY(math.max(112, (r.Detail:GetSizeY() or 24) + titleHeight + 24));
+    r.Detail:SetOffsetVal(12, titleHeight + 16);
+    r.Root:SetSizeY(math.max(112, (r.Detail:GetSizeY() or 24) + titleHeight + 28));
     r.ActionLabel:SetText(action or ""); r.Action:SetHide(not action);
     r.Action:SetDisabled(enabled == false);
     if callback then r.Action:RegisterCallback(Mouse.eLClick, callback); end
