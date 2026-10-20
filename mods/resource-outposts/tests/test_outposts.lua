@@ -68,8 +68,8 @@ GameInfo = {
     }),
 };
 Modding = { GetActivatedMods = function() return activated; end, OpenSaveData = function() return {
-    GetValue = function(_, key) return values[key]; end,
-    SetValue = function(_, key, value) values[key] = value; end,
+    GetValue = function(key) assert(type(key) == "string", "SaveData.GetValue requires dot syntax"); return values[key]; end,
+    SetValue = function(key, value) assert(type(key) == "string", "SaveData.SetValue requires dot syntax"); values[key] = value; end,
 }; end };
 local function events()
     return setmetatable({}, { __index = function(t, k)

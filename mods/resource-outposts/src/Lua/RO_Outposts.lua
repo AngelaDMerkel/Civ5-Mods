@@ -6,12 +6,12 @@ O.improvement = I.IMPROVEMENT_RT_RESOURCE_OUTPOST;
 O.build = I.BUILD_RT_RESOURCE_OUTPOST;
 local saved = Modding.OpenSaveData();
 local KEY = "ResourceOutposts.v1.State";
-local record = saved:GetValue(KEY);
+local record = saved.GetValue(KEY);
 O.state = record and RO_Serialize.Decode(record) or { sites = {}, credited = {}, ai = {} };
 local state, reconciling = O.state, false;
 state.maintenance = state.maintenance or {};
 O.UPKEEP = 2;
-local function save() saved:SetValue(KEY, RO_Serialize.Encode(state)); end
+local function save() saved.SetValue(KEY, RO_Serialize.Encode(state)); end
 O.Save = save;
 
 local workers = {};
