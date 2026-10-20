@@ -1,5 +1,9 @@
 # Irrigated Farm
 
+SaveData compatibility update: the AI now calls the bound native functions with
+dot syntax. Save keys and turn guards are unchanged; see the
+[Terrain/irrigation handoff](../realistic-terrain/docs/SAVE-DATA-HANDOFF.md).
+
 Owned by the **Irrigated Farm** chat. Dedicated gameplay code now lives in
 `src/Lua/RT_Irrigation.lua`, `src/Lua/RT_IrrigationAI.lua` and
 `src/SQL/RT_Irrigation.sql`; tests live in `tests/`.

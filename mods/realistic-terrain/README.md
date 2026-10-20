@@ -27,3 +27,7 @@ Build/test commands are in the [root README](../../README.md). Shared model tool
 are cataloged in [tools/README.md](../../tools/README.md); approved designs are in
 `shared/art/rt-models/` and selected icons in `shared/art/terrain-icons-round-3/`.
 Native model conversion, UI rendering and gameplay acceptance remain pending.
+
+The native-test-discovered SaveData calling convention has been corrected in
+Terrain and bundled irrigation AI. See the [save-data handoff](docs/SAVE-DATA-HANDOFF.md)
+for unchanged save contracts, regression evidence and companion integration.
