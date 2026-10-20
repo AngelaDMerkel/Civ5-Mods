@@ -174,3 +174,22 @@ illustrations, native comparisons and current candidates retain distinct status;
 the recovery changes navigation only and does not approve or modify their art.
 See the native tooling README for the historical-output checkout argument and
 local server command.
+
+
+The 2026-10-20 implementation of the selected concept is now in
+`tools/irrigation_native/build_concept_models.py`, with its own validator and
+`concept-models/review.html` in the local library. It exports 24 editable models
+and 23 experimental native GR2/FXSXML candidates: four terrain forms, wet/dry,
+lower-detail variants, source/connector parts and a connected assembly. Genuine
+regular Farm1 geometry and native crop/masonry/terrain pixels replace the generic
+farmstead/material treatment; v3 terrain and rigid aqueduct structure are retained.
+Flat carriers are sparse, contour outlets close inside fields, and hill feeders
+remain level or descending. The earlier concept and v3 output are preserved.
+
+These are actual mesh exports, not new generated mockups. They are local native-
+derived review candidates, not completed playable art. The shared crop-family
+selection on desert, foliage refinement, construction/pillaged conversions,
+floodplain transition updates, dynamic adjacency and native loading/terrain tests
+remain unfinished. Production gameplay and Farm-art fallback remain unchanged.
+See the native tooling README for reproducible commands and format/scale limits.
+No game or user-data files were changed; Irrigation holds no native-test session.

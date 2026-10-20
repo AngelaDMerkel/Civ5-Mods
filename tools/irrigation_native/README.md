@@ -337,3 +337,49 @@ any source collection. The regular viewer generator retains the library link.
 and model-link checks. The recovery pass checked 635 links. Browser visual QA was
 unavailable because the browser tool denied URL access; static link checks and
 JavaScript syntax checks do not establish browser rendering or native game art.
+
+
+### Selected concept as actual models (2026-10-20)
+
+The latest selection combines v3 structure with the native-overlay concept's
+Civ V treatment. This adds a separate collection and preserves all earlier
+outputs. After native import, run:
+
+```sh
+python3 tools/irrigation_native/build_concept_models.py
+python3 tools/irrigation_native/validate_concept_models.py
+python3 tools/irrigation_native/build_review_library.py --history-root /path/to/checkout-with-earlier-outputs
+```
+
+`concept-models/review.html` shows actual exported meshes at close and reduced
+size beside the selected illustration, unmodified regular Farm1 import, native
+Terrace Farm import and regional crop texture references. The library includes
+24 GLB/OBJ/BR2 models: four terrain forms wet/dry, four wet LOD1 versions, eleven
+connector/source parts and a connected district. The 23 individual candidates
+also have experimental GR2 and FXSXML exports; the district is a GLB assembly.
+DDS dependencies are at the collection root. Native files use a 30-unit-apothem
+fixture scale; source GLBs use v3 normalized units. Neither establishes in-game
+scale or terrain fit. The FXSXML files refer to flat VFS texture filenames;
+copying just a GR2 without its wrapper and root DDS files is insufficient.
+
+The tool retains v3 terrain/terraces, supplies real regular Farm1 buildings and
+native crop/masonry/terrain pixels, reduces the flat network to one carrier and
+two branches, closes exposed contour ends, and keeps descending hill feeders.
+The original v3 generator keeps its previous default crop spacing and geometry.
+Foliage/wood remain from the original v3 art. No native crop-family choice on
+desert or engine-generated parcel layout is asserted. The original concept and
+source meshes retain their own approval states.
+
+Validation checks native-source hashes and packed pixels, original building
+geometry under its uniform placement transform, GLB/OBJ/BR2/GR2 buffer parity,
+normal/tangent frames, FXSXML dependencies, full-resolution DDS/PNG alpha parity,
+water reachability/grade, clearance against exported terrain triangles and crop
+UV continuity across shared tile edges. Native loading/material behavior,
+dynamic adjacency, terrain contouring and performance are still unverified.
+Construction/pillaged states and floodplain transitions remain earlier studies;
+this pass does not claim their conversion to the newer treatment. All native-
+derived outputs are ignored local candidates, outside playable package roots.
+
+The review library includes this ninth collection when its manifest exists,
+bringing the current inventory to 187 export entries. Earlier recovery counts
+above describe the library before these actual concept-model candidates.

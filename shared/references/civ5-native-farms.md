@@ -70,3 +70,20 @@ crop-field texture. Native-derived irrigation candidates preserve that distincti
 and retain the `FARM` handler without overriding regional crop assets. Their local
 manifest records source and generated candidate hashes; no native pixels or
 source-derived meshes are checked into the repository or release packages.
+
+
+2026-10-20 concept-model candidates use the same local extraction cache. Native
+regular Farm1 geometry is uniformly scaled/translated into the v3 layout. Its
+collapsed solid-colour UV triangles receive a 0.0001 offset to define tangent
+frames; this is documented and is not claimed as byte-identical native UVs.
+Actual `Crops_Africa` DDS pixels, Terrace Farm masonry atlas regions, desert and
+mountain terrain, and river diffuse are packed without recolouring into a local
+review atlas. Terrain/blend-map alpha is treated as opaque; original foliage
+alpha is retained in an uncompressed mipmapped RGBA DDS. The original v3 foliage
+and wood remain authored material, clearly distinguished from native pixels.
+
+The resulting fields are authored v3 parcels with narrower gaps and larger crop
+texture repeats, not a capture of the native FARM placement system. The local
+`concept-models/models.json` records per-input hashes and material rectangles.
+The source code and instructions are versioned; reference-derived model/DDS files
+remain ignored and excluded from every registered package source root.

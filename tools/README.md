@@ -16,7 +16,8 @@ one mod. Do not move them into a playable package.
 | Approved Outpost era models | `tools/build_outpost_era_models.py` | `tools/validate_outpost_era_models.py` | `output/models/outpost-eras-v1/` |
 | Irrigation mesh kit v1 | `tools/build_irrigation_meshes.py` | `tools/validate_irrigation_meshes.py` | `output/models/irrigated-farm-v1/` |
 | Irrigation mesh refinement v2 | `tools/irrigation_v2/build_irrigation_meshes.py` | `tools/irrigation_v2/validate_irrigation_meshes.py` | `output/models/irrigated-farm-v2/` |
-| Irrigation terrain/network review v3 (unapproved) | `tools/irrigation_v3/build_irrigation_meshes.py` | `tools/irrigation_v3/validate_irrigation_meshes.py` | `output/models/irrigated-farm-v3/` |
+| Irrigation v3 structural study (selected approach) | `tools/irrigation_v3/build_irrigation_meshes.py` | `tools/irrigation_v3/validate_irrigation_meshes.py` | `output/models/irrigated-farm-v3/` |
+| Selected irrigation concept: actual mesh/native candidates | `tools/irrigation_native/build_concept_models.py` | `tools/irrigation_native/validate_concept_models.py` | `output/models/irrigated-farm-native-fit/concept-models/` |
 | Native farm irrigation-only overlay study (unapproved) | `tools/irrigation_native/build_overlays.py` | `tools/irrigation_native/validate_overlays.py` | `output/models/irrigated-farm-native-overlay/` |
 | Regular native farm irrigation candidates (unapproved) | `tools/irrigation_native/build_regular_farms.py` | `tools/irrigation_native/validate_regular_farms.py` | `output/models/irrigated-farm-native-fit/regular-farm-review/` |
 | Native-art irrigation terrain and junction review (unapproved) | `tools/irrigation_native/build_terrain_cases.py` | `tools/irrigation_native/validate_terrain_cases.py` | `output/models/irrigated-farm-native-fit/terrain-review/` |

@@ -76,8 +76,22 @@ def build(out, history_root):
         names=viewer(folder/'index.html',library/(key+'.html'),prefix)
         path=url('library',key+'.html');viewers[path]=sorted(names)
         return path,names
-    def group(key,title,status,description,items,image=None,view=None):
-        groups.append(dict(key=key,title=title,status=status,description=description,items=items,image=image,view=view))
+    def group(key,title,status,description,items,image=None,view=None,review=None):
+        groups.append(dict(key=key,title=title,status=status,description=description,items=items,image=image,view=view,review=review))
+
+    concept=out/'concept-models'
+    if (concept/'models.json').is_file():
+        av,an=add_view('concept',concept,'concept-models')
+        concept_items=standard_items(read(concept/'models.json')['models'],concept,'concept-models',av,an)
+        for item in concept_items:
+            name=item['name']
+            if (concept/name/(name+'.fxsxml')).is_file():
+                item['files']['FXSXML']=url('concept-models',name+'/'+name+'.fxsxml')
+        group('concept','Selected concept → actual models','Civ V style refinement · review candidates',
+              'Four terrain forms, wet/dry and lower-detail variants, channels, aqueducts and a connected district. Actual native crop/masonry textures and regular Farm1 geometry. Individual experimental GR2 exports; native game loading and placement remain unverified.',
+              concept_items,
+              url('concept-models','connected-district-preview.png'),av,
+              url('concept-models','review.html'))
 
     terrain=out/'terrain-review';tv,_=add_view('terrain',terrain,'terrain-review')
     cases=read(terrain/'terrain-cases.json')['cases']; items=[]
@@ -136,7 +150,7 @@ def build(out, history_root):
             files={'Source GLB':url(r['glb']),'Source GR2':url(name,name+'-uncompressed.gr2')}))
     group('sources','Original Civ V source imports','Local reference assets',
           'Eleven imported source files, including the regular Farm variants and Terrace Farm construction states. The two unsuffixed Farm references are the earlier wheat-resource props.',native)
-    groups.sort(key=lambda g: 0 if g['key']=='v3' else 1)
+    groups.sort(key=lambda g: {'concept':0,'v3':1}.get(g['key'],2))
     data={'groups':groups,'concepts':sheets,'viewer_models':viewers,
           'native_game_acceptance':False,'scope':'Saved irrigation work; revisions and states are separate entries, not unique completed game assets.'}
     (library/'catalog.json').write_text(json.dumps(data,indent=2)+'\n')
@@ -162,6 +176,7 @@ def render(out,data):
             entries.append('<li><span>'+esc(item['label'])+'</span><span class="formats">'+' '.join(actions)+'</span></li>')
         thumbnail=('<a class="preview" href="'+esc(g['view'])+'"><img loading="lazy" src="'+esc(g['image'])+'" alt="'+esc(g['title'])+' saved mesh preview"></a>') if g['image'] else ''
         button='<a class="open" href="'+esc(g['view'])+'">Open 3D collection ↗</a>' if g['view'] else ''
+        if g.get('review'):button += '<p><a href="'+esc(g['review'])+'">Close-up, map-scale &amp; source comparisons ↗</a></p>'
         sections.append('<section class="collection" id="'+g['key']+'">'+thumbnail+'<div class="description"><p class="status">'+esc(g['status'])+'</p><h2>'+esc(g['title'])+'</h2><p>'+esc(g['description'])+'</p>'+button+'<details><summary>Browse all '+str(len(g['items']))+' saved exports</summary><ul class="inventory">'+''.join(entries)+'</ul></details></div></section>')
     sheets=''.join('<figure><a href="'+esc(s['image'])+'"><img loading="lazy" src="'+esc(s['image'])+'" alt="'+esc(s['title'])+'"></a><figcaption><strong>'+esc(s['title'])+'</strong><span>'+esc(s['status'])+'</span></figcaption></figure>' for s in data['concepts'])
     template=(Path(__file__).with_name('review_library.html')).read_text()
@@ -171,6 +186,7 @@ def render(out,data):
 def validate(out,data):
     links=[]
     for group in data['groups']:
+        if group.get('review'):links.append(group['review'])
         if group['image']:links.append(group['image'])
         if group['view']:links.append(group['view'])
         for item in group['items']:

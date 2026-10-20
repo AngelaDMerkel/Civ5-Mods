@@ -152,7 +152,7 @@ def wall(m,a,b,z,h,k,i):
         m.face([(*(p-inward*.8),z),(*(q-inward*.8),z),(*q,top1),(*p,top0)],'stone','retaining_wall',uv)
         m.face([(*p,top0),(*q,top1),(*(q+inward),top1),(*(p+inward),top0)],'stone','wall_coping')
 
-def field_patches(m,poly,z,origin,state):
+def field_patches(m,poly,z,origin,state,texture_repeat=.72,parcel_margin=.06):
     # Unequal, staggered parcels in a common rotated world frame. Adjacent farm
     # meshes therefore still meet with identical field species and UV phase.
     a=.19;rotation=np.array([[math.cos(a),-math.sin(a)],[math.sin(a),math.cos(a)]])
@@ -167,14 +167,14 @@ def field_patches(m,poly,z,origin,state):
             if state=='Dry':mat='dry_crop'
             if state=='Construction':continue
             if state=='Pillaged':mat='stubble'
-            pp=world.copy();margin=.06+.016*((ix+iy)%3)
+            pp=world.copy();margin=parcel_margin*(1+(.016/.06)*((ix+iy)%3))
             for axis,lim,gt in [(0,x0+margin,True),(0,x1-margin,False),(1,y0+margin,True),(1,y1-margin,False)]:pp=B.clip(pp,axis,lim,gt)
             pp=B.clean(pp)
             if not pp:continue
             pp=np.array(pp)
             # Fine painted crop detail repeats at agricultural scale within
             # the larger irregular parcel. Whole barley stalks are not tile-sized.
-            repeat=.72
+            repeat=texture_repeat
             for tx in range(math.floor(pp[:,0].min()/repeat),math.floor(pp[:,0].max()/repeat)+1):
                 for ty in range(math.floor(pp[:,1].min()/repeat),math.floor(pp[:,1].max()/repeat)+1):
                     sub=pp.copy()
