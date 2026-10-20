@@ -10,8 +10,9 @@ from unittest.mock import patch
 sys.dont_write_bytecode = True
 REPO = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPO / 'gamecore/tools'))
-from native_session import Session, data_inventory, digest, plain_path
+from native_session import Session, data_inventory, digest, plain_path, DATA_FOLDERS
 from native_test import outcome, prior_recovery, startup
+from native_mods import prepare_mods, install_mods, verify_mods, activate_mods
 from tools.civ5_test_lock import native_test_lock
 
 
@@ -72,6 +73,89 @@ class NativeSessionTests(unittest.TestCase):
         Session.load(self.output).restore_files()
         self.assert_restored()
         self.assertEqual((self.output / 'after/Logs/Lua.log').read_bytes(), b'new evidence')
+
+    def test_mod_user_data_restored(self):
+        path = self.data / 'ModUserData/state.db'
+        path.parent.mkdir()
+        path.write_bytes(b'original mod state')
+        session = self.prepare()
+        path.write_bytes(b'test mod state')
+        session.restore_files()
+        self.assertEqual(path.read_bytes(), b'original mod state')
+        self.assertEqual((self.output / 'after/ModUserData/state.db').read_bytes(), b'test mod state')
+
+    def staged_mod(self):
+        stage = self.root / 'stage'
+        stage.mkdir()
+        (stage / 'test.modinfo').write_text(
+            '<Mod id="d571e16c-bb58-40bf-a81f-a919249e7995" version="2"/>')
+        (stage / 'test.lua').write_text('return true')
+        return stage
+
+    def test_ordinary_mod_install_recovery_and_activation(self):
+        stage = self.staged_mod()
+        mods = prepare_mods([stage], self.data)
+        folders = (*DATA_FOLDERS, *(m['relative'] for m in mods))
+        session = Session.prepare(self.output, self.app, self.data, self.mutations,
+                                  {'temporary_mods': mods}, data_folders=folders)
+        install_mods(mods, self.data)
+        verify_mods(mods, self.data)
+        self.assertEqual((self.data / mods[0]['relative'] / 'test.lua').read_text(), 'return true')
+        code = activate_mods(b'print("[LEKMOD_TEST] starting unattended match")', mods)
+        self.assertIn(b'Modding.EnableMod("d571e16c-bb58-40bf-a81f-a919249e7995", 2)', code)
+        self.assertLess(code.index(b'DisableMod'), code.index(b'EnableMod'))
+        session.restore_files()
+        self.assertFalse((self.data / mods[0]['relative']).exists())
+        self.assert_restored()
+
+    def test_existing_mod_identity_refused(self):
+        stage = self.staged_mod()
+        existing = self.data / 'MODS/user-version'
+        existing.mkdir(parents=True)
+        (existing / 'user.modinfo').write_bytes((stage / 'test.modinfo').read_bytes())
+        with self.assertRaisesRegex(ValueError, 'existing mod'):
+            prepare_mods([stage], self.data)
+        self.assertTrue((existing / 'user.modinfo').exists())
+
+    def test_duplicate_or_symlink_stage_refused(self):
+        stage = self.staged_mod()
+        with self.assertRaisesRegex(ValueError, 'existing mod'):
+            prepare_mods([stage, stage], self.data)
+        (stage / 'linked.lua').symlink_to(stage / 'test.lua')
+        with self.assertRaisesRegex(ValueError, 'symlink'):
+            prepare_mods([stage], self.data)
+
+    def test_modified_stage_is_not_installed(self):
+        stage = self.staged_mod()
+        mods = prepare_mods([stage], self.data)
+        (stage / 'test.lua').write_text('changed')
+        with self.assertRaisesRegex(RuntimeError, 'changed since'):
+            install_mods(mods, self.data)
+        self.assertFalse((self.data / mods[0]['relative']).exists())
+
+    def test_independent_mod_edit_blocks_recovery_check(self):
+        stage = self.staged_mod()
+        mods = prepare_mods([stage], self.data)
+        install_mods(mods, self.data)
+        (self.data / mods[0]['relative'] / 'test.lua').write_text('independent edit')
+        with self.assertRaisesRegex(RuntimeError, 'changed independently'):
+            verify_mods(mods, self.data)
+
+    def test_partial_mod_install_can_be_recovered(self):
+        stage = self.staged_mod()
+        mods = prepare_mods([stage], self.data)
+        folders = (*DATA_FOLDERS, *(m['relative'] for m in mods))
+        session = Session.prepare(self.output, self.app, self.data, self.mutations,
+                                  {'temporary_mods': mods}, data_folders=folders)
+        install_mods(mods, self.data)
+        (self.data / mods[0]['relative'] / 'test.lua').unlink()
+        verify_mods(mods, self.data)
+        session.restore_files()
+        self.assertFalse((self.data / mods[0]['relative']).exists())
+
+    def test_changed_activation_hook_refused(self):
+        with self.assertRaisesRegex(ValueError, 'hook changed'):
+            activate_mods(b'unknown startup', [{'id': 'unused'}])
 
     def test_recovery_before_install(self):
         self.prepare().restore_files()

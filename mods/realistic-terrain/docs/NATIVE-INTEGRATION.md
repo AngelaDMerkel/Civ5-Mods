@@ -79,6 +79,14 @@ Eligibility policy, save keys, database IDs and package versions are unchanged.
 The Outposts owner supplied its independent equivalent fix as `4d316c6`.
 No installed game files or user data were changed for this correction.
 
+The current-content native fixture is `tests/native/C5M_TerrainChecks.lua`,
+staged by `tools/terrain_native_gameplay.py` through the ordinary mod manifest.
+Its guarded launch/restore procedure is in the
+[native runner guide](../../../gamecore/tests/native/README.md#current-terrain-package-probe).
+It checks native API use and current UI/runtime with the shared core; it does
+not enable native trade or replace the required longer gameplay/save-load tests.
+Native execution of this new fixture is pending.
+
 ## Confirmed distribution requirements
 
 - The standard package uses Civ V's ordinary mod format and requires BNW only.

@@ -22,7 +22,8 @@ sys.dont_write_bytecode = True
 REPO = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPO))
 from tools.civ5_test_lock import LOCK_PATH, native_test_lock
-from native_session import Session, digest
+from native_session import Session, digest, DATA_FOLDERS
+from native_mods import prepare_mods, install_mods, verify_mods, activate_mods
 
 HARNESS_REVISION = '181b7232160a5661424c275f2a62deb5c56a7a34'
 APP = Path.home() / "Library/Application Support/Steam/steamapps/common/Sid Meier's Civilization V/Civilization V.app"
@@ -121,6 +122,7 @@ def restore(session, harness):
         raise RuntimeError('Close Civ V before restoring the journal')
     if digest(Path(session.report['app']) / HOST) != session.report['host_sha256']:
         raise RuntimeError('Host executable changed independently; retain recovery evidence')
+    verify_mods(session.report.get('temporary_mods', []), Path(session.report['data']))
     session.restore_files()
     before = session.report['display_before']
     now = display_state()
@@ -170,12 +172,14 @@ def run(args, harness, helper_dir):
     if {p.name for p in dlc.iterdir() if p.is_dir()} - allowed:
         raise ValueError('Unexpected installed DLC directory; baseline test requires stock content')
     run_id = uuid.uuid4().hex
+    mods = prepare_mods(args.mod_stage, DATA)
     external = Path(harness.__file__).parent
     libraries = compile_helpers(harness, helper_dir, args.host_stat_compat)
     frontend = 'Contents/Assets/Assets/UI/FrontEnd/'
     additions = {
-        frontend + 'MainMenu.lua': startup(external / 'playtest-start.lua'),
-        frontend + 'LoadScreen.lua': (REPO / 'gamecore/tests/native/baseline.lua').read_text().replace('__C5M_RUN__', run_id).encode(),
+        frontend + 'MainMenu.lua': activate_mods(startup(external / 'playtest-start.lua'), mods),
+        frontend + 'LoadScreen.lua': (REPO / 'gamecore/tests/native/baseline.lua').read_text()
+            .replace('__C5M_RUN__', run_id).replace('__C5M_PROBE__', args.probe_event or '').encode(),
         frontend + 'LegalScreen.lua': b'\ndo local elapsed=0; ContextPtr:SetUpdate(function(dt) if not ContextPtr:IsHidden() then elapsed=elapsed+dt; if elapsed>1 then UIManager:DequeuePopup(ContextPtr); ContextPtr:ClearUpdate() end end end) end\n',
     }
     mutations = {name: (APP / name).read_bytes() + b'\n' + code for name, code in additions.items()}
@@ -189,10 +193,13 @@ def run(args, harness, helper_dir):
     session = Session.prepare(output, APP, DATA, mutations, dict(
         provenance, run=run_id, harness_revision=HARNESS_REVISION,
         display_before=display_state(), host_stat_compat=args.host_stat_compat,
-        started_utc=datetime.now(timezone.utc).isoformat(), native_baseline='unverified'))
+        temporary_mods=mods, probe_event=args.probe_event,
+        started_utc=datetime.now(timezone.utc).isoformat(), native_baseline='unverified'),
+        data_folders=(*DATA_FOLDERS, *(mod['relative'] for mod in mods)))
     process = None
     try:
         session.install(mutations)
+        install_mods(mods, DATA)
         (DATA / 'config.ini').write_text(config)
         (DATA / 'UserSettings.ini').write_text(settings)
         subprocess.run(['defaults', 'write', DOMAIN, 'DisplayFullScreen', '-bool', 'false'], check=True)
@@ -251,6 +258,9 @@ def main():
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--timeout', type=int, default=600)
     parser.add_argument('--host-stat-compat', action='store_true', help='Verified-host, process-only startup correction')
+    parser.add_argument('--mod-stage', type=Path, action='append', default=[],
+                        help='Temporarily activate a staged ordinary mod; existing identities are refused')
+    parser.add_argument('--probe-event', help='C5M Lua event that receives the run ID and must emit the final PASS/FAIL')
     action = parser.add_mutually_exclusive_group(required=True)
     action.add_argument('--check', action='store_true', help='Read-only readiness/binary check')
     action.add_argument('--run', action='store_true', help='Explicit temporary activation and bounded game launch')
@@ -258,9 +268,12 @@ def main():
     args = parser.parse_args()
     if not 60 <= args.timeout <= 1200:
         parser.error('Timeout must be between 60 and 1200 seconds')
+    if args.probe_event and (not args.mod_stage or not re.fullmatch(r'C5M_[A-Za-z0-9_]+', args.probe_event)):
+        parser.error('Probe events must start with C5M_ and require a staged mod')
     harness = load_harness(args.harness.resolve())
     if args.check:
         readiness(harness)
+        prepare_mods(args.mod_stage, DATA)
         print(json.dumps(validate_build(args.binary, APP)['validation'], indent=2))
         return 0
     previous = json.loads(LOCK_PATH.read_text()).get('evidence') if LOCK_PATH.exists() else None

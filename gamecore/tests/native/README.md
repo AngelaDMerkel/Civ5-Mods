@@ -67,3 +67,28 @@ earlier sessions beside the selected output directory, not every other project.
 Only a matching run-specific Lua PASS establishes baseline checks. Capture success
 and visual review are separate. Record the exact build/hash, any startup correction,
 outcome and verified restoration before advertising native acceptance.
+
+## Current Terrain package probe
+
+The runner also supports `--mod-stage` for temporary ordinary-mod activation.
+Existing mod UUIDs or diagnostic directories are refused. The journal includes
+the temporary stages and `ModUserData`; interrupted partial installation can be
+recovered, and independently changed payloads stop restoration. The original mod
+activation cache is restored with the other user data. No DLC translator is used.
+
+```sh
+python3 tools/terrain_native_gameplay.py --output output/native-tests/terrain-stage-01
+python3 gamecore/tools/native_test.py --run --harness /path/to/Lekmod \
+  --output output/native-tests/terrain-01 \
+  --mod-stage output/native-tests/terrain-stage-01 --probe-event C5M_TerrainProbe
+```
+
+The core baseline must succeed before dispatching the test event. Only that
+fixture's run-specific final PASS completes the run. This checks the current
+production Terrain UI/Lua on the shared core, including native API calls, route
+launch/recall, markers and worker AI. The fixture appends a diagnostic include to
+a staged UI copy, constructs a disposable corridor and invokes production
+functions; it is not a campaign or proof of the future engine-owned trade system.
+It writes a diagnostic save for later process-restart testing. Writing and
+reading mod save data within one process does not establish save/load acceptance.
+See the owning mod's [native integration record](../../../mods/realistic-terrain/docs/NATIVE-INTEGRATION.md).

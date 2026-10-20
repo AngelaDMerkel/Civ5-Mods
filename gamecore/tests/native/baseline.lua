@@ -25,9 +25,15 @@ do
             end
             assert(units >= 2 and Players[1]:IsAlive(), "missing starting roster")
             OnActivateButtonClicked()
-            print("[C5M_NATIVE] run=" .. run .. " status=PASS version=" .. info.Version ..
-                  " turn=" .. Game.GetGameTurn() .. " units=" .. units ..
-                  " width=" .. width .. " height=" .. height)
+            local probe = "__C5M_PROBE__"
+            if probe ~= "" then
+                print("[C5M_NATIVE] run=" .. run .. " baseline-ready version=" .. info.Version)
+                LuaEvents[probe](run)
+            else
+                print("[C5M_NATIVE] run=" .. run .. " status=PASS version=" .. info.Version ..
+                      " turn=" .. Game.GetGameTurn() .. " units=" .. units ..
+                      " width=" .. width .. " height=" .. height)
+            end
         end)
         if not ok then
             print("[C5M_NATIVE] run=" .. run .. " status=FAIL error=" .. tostring(message))

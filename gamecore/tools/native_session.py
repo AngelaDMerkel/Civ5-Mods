@@ -9,7 +9,8 @@ import os
 from pathlib import Path
 import shutil
 
-DATA_FOLDERS = ('Saves', 'ModdedSaves', 'cache', 'Logs')
+LEGACY_DATA_FOLDERS = ('Saves', 'ModdedSaves', 'cache', 'Logs')
+DATA_FOLDERS = (*LEGACY_DATA_FOLDERS, 'ModUserData')
 SETTINGS = ('config.ini', 'UserSettings.ini', 'GraphicsSettingsDX9.ini')
 
 
@@ -59,10 +60,10 @@ def replace_file(path, contents, metadata=None):
         temporary.unlink(missing_ok=True)
 
 
-def data_inventory(data):
+def data_inventory(data, folders=DATA_FOLDERS):
     result = {}
     directories = []
-    for folder in DATA_FOLDERS:
+    for folder in folders:
         root = plain_path(data, folder)
         if root.exists():
             if not root.is_dir():
@@ -92,13 +93,14 @@ class Session:
         write_json(self.output / 'session.json', self.report)
 
     @classmethod
-    def prepare(cls, output, app, data, mutations, metadata):
+    def prepare(cls, output, app, data, mutations, metadata, data_folders=DATA_FOLDERS):
         output, app, data = map(lambda p: Path(p).resolve(), (output, app, data))
         output.mkdir(parents=True, exist_ok=False)
-        original, directories = data_inventory(data)
+        original, directories = data_inventory(data, data_folders)
         report = dict(metadata, format=1, app=str(app), data=str(data),
                       status='preparing', restored=False, data_originals=original,
-                      data_directories=directories, app_originals={}, installed={})
+                      data_directories=directories, data_folders=list(data_folders),
+                      app_originals={}, installed={})
         session = cls(output, report)
         # No game files are changed until all backups and the journal exist.
         for relative, sha in original.items():
@@ -169,7 +171,8 @@ class Session:
             for relative, sha in originals.items():
                 if sha is not None and digest(plain_path(self.output / directory, relative)) != sha:
                     raise RuntimeError('Recovery backup changed: ' + relative)
-        current, directories = data_inventory(data)
+        folders = report.get('data_folders', LEGACY_DATA_FOLDERS)
+        current, directories = data_inventory(data, folders)
         for relative, sha in current.items():
             if sha is None:
                 continue
@@ -201,7 +204,7 @@ class Session:
             (data / relative).rmdir()
         for relative in report['data_directories']:
             (data / relative).mkdir(parents=True, exist_ok=True)
-        restored, directories = data_inventory(data)
+        restored, directories = data_inventory(data, folders)
         if restored != report['data_originals'] or directories != report['data_directories']:
             raise RuntimeError('Data restoration verification failed')
         for relative, expected in report['app_originals'].items():
