@@ -28,11 +28,14 @@ module family. The package regression check requires every private include to
 identify exactly one imported filename, independent of file enumeration order;
 the UI mock also loads exact filenames. Gameplay, package and database tests pass.
 
-Prefix matching is still a **suspected cause**, pending the owner's native
-comparison of extensionless versus exact includes. Its first fixture also used
-a different file order from the normal builder. Offline checks establish the
-package/include contract, not successful ordinary-mod startup or native shelter.
-No installation files were changed by this fix.
+The native lookup collision is **confirmed**. The repeated probe's retained log,
+`output/gr2-research/outpost-integration-native-02/after/Logs/Lua.log` lines 59–66,
+shows the same startup failure, followed by a separate diagnostic context:
+`include-prefix RT_Irrigation=nil RT_IrrigationAI=table`, then
+`include-exact RT_Irrigation=table`. The Outposts owner also corrected the fixture
+to use the builder's sorted file order before that run. The exact-filename fix
+is commit `4f94732`; the full production-context startup and shelter rerun remains
+separate acceptance work. No installation files were changed by this branch's fix.
 
 ## Confirmed distribution requirements
 
