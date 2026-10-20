@@ -13,6 +13,27 @@ and has passed a native BNW startup test with temporary direct activation and
 verified restoration (2026-10-20). Native trade remains unimplemented; see the
 [exact evidence](../../../gamecore/VALIDATION.md).
 
+## Ordinary-mod startup follow-up — 2026-10-20
+
+The Outposts owner's combined ordinary-mod probe activated both real package
+UUIDs, but Terrain stopped at `RT_Irrigation.Initialize()` because
+`RT_Irrigation` was nil. Its reported evidence is
+`output/gr2-research/outpost-integration-native-01/after/Logs/Lua.log` in that
+owner's worktree. Both irrigation scripts were present with VFS import enabled.
+
+Terrain now uses exact `.lua` filenames for all 19 private includes in
+`RT_Environment.lua` and `RT_TradeBootstrap.lua`. This removes name ambiguity
+between Irrigation/IrrigationAI, Construction/ConstructionOrders and the Trade
+module family. The package regression check requires every private include to
+identify exactly one imported filename, independent of file enumeration order;
+the UI mock also loads exact filenames. Gameplay, package and database tests pass.
+
+Prefix matching is still a **suspected cause**, pending the owner's native
+comparison of extensionless versus exact includes. Its first fixture also used
+a different file order from the normal builder. Offline checks establish the
+package/include contract, not successful ordinary-mod startup or native shelter.
+No installation files were changed by this fix.
+
 ## Confirmed distribution requirements
 
 - The standard package uses Civ V's ordinary mod format and requires BNW only.

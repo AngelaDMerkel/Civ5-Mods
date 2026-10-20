@@ -1,12 +1,13 @@
-include("RT_Config");
-include("RT_Rules");
-include("RT_Supply");
-include("RT_Irrigation");
-include("RT_Construction");
-include("RT_OutpostBridge");
-include("RT_ConstructionOrders");
-include("RT_IrrigationAI");
-include("RT_Gameplay");
+-- Exact VFS filenames keep prefix siblings (such as IrrigationAI) unambiguous.
+include("RT_Config.lua");
+include("RT_Rules.lua");
+include("RT_Supply.lua");
+include("RT_Irrigation.lua");
+include("RT_Construction.lua");
+include("RT_OutpostBridge.lua");
+include("RT_ConstructionOrders.lua");
+include("RT_IrrigationAI.lua");
+include("RT_Gameplay.lua");
 
 local G, C = RT_Gameplay, RT_Config;
 local cityView = false;
@@ -106,6 +107,6 @@ Events.LoadScreenClose.Add(refresh);
 Events.ActivePlayerTurnStart.Add(refresh);
 GameEvents.CityConstructed.Add(refresh);
 refresh();
-include("RT_TradeBootstrap");
-include("RT_Art");
+include("RT_TradeBootstrap.lua");
+include("RT_Art.lua");
 RT_Art.Initialize();

@@ -1,5 +1,6 @@
 """Keep the actual standard Terrain manifest independent of external products."""
 from pathlib import Path
+import re
 import sys
 import unittest
 
@@ -9,6 +10,26 @@ from packages import BNW_ID, PACKAGES, RT_ID, package_files
 
 
 class TerrainDistributionTests(unittest.TestCase):
+    def test_private_includes_resolve_to_exact_imported_files(self):
+        spec = next(item for item in PACKAGES if item['id'] == RT_ID)
+        files = package_files(spec)
+        mod = manifest(files, spec)
+        imported = {Path(entry.text).name.casefold() for entry in mod.findall('./Files/File')
+                    if entry.get('import') == '1' and entry.text.endswith('.lua')}
+        checked = []
+        for source in files.values():
+            if source.suffix != '.lua':
+                continue
+            for name in re.findall(r'\binclude\s*\(\s*[\"\'](RT_[^\"\']+)[\"\']\s*\)', source.read_text()):
+                with self.subTest(source=source.name, include=name):
+                    # Prefix siblings may be enumerated before the base file.
+                    # An exact imported filename remains unique in either order.
+                    candidates = sorted(item for item in imported if item.startswith(name.casefold()))
+                    self.assertEqual(candidates, [name.casefold()])
+                checked.append(name)
+        self.assertIn('RT_Irrigation.lua', checked)  # The separately owned component is included.
+        self.assertIn('RT_Trade.lua', checked)
+
     def test_standard_release_requires_only_bnw_and_ships_no_engine_or_installer(self):
         spec = next(item for item in PACKAGES if item['id'] == RT_ID)
         files = package_files(spec)
