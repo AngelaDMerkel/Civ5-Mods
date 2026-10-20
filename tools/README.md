@@ -18,6 +18,7 @@ one mod. Do not move them into a playable package.
 | Irrigation mesh kit v1 | `tools/build_irrigation_meshes.py` | `tools/validate_irrigation_meshes.py` | `output/models/irrigated-farm-v1/` |
 | Irrigation mesh refinement v2 | `tools/irrigation_v2/build_irrigation_meshes.py` | `tools/irrigation_v2/validate_irrigation_meshes.py` | `output/models/irrigated-farm-v2/` |
 | Irrigation v3 structural study (selected approach) | `tools/irrigation_v3/build_irrigation_meshes.py` | `tools/irrigation_v3/validate_irrigation_meshes.py` | `output/models/irrigated-farm-v3/` |
+| Unequal hillside terraces (R5, unapproved) | `tools/irrigation_native/build_concept_revision.py --revision 5` | `tools/irrigation_native/validate_concept_hillsides.py` | `output/models/irrigated-farm-native-fit/concept-models-r5/` |
 | Angular hill tiers and cascades (R4, unapproved) | `tools/irrigation_native/build_concept_revision.py --revision 4` | `tools/irrigation_native/validate_concept_cascades.py` | `output/models/irrigated-farm-native-fit/concept-models-r4/` |
 | Straight gentle terraces and parcel channels (R3, unapproved) | `tools/irrigation_native/build_concept_revision.py --revision 3` | `tools/irrigation_native/validate_concept_parcels.py` | `output/models/irrigated-farm-native-fit/concept-models-r3/` |
 | Revised irrigation geometry (offline, unapproved) | `tools/irrigation_native/build_concept_revision.py` | `tools/irrigation_native/validate_concept_revision.py` | `output/models/irrigated-farm-native-fit/concept-models-r2/` |

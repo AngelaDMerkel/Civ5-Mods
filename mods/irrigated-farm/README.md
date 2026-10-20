@@ -279,10 +279,36 @@ and building clearance, and the inherited flow/terrain/export checks. It verifie
 all recorded R1-R3 exports are unchanged. Close, overhead, front and reduced-size
 renders of the actual GLBs were inspected; browser rendering remains unverified.
 
-The current review is `concept-models-r4/review.html`, also available through the
-existing `concept-models/review.html` alias after the library rebuild. The R4 hash
+The preserved R4 review is `concept-models-r4/review.html`. The R4 hash
 record is `shared/art/irrigated-farm/v3-civ5-direction/model-review-r4.json`.
 These models remain **unapproved**. Cascades are static modeled water surfaces,
 not an in-game fluid simulation or animated effect. Native conversion, terrain
 placement, dynamic connections and game acceptance remain pending. This pass
 makes no native/game/user-data or runtime changes.
+
+
+The user found R4 improved but unnatural and unrealistic. R5 responds by keeping
+angular terraces while reducing their symmetry and masonry mass. Each front has
+a deliberate angular bend; widths, offsets and rises differ across the three
+benches. The lowest bench holds three unequal plots and the upper benches two
+each. Narrow soil margins replace the broad frames. Native masonry repeats at a
+fixed physical scale instead of stretching across an entire wall. Channels sit
+closer to the soil, run along upper plot edges and descend at different parcel
+divisions on successive tiers. They remain connected, level or falling.
+
+The original regular Farm1 building and native atlas are retained. R3 flat source
+buffers remain identical, and all R1-R4 recorded exports are preserved. R5's
+24 GLB/OBJ/BR2 candidates are generated with `build_concept_revision.py --revision 5`
+and checked with `validate_concept_hillsides.py`. The assembly helper accepts the
+new hill geometry while its default R4 assembly was reproduced in memory and
+compared with the frozen position, normal and GLB UV buffers.
+
+This response is a design interpretation of the realism feedback, not an
+approved historic reconstruction. [Reference notes](../../shared/references/irrigation-hillside-realism.md)
+record the native Civ V comparison and a real-world gravity-irrigation reference.
+The current review is `concept-models-r5/review.html`, also shown by the existing
+`concept-models/review.html` alias after rebuilding the library. Close, distance,
+front, overhead and assembly renders show actual exported geometry. R5 remains
+**unapproved** in `shared/art/irrigated-farm/v3-civ5-direction/model-review-r5.json`.
+Native conversion, game testing and integration remain held; no game, user-data
+or runtime files changed. The modeled water surfaces are static.

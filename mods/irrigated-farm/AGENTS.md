@@ -61,3 +61,12 @@ retaining-wall notches. R3 flat geometry stays unchanged. Build with
 `build_concept_revision.py --revision 4`; run `validate_concept_cascades.py`.
 Preserve R1-R3 checkpoints. Record R4 as unapproved in `model-review-r4.json`;
 the native conversion/testing/integration hold still applies.
+
+
+R4 was described as improved but unnatural/unrealistic. The R5 response keeps
+angular terraces, fitted crops and cascading flow, while reducing the monument-
+like symmetry: unequal bent fronts, lower exposed walls, finer native masonry,
+narrower bare margins, and staggered drops on parcel divisions. These are design
+proposals in response to the feedback, not new user approval. Build with
+`build_concept_revision.py --revision 5`; validate with `validate_concept_hillsides.py`.
+Preserve R1-R4 exports; record R5 as unapproved in `model-review-r5.json`.

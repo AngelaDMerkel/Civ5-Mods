@@ -189,7 +189,12 @@ def geometry(regular):
         finally:natural.tile=old_tile;natural.surface_height=old_height
 
 
-def scene():
+def scene(api=None):
+    get_inlet=inlet if api is None else api.inlet
+    get_headers=ground_headers if api is None else api.ground_headers
+    make_tile=tile if api is None else api.tile
+    ground_height=height if api is None else api.height
+
     m=Mesh('RT_IF_ConnectedDistrict')
     layout=[(-1,1,'RockyFoothill'),(0,1,'SteepHill'),(0,0,'GentleHill'),(-1,0,'Flat'),(1,0,'Flat'),(0,-1,'Flat')]
     parents={0:-1,1:0,2:1,3:0,4:2,5:2};samples=[]
@@ -201,7 +206,7 @@ def scene():
                 delta=v3.axial(oq,orr)-xy
                 if other=='Flat' and abs(np.linalg.norm(delta)-2*v3.A)<1e-6:neighbors.append(round(math.atan2(delta[1],delta[0])/(math.pi/3))%6)
             graph=r3.parcel_graph(xy,neighbors,toward);root=np.r_[graph['points'][graph['root']],WATER]
-        else:root=inlet(kind)
+        else:root=get_inlet(kind)
         samples.append(dict(q=q,r=r,kind=kind,center=xy.tolist(),inlet=(root+[*xy,0]).tolist(),neighbors=neighbors,toward=list(toward)))
     source=np.array(samples[0]['inlet'])+[-8,-.15,.10];links=[];openings={}
     for child,parent in parents.items():
@@ -210,19 +215,19 @@ def scene():
         else:
             owner=samples[parent]
             if samples[child]['kind']=='Flat':
-                candidates=[(name,p) for name,path in zip(('ground_left','ground_right'),ground_headers(owner['kind'])) for p in path]
+                candidates=[(name,p) for name,path in zip(('ground_left','ground_right'),get_headers(owner['kind'])) for p in path]
                 name,local=min(candidates,key=lambda item:np.linalg.norm((item[1]+[*owner['center'],0])[:2]-end[:2]))
                 start=local+[*owner['center'],0]
             else:start=np.array(owner['inlet']);local=start-[*owner['center'],0];name='mountain_receiver_drop'
             openings.setdefault(owner['kind'],{}).setdefault(name,[]).append(local);upstream=f'tile_{owner["q"]}_{owner["r"]}_'+name
         links.append((parent,child,start,end,upstream))
     for e in samples:
-        part=r3.flat_tile(origin=e['center'],neighbors=e['neighbors'],toward=e['toward']) if e['kind']=='Flat' else tile(e['kind'],origin=e['center'],openings=openings.get(e['kind'],{}))
+        part=r3.flat_tile(origin=e['center'],neighbors=e['neighbors'],toward=e['toward']) if e['kind']=='Flat' else make_tile(e['kind'],origin=e['center'],openings=openings.get(e['kind'],{}))
         m.append(part,(*e['center'],0),prefix=f'tile_{e["q"]}_{e["r"]}_')
     def ground(x,y):
         for e in samples:
             xy=np.array([x,y])-e['center']
-            if v3.in_poly(xy,v3.HEX):return 0. if e['kind']=='Flat' else height(e['kind'],*xy)
+            if v3.in_poly(xy,v3.HEX):return 0. if e['kind']=='Flat' else ground_height(e['kind'],*xy)
         return 0.
     graph=[];feeders=[]
     for parent,child,start,end,upstream in links:

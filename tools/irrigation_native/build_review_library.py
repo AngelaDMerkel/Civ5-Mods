@@ -114,6 +114,16 @@ def build(out, history_root):
         current=(cascades/'review.html').read_text().replace('<head>','<head><base href="/concept-models-r4/">',1)
         (out/'concept-models/review.html').write_text(current)
 
+    hillsides=out/'concept-models-r5'
+    if (hillsides/'hillside-validation.json').is_file():
+        av,an=add_view('concept-r5',hillsides,'concept-models-r5')
+        group('concept-r5','Unequal hillside terraces & offset water drops','Revision 5 · unapproved models',
+              'Lower angular benches, unequal fitted parcels, finer native masonry and channels closer to the soil. Drops move between parcel boundaries instead of lining up on a central axis. Flat geometry stays at revision 3.',
+              standard_items(read(hillsides/'models.json')['models'],hillsides,'concept-models-r5',av,an),
+              url('concept-models-r5','GentleHill-preview.png'),av,url('concept-models-r5','review.html'))
+        current=(hillsides/'review.html').read_text().replace('<head>','<head><base href="/concept-models-r5/">',1)
+        (out/'concept-models/review.html').write_text(current)
+
     concept=out/'concept-models'
     if (concept/'models.json').is_file():
         av,an=add_view('concept',concept,'concept-models')
@@ -185,7 +195,7 @@ def build(out, history_root):
             files={'Source GLB':url(r['glb']),'Source GR2':url(name,name+'-uncompressed.gr2')}))
     group('sources','Original Civ V source imports','Local reference assets',
           'Eleven imported source files, including the regular Farm variants and Terrace Farm construction states. The two unsuffixed Farm references are the earlier wheat-resource props.',native)
-    groups.sort(key=lambda g: {'concept-r4':0,'concept-r3':1,'concept-r2':2,'concept':3,'v3':4}.get(g['key'],5))
+    groups.sort(key=lambda g: {'concept-r5':0,'concept-r4':1,'concept-r3':2,'concept-r2':3,'concept':4,'v3':5}.get(g['key'],6))
     data={'groups':groups,'concepts':sheets,'viewer_models':viewers,
           'native_game_acceptance':False,'scope':'Saved irrigation work; revisions and states are separate entries, not unique completed game assets.'}
     (library/'catalog.json').write_text(json.dumps(data,indent=2)+'\n')

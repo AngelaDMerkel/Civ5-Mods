@@ -7,6 +7,7 @@
 | Terrain source model approval | [rt-models](../art/rt-models/approved.json) | Exact approved hashes; native conversion pending |
 | Eight Outpost eras | [outpost concepts](../art/outpost-era-concepts-v1/approved.json) | Original options plus era selections and mesh approval |
 | Irrigated Farm concept | [irrigation art](../art/irrigated-farm/README.md) | Approved v6 concept; mesh refinements have separate acceptance |
+| Irrigation hillside realism | [native and real-world references](irrigation-hillside-realism.md) | R5 design rationale; unapproved source models |
 | Construction and game APIs | [testing notes](../../docs/TESTING.md) and mod docs | Existing implementation evidence and manual checks |
 | Climate investigation | [research status](../../mods/climate-change/docs/REQUIREMENTS.md) | Prior investigation findings, still requiring native experiments |
 

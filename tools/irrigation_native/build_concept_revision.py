@@ -10,12 +10,14 @@ from build_concept_models import HERE, OUT, digest, remap, Reader, v3, natural, 
 from concept_revision_geometry import geometry, scene, curved_bridge, MAX_GRADE, MAX_TURN
 
 def build(out,quick=False,revision=2):
-    if revision not in (2,3,4):raise ValueError('Unsupported review revision')
+    if revision not in (2,3,4,5):raise ValueError('Unsupported review revision')
     mesh_geometry,mesh_scene=geometry,scene
     if revision==3:
         from concept_parcel_geometry import geometry as mesh_geometry, scene as mesh_scene
     if revision==4:
         from concept_cascade_geometry import geometry as mesh_geometry, scene as mesh_scene
+    if revision==5:
+        from concept_hillside_geometry import geometry as mesh_geometry, scene as mesh_scene
     prefix=f'RT_IF_ConceptR{revision}_'
     folder=out/f'concept-models-r{revision}';folder.mkdir(exist_ok=True)
     previous=out/'concept-models';old=json.loads((previous/'models.json').read_text())
@@ -60,7 +62,7 @@ def build(out,quick=False,revision=2):
                     atlas_sha256=digest(folder/'RT_IF_Diffuse.png'),aqueduct_max_grade=MAX_GRADE,aqueduct_max_turn_degrees=MAX_TURN,
                     previous_candidates='concept-models; original geometry and approval checkpoint preserved')
     (folder/'models.json').write_text(json.dumps(manifest,indent=2)+'\n')
-    (folder/'review.html').write_text((HERE/{2:'concept_revision_review.html',3:'concept_parcel_review.html',4:'concept_cascade_review.html'}[revision]).read_text())
+    (folder/'review.html').write_text((HERE/{2:'concept_revision_review.html',3:'concept_parcel_review.html',4:'concept_cascade_review.html',5:'concept_hillside_review.html'}[revision]).read_text())
     if not quick:render(folder,revision)
     return folder
 
@@ -74,8 +76,8 @@ def render(folder,revision=2):
     if revision>=3:
         name=f'RT_IF_ConceptR{revision}_Flat_Wet'
         render_glb(folder/name/(name+'.glb'),1000,1000,azimuth=-90,elevation=89.9,shadow_bias=.065).save(folder/'parcel-plan-preview.png')
-    if revision==4:
-        name='RT_IF_ConceptR4_SteepHill_Wet';path=folder/name/(name+'.glb')
+    if revision>=4:
+        name=f'RT_IF_ConceptR{revision}_SteepHill_Wet';path=folder/name/(name+'.glb')
         render_glb(path,1200,950,azimuth=-90,elevation=30,shadow_bias=.065).save(folder/'cascade-front-preview.png')
         render_glb(path,1000,1000,azimuth=-90,elevation=89.9,shadow_bias=.065).save(folder/'tier-plan-preview.png')
     name=f'RT_IF_ConceptR{revision}_ConnectedDistrict';path=folder/name/(name+'.glb')
@@ -84,6 +86,6 @@ def render(folder,revision=2):
 
 
 if __name__=='__main__':
-    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--output',type=Path,default=OUT);parser.add_argument('--quick',action='store_true');parser.add_argument('--render-only',action='store_true');parser.add_argument('--revision',type=int,choices=[2,3,4],default=2);a=parser.parse_args()
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--output',type=Path,default=OUT);parser.add_argument('--quick',action='store_true');parser.add_argument('--render-only',action='store_true');parser.add_argument('--revision',type=int,choices=[2,3,4,5],default=2);a=parser.parse_args()
     if a.render_only:render(a.output.resolve()/f'concept-models-r{a.revision}',a.revision)
     else:print(build(a.output.resolve(),a.quick,a.revision))

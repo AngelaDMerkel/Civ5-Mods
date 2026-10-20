@@ -505,3 +505,29 @@ the cascades and parcel fit, alongside the other terrain views, earlier models,
 selected concept and genuine game references. Its separate unapproved hash record
 is `model-review-r4.json`; native conversion, testing and integration remain held
 for user model review. The shared native test environment is untouched.
+
+
+### Unequal hillside terraces (R5)
+
+The next feedback describes R4 as improved but unnatural/unrealistic. The R5
+response keeps angular contours and tier-fitted plots, with lower unequal rises,
+bent fronts, narrower soil margins and finer native masonry repetition. Each
+bench has its own parcel divisions. Water follows the upper plot edge, branches
+along those divisions and drops at different positions on successive tiers.
+Water and channel beds sit closer to the soil. The lowest bench has three plots;
+the others have two. Flat geometry and the source atlas remain unchanged.
+
+```sh
+python3 tools/irrigation_native/build_concept_revision.py --revision 5
+python3 tools/irrigation_native/validate_concept_hillsides.py
+python3 tools/irrigation_native/build_review_library.py --history-root /path/to/checkout-with-earlier-outputs
+```
+
+`concept_hillside_geometry.py` supplies the new hill geometry to R4's assembly
+helper via an optional API argument; its default behavior remains R4. The latter
+was checked in memory against the frozen assembly position/normal/GLB-UV arrays.
+The validator checks tier crop vertices and centroids against exported flat bench
+triangles, masonry openings, actual cascade water geometry, crop/building/terrain
+clearance, downhill connections, shallow spans, R3 flat buffers and all R1-R4
+recorded hashes. No native exporter runs. `concept-models-r5/review.html` and
+`model-review-r5.json` preserve the new unapproved review separately.
