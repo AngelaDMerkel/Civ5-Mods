@@ -154,3 +154,14 @@ viewer JavaScript syntax passed. Actual close/distance renders and browser layer
 controls were inspected. No game was launched or installed/user data changed by
 this chat; it holds no native-test lock or restoration journal. The independent
 Outpost native test work remains the current slot owner pending its release notice.
+
+
+All saved art is indexed by `tools/irrigation_native/build_review_library.py` in
+`output/models/irrigated-farm-native-fit/index.html`. This restores discoverability
+of the earlier terrace, floodplain, transition, aqueduct, channel, edge, concept
+and v1–v3 mesh studies alongside the regular farm candidates. The narrow
+`regular-farm-review` page now links back to this full library. Historical meshes,
+illustrations, native comparisons and current candidates retain distinct status;
+the recovery changes navigation only and does not approve or modify their art.
+See the native tooling README for the historical-output checkout argument and
+local server command.

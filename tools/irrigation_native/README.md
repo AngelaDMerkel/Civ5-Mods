@@ -303,3 +303,37 @@ These native-derived files are local tests, not distributable originals or a
 playable mod package. Production Farm-art fallback and gameplay are unchanged.
 The earlier diagnostic terrain cases now also use constructed regular Farm1 props,
 but their authored field polygons remain historical fitting fixtures.
+
+
+### Complete saved asset library
+
+The regular-farm page contains only the latest building candidates. To recover
+all earlier work in one place, run:
+
+```sh
+python3 tools/irrigation_native/build_review_library.py --history-root /path/to/checkout-with-earlier-outputs
+python3 -m http.server 18769 --bind 127.0.0.1 --directory output/models/irrigated-farm-native-fit
+```
+
+The first command writes `output/models/irrigated-farm-native-fit/index.html`.
+The historical checkout supplies `output/models/irrigated-farm-v1`, `-v2` and
+`-v3`; the active irrigation checkout supplies native candidates, overlays and
+versioned concept sheets. Missing source collections cause an explicit failure.
+The local index contains eight collections (163 saved export entries, including
+states/revisions and 11 original source references) plus six concept sheets.
+Each historical mesh study has 36 exports, including construction, pillaged,
+wet/dry and lower-detail variants. Components include aqueducts, intakes and edge
+closures. Native terrain studies include seven wet/dry cases.
+
+The builder creates local symlinks to the exact selected source folders and
+copies only the interactive viewer HTML to add model-specific links and library
+navigation. It does not regenerate geometry, overwrite historical source viewers,
+copy proprietary art into releases, or alter approval records. Keep serving the
+native-fit folder as the HTTP root. The historical checkout must remain available
+while its linked files are viewed. Re-run the library builder after regenerating
+any source collection. The regular viewer generator retains the library link.
+
+`library/catalog.json` records every entry; `library/validation.json` records file
+and model-link checks. The recovery pass checked 635 links. Browser visual QA was
+unavailable because the browser tool denied URL access; static link checks and
+JavaScript syntax checks do not establish browser rendering or native game art.

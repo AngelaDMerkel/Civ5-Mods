@@ -4,6 +4,7 @@ import base64
 import json
 import numpy as np
 from irrigation_mesh_io import read_glb
+from build_review_library import BANNER
 
 
 def build_viewer(folder, views):
@@ -43,6 +44,8 @@ def build_viewer(folder, views):
     html=html.replace("for(const ext of ['glb','obj','br2']){by(ext).href=active.name+'/'+active.name+'.'+ext;by(ext).download=active.name+'.'+ext}",
                       "for(const ext of ['glb','gr2']){by(ext).href=active.files[ext];by(ext).download=active.files[ext]}")
     html=html.replace('yaw=-1.25,pitch=.73','yaw=.96,pitch=1.13').replace('yaw=-1.25;pitch=.73','yaw=.96;pitch=1.13')
+    if (folder.parent/'library/catalog.json').is_file():
+        html=html.replace('<body>','<body>'+BANNER,1)
     (folder/'index.html').write_text(html)
     (folder/'TECHNICAL_NOTES.txt').write_text('''Regular resource-free farms, not wheat Farm props.
 Source: installed Medieval_Farm1/2/3 and Modern_Farm1/2/3 GR2 + FXSXML.
