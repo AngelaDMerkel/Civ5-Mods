@@ -1,0 +1,32 @@
+The GR2 container implementation was developed with reference to LSLib's
+LSLib/Granny/GR2/Format.cs, Reader.cs and Writer.cs at commit
+6f5f6987d10d8485876b8368431c948e4dea4f83. Its MIT notice is in LSLIB-LICENSE.txt.
+This project implements a deliberately smaller Python serializer, not LSLib's
+Divinity/Baldur's Gate mesh export pipeline.
+
+Optional research-only reader/codec: OpenGR2, MPL-2.0, commit
+4e5edd5e98dbd69270d40a92ed94cfe16e57955a. Downloaded source and its license stay
+in the ignored research cache. No OpenGR2 code is copied into the converter.
+See setup_research.py for the exact source and native compiler commands.
+
+Nexus Buddy 2 commit c42a7f6d1bac7190dec5fd27efe588db91fc24a3 has no LICENSE or
+COPYING file in the inspected tree. It was inspected as behavioral reference;
+no code, binaries, templates or assets from it are included or executed.
+
+Local Civ V assets are proprietary reference data. They are not dependencies
+of the writer and are not included in source control or distributable output.
+
+Optional local renderer-fixture packaging uses Wir Schaffen DLC, MIT, commit
+950a329f57074dfd762e9c32aea7a67a3704b643. Its unmodified source and LICENSE
+remain in the ignored research cache; it is not a conversion dependency.
+No code was copied from Lekmod's separately licensed macOS harness. The test
+map and scene in fixtures/ are original code for this repository.
+
+Optional background testing uses a local checkout of AngelaDMerkel/Lekmod at
+181b7232160a5661424c275f2a62deb5c56a7a34 (https://github.com/AngelaDMerkel/Lekmod).
+Its root LEKMOD CONTRIBUTOR & MODIFICATION LICENSE permits personal noncommercial
+use and restricts redistribution. No source is copied into this repository. The
+runner loads its automated-playtest.py utilities and compiles background/capture
+helpers from the ignored checkout. Runtime-parameterized Lua and owned game UI
+copies remain in ignored local test evidence only. This optional test dependency
+is separate from the dependency-free GR2 converter.

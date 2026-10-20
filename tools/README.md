@@ -14,6 +14,7 @@ one mod. Do not move them into a playable package.
 | Approved Terrain source models | `tools/build_models_v2.py` | `tools/validate_models_v2.py` | `output/models/revised-v2/` |
 | Terrain comparison sheets | `tools/review_models_v2.py` | Checks original art hashes | `output/model-review/approved-art-alignment/` |
 | Approved Outpost era models | `tools/build_outpost_era_models.py` | `tools/validate_outpost_era_models.py` | `output/models/outpost-eras-v1/` |
+| Shared static GR2 conversion (experimental) | `python3 -m tools.civ5_gr2 convert` / `batch` | `verify`, optional independent OpenGR2 probe; native rendering is separate | `output/gr2-converted/`; [CLI and renderer fixture](civ5_gr2/README.md) |
 | Irrigation mesh kit v1 | `tools/build_irrigation_meshes.py` | `tools/validate_irrigation_meshes.py` | `output/models/irrigated-farm-v1/` |
 | Irrigation mesh refinement v2 | `tools/irrigation_v2/build_irrigation_meshes.py` | `tools/irrigation_v2/validate_irrigation_meshes.py` | `output/models/irrigated-farm-v2/` |
 | Irrigation v3 structural study (selected approach) | `tools/irrigation_v3/build_irrigation_meshes.py` | `tools/irrigation_v3/validate_irrigation_meshes.py` | `output/models/irrigated-farm-v3/` |
