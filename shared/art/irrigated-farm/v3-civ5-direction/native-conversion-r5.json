@@ -1,0 +1,508 @@
+{
+  "revision": 5,
+  "conversion": "completed",
+  "profile": "civ5-building-static-v1",
+  "approval_sha256": "7d615f16fe7812652b2d11bc9633488e00d4d00e86a80f86a2979d87551959d0",
+  "approved_source_commit": "6f293ec",
+  "user_request": "Native conversion should be made",
+  "source_design_approved": true,
+  "native_game": "unverified",
+  "runtime_integration": false,
+  "redistributable": false,
+  "scale_policy": "Approved normalized coordinates retained; UnitsPerMeter=1. Landmark display scale and terrain fitting require native validation.",
+  "assembly_policy": "ConnectedDistrict is a review fixture, partitioned into three 16-bit meshes without geometry changes; not one improvement tile.",
+  "material_policy": "Shared BuildingShader static profile; exact RGBA diffuse pixels with full mip chain. Black SREF is a candidate. Alpha, lighting and water appearance require native validation.",
+  "assets": [
+    {
+      "name": "RT_IF_ConceptR5_Flat_Wet",
+      "approved_br2_sha256": "c094c7071e43a295f63e06f0b5576a45c4a824d375bb1038e7a2f54ae8834308",
+      "conversion_br2_sha256": "c094c7071e43a295f63e06f0b5576a45c4a824d375bb1038e7a2f54ae8834308",
+      "derived_source": false,
+      "conversion_source": "output/models/irrigated-farm-native-fit/concept-models-r5/RT_IF_ConceptR5_Flat_Wet/RT_IF_ConceptR5_Flat_Wet.br2",
+      "native_meshes": 1,
+      "files": {
+        "RT_IF_ConceptR5_Flat_Wet.gr2": "87e4aa6935f25f7e9b6edad4d97e4312132f334dd1d011ecaf95f96930f0989e",
+        "RT_IF_ConceptR5_Flat_Wet.fxsxml": "93894acdf95f3ee3e8b43041b07100447236df8bffd2c2ba741e2a57f2d7117d",
+        "RT_IF_R5_Diff.dds": "a0e2241cb783e8589364017e7f4607a3effae4613e661f8c20186cbfa31f3af5",
+        "RT_IF_R5_SREF.dds": "2834dfa453a63fbdc281cda4541e636b3af9be3b74b3754942bea6ae26d969a7"
+      },
+      "independent_reader": {
+        "status": "passed",
+        "reader": "OpenGR2",
+        "probe_sha256": "46523b4d525db6cd7014a6d94ec761a7c393b5d58a129321a6c9cf6007514ae3"
+      }
+    },
+    {
+      "name": "RT_IF_ConceptR5_Flat_Dry",
+      "approved_br2_sha256": "e2e31f53c8a9323b23000fca9bded8effde368d39ce13ca0c1b714ea7f6b0fb7",
+      "conversion_br2_sha256": "e2e31f53c8a9323b23000fca9bded8effde368d39ce13ca0c1b714ea7f6b0fb7",
+      "derived_source": false,
+      "conversion_source": "output/models/irrigated-farm-native-fit/concept-models-r5/RT_IF_ConceptR5_Flat_Dry/RT_IF_ConceptR5_Flat_Dry.br2",
+      "native_meshes": 1,
+      "files": {
+        "RT_IF_ConceptR5_Flat_Dry.gr2": "03453cf67133c1756f4cf93076b030eb22b1e2585e092f35fa2f46ab6148f4b4",
+        "RT_IF_ConceptR5_Flat_Dry.fxsxml": "f50ee09c2e76e7620be7719e649e41966511274119ce808f52d6254a5d1f4d92",
+        "RT_IF_R5_Diff.dds": "a0e2241cb783e8589364017e7f4607a3effae4613e661f8c20186cbfa31f3af5",
+        "RT_IF_R5_SREF.dds": "2834dfa453a63fbdc281cda4541e636b3af9be3b74b3754942bea6ae26d969a7"
+      },
+      "independent_reader": {
+        "status": "passed",
+        "reader": "OpenGR2",
+        "probe_sha256": "46523b4d525db6cd7014a6d94ec761a7c393b5d58a129321a6c9cf6007514ae3"
+      }
+    },
+    {
+      "name": "RT_IF_ConceptR5_GentleHill_Wet",
+      "approved_br2_sha256": "2cee4e783d334e72b91e29c9f0bae902f9e26c49942563901a51605d0ac24f9a",
+      "conversion_br2_sha256": "2cee4e783d334e72b91e29c9f0bae902f9e26c49942563901a51605d0ac24f9a",
+      "derived_source": false,
+      "conversion_source": "output/models/irrigated-farm-native-fit/concept-models-r5/RT_IF_ConceptR5_GentleHill_Wet/RT_IF_ConceptR5_GentleHill_Wet.br2",
+      "native_meshes": 1,
+      "files": {
+        "RT_IF_ConceptR5_GentleHill_Wet.gr2": "1601f2e163de1ee46be618891196c00975c25ef808b1ce90cc4985eca6824420",
+        "RT_IF_ConceptR5_GentleHill_Wet.fxsxml": "9a5d1e4cc88521a9c1e8fc054dbdf253f62afcb4791cd17730d4431d9fe62618",
+        "RT_IF_R5_Diff.dds": "a0e2241cb783e8589364017e7f4607a3effae4613e661f8c20186cbfa31f3af5",
+        "RT_IF_R5_SREF.dds": "2834dfa453a63fbdc281cda4541e636b3af9be3b74b3754942bea6ae26d969a7"
+      },
+      "independent_reader": {
+        "status": "passed",
+        "reader": "OpenGR2",
+        "probe_sha256": "46523b4d525db6cd7014a6d94ec761a7c393b5d58a129321a6c9cf6007514ae3"
+      }
+    },
+    {
+      "name": "RT_IF_ConceptR5_GentleHill_Dry",
+      "approved_br2_sha256": "5705659ad1e843369f1e5b382bcebf1179d262ca20c1931b20f3f0a409b34fe4",
+      "conversion_br2_sha256": "5705659ad1e843369f1e5b382bcebf1179d262ca20c1931b20f3f0a409b34fe4",
+      "derived_source": false,
+      "conversion_source": "output/models/irrigated-farm-native-fit/concept-models-r5/RT_IF_ConceptR5_GentleHill_Dry/RT_IF_ConceptR5_GentleHill_Dry.br2",
+      "native_meshes": 1,
+      "files": {
+        "RT_IF_ConceptR5_GentleHill_Dry.gr2": "ffe5ab8abaf8be4f47bd11eccf7c05941eeeed846f06fe903994d3b2fa1c6820",
+        "RT_IF_ConceptR5_GentleHill_Dry.fxsxml": "1533631520729aab0c2b5c63afb10b99823eb864f9136d9ad088e0089248f0ba",
+        "RT_IF_R5_Diff.dds": "a0e2241cb783e8589364017e7f4607a3effae4613e661f8c20186cbfa31f3af5",
+        "RT_IF_R5_SREF.dds": "2834dfa453a63fbdc281cda4541e636b3af9be3b74b3754942bea6ae26d969a7"
+      },
+      "independent_reader": {
+        "status": "passed",
+        "reader": "OpenGR2",
+        "probe_sha256": "46523b4d525db6cd7014a6d94ec761a7c393b5d58a129321a6c9cf6007514ae3"
+      }
+    },
+    {
+      "name": "RT_IF_ConceptR5_SteepHill_Wet",
+      "approved_br2_sha256": "14e64c967f4f2370e868466667b934ac313b621ae9def87da39ccab404c5e360",
+      "conversion_br2_sha256": "14e64c967f4f2370e868466667b934ac313b621ae9def87da39ccab404c5e360",
+      "derived_source": false,
+      "conversion_source": "output/models/irrigated-farm-native-fit/concept-models-r5/RT_IF_ConceptR5_SteepHill_Wet/RT_IF_ConceptR5_SteepHill_Wet.br2",
+      "native_meshes": 1,
+      "files": {
+        "RT_IF_ConceptR5_SteepHill_Wet.gr2": "262cba55e0ac422cdd3d1c20ae63bb5f317cf4f158e380c44e31c3d3f16ad6ac",
+        "RT_IF_ConceptR5_SteepHill_Wet.fxsxml": "27f659d22340df42b72b261a460f9a4fd3a8a659ccaee26b326d6faf89587763",
+        "RT_IF_R5_Diff.dds": "a0e2241cb783e8589364017e7f4607a3effae4613e661f8c20186cbfa31f3af5",
+        "RT_IF_R5_SREF.dds": "2834dfa453a63fbdc281cda4541e636b3af9be3b74b3754942bea6ae26d969a7"
+      },
+      "independent_reader": {
+        "status": "passed",
+        "reader": "OpenGR2",
+        "probe_sha256": "46523b4d525db6cd7014a6d94ec761a7c393b5d58a129321a6c9cf6007514ae3"
+      }
+    },
+    {
+      "name": "RT_IF_ConceptR5_SteepHill_Dry",
+      "approved_br2_sha256": "615725bae869bcd02a4a8c920d85815a00a4a00a838f27127c8d538b055d732b",
+      "conversion_br2_sha256": "615725bae869bcd02a4a8c920d85815a00a4a00a838f27127c8d538b055d732b",
+      "derived_source": false,
+      "conversion_source": "output/models/irrigated-farm-native-fit/concept-models-r5/RT_IF_ConceptR5_SteepHill_Dry/RT_IF_ConceptR5_SteepHill_Dry.br2",
+      "native_meshes": 1,
+      "files": {
+        "RT_IF_ConceptR5_SteepHill_Dry.gr2": "0526424d754df260a29b375c8b29d8139093dc677c38c7a13b2d433ded21ecad",
+        "RT_IF_ConceptR5_SteepHill_Dry.fxsxml": "97cd1adcbd5b6f48491eab3f7cbed4247844dc6ae7a55b7f1f5a95d8ca1fbb7c",
+        "RT_IF_R5_Diff.dds": "a0e2241cb783e8589364017e7f4607a3effae4613e661f8c20186cbfa31f3af5",
+        "RT_IF_R5_SREF.dds": "2834dfa453a63fbdc281cda4541e636b3af9be3b74b3754942bea6ae26d969a7"
+      },
+      "independent_reader": {
+        "status": "passed",
+        "reader": "OpenGR2",
+        "probe_sha256": "46523b4d525db6cd7014a6d94ec761a7c393b5d58a129321a6c9cf6007514ae3"
+      }
+    },
+    {
+      "name": "RT_IF_ConceptR5_RockyFoothill_Wet",
+      "approved_br2_sha256": "61f4e6998f9e3bf480cd3e741f4fbf1b5318a7c39c10879af17abb898509d3ab",
+      "conversion_br2_sha256": "61f4e6998f9e3bf480cd3e741f4fbf1b5318a7c39c10879af17abb898509d3ab",
+      "derived_source": false,
+      "conversion_source": "output/models/irrigated-farm-native-fit/concept-models-r5/RT_IF_ConceptR5_RockyFoothill_Wet/RT_IF_ConceptR5_RockyFoothill_Wet.br2",
+      "native_meshes": 1,
+      "files": {
+        "RT_IF_ConceptR5_RockyFoothill_Wet.gr2": "61612908570c8f2e4ebe6f5492bfde0ac62654ce5f4e35b75c93a4dc5f28ae1c",
+        "RT_IF_ConceptR5_RockyFoothill_Wet.fxsxml": "c27e546f4d31f88e0623d54e21ee9f2e722b6abe86ca04b0c637cd7dd26adcb5",
+        "RT_IF_R5_Diff.dds": "a0e2241cb783e8589364017e7f4607a3effae4613e661f8c20186cbfa31f3af5",
+        "RT_IF_R5_SREF.dds": "2834dfa453a63fbdc281cda4541e636b3af9be3b74b3754942bea6ae26d969a7"
+      },
+      "independent_reader": {
+        "status": "passed",
+        "reader": "OpenGR2",
+        "probe_sha256": "46523b4d525db6cd7014a6d94ec761a7c393b5d58a129321a6c9cf6007514ae3"
+      }
+    },
+    {
+      "name": "RT_IF_ConceptR5_RockyFoothill_Dry",
+      "approved_br2_sha256": "6c2d6b478ef69658a71e0ae46ac4965c1474aba65c995d0a66f0eccbe7ca8b64",
+      "conversion_br2_sha256": "6c2d6b478ef69658a71e0ae46ac4965c1474aba65c995d0a66f0eccbe7ca8b64",
+      "derived_source": false,
+      "conversion_source": "output/models/irrigated-farm-native-fit/concept-models-r5/RT_IF_ConceptR5_RockyFoothill_Dry/RT_IF_ConceptR5_RockyFoothill_Dry.br2",
+      "native_meshes": 1,
+      "files": {
+        "RT_IF_ConceptR5_RockyFoothill_Dry.gr2": "ef782b4091b881eb46586f4d54cec34124c5d663e6b38a50d3bea56f589ad475",
+        "RT_IF_ConceptR5_RockyFoothill_Dry.fxsxml": "f13a74d831e55045edba9c552dd4fc9b0fbfb6013e3ab8b7164bad6834e2708d",
+        "RT_IF_R5_Diff.dds": "a0e2241cb783e8589364017e7f4607a3effae4613e661f8c20186cbfa31f3af5",
+        "RT_IF_R5_SREF.dds": "2834dfa453a63fbdc281cda4541e636b3af9be3b74b3754942bea6ae26d969a7"
+      },
+      "independent_reader": {
+        "status": "passed",
+        "reader": "OpenGR2",
+        "probe_sha256": "46523b4d525db6cd7014a6d94ec761a7c393b5d58a129321a6c9cf6007514ae3"
+      }
+    },
+    {
+      "name": "RT_IF_ConceptR5_Flat_Wet_LOD1",
+      "approved_br2_sha256": "01f5575fe1b57f0813043c816eb418e1a2359050552a0e045d09290e85cf32a6",
+      "conversion_br2_sha256": "01f5575fe1b57f0813043c816eb418e1a2359050552a0e045d09290e85cf32a6",
+      "derived_source": false,
+      "conversion_source": "output/models/irrigated-farm-native-fit/concept-models-r5/RT_IF_ConceptR5_Flat_Wet_LOD1/RT_IF_ConceptR5_Flat_Wet_LOD1.br2",
+      "native_meshes": 1,
+      "files": {
+        "RT_IF_ConceptR5_Flat_Wet_LOD1.gr2": "568bcd80d8411882bc2786ac025e3cde986cd5fe34c8fecc4c5546382a29ef61",
+        "RT_IF_ConceptR5_Flat_Wet_LOD1.fxsxml": "f8756cb3169bd25881706e82974de4b34215d4e7ebda421c5ee54f5953824578",
+        "RT_IF_R5_Diff.dds": "a0e2241cb783e8589364017e7f4607a3effae4613e661f8c20186cbfa31f3af5",
+        "RT_IF_R5_SREF.dds": "2834dfa453a63fbdc281cda4541e636b3af9be3b74b3754942bea6ae26d969a7"
+      },
+      "independent_reader": {
+        "status": "passed",
+        "reader": "OpenGR2",
+        "probe_sha256": "46523b4d525db6cd7014a6d94ec761a7c393b5d58a129321a6c9cf6007514ae3"
+      }
+    },
+    {
+      "name": "RT_IF_ConceptR5_GentleHill_Wet_LOD1",
+      "approved_br2_sha256": "f5d351756bda8237ce94e33553607a44c4f8e9f15ba0bb8eb5a1b69d2ffce187",
+      "conversion_br2_sha256": "f5d351756bda8237ce94e33553607a44c4f8e9f15ba0bb8eb5a1b69d2ffce187",
+      "derived_source": false,
+      "conversion_source": "output/models/irrigated-farm-native-fit/concept-models-r5/RT_IF_ConceptR5_GentleHill_Wet_LOD1/RT_IF_ConceptR5_GentleHill_Wet_LOD1.br2",
+      "native_meshes": 1,
+      "files": {
+        "RT_IF_ConceptR5_GentleHill_Wet_LOD1.gr2": "c068e050860c330dc2e1a0ea0021d11da03ba0441caa04f2b2142fc17407f2e2",
+        "RT_IF_ConceptR5_GentleHill_Wet_LOD1.fxsxml": "c256043351204cf01adbfc3c46438c76f72cbc1df4c4b589efd2d983506af85a",
+        "RT_IF_R5_Diff.dds": "a0e2241cb783e8589364017e7f4607a3effae4613e661f8c20186cbfa31f3af5",
+        "RT_IF_R5_SREF.dds": "2834dfa453a63fbdc281cda4541e636b3af9be3b74b3754942bea6ae26d969a7"
+      },
+      "independent_reader": {
+        "status": "passed",
+        "reader": "OpenGR2",
+        "probe_sha256": "46523b4d525db6cd7014a6d94ec761a7c393b5d58a129321a6c9cf6007514ae3"
+      }
+    },
+    {
+      "name": "RT_IF_ConceptR5_SteepHill_Wet_LOD1",
+      "approved_br2_sha256": "589a87d1bc44f21882834eaacc106241bf29495230ca7cca32c676f9b1d98337",
+      "conversion_br2_sha256": "589a87d1bc44f21882834eaacc106241bf29495230ca7cca32c676f9b1d98337",
+      "derived_source": false,
+      "conversion_source": "output/models/irrigated-farm-native-fit/concept-models-r5/RT_IF_ConceptR5_SteepHill_Wet_LOD1/RT_IF_ConceptR5_SteepHill_Wet_LOD1.br2",
+      "native_meshes": 1,
+      "files": {
+        "RT_IF_ConceptR5_SteepHill_Wet_LOD1.gr2": "0fa991faccacafbcda7d437969223173598d8bcc61cb0482414e431eff66ad0c",
+        "RT_IF_ConceptR5_SteepHill_Wet_LOD1.fxsxml": "4be2269183e1cfe31c2721081e6a47d832790506404fd5db453ed696b54aa830",
+        "RT_IF_R5_Diff.dds": "a0e2241cb783e8589364017e7f4607a3effae4613e661f8c20186cbfa31f3af5",
+        "RT_IF_R5_SREF.dds": "2834dfa453a63fbdc281cda4541e636b3af9be3b74b3754942bea6ae26d969a7"
+      },
+      "independent_reader": {
+        "status": "passed",
+        "reader": "OpenGR2",
+        "probe_sha256": "46523b4d525db6cd7014a6d94ec761a7c393b5d58a129321a6c9cf6007514ae3"
+      }
+    },
+    {
+      "name": "RT_IF_ConceptR5_RockyFoothill_Wet_LOD1",
+      "approved_br2_sha256": "9294770a3693a4eb22e160f52a284ea335645211731a9aced97a9738f739a63f",
+      "conversion_br2_sha256": "9294770a3693a4eb22e160f52a284ea335645211731a9aced97a9738f739a63f",
+      "derived_source": false,
+      "conversion_source": "output/models/irrigated-farm-native-fit/concept-models-r5/RT_IF_ConceptR5_RockyFoothill_Wet_LOD1/RT_IF_ConceptR5_RockyFoothill_Wet_LOD1.br2",
+      "native_meshes": 1,
+      "files": {
+        "RT_IF_ConceptR5_RockyFoothill_Wet_LOD1.gr2": "fa6f9512967f65352fa1b8484154efc3698cca29e801c2e457a734f5b870a50a",
+        "RT_IF_ConceptR5_RockyFoothill_Wet_LOD1.fxsxml": "cfede62a2f62bb65a29d7750b311b3c9bd4ecb939eabce6aed8f0aeff32ab641",
+        "RT_IF_R5_Diff.dds": "a0e2241cb783e8589364017e7f4607a3effae4613e661f8c20186cbfa31f3af5",
+        "RT_IF_R5_SREF.dds": "2834dfa453a63fbdc281cda4541e636b3af9be3b74b3754942bea6ae26d969a7"
+      },
+      "independent_reader": {
+        "status": "passed",
+        "reader": "OpenGR2",
+        "probe_sha256": "46523b4d525db6cd7014a6d94ec761a7c393b5d58a129321a6c9cf6007514ae3"
+      }
+    },
+    {
+      "name": "RT_IF_ConceptR5_Channel_Straight",
+      "approved_br2_sha256": "d10eece2f07ecc269ad5795ef210efb82becdfb9fa01634d0486cc9d5cb5d6fc",
+      "conversion_br2_sha256": "d10eece2f07ecc269ad5795ef210efb82becdfb9fa01634d0486cc9d5cb5d6fc",
+      "derived_source": false,
+      "conversion_source": "output/models/irrigated-farm-native-fit/concept-models-r5/RT_IF_ConceptR5_Channel_Straight/RT_IF_ConceptR5_Channel_Straight.br2",
+      "native_meshes": 1,
+      "files": {
+        "RT_IF_ConceptR5_Channel_Straight.gr2": "501f6038a966295723fb2dadb481f08ba07af8ec9ba039025b429a8c01aa522a",
+        "RT_IF_ConceptR5_Channel_Straight.fxsxml": "0dd89a8abd0a96fcf128dcc8c7c235ef6ebd0d6b5f695cdb41f2b43862699065",
+        "RT_IF_R5_Diff.dds": "a0e2241cb783e8589364017e7f4607a3effae4613e661f8c20186cbfa31f3af5",
+        "RT_IF_R5_SREF.dds": "2834dfa453a63fbdc281cda4541e636b3af9be3b74b3754942bea6ae26d969a7"
+      },
+      "independent_reader": {
+        "status": "passed",
+        "reader": "OpenGR2",
+        "probe_sha256": "46523b4d525db6cd7014a6d94ec761a7c393b5d58a129321a6c9cf6007514ae3"
+      }
+    },
+    {
+      "name": "RT_IF_ConceptR5_Channel_Bend60",
+      "approved_br2_sha256": "286199a327aac210ad60214fa2e7aae577ece17993d9259849b0e0caa44119ee",
+      "conversion_br2_sha256": "286199a327aac210ad60214fa2e7aae577ece17993d9259849b0e0caa44119ee",
+      "derived_source": false,
+      "conversion_source": "output/models/irrigated-farm-native-fit/concept-models-r5/RT_IF_ConceptR5_Channel_Bend60/RT_IF_ConceptR5_Channel_Bend60.br2",
+      "native_meshes": 1,
+      "files": {
+        "RT_IF_ConceptR5_Channel_Bend60.gr2": "0514d37d07474cfc58bb8b94703097292d3e5c4b39054a22995784230eccd058",
+        "RT_IF_ConceptR5_Channel_Bend60.fxsxml": "f7321781e10f7d555db786f1a2c8831c70bfea9b9601d6c8f9a5e5d8709969d4",
+        "RT_IF_R5_Diff.dds": "a0e2241cb783e8589364017e7f4607a3effae4613e661f8c20186cbfa31f3af5",
+        "RT_IF_R5_SREF.dds": "2834dfa453a63fbdc281cda4541e636b3af9be3b74b3754942bea6ae26d969a7"
+      },
+      "independent_reader": {
+        "status": "passed",
+        "reader": "OpenGR2",
+        "probe_sha256": "46523b4d525db6cd7014a6d94ec761a7c393b5d58a129321a6c9cf6007514ae3"
+      }
+    },
+    {
+      "name": "RT_IF_ConceptR5_Channel_Drop",
+      "approved_br2_sha256": "79f5ad8c20416bacf59cdfcd70ef175ee1d750d646f8dc019d625c433ca7fa29",
+      "conversion_br2_sha256": "79f5ad8c20416bacf59cdfcd70ef175ee1d750d646f8dc019d625c433ca7fa29",
+      "derived_source": false,
+      "conversion_source": "output/models/irrigated-farm-native-fit/concept-models-r5/RT_IF_ConceptR5_Channel_Drop/RT_IF_ConceptR5_Channel_Drop.br2",
+      "native_meshes": 1,
+      "files": {
+        "RT_IF_ConceptR5_Channel_Drop.gr2": "6009b281c66c06ae912ca4de84372721672588aca03eedd80b078d6fb345971d",
+        "RT_IF_ConceptR5_Channel_Drop.fxsxml": "b5d9604db4df7af292ed16e8dcf23a9b870c489032ea3c2976406a93776ea9a1",
+        "RT_IF_R5_Diff.dds": "a0e2241cb783e8589364017e7f4607a3effae4613e661f8c20186cbfa31f3af5",
+        "RT_IF_R5_SREF.dds": "2834dfa453a63fbdc281cda4541e636b3af9be3b74b3754942bea6ae26d969a7"
+      },
+      "independent_reader": {
+        "status": "passed",
+        "reader": "OpenGR2",
+        "probe_sha256": "46523b4d525db6cd7014a6d94ec761a7c393b5d58a129321a6c9cf6007514ae3"
+      }
+    },
+    {
+      "name": "RT_IF_ConceptR5_Channel_Fork",
+      "approved_br2_sha256": "2ca6106ea8d8499c64a52f51bdedb05693c1bf65f32cd4d02cfe2bf6f5ead3e2",
+      "conversion_br2_sha256": "2ca6106ea8d8499c64a52f51bdedb05693c1bf65f32cd4d02cfe2bf6f5ead3e2",
+      "derived_source": false,
+      "conversion_source": "output/models/irrigated-farm-native-fit/concept-models-r5/RT_IF_ConceptR5_Channel_Fork/RT_IF_ConceptR5_Channel_Fork.br2",
+      "native_meshes": 1,
+      "files": {
+        "RT_IF_ConceptR5_Channel_Fork.gr2": "db01acd2dde20c40a5d24fc9f8d735bbe9dfbe248863872b68fb10cbd3e596f4",
+        "RT_IF_ConceptR5_Channel_Fork.fxsxml": "0b3a4be7a9a0bbc4deadda8ae0739682f80c32a4e45ad99b3ce13dc6999fd134",
+        "RT_IF_R5_Diff.dds": "a0e2241cb783e8589364017e7f4607a3effae4613e661f8c20186cbfa31f3af5",
+        "RT_IF_R5_SREF.dds": "2834dfa453a63fbdc281cda4541e636b3af9be3b74b3754942bea6ae26d969a7"
+      },
+      "independent_reader": {
+        "status": "passed",
+        "reader": "OpenGR2",
+        "probe_sha256": "46523b4d525db6cd7014a6d94ec761a7c393b5d58a129321a6c9cf6007514ae3"
+      }
+    },
+    {
+      "name": "RT_IF_ConceptR5_MountainIntake",
+      "approved_br2_sha256": "47164d38d013ef88159e6ff91e3e739cb35678a4c9b78f31d99ed318e5c16753",
+      "conversion_br2_sha256": "47164d38d013ef88159e6ff91e3e739cb35678a4c9b78f31d99ed318e5c16753",
+      "derived_source": false,
+      "conversion_source": "output/models/irrigated-farm-native-fit/concept-models-r5/RT_IF_ConceptR5_MountainIntake/RT_IF_ConceptR5_MountainIntake.br2",
+      "native_meshes": 1,
+      "files": {
+        "RT_IF_ConceptR5_MountainIntake.gr2": "3984c1b01e105830620eb99e376995a8d738d70cc30d8ba186c91405503bfd79",
+        "RT_IF_ConceptR5_MountainIntake.fxsxml": "7a266d4fdf4a4ae5a44802ea436f20664e09a8155eeb11ae92b3579ec091acb4",
+        "RT_IF_R5_Diff.dds": "a0e2241cb783e8589364017e7f4607a3effae4613e661f8c20186cbfa31f3af5",
+        "RT_IF_R5_SREF.dds": "2834dfa453a63fbdc281cda4541e636b3af9be3b74b3754942bea6ae26d969a7"
+      },
+      "independent_reader": {
+        "status": "passed",
+        "reader": "OpenGR2",
+        "probe_sha256": "46523b4d525db6cd7014a6d94ec761a7c393b5d58a129321a6c9cf6007514ae3"
+      }
+    },
+    {
+      "name": "RT_IF_ConceptR5_Aqueduct_Short",
+      "approved_br2_sha256": "31142ab4c86960a25269d5f9600ecf7200d3cf44a2ff7b1166430859a6a31545",
+      "conversion_br2_sha256": "31142ab4c86960a25269d5f9600ecf7200d3cf44a2ff7b1166430859a6a31545",
+      "derived_source": false,
+      "conversion_source": "output/models/irrigated-farm-native-fit/concept-models-r5/RT_IF_ConceptR5_Aqueduct_Short/RT_IF_ConceptR5_Aqueduct_Short.br2",
+      "native_meshes": 1,
+      "files": {
+        "RT_IF_ConceptR5_Aqueduct_Short.gr2": "5c6d454dca98ecd9b70148ea729be829fa4a5c3582fea9ccf30265ea48edb691",
+        "RT_IF_ConceptR5_Aqueduct_Short.fxsxml": "24e11d2415328c45907ff284bc9f847df14d0e83dfae7655ba4f7077adec0997",
+        "RT_IF_R5_Diff.dds": "a0e2241cb783e8589364017e7f4607a3effae4613e661f8c20186cbfa31f3af5",
+        "RT_IF_R5_SREF.dds": "2834dfa453a63fbdc281cda4541e636b3af9be3b74b3754942bea6ae26d969a7"
+      },
+      "independent_reader": {
+        "status": "passed",
+        "reader": "OpenGR2",
+        "probe_sha256": "46523b4d525db6cd7014a6d94ec761a7c393b5d58a129321a6c9cf6007514ae3"
+      }
+    },
+    {
+      "name": "RT_IF_ConceptR5_Aqueduct_Short_LOD1",
+      "approved_br2_sha256": "ef09b94f129d31f24e6ddf01f00d00a0a4a9ce35224a317778631032e746927b",
+      "conversion_br2_sha256": "ef09b94f129d31f24e6ddf01f00d00a0a4a9ce35224a317778631032e746927b",
+      "derived_source": false,
+      "conversion_source": "output/models/irrigated-farm-native-fit/concept-models-r5/RT_IF_ConceptR5_Aqueduct_Short_LOD1/RT_IF_ConceptR5_Aqueduct_Short_LOD1.br2",
+      "native_meshes": 1,
+      "files": {
+        "RT_IF_ConceptR5_Aqueduct_Short_LOD1.gr2": "aa1bd0e4b9e4acc7e5788c2775e25e1c3e827ae487c00fdc478bb3204ac2939b",
+        "RT_IF_ConceptR5_Aqueduct_Short_LOD1.fxsxml": "f035288745cef6b14a75529c17e1f384bd9b476c2aa07923f8d27325f9c62e7a",
+        "RT_IF_R5_Diff.dds": "a0e2241cb783e8589364017e7f4607a3effae4613e661f8c20186cbfa31f3af5",
+        "RT_IF_R5_SREF.dds": "2834dfa453a63fbdc281cda4541e636b3af9be3b74b3754942bea6ae26d969a7"
+      },
+      "independent_reader": {
+        "status": "passed",
+        "reader": "OpenGR2",
+        "probe_sha256": "46523b4d525db6cd7014a6d94ec761a7c393b5d58a129321a6c9cf6007514ae3"
+      }
+    },
+    {
+      "name": "RT_IF_ConceptR5_Aqueduct_Long",
+      "approved_br2_sha256": "b7413c4b08adf1ecb85fbd9f8afa766089921a66ad8b9f49ae552b3df4800a16",
+      "conversion_br2_sha256": "b7413c4b08adf1ecb85fbd9f8afa766089921a66ad8b9f49ae552b3df4800a16",
+      "derived_source": false,
+      "conversion_source": "output/models/irrigated-farm-native-fit/concept-models-r5/RT_IF_ConceptR5_Aqueduct_Long/RT_IF_ConceptR5_Aqueduct_Long.br2",
+      "native_meshes": 1,
+      "files": {
+        "RT_IF_ConceptR5_Aqueduct_Long.gr2": "bed5a6af40426a8590bdd2eb8ee235828c4f467d78fee79304c71c13afd1e83f",
+        "RT_IF_ConceptR5_Aqueduct_Long.fxsxml": "1d2a857ece575608f12d4c971a5815770da3a6b3b7754f8bf13506ab5fc8b088",
+        "RT_IF_R5_Diff.dds": "a0e2241cb783e8589364017e7f4607a3effae4613e661f8c20186cbfa31f3af5",
+        "RT_IF_R5_SREF.dds": "2834dfa453a63fbdc281cda4541e636b3af9be3b74b3754942bea6ae26d969a7"
+      },
+      "independent_reader": {
+        "status": "passed",
+        "reader": "OpenGR2",
+        "probe_sha256": "46523b4d525db6cd7014a6d94ec761a7c393b5d58a129321a6c9cf6007514ae3"
+      }
+    },
+    {
+      "name": "RT_IF_ConceptR5_Aqueduct_Long_LOD1",
+      "approved_br2_sha256": "e1c800b9b94cd913fd2246584ba8ff7ac789b36bb7dd66474fdfb5876dcda7e7",
+      "conversion_br2_sha256": "e1c800b9b94cd913fd2246584ba8ff7ac789b36bb7dd66474fdfb5876dcda7e7",
+      "derived_source": false,
+      "conversion_source": "output/models/irrigated-farm-native-fit/concept-models-r5/RT_IF_ConceptR5_Aqueduct_Long_LOD1/RT_IF_ConceptR5_Aqueduct_Long_LOD1.br2",
+      "native_meshes": 1,
+      "files": {
+        "RT_IF_ConceptR5_Aqueduct_Long_LOD1.gr2": "3d3517cb00e93b4d516f226d42991aec2959dde2ba08f2bdc85ae2c697c823db",
+        "RT_IF_ConceptR5_Aqueduct_Long_LOD1.fxsxml": "9dc874131649ad88c383a2ac3abc590ffc537db4476bb088e9137a2717339071",
+        "RT_IF_R5_Diff.dds": "a0e2241cb783e8589364017e7f4607a3effae4613e661f8c20186cbfa31f3af5",
+        "RT_IF_R5_SREF.dds": "2834dfa453a63fbdc281cda4541e636b3af9be3b74b3754942bea6ae26d969a7"
+      },
+      "independent_reader": {
+        "status": "passed",
+        "reader": "OpenGR2",
+        "probe_sha256": "46523b4d525db6cd7014a6d94ec761a7c393b5d58a129321a6c9cf6007514ae3"
+      }
+    },
+    {
+      "name": "RT_IF_ConceptR5_Aqueduct_Mountain",
+      "approved_br2_sha256": "dc4ee3303085bb2111bbf8b59507e3833bb213b759637acdcdb811c46a403d37",
+      "conversion_br2_sha256": "dc4ee3303085bb2111bbf8b59507e3833bb213b759637acdcdb811c46a403d37",
+      "derived_source": false,
+      "conversion_source": "output/models/irrigated-farm-native-fit/concept-models-r5/RT_IF_ConceptR5_Aqueduct_Mountain/RT_IF_ConceptR5_Aqueduct_Mountain.br2",
+      "native_meshes": 1,
+      "files": {
+        "RT_IF_ConceptR5_Aqueduct_Mountain.gr2": "9c53c0a384a0dd248e20174596ee8b3a87c42ad4085da20f59a1b32ea90e8e1e",
+        "RT_IF_ConceptR5_Aqueduct_Mountain.fxsxml": "3fbea74905d80f35776931492eabccc2a9b9cd9082a404e404732a546a19dc33",
+        "RT_IF_R5_Diff.dds": "a0e2241cb783e8589364017e7f4607a3effae4613e661f8c20186cbfa31f3af5",
+        "RT_IF_R5_SREF.dds": "2834dfa453a63fbdc281cda4541e636b3af9be3b74b3754942bea6ae26d969a7"
+      },
+      "independent_reader": {
+        "status": "passed",
+        "reader": "OpenGR2",
+        "probe_sha256": "46523b4d525db6cd7014a6d94ec761a7c393b5d58a129321a6c9cf6007514ae3"
+      }
+    },
+    {
+      "name": "RT_IF_ConceptR5_Aqueduct_Mountain_LOD1",
+      "approved_br2_sha256": "4f8042f87b10fd6d33c92448b24b9079221552b976cf29c9f706343054c23c13",
+      "conversion_br2_sha256": "4f8042f87b10fd6d33c92448b24b9079221552b976cf29c9f706343054c23c13",
+      "derived_source": false,
+      "conversion_source": "output/models/irrigated-farm-native-fit/concept-models-r5/RT_IF_ConceptR5_Aqueduct_Mountain_LOD1/RT_IF_ConceptR5_Aqueduct_Mountain_LOD1.br2",
+      "native_meshes": 1,
+      "files": {
+        "RT_IF_ConceptR5_Aqueduct_Mountain_LOD1.gr2": "40feee8338de4147ecea25ecb178dc3779db08983356b60d565fbe17c60bca77",
+        "RT_IF_ConceptR5_Aqueduct_Mountain_LOD1.fxsxml": "91b5dc409fb3eca4ff249c072f09e2d7e20f1ca8884cb9afa4d367b2783d7117",
+        "RT_IF_R5_Diff.dds": "a0e2241cb783e8589364017e7f4607a3effae4613e661f8c20186cbfa31f3af5",
+        "RT_IF_R5_SREF.dds": "2834dfa453a63fbdc281cda4541e636b3af9be3b74b3754942bea6ae26d969a7"
+      },
+      "independent_reader": {
+        "status": "passed",
+        "reader": "OpenGR2",
+        "probe_sha256": "46523b4d525db6cd7014a6d94ec761a7c393b5d58a129321a6c9cf6007514ae3"
+      }
+    },
+    {
+      "name": "RT_IF_ConceptR5_ConnectedDistrict",
+      "approved_br2_sha256": "ec4cce3f1b8a1992a481e887d8097c2aa54d03d073db650c160e18cae7584f07",
+      "conversion_br2_sha256": "073574d5eae4fad2d30d6a9878e253f285277903adc42a743ae23f1131e7173d",
+      "derived_source": true,
+      "conversion_source": "inputs/RT_IF_ConceptR5_ConnectedDistrict.br2",
+      "native_meshes": 3,
+      "files": {
+        "RT_IF_ConceptR5_ConnectedDistrict.gr2": "3c26f2879ef1ece106283112d6b0019fa6360481c2d83ad10414fa1dbc8998fd",
+        "RT_IF_ConceptR5_ConnectedDistrict.fxsxml": "f1164eb47da1d3ff00f20e704d295032a42ee2ce4246e43b0e2acec5ce1045af",
+        "RT_IF_R5_Diff.dds": "a0e2241cb783e8589364017e7f4607a3effae4613e661f8c20186cbfa31f3af5",
+        "RT_IF_R5_SREF.dds": "2834dfa453a63fbdc281cda4541e636b3af9be3b74b3754942bea6ae26d969a7"
+      },
+      "independent_reader": {
+        "status": "passed",
+        "reader": "OpenGR2",
+        "probe_sha256": "46523b4d525db6cd7014a6d94ec761a7c393b5d58a129321a6c9cf6007514ae3"
+      }
+    }
+  ],
+  "date": "2026-10-20",
+  "output": "output/models/irrigated-farm-native-fit/native-r5",
+  "review": "native-r5/review.html",
+  "verification": {
+    "models": 24,
+    "native_meshes": 26,
+    "vertices": 255663,
+    "triangles": 85221,
+    "gr2_br2_parity": true,
+    "gr2_glb_parity": true,
+    "approved_exports_unchanged": 72,
+    "diffuse_base_pixels_lossless": true,
+    "native_game": "unverified",
+    "dynamic_placement": "unverified",
+    "archive": {
+      "path": "RT_IF_R5_Native_Candidates.zip",
+      "sha256": "443e951e1cda003ddae49627d8187ff13d10ffd9621f6907935908ec54e2f670",
+      "files": 53,
+      "archive_parity": true
+    },
+    "independent_opengr2_reads_passed": 24,
+    "deterministic_archive": true,
+    "local_review_links": 1379,
+    "javascript_syntax_checks": 3,
+    "python_test_suite": {
+      "tests": 34,
+      "passed": 31,
+      "skipped": 3
+    }
+  },
+  "offline_native_readback_previews_inspected": true,
+  "browser_visual_verification": false,
+  "native_game_started": false,
+  "game_or_user_data_changed": false,
+  "runtime_files_changed": false
+}

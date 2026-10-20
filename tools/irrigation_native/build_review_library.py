@@ -135,13 +135,27 @@ def build(out, history_root):
         status='Revision 5 · source design approved' if approval else 'Revision 5 · unapproved models'
         # Approval is presentation metadata; preserve every reviewed mesh byte.
         page=Path(__file__).with_name('concept_hillside_review.html').read_text()
-        source_view=(hillsides/'index.html').read_text().replace('Revision 5 · source design approved','Revision 5 · unapproved models').replace('Approved source design. Native conversion and game validation remain pending.','Offline mesh review. Native conversion, game testing and integration remain on hold.')
+        source_view=(hillsides/'index.html').read_text().replace('Approved source design. Native conversion complete; game validation pending.','Approved source design. Native conversion and game validation remain pending.').replace('Revision 5 · source design approved','Revision 5 · unapproved models').replace('Approved source design. Native conversion and game validation remain pending.','Offline mesh review. Native conversion, game testing and integration remain on hold.')
         if approval:
             (hillsides/'model-approval.json').write_text(json.dumps(approval,indent=2)+'\n')
             page=page.replace('Unapproved models · awaiting your review','Source model design approved · 20 October 2026')
             page=page.replace('The concept and design approach were selected; these new models have not been approved. Further conversion, native testing and integration are on hold.','You approved this R5 source-model design. Native conversion, terrain fit, dynamic placement and in-game validation remain pending.')
             page=page.replace('<a href="hillside-validation.json">Export and water-route checks</a>','<a href="model-approval.json">Recorded model approval</a> · <a href="hillside-validation.json">Export and water-route checks</a>')
             source_view=source_view.replace('Revision 5 · unapproved models',status).replace('Offline mesh review. Native conversion, game testing and integration remain on hold.','Approved source design. Native conversion and game validation remain pending.')
+        native=out/'native-r5'
+        if approval and (native/'review.html').is_file() and (native/'delivery-validation.json').is_file():
+            converted=read(native/'conversion.json')
+            approval_path=ROOT/'shared/art/irrigated-farm/v3-civ5-direction/model-approval-r5.json'
+            if converted.get('approval_sha256')==hashlib.sha256(approval_path.read_bytes()).hexdigest():
+                source_view=source_view.replace('Approved source design. Native conversion and game validation remain pending.','Approved source design. Native conversion complete; game validation pending.')
+                page=page.replace('Native conversion, terrain fit, dynamic placement and in-game validation remain pending.','Native-format conversion is complete. Terrain fit, dynamic placement and in-game validation remain pending.')
+                page=page.replace('Offline GLB/OBJ/BR2 models only. No new GR2 or DDS conversion.','Approved GLB/OBJ/BR2 sources are preserved. GR2, FXSXML and DDS conversion is complete.')
+                page=page.replace('This revision has no native export.','Native-format copies are available separately.')
+                page=page.replace('<a href="model-approval.json">Recorded model approval</a>','<a class="action" href="/native-r5/review.html">Native assets and conversion renders ↗</a><a href="model-approval.json">Recorded model approval</a>')
+                items=[dict(name=r['name'],label=label(r['name']),view=None,files={ext.upper():url('native-r5/bundles',r['name']+'/'+r['name']+'.'+ext) for ext in ('gr2','fxsxml')}) for r in converted['assets']]
+                group('native-r5','Approved R5 · native-format assets','24 converted models · game validation pending',
+                      'GR2, FXSXML and DDS candidates with source geometry preserved. Actual native readback renders and a combined download are available. The connected district remains a review fixture.',
+                      items,url('native-r5/previews','GentleHill-native-readback.png'),None,url('native-r5','review.html'))
         (hillsides/'review.html').write_text(page)
         (hillsides/'index.html').write_text(source_view)
         av,an=add_view('concept-r5',hillsides,'concept-models-r5')
@@ -223,7 +237,7 @@ def build(out, history_root):
             files={'Source GLB':url(r['glb']),'Source GR2':url(name,name+'-uncompressed.gr2')}))
     group('sources','Original Civ V source imports','Local reference assets',
           'Eleven imported source files, including the regular Farm variants and Terrace Farm construction states. The two unsuffixed Farm references are the earlier wheat-resource props.',native)
-    groups.sort(key=lambda g: {'concept-r5':0,'concept-r4':1,'concept-r3':2,'concept-r2':3,'concept':4,'v3':5}.get(g['key'],6))
+    groups.sort(key=lambda g: {'native-r5':0,'concept-r5':1,'concept-r4':2,'concept-r3':3,'concept-r2':4,'concept':5,'v3':6}.get(g['key'],7))
     data={'groups':groups,'concepts':sheets,'viewer_models':viewers,
           'native_game_acceptance':False,'scope':'Saved irrigation work; revisions and states are separate entries, not unique completed game assets.'}
     (library/'catalog.json').write_text(json.dumps(data,indent=2)+'\n')
@@ -247,7 +261,7 @@ def render(out,data):
             if item['view']: actions.append('<a href="'+esc(item['view'])+'">View in 3D</a>')
             actions += ['<a href="'+esc(v)+'" download>'+esc(k)+'</a>' for k,v in item['files'].items()]
             entries.append('<li><span>'+esc(item['label'])+'</span><span class="formats">'+' '.join(actions)+'</span></li>')
-        thumbnail=('<a class="preview" href="'+esc(g['view'])+'"><img loading="lazy" src="'+esc(g['image'])+'" alt="'+esc(g['title'])+' saved mesh preview"></a>') if g['image'] else ''
+        thumbnail=('<a class="preview" href="'+esc(g['view'] or g.get('review') or g['image'])+'"><img loading="lazy" src="'+esc(g['image'])+'" alt="'+esc(g['title'])+' saved mesh preview"></a>') if g['image'] else ''
         button='<a class="open" href="'+esc(g['view'])+'">Open 3D collection ↗</a>' if g['view'] else ''
         if g.get('review'):button += '<p><a href="'+esc(g['review'])+'">Close-up, map-scale &amp; source comparisons ↗</a></p>'
         sections.append('<section class="collection" id="'+g['key']+'">'+thumbnail+'<div class="description"><p class="status">'+esc(g['status'])+'</p><h2>'+esc(g['title'])+'</h2><p>'+esc(g['description'])+'</p>'+button+'<details><summary>Browse all '+str(len(g['items']))+' saved exports</summary><ul class="inventory">'+''.join(entries)+'</ul></details></div></section>')

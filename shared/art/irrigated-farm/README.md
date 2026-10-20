@@ -37,3 +37,9 @@ records the 24-model collection, 72 export hashes and atlas hash. This satisfies
 the source-design review prerequisite for R5. The earlier review checkpoints
 remain unchanged. Native conversion, terrain fit and in-game acceptance are
 pending; earlier floodplain and transition studies are outside this approval.
+
+The user's subsequent native-conversion request is completed for these R5 sources.
+[v3-civ5-direction/native-conversion-r5.json](v3-civ5-direction/native-conversion-r5.json)
+records the 24 GR2/FXSXML conversions, DDS textures and verification hashes.
+Approved source files are unchanged. Native engine appearance and placement
+remain pending; conversion is not runtime integration or in-game acceptance.

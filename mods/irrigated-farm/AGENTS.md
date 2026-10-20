@@ -80,3 +80,15 @@ approved source design and its exact 72 export hashes plus atlas hash. Preserve
 model-review hold is lifted for these R5 models; native conversion, terrain fit,
 dynamic placement and in-game acceptance remain pending. Keep the runtime Farm
 fallback until native checks pass. Changed source geometry needs its own review.
+
+
+The user explicitly requested native conversion after R5 approval.
+`tools/irrigation_native/convert_approved_r5.py` converts the frozen BR2 sources
+using the shared static BuildingShader profile. It verifies every approved hash,
+retains normalized coordinates and splits only the large ConnectedDistrict into
+three 16-bit sections without changing its triangle stream. Output is separate
+at `output/models/irrigated-farm-native-fit/native-r5/`. All 24 models passed
+GR2/source parity and independent OpenGR2 reads. Native material appearance,
+scale, terrain fit and runtime integration still need game validation; do not
+replace the Farm fallback or treat the district fixture as one improvement tile.
+Preserve the separate `native-conversion-r5.json` evidence and source approvals.

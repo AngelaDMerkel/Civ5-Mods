@@ -26,8 +26,8 @@ This selection does not certify revised exports or in-game behavior.
 **Current model approval (2026-10-20):** the user approved the R5 source-model
 collection. [The approval record](../../shared/art/irrigated-farm/v3-civ5-direction/model-approval-r5.json)
 fixes all 24 models at 72 GLB/OBJ/BR2 hashes and the existing atlas hash. The model
-review prerequisite is satisfied; native conversion, terrain fit, dynamic
-connections and game acceptance remain pending. Earlier hold statements below
+review prerequisite is satisfied. Native-format conversion is now complete;
+terrain fit, dynamic connections and game acceptance remain pending. Earlier hold statements below
 record the review history. The runtime Farm-art fallback remains in place.
 
 The approved v6 concept and prompts are versioned in
@@ -322,3 +322,27 @@ unapproved checkpoint remains in
 the model-review hold for those exact R5 exports. Native conversion and game
 validation are pending; no game, user-data or runtime files changed while recording
 this approval. The modeled water surfaces are static.
+
+
+**Native conversion completed (2026-10-20):** following the user's explicit
+request, all 24 approved R5 BR2 sources were converted to GR2 and FXSXML, with
+a lossless RGBA DDS diffuse atlas (full mip chain) and a black SREF candidate.
+The shared `civ5-building-static-v1` converter preserves source positions,
+normals, tangent frames, UVs and triangle winding at float32 precision. Each
+converted model passed the independent OpenGR2 reader; decoded native geometry
+also matches the approved GLB. All 72 approved source exports remain unchanged.
+
+The ConnectedDistrict review fixture has 143,610 vertices, so its native copy
+uses three 16-bit mesh sections with the same vertex/triangle stream. The complete
+collection contains 26 native mesh sections and 85,221 triangles. Coordinates
+retain the approved normalized scale; display scale and terrain fit are not
+established by conversion. Wet/dry and LOD models are separate static assets.
+
+[The conversion record](../../shared/art/irrigated-farm/v3-civ5-direction/native-conversion-r5.json)
+pins the native files and validation. Generated bundles, four renders read back
+from GR2 and the download archive are under
+`output/models/irrigated-farm-native-fit/native-r5/`; `native-r5/review.html` is
+linked from the existing model review. These local reference-derived files are
+not redistributed or installed. Native loading, alpha/material appearance,
+lighting, terrain fit and dynamic adjacency remain unverified in-game. No game,
+user-data or runtime files changed; the existing Farm fallback remains active.

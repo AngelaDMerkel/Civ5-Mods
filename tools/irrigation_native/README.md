@@ -539,3 +539,40 @@ review and viewers approved. Export metadata describes the status at generation;
 the separate approval record is authoritative for the later design decision.
 Changed or missing exports cannot inherit the approved gallery label. Native
 conversion, terrain fitting and game acceptance remain pending.
+
+
+### Approved R5 native conversion
+
+After the explicit conversion request, run with the art Python environment
+(NumPy and Pillow) and the existing shared independent reader:
+
+```sh
+python3 tools/irrigation_native/convert_approved_r5.py \
+  --probe /path/to/gr2-research/independent-probe --render
+python3 tools/irrigation_native/convert_approved_r5.py --verify-only
+python3 tools/irrigation_native/build_review_library.py --history-root /path/to/earlier-checkout
+```
+
+The source is the frozen `concept-models-r5/` collection. Approval hashes are
+checked before conversion. Native bundles are staged separately and exposed at
+`native-r5/` only after conversion and source comparison succeed; an existing
+output must use `--verify-only`. The shared converter emits the native GR2/FXSXML
+files and performs independent reads when `--probe` is supplied. No geometry
+regenerator, native game process or runtime installer is involved.
+
+All 24 models convert. ConnectedDistrict alone requires three 16-bit mesh
+sections; its original BR2 is preserved and the derived split is checked against
+the full original float32 vertex stream and triangle order. This district is a
+review fixture, not an improvement asset. All other BR2 inputs are used verbatim.
+Normalized scale and UV orientation are unchanged. The DDS diffuse base level
+matches the approved atlas pixels including alpha, with complete mipmaps. Black
+SREF, BuildingShader alpha behavior and lighting remain native-test candidates.
+
+Verification checks bundle hashes, wrappers, shader bindings, topology, all
+vertex attributes, actual GR2/approved-GLB parity, source integrity and texture
+pixels. Four offline renders decode the GR2 and DDS outputs. The deterministic
+ZIP includes 24 meshes, 24 wrappers, two shared textures and three record/note
+files; archive contents are read back and compared. The 24 native models contain
+26 mesh sections, 255,663 vertices and 85,221 triangles. Native rendering,
+terrain calibration, animated water and automatic LOD selection are not proved
+by these checks. The source approval and historical checkpoints stay intact.
