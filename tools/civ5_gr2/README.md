@@ -163,6 +163,15 @@ upstream diagnostic interposers while retaining the background activation guard.
 Without it, diagnostic logging is more immediate but adds interposers to the
 process. Neither mode modifies game executable or GameCore bytes.
 
+For an authorized mouse/keyboard UI test, `--foreground-ui` explicitly permits
+the disposable game window to activate; background protection remains the
+default. `--window-size 1024 768` requests a temporary window through the backed-up
+graphics INI. Record the actual native viewport and screenshot dimensions because
+macOS display scaling can differ from that request. The runner restores the
+original graphics settings. UI fixtures can wait for actual input without a
+scene-ready marker, within the existing timeout; normal restoration still runs
+on completion, error or interruption.
+
 The run is bounded to 60–1200 seconds and always restores after normal completion,
 errors or interruption. After an abnormal supervisor termination, close only the
 owned game process and recover with:

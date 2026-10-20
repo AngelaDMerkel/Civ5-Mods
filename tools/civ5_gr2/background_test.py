@@ -216,7 +216,8 @@ def run(args, harness):
     lib = output / 'background-playtest.dylib'
     subprocess.run(['clang', '-arch', 'x86_64', '-dynamiclib', '-framework', 'AppKit',
                     '-framework', 'Foundation', str(external / 'background-playtest.m'),
-                    '-o', str(lib)] + (['-DLEKMOD_TEST_ACTIVATION_ONLY'] if args.activation_only else []), check=True)
+                    '-o', str(lib)] + (['-DLEKMOD_TEST_ACTIVATION_ONLY'] if args.activation_only else [])
+                   + (['-DLEKMOD_TEST_ALLOW_FOREGROUND'] if args.foreground_ui else []), check=True)
     capture = harness.REPO / 'build/macos/capture-test-window'
     capture.parent.mkdir(parents=True, exist_ok=True)
     subprocess.run(['clang', '-fobjc-arc', '-framework', 'AppKit', '-framework', 'Foundation',
@@ -233,7 +234,8 @@ def run(args, harness):
              map_path: (source / 'Maps/CG2_StaticTest.lua').read_bytes()}
     report = {'app': str(APP), 'data': str(DATA), 'target': str(target),
               'started_utc': datetime.now(timezone.utc).isoformat(),
-              'harness_revision': HARNESS_REVISION, 'background': True,
+              'harness_revision': HARNESS_REVISION, 'background': not args.foreground_ui,
+              'requested_window_size': args.window_size,
               'activation_only': args.activation_only,
               'data_folders': DATA_FOLDERS,
               'native_rendering': 'unverified', 'status': 'prepared', 'restored': False,
@@ -275,6 +277,11 @@ def run(args, harness):
         settings = DATA / 'UserSettings.ini'
         settings.write_bytes(re.sub(rb'(?m)^(SkipIntroVideo\s*=\s*)[^\r\n]*',
                                     rb'\g<1>1', settings.read_bytes()))
+        if args.window_size:
+            graphics = DATA / 'GraphicsSettingsDX9.ini'
+            graphics.write_text(harness.edit_ini(graphics.read_text(), {
+                ('UserSettings', 'WindowResX'): args.window_size[0],
+                ('UserSettings', 'WindowResY'): args.window_size[1]}))
         report['installed_hooks'] = {}
         for path, code in hooks.items():
             contents = (path.read_bytes() if path.exists() else b'') + b'\n' + code
@@ -290,7 +297,8 @@ def run(args, harness):
                 cwd=APP / 'Contents/MacOS', env=env, stdin=subprocess.DEVNULL, stdout=log, stderr=log)
         report.update(pid=process.pid, status='running')
         save_report(output, report)
-        print(json.dumps({'event': 'background-launched', 'pid': process.pid, 'evidence': str(output)}), flush=True)
+        print(json.dumps({'event': 'foreground-ui-launched' if args.foreground_ui else 'background-launched',
+                          'pid': process.pid, 'evidence': str(output)}), flush=True)
         start = time.monotonic()
         ready = None
         last_capture = 0
@@ -352,12 +360,17 @@ def main():
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--timeout', type=int, default=600)
     parser.add_argument('--activation-only', action='store_true', help='Disable upstream diagnostic interposers, retain background guard')
+    parser.add_argument('--foreground-ui', action='store_true', help='Allow the disposable game window to receive real UI input')
+    parser.add_argument('--window-size', type=int, nargs=2, metavar=('WIDTH', 'HEIGHT'),
+                        help='Temporary window request; original graphics settings are backed up and restored')
     parser.add_argument('--load-save', type=Path, help='Reload a retained disposable fixture save; scene guards still apply')
     parser.add_argument('--fail-marker', action='append', default=[], help='Stop and restore when this diagnostic log marker appears')
     parser.add_argument('--mod-stage', type=Path, action='append', default=[],
                         help='Temporarily install and normally activate a diagnostic mod stage')
     parser.add_argument('--restore', action='store_true', help='Recover an interrupted session with Civ V closed')
     args = parser.parse_args()
+    if args.window_size and (args.window_size[0] < 1024 or args.window_size[1] < 768):
+        parser.error('Native UI window request must be at least 1024 by 768')
     if not args.restore and (args.dlc is None or not 60 <= args.timeout <= 1200):
         parser.error('Run requires --dlc and timeout between 60 and 1200 seconds')
     harness = load_harness(args.harness.resolve())

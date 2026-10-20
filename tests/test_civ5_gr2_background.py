@@ -48,6 +48,10 @@ class BackgroundRecoveryTests(unittest.TestCase):
         path.write_bytes(value)
 
     def test_restore_retains_evidence_and_original_bytes(self):
+        self.put(self.data / 'GraphicsSettingsDX9.ini', b'WindowResX=1024\nWindowResY=768\n')
+        original_graphics = b'WindowResX=1408\nWindowResY=881\n'
+        self.put(self.out / 'backup/GraphicsSettingsDX9.ini', original_graphics)
+        self.report['originals']['GraphicsSettingsDX9.ini'] = digest(self.out / 'backup/GraphicsSettingsDX9.ini')
         mod = self.data / 'MODS/CG2_test'
         self.put(mod / 'test.lua', b'diagnostic fixture')
         self.report['temporary_mods'] = [dict(target=str(mod), payload=inventory(mod))]
@@ -63,6 +67,7 @@ class BackgroundRecoveryTests(unittest.TestCase):
         self.assertEqual((self.out / 'after/Saves/auto/test.Civ5Save').read_bytes(), b'test autosave')
         self.assertEqual((self.out / 'after/Logs/Lua.log').read_bytes(), b'scene log')
         self.assertTrue(self.report['restored'])
+        self.assertEqual((self.data / 'GraphicsSettingsDX9.ini').read_bytes(), original_graphics)
         self.assertEqual(self.report['native_rendering'], 'unverified')
         self.assertIn('true', command.call_args.args[0])
 
