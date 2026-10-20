@@ -130,6 +130,11 @@ the focused native probe are not full campaign acceptance evidence.
 
 Remaining native acceptance:
 
+Focused gameplay lifecycle and fresh-process save/reload checks have since passed,
+including ordinary package activation. Their scope and evidence are recorded in
+[NATIVE-GAMEPLAY-TESTS.md](NATIVE-GAMEPLAY-TESTS.md); the transition combinations
+below still require broader coverage.
+
 - Advance all eight eras on neutral and annexed sites, with the active player in
   a different era. Check AI sites, unseen sites and normal fog-of-war behavior.
 - Capture into earlier and later eras; capture a ruin before extraction technology;

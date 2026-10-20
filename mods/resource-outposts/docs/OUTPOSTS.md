@@ -3,7 +3,8 @@
 An independent stock Brave New World Lua/database mod. Source: `mods/resource-outposts/src/`.
 Release: `dist/Resource-Outposts-v1.zip`. Requires a new single-player game.
 Automated tests and installed-database checks pass. Focused native construction,
-resource/upkeep lifecycle and save/reload checks also pass; see
+resource/upkeep lifecycle, save/reload, AI build/guard/repair/retreat and optional
+roadless Terrain shelter checks also pass; see
 [native gameplay evidence](NATIVE-GAMEPLAY-TESTS.md). Broader UI interaction and
 long-game AI balance remain separate acceptance work.
 
@@ -184,10 +185,10 @@ original PNGs, prompts, selection, hashes and DDS export report. See
 The package includes eleven original-art DDS textures: seven portrait sizes,
 three worker-action sizes, and a strategic-view icon. `SQL/RO_Art.sql` binds them
 to the existing improvement/build records and a new outpost-only art definition.
-That definition clones the native Fort model rows for every era/state as a
-fallback, while using the selected outpost strategic icon. Ordinary Fort data,
-models and icons remain unchanged. Management and construction controls use the
-same chosen art. Notifications still use the native generic symbol.
+That definition and the eight claimant-era variants now use the approved custom
+native models and selected outpost strategic icon. Ordinary Fort data, models and
+icons remain unchanged. Management and construction controls use the same chosen
+art. Notifications still use the native generic symbol.
 
 `ReloadStrategicViewSystem` is enabled for Resource Outposts; Terrain's setting
 is unchanged. All existing gameplay/save identifiers and resource accounting are

@@ -63,8 +63,12 @@ def ordinary(output, scenario):
     (source / 'Lua').mkdir(parents=True); (source / 'Maps').mkdir()
     checks = ROOT / 'mods/resource-outposts/tests/native'
     (source / 'Lua/CG2_Scene.lua').write_text((checks / 'RO_OrdinaryScene.lua').read_text())
+    if scenario == 'integration':
+        shutil.copyfile(checks / 'RO_IncludeProbe.lua', source / 'Lua/RO_IncludeProbe.lua')
+        with (source / 'Lua/CG2_Scene.lua').open('a') as scene:
+            scene.write('\nEvents.SequenceGameInitComplete.Add(function() ContextPtr:LoadNewContext("RO_IncludeProbe"); end);\n')
     shutil.copyfile(FIXTURES / 'CG2_StaticTest.lua', source / 'Maps/CG2_StaticTest.lua')
-    files = {p.relative_to(source).as_posix(): p for p in source.rglob('*') if p.is_file()}
+    files = {p.relative_to(source).as_posix(): p for p in sorted(source.rglob('*')) if p.is_file()}
     spec = dict(id=FIXTURE_ID, version=1, name='Outpost Ordinary Loader Probe',
                 description='Only the diagnostic map and loader checks; gameplay comes from normal mods.',
                 actions=[], entry='Lua/CG2_Scene.lua')
@@ -92,7 +96,7 @@ def ordinary(output, scenario):
             with (target / 'UI/RT_Environment.lua').open('a') as ui:
                 ui.write('\n-- Read-only diagnostic bridge; never packaged for play.\n' +
                          (checks / 'RO_TerrainProbe.lua').read_text())
-        files = {p.relative_to(target).as_posix(): p for p in target.rglob('*') if p.is_file()}
+        files = {p.relative_to(target).as_posix(): p for p in sorted(target.rglob('*')) if p.is_file()}
         write_xml(manifest(files, package), target / (package['name'] + '.modinfo'))
     (output / 'fixture.json').write_text(json.dumps(dict(scenario=scenario, source_hashes=hashes,
         scope='Ordinary mod activation and production SQL/UI/runtime; test checks appended only to fixture UI copies'), indent=2) + '\n')

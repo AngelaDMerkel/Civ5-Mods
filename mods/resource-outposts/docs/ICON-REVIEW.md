@@ -71,8 +71,8 @@ PNGs are in the review folder's `exported/` directory. The originals remain
 unchanged, and no native reference pixels enter the release.
 
 `src/SQL/RO_Art.sql` binds both atlases and creates the outpost-specific strategic
-mapping. The unique art definition copies every native Fort landmark model row,
-preserving the existing 3D fallback until the approved era meshes are converted.
+mapping. The initial icon integration copied the native Fort landmark model rows
+as a fallback; the approved native era models have since replaced those rows.
 Native Fort records are unchanged. Five additive image controls cover construction,
 the management opener, overview title/rows and selected-site title.
 
@@ -80,7 +80,7 @@ Shared tooling handoff: `tools/packages.py` loads the new SQL after the improvem
 definitions and opts Outposts into strategic reload. `tools/build.py` reads this
 optional package setting, leaving Terrain unchanged. `tools/validate.py` checks
 the atlas files, UI references, approved hashes, strategic definition, complete
-fallback rows and preservation of all original Fort records. No gameplay API,
+era model rows and preservation of all original Fort records. No gameplay API,
 save identifier, localization tag or package version changed.
 
 Checks completed: package build and source/ZIP parity; eleven lossless DDS
@@ -89,9 +89,15 @@ orders; all Lua 5.1 tests (including 275 Outpost assertions); six package tests.
 The Lua suite used `/private/tmp/realistic-terrain-test-env/bin/python`, the existing
 local environment with `lupa`, because this checkout has no `.venv`.
 
-Remaining native checks: icon sizing/alpha, disabled/cancel state, tooltips,
-strategic markers and fallback models during pillage/capture/save-load, and panel
+Native gameplay screenshots on 20 October 2026 show the selected B emblem in the
+management opener and selected-site header with Terrain enabled. This is partial
+visual evidence, not full icon/UI acceptance; see
+[NATIVE-GAMEPLAY-TESTS.md](NATIVE-GAMEPLAY-TESTS.md).
+
+Remaining native checks: icon sizing/alpha across all controls, disabled/cancel
+state, tooltips, Civilopedia portraits, strategic markers, and panel
 overlap at 1024×768 and widescreen with Terrain absent/present. Notifications keep
 the native generic symbol. Claimant-era switching is now implemented separately
 in [ERA-VISUALS.md](ERA-VISUALS.md); all eight internal variants reuse the selected
-B portrait and strategic emblem. Native era-model conversion remains deferred.
+B portrait and strategic emblem. Native era-model conversion and focused visual
+checks are recorded in [NATIVE-ART-REVIEW.md](NATIVE-ART-REVIEW.md).

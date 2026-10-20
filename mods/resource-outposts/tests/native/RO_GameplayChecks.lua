@@ -60,6 +60,13 @@ local function technologies()
 end
 local function readyTurns()
     UI.SetDontShowPopups(true);
+    -- Informational awards still queue a native turn-timer semaphore in stock
+    -- BNW. Close them through the same UI path as their Continue button.
+    for _, name in ipairs({"TechAwardPopup", "NewEraPopup", "WhosWinningPopup"}) do
+        local popup = ContextPtr:LookUpControl("/InGame/" .. name)
+            or ContextPtr:LookUpControl("/InGame/BulkUI/" .. name);
+        if popup and not popup:IsHidden() then UIManager:DequeuePopup(popup); end
+    end
     local player = Players[0];
     -- Keep unrelated research/production/policy choices from blocking the
     -- bounded automation; worker/AI turns still run through the native engine.
@@ -227,11 +234,16 @@ local function persistence()
     end
 end
 local function ai()
+    -- This sequence isolates the planner lifecycle. Random wars/camp spawns are
+    -- separate contested-expedition tests, not a deterministic repair fixture.
+    Game.SetOption(I.GAMEOPTION_NO_BARBARIANS, true);
+    Game.SetOption(I.GAMEOPTION_ALWAYS_PEACE, true);
     setup(); technologies(); readyTurns();
     local plot = deposit(16, 8, I.RESOURCE_IRON, 3);
     local expedition = Players[1]:InitUnit(I.UNIT_WORKER, 16, 7);
     local domestic = Players[1]:InitUnit(I.UNIT_WORKER, 20, 3);
     local guard = Players[1]:InitUnit(I.UNIT_WARRIOR, 17, 8);
+    local expeditionID, domesticID, guardID = expedition:GetID(), domestic:GetID(), guard:GetID();
     local before = total(1,I.RESOURCE_IRON);
     local last, waited, phase, phaseTurn = -1, 0, "build", 0;
     local reservedChecked = false;
@@ -239,8 +251,8 @@ local function ai()
         if owner ~= 1 then return; end
         local roster = O.state.ai[1];
         if roster and next(roster.workers) and not reservedChecked then
-            check(roster.workers[expedition:GetID()] ~= nil, "AI reserves nearby expedition worker");
-            check(roster.workers[domestic:GetID()] == nil, "AI retains a domestic worker");
+            check(roster.workers[expeditionID] ~= nil, "AI reserves nearby expedition worker");
+            check(roster.workers[domesticID] == nil, "AI retains a domestic worker");
             reservedChecked = true;
         end
     end);
@@ -250,6 +262,11 @@ local function ai()
         if not Players[0]:IsTurnActive() or waited < 2 then return; end
         local turn = Game.GetGameTurn();
         if turn ~= last then
+            -- Native unit userdata can dangle after capture/death; resolve IDs
+            -- again each turn, just as the production planner does.
+            expedition = Players[1]:GetUnitByID(expeditionID);
+            guard = Players[1]:GetUnitByID(guardID);
+            check(expedition ~= nil and guard ~= nil, "controlled AI fixture units remain alive");
             print("[ROTEST] AI turn=" .. turn .. " phase=" .. phase .. " work=" .. plot:GetBuildProgress(O.build)
                   .. " worker=" .. expedition:GetX() .. "," .. expedition:GetY()
                   .. " guard=" .. guard:GetX() .. "," .. guard:GetY());
@@ -264,6 +281,7 @@ local function ai()
                 phase, phaseTurn = "guard", turn;
             elseif phase == "guard" and M.Defender(plot,1) then
                 guard = M.Defender(plot,1);
+                guardID = guard:GetID();
                 check(O.state.ai[1].guards[guard:GetID()] ~= nil, "AI guard reservation reaches site");
                 plot:SetImprovementPillaged(true); O.Reconcile();
                 equal(total(1,I.RESOURCE_IRON), before, "AI pillage suspends extraction");

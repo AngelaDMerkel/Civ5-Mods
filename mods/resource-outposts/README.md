@@ -22,14 +22,16 @@ states are now packaged, replacing the Fort placeholders. They passed independen
 conversion checks and [native visual review](docs/NATIVE-ART-REVIEW.md) for all
 eight eras, plus Ancient/Information terrain and fog scenes. The public build uses
 one shared Ancient scaffold; completed and pillaged sites use their claimant's era.
-Focused native [gameplay and save/load checks](docs/NATIVE-GAMEPLAY-TESTS.md) now
+Focused native [gameplay and save/load checks](docs/NATIVE-GAMEPLAY-TESTS.md),
+AI construction/guard/repair/retreat and optional roadless Terrain shelter now
 pass; broader campaign and UI acceptance remains separate. Implementation,
 compatibility and conversion handoff: [docs/ERA-VISUALS.md](docs/ERA-VISUALS.md).
 
 The user-selected **Guarded storehouse B** emblem and construction glyph are
 exported and integrated into Civilopedia portraits, construction controls,
 management panels and strategic view. [Icon records](docs/ICON-REVIEW.md) preserve
-the originals, selection and export hashes. Native in-game rendering is pending;
-notifications retain their existing generic symbol.
+the originals, selection and export hashes. The management emblem has been
+observed in-game; construction, Civilopedia and strategic-view icon acceptance
+remains pending. Notifications retain their existing generic symbol.
 
 Build and validation commands are in the [root README](../../README.md).

@@ -45,6 +45,8 @@ class GameplayFixtureTests(unittest.TestCase):
                                         ('Realistic-Terrain', 'realistic-terrain', 'UI/RT_Environment.xml')]:
                 target = output / 'mods' / slug
                 mod = ET.parse(next(target.glob('*.modinfo'))).getroot()
+                names = [item.text for item in mod.find('Files')]
+                self.assertEqual(names, sorted(names), 'match the production manifest order')
                 self.assertEqual(mod.find('EntryPoints/EntryPoint').get('file'), entry)
                 self.assertTrue(any(x.text.endswith('.sql') for x in mod.find('Actions/OnModActivated')))
                 original = ROOT / 'mods' / folder / 'src' / entry
