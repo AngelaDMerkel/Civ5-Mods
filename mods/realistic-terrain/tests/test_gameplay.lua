@@ -11,8 +11,9 @@ DomainTypes = { DOMAIN_LAND = 0 };
 NotificationTypes = { NOTIFICATION_GENERIC = 1 };
 Locale = { ConvertTextKey = function(key, ...) return key; end };
 Modding = { OpenSaveData = function() return {
-    GetValue = function(self, k) return savedValues[k]; end,
-    SetValue = function(self, k, v) savedValues[k] = v; end,
+    -- Civ V binds the database: colon syntax would pass an invalid key.
+    GetValue = function(k) assert(type(k) == "string", "GetValue expects a string key, no self"); return savedValues[k]; end,
+    SetValue = function(k, v) assert(type(k) == "string", "SetValue expects a string key, no self"); savedValues[k] = v; end,
 }; end };
 GameEvents = setmetatable({}, { __index = function(t, k)
     local callbacks = {};

@@ -15,16 +15,16 @@ function S.Owner(plot)
     -- Territorial ownership takes precedence over the original builder.
     local owner = plot:GetOwner();
     if owner >= 0 then return owner; end
-    return tonumber(saved:GetValue(PREFIX .. key(plot))) or -1;
+    return tonumber(saved.GetValue(PREFIX .. key(plot))) or -1;
 end
 
 function S.OnBuildFinished(playerID, x, y, improvement)
     local plot = Map.GetPlot(x, y);
     if not plot then return; end
     if improvement == stationID and plot:GetImprovementType() == stationID then
-        saved:SetValue(PREFIX .. key(plot), playerID);
+        saved.SetValue(PREFIX .. key(plot), playerID);
     elseif plot:GetImprovementType() ~= stationID then
-        saved:SetValue(PREFIX .. key(plot), -1);
+        saved.SetValue(PREFIX .. key(plot), -1);
     end
     -- Road construction and repairs on the station preserve its original builder.
 end

@@ -5,13 +5,13 @@ local T, M, R, E = RT_Trade, RT_TradeMap, RT_TradeRules, RT_TradeEconomy;
 local I = GameInfoTypes;
 local saved = Modding.OpenSaveData();
 local KEY = "RealisticTerrain.Trade.v2";
-local record = saved:GetValue(KEY);
+local record = saved.GetValue(KEY);
 T.state = record and RT_Serialize.Decode(record) or { agreements = {}, offers = {}, routes = {},
     nextID = 1, guards = {}, roadBuilders = {}, paid = {}, cash = {}, science = {},
     processed = {}, projects = {}, aiLast = {}, history = {} };
 local state = T.state;
 local maintenance = {};
-local function save() saved:SetValue(KEY, RT_Serialize.Encode(state)); end
+local function save() saved.SetValue(KEY, RT_Serialize.Encode(state)); end
 T.Save = save;
 local function pair(a, b) return math.min(a, b) .. ":" .. math.max(a, b); end
 local function plot(id) return Map.GetPlotByIndex(id); end

@@ -48,8 +48,8 @@ function A.OnTurn(owner)
     local player = Players[owner];
     if not player or not player:IsAlive() or player:IsHuman() or player:IsBarbarian() then return; end
     local key = "RealisticTerrain.v2.IrrigationAI." .. owner;
-    if saved:GetValue(key) == Game.GetGameTurn() then return; end
-    saved:SetValue(key, Game.GetGameTurn());
+    if saved.GetValue(key) == Game.GetGameTurn() then return; end
+    saved.SetValue(key, Game.GetGameTurn());
     if not Teams[player:GetTeam()]:GetTeamTechs():HasTech(I.TECH_ENGINEERING) then return; end
     if LuaEvents then LuaEvents.RO_RunAI(owner); end
     local workers = {};
