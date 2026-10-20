@@ -203,3 +203,31 @@ records their exact hashes. Native probe preparation failed at an import before
 creating a fixture; no game launch, installation or user-data change occurred.
 The unused preparation script was removed. The existing library now prominently
 labels the candidates as unapproved and links to the visual review first.
+
+
+Geometry revision requested after that checkpoint (2026-10-20):
+`tools/irrigation_native/build_concept_revision.py` creates a separate, unapproved
+`concept-models-r2/` collection of 24 GLB/OBJ/BR2 models. Flat canals now follow
+long parcel boundaries through rounded geometric turns, with one branch instead
+of a comb. Three broad cultivated benches have continuous, joined masonry wall
+fronts. Shallow curved aqueduct approaches feed separate supported receiving
+chutes; height changes no longer tilt the long bridge decks. The regular Farm1
+geometry and native-pixel atlas are retained. These are authored review terrains,
+not captures of stock engine-generated desert farms.
+
+The revision validator measures the exported water geometry as well as the
+route graph: 12 spans, maximum 0.8% grade (about 0.46 degrees), 12 aligned receiving
+joins, 109 level/falling routes, 15,786 terrain-clearance samples and 166 crop-seam
+samples. Its design limits are 2% grade and 15 degrees between adjacent approach
+segments. These normalized source limits do not establish native terrain fit.
+The previous 71 recorded GLB/BR2/GR2 hashes remain unchanged. No GR2, DDS or
+FXSXML was generated for this revision, and no game/user-data files changed.
+
+The current review is `concept-models-r2/review.html`; the old
+`concept-models/review.html` URL also shows the revision after rebuilding the
+library. `concept-models/previous-review.html` preserves the previous review.
+Close, map-scale and low-angle GLB renders accompany the selected concept and
+real game references. `shared/art/irrigated-farm/v3-civ5-direction/model-review-r2.json`
+records this unapproved revision separately. Native conversion, testing and
+integration remain on hold; previous floodplain and other transition studies
+remain available but have not been rebuilt in this pass.

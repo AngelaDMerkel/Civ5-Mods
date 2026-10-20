@@ -34,3 +34,10 @@ The user has not approved the new concept-model candidates. The 2026-10-20
 checkpoint in `shared/art/irrigated-farm/v3-civ5-direction/model-review.json`
 freezes their hashes. Hold further conversion, native testing and integration
 until the user reviews them. Do not interpret concept approval as model approval.
+
+The subsequent 2026-10-20 user request authorizes offline mesh revisions toward
+geometric canals, flowing continuous walls and shallow aqueduct connections.
+Use `tools/irrigation_native/build_concept_revision.py` for revision 2; it exports
+only GLB/OBJ/BR2 into a separate folder. Keep the original checkpoint unchanged
+and record the new unapproved hashes in `model-review-r2.json`. This request does
+not lift the hold on native conversion, testing or integration.

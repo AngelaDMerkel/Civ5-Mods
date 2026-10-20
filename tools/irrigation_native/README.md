@@ -393,3 +393,46 @@ records their exact hashes. Native probe preparation failed at an import before
 creating a fixture; no game launch, installation or user-data change occurred.
 The unused preparation script was removed. The existing library now prominently
 labels the candidates as unapproved and links to the visual review first.
+
+
+### Geometric canals and shallow aqueduct revision (2026-10-20)
+
+The next user request authorizes revised **offline source meshes**, while the
+native conversion/testing/integration hold remains. Do not rerun the original
+`build_concept_models.py` native exporter under that hold. With the previous
+local native-source cache and concept-model atlas available, run:
+
+```sh
+python3 tools/irrigation_native/build_concept_revision.py
+python3 tools/irrigation_native/validate_concept_revision.py
+python3 tools/irrigation_native/build_review_library.py --history-root /path/to/checkout-with-earlier-outputs
+```
+
+`concept_revision_geometry.py` supplies long parcel-aligned canals with rounded
+corners, three broad terraces with joined wall fronts, and continuous aqueduct
+arcades with eased approaches. Separate masonry receiving chutes absorb height
+differences. The source-only builder retains the exact previous native-pixel PNG
+atlas and genuine regular Farm1 geometry. It makes 24 GLB/OBJ/BR2 exports, including
+wet/dry and LOD versions of the four terrain forms, connector/source components,
+and a connected district. It never invokes the native writer or makes DDS,
+FXSXML or GR2 files. Existing construction, pillaged, floodplain and transition
+studies remain in the library with their previous status.
+
+The validator reuses the original geometry, export, provenance, gravity, terrain
+clearance and crop-seam checks, with explicit source-only expectations. Additional
+checks compare exported water vertices with the span centerlines, enforce a 2%
+maximum aqueduct grade and 15-degree maximum segment/receiving-joint turn, verify
+all original candidate hashes, and reject native-format files in the new folder.
+The current 12 spans measure at most 0.8% grade (0.46 degrees), with a maximum
+10.05-degree approach segment turn. All 71 frozen prior export hashes match.
+These are review-fixture limits, not an engine hydraulic simulation.
+
+`concept-models-r2/review.html` shows real GLB close-ups, map-scale views and a
+low-angle assembly profile beside the previous models, selected concept and
+native references. The library enables the new collection after its revision
+validator passes. It preserves `concept-models/previous-review.html` and makes
+the user's existing `concept-models/review.html` URL display the latest revision.
+`model-review-r2.json` records new hashes as **unapproved**; original approval and
+review records stay intact. Browser automation remains unavailable under the
+local URL policy, so use offline renders, local link checks and JS syntax checks;
+none establishes browser rendering or in-game acceptance.

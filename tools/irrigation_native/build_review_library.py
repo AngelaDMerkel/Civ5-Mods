@@ -79,6 +79,21 @@ def build(out, history_root):
     def group(key,title,status,description,items,image=None,view=None,review=None):
         groups.append(dict(key=key,title=title,status=status,description=description,items=items,image=image,view=view,review=review))
 
+    revision=out/'concept-models-r2'
+    revised=(revision/'revision-validation.json').is_file()
+    if revised:
+        av,an=add_view('concept-r2',revision,'concept-models-r2')
+        group('concept-r2','Revised canals, terrace walls & aqueducts','Revision 2 · unapproved models',
+              'Long plot-aligned canals, three broad terrace benches and continuous walls. Shallow aqueducts ease into separate receiving chutes. Editable offline meshes only; native conversion and game integration remain on hold.',
+              standard_items(read(revision/'models.json')['models'],revision,'concept-models-r2',av,an),
+              url('concept-models-r2','connected-district-preview.png'),av,url('concept-models-r2','review.html'))
+        # Keep the user's open review URL useful, preserving the previous page
+        # and all candidate geometry. Relative previews resolve in the revision.
+        previous=out/'concept-models/previous-review.html'
+        if not previous.exists():previous.write_text(Path(__file__).with_name('concept_model_review.html').read_text())
+        current=(revision/'review.html').read_text().replace('<head>','<head><base href="/concept-models-r2/">',1)
+        (out/'concept-models/review.html').write_text(current)
+
     concept=out/'concept-models'
     if (concept/'models.json').is_file():
         av,an=add_view('concept',concept,'concept-models')
@@ -87,11 +102,11 @@ def build(out, history_root):
             name=item['name']
             if (concept/name/(name+'.fxsxml')).is_file():
                 item['files']['FXSXML']=url('concept-models',name+'/'+name+'.fxsxml')
-        group('concept','Selected concept → actual models','Unapproved models · awaiting your review',
+        group('concept','Previous concept-model candidates' if revised else 'Selected concept → actual models','Unapproved models · retained for comparison' if revised else 'Unapproved models · awaiting your review',
               'These new meshes have not been approved. Review the shapes, materials and irrigation treatment before further conversion, native testing or integration. The collection contains four terrain forms, wet/dry and lower-detail variants, components and a connected district.',
               concept_items,
               url('concept-models','connected-district-preview.png'),av,
-              url('concept-models','review.html'))
+              url('concept-models','previous-review.html' if revised else 'review.html'))
 
     terrain=out/'terrain-review';tv,_=add_view('terrain',terrain,'terrain-review')
     cases=read(terrain/'terrain-cases.json')['cases']; items=[]
@@ -150,7 +165,7 @@ def build(out, history_root):
             files={'Source GLB':url(r['glb']),'Source GR2':url(name,name+'-uncompressed.gr2')}))
     group('sources','Original Civ V source imports','Local reference assets',
           'Eleven imported source files, including the regular Farm variants and Terrace Farm construction states. The two unsuffixed Farm references are the earlier wheat-resource props.',native)
-    groups.sort(key=lambda g: {'concept':0,'v3':1}.get(g['key'],2))
+    groups.sort(key=lambda g: {'concept-r2':0,'concept':1,'v3':2}.get(g['key'],3))
     data={'groups':groups,'concepts':sheets,'viewer_models':viewers,
           'native_game_acceptance':False,'scope':'Saved irrigation work; revisions and states are separate entries, not unique completed game assets.'}
     (library/'catalog.json').write_text(json.dumps(data,indent=2)+'\n')

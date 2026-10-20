@@ -19,8 +19,8 @@ def point_segment_distance(p,a,b):
     return np.linalg.norm(p-a-d*t)
 
 
-def validate(out):
-    folder=out/'concept-models'; manifest=json.loads((folder/'models.json').read_text())
+def validate(out, revision=False):
+    folder=out/('concept-models-r2' if revision else 'concept-models'); manifest=json.loads((folder/'models.json').read_text())
     assert manifest['native_game_validation'] is False and manifest['redistributable'] is False
     for source in manifest['material_sources']:
         assert digest(out/'native-local'/source['file'])==source['sha256']
@@ -95,7 +95,7 @@ def validate(out):
                                 assert point[2]>=z+.045,(name,route['name'],'terrain clearance',point[2]-z)
                                 clearance_count+=1
         if rec.get('terrain')=='Flat':
-            assert len(routes)==3
+            assert len(routes)==(2 if revision else 3)
             assert all(r['end']=='closed_field_outlet' for r in routes.values())
         if rec['category']=='tile':
             group=next(g for g in rec['groups'] if g['name']=='native_regular_farm')
@@ -125,7 +125,10 @@ def validate(out):
             assert seam_count>=20
         triangles+=rec['triangles'];routes_count+=len(routes)
         outcomes.append({'name':name,'triangles':rec['triangles'],'native_readback':'native_export' in rec})
-    assert len(manifest['models'])==24 and native_count==23
+    assert len(manifest['models'])==24 and native_count==(0 if revision else 23)
+    if revision:
+        assert manifest['revision']==2 and manifest['native_exports']==0
+        assert not list(folder.rglob('*.gr2')) and not list(folder.rglob('*.dds')) and not list(folder.rglob('*.fxsxml'))
     with Image.open(folder/'RT_IF_Diffuse.png') as packed:
         from build_concept_models import NAMES
         for source in manifest['material_sources']:
@@ -134,8 +137,9 @@ def validate(out):
             expected=expected.resize((512,512),Image.Resampling.NEAREST)
             assert np.array_equal(np.asarray(slot),np.asarray(expected))
     # DDS mip zero and GLB embedded material must match the packed reference pixels.
-    with Image.open(folder/'RT_IF_Diffuse.png') as png,Image.open(folder/'RT_IF_Concept_Diff.dds') as dds:
-        assert np.array_equal(np.asarray(png.convert('RGBA')),np.asarray(dds.convert('RGBA')))
+    if not revision:
+        with Image.open(folder/'RT_IF_Diffuse.png') as png,Image.open(folder/'RT_IF_Concept_Diff.dds') as dds:
+            assert np.array_equal(np.asarray(png.convert('RGBA')),np.asarray(dds.convert('RGBA')))
     report={'models':len(outcomes),'native_gr2_readbacks':native_count,'triangles':triangles,'routes':routes_count,'terrain_clearance_samples':clearance_count,'shared_crop_seam_samples':seam_count,'provenance_verified':True,'engine_test':False,'dynamic_placement_test':False,'results':outcomes}
     (folder/'validation.json').write_text(json.dumps(report,indent=2)+'\n')
     return {k:v for k,v in report.items() if k!='results'}
