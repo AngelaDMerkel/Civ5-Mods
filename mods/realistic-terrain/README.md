@@ -17,3 +17,10 @@ Build/test commands are in the [root README](../../README.md). Shared model tool
 are cataloged in [tools/README.md](../../tools/README.md); approved designs are in
 `shared/art/rt-models/` and selected icons in `shared/art/terrain-icons-round-3/`.
 Native model conversion, UI rendering and gameplay acceptance remain pending.
+
+The Outposts integration test found that stock macOS BNW resolves the shortened
+`RT_Irrigation` include to `RT_IrrigationAI.lua`. Startup now uses exact `.lua`
+filenames, adapting Terrain owner commit `4f94732` to this branch's module set.
+The UI regression requires that convention. See the scoped native evidence in
+[Outposts gameplay checks](../resource-outposts/docs/NATIVE-GAMEPLAY-TESTS.md);
+this compatibility fix does not establish full Terrain gameplay acceptance.

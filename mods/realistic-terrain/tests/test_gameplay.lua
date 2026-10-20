@@ -411,7 +411,10 @@ local selected = soldier;
 UI = { GetHeadSelectedUnit = function() return selected; end };
 Mouse = { eLClick = 1 };
 -- The trade and outpost adapters have their own complete test worlds.
-include = function(name) if name ~= "RT_TradeBootstrap" then dofile(RT_LUA(name)); end end;
+include = function(name)
+    local module = assert(name:match("^(RT_[%w_]+)%.lua$"), "Expected exact private Lua filename: " .. name);
+    if module ~= "RT_TradeBootstrap" then dofile(RT_LUA(module)); end
+end;
 dofile(TEST_ROOT .. "/mods/realistic-terrain/src/UI/RT_Environment.lua");
 eq(Controls.ExposurePanel.hidden, false, "selected land unit shows panel");
 eq(Controls.ConstructionPanel.hidden, true, "military selection hides construction");
