@@ -42,7 +42,7 @@
     <Row Tag="TXT_KEY_RO_CLOSE"><Text>Close</Text></Row>
     <Row Tag="TXT_KEY_RO_INTEGRATION_HELP"><Text>Optional Realistic Terrain integration: intact outposts shelter their own stationed military unit. No road or supply requirement. Upkeep appears in the treasury under building maintenance; ordinary maintenance modifiers apply.</Text></Row>
     <Row Tag="TXT_KEY_RO_ABANDON_PREVIEW"><Text>Abandonment removes {1_Amount} {2_Resource} and {3_Gold} base gold/turn upkeep.</Text></Row>
-    <Row Tag="TXT_KEY_RO_AVAILABLE_AFTER"><Text>Available resources: {1_Before} → {2_After}.</Text></Row>
+    <Row Tag="TXT_KEY_RO_AVAILABLE_AFTER"><Text>Available resources: {1_Before} now, {2_After} after abandonment.</Text></Row>
     <Row Tag="TXT_KEY_RO_LAST_LUXURY"><Text>[COLOR_WARNING_TEXT]This removes your last available copy of this luxury.[ENDCOLOR]</Text></Row>
     <Row Tag="TXT_KEY_RO_SHORTAGE"><Text>[COLOR_WARNING_TEXT]Strategic resource shortage afterward: {1_Amount}.[ENDCOLOR]</Text></Row>
     <Row Tag="TXT_KEY_RO_ESTIMATE"><Text>Resource effects are estimated because of quantity rounding.</Text></Row>
