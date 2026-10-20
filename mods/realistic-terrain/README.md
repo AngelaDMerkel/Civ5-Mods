@@ -14,8 +14,9 @@ Brave New World, with no WSDLC, mod-manager or gameplay-overhaul dependency.
 Current Lua/SQL/XML/art content is already packaged on that basis. Native trade
 parity remains incomplete; necessary engine support will be a Terrain module in
 the project-owned [shared GameCore](../../docs/SHARED-GAMECORE.md), as described
-in [the integration plan](docs/NATIVE-INTEGRATION.md). The compiled module-registry
-foundation does not yet provide a loadable core or native trade implementation.
+in [the integration plan](docs/NATIVE-INTEGRATION.md). A full Mac developer core
+has compiled and passed ABI checks; native launch acceptance and the Terrain
+trade implementation remain pending. See the [core validation record](../../gamecore/VALIDATION.md).
 
 The combined worker UI, construction-order infrastructure and irrigation text
 still live here. Coordinate changes with Irrigated Farm; do not copy its Lua/SQL

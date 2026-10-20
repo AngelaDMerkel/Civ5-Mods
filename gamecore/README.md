@@ -22,6 +22,7 @@ CXX='clang++ -target x86_64-apple-macos10.11.6' python3 gamecore/tests/run.py
 .venv/bin/python gamecore/tests/test_lua_bindings.py
 python3 gamecore/tests/test_batch_allocate.py
 python3 gamecore/tests/test_database_adapter.py
+python3 gamecore/tests/test_native_session.py
 ```
 
 The Lua binding test uses `lupa==2.8` from `tests/requirements.txt` to run production
@@ -43,7 +44,9 @@ That produces `dist/native/C5M-GameCore-macos-developer.zip` with file hashes,
 source/compatibility revisions, ABI validation and explicit acceptance status.
 Use `--app '/path/to/Civilization V.app'` for read-only host hash verification.
 The archive is not an installer or Workshop content package. Native activation,
-startup, save/load and gameplay acceptance remain deferred. Windows has no
+startup, save/load and gameplay acceptance remain unverified. The explicit
+[baseline test runner](tests/native/README.md) prepares temporary activation and
+verified restoration when the shared game slot is available. Windows has no
 validated build yet; see [its target notes](platforms/windows/README.md).
 
 ## Engine integration

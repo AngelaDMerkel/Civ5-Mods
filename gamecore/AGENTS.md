@@ -24,4 +24,6 @@ Run `python3 gamecore/tests/run.py`, the sanitizer allocator test and the real
 Lua binding test listed in README.md. Engine changes also require the full native
 build and ABI validation. See README.md for the implementation boundary and
 `docs/SHARED-GAMECORE.md` for the design. Never install or launch Civ V as an
-incidental build check; native acceptance remains separately deferred.
+incidental build check. The user subsequently authorized native acceptance when
+other chats do not need the shared game. Coordinate the slot, hold the shared
+test lease through verified restoration, and follow tests/native/README.md.
