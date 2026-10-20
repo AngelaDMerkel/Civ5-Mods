@@ -20,7 +20,9 @@ def point_segment_distance(p,a,b):
 
 
 def validate(out, revision=False):
-    folder=out/('concept-models-r2' if revision else 'concept-models'); manifest=json.loads((folder/'models.json').read_text())
+    revision=2 if revision is True else int(revision or 0)
+    if revision not in (0,2,3):raise ValueError('Unsupported mesh revision')
+    folder=out/(f'concept-models-r{revision}' if revision else 'concept-models'); manifest=json.loads((folder/'models.json').read_text())
     assert manifest['native_game_validation'] is False and manifest['redistributable'] is False
     for source in manifest['material_sources']:
         assert digest(out/'native-local'/source['file'])==source['sha256']
@@ -95,8 +97,11 @@ def validate(out, revision=False):
                                 assert point[2]>=z+.045,(name,route['name'],'terrain clearance',point[2]-z)
                                 clearance_count+=1
         if rec.get('terrain')=='Flat':
-            assert len(routes)==(2 if revision else 3)
-            assert all(r['end']=='closed_field_outlet' for r in routes.values())
+            if revision==3:
+                assert len(routes)>8 and all(r['kind']=='parcel_canal' for r in routes.values())
+            else:
+                assert len(routes)==(2 if revision else 3)
+                assert all(r['end']=='closed_field_outlet' for r in routes.values())
         if rec['category']=='tile':
             group=next(g for g in rec['groups'] if g['name']=='native_regular_farm')
             prop=p[group['first']:group['first']+group['count']]
@@ -127,7 +132,7 @@ def validate(out, revision=False):
         outcomes.append({'name':name,'triangles':rec['triangles'],'native_readback':'native_export' in rec})
     assert len(manifest['models'])==24 and native_count==(0 if revision else 23)
     if revision:
-        assert manifest['revision']==2 and manifest['native_exports']==0
+        assert manifest['revision']==revision and manifest['native_exports']==0
         assert not list(folder.rglob('*.gr2')) and not list(folder.rglob('*.dds')) and not list(folder.rglob('*.fxsxml'))
     with Image.open(folder/'RT_IF_Diffuse.png') as packed:
         from build_concept_models import NAMES

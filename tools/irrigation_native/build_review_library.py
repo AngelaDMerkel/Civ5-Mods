@@ -94,6 +94,16 @@ def build(out, history_root):
         current=(revision/'review.html').read_text().replace('<head>','<head><base href="/concept-models-r2/">',1)
         (out/'concept-models/review.html').write_text(current)
 
+    parcels=out/'concept-models-r3'
+    if (parcels/'parcel-validation.json').is_file():
+        av,an=add_view('concept-r3',parcels,'concept-models-r3')
+        group('concept-r3','Straight gentle terraces & channels between plots','Revision 3 · unapproved models',
+              'Three staggered straight terraces with a planted upper bench. Flat crop plots and irrigation ditches share exact boundary coordinates. The previous revisions remain available for comparison; native integration stays on hold.',
+              standard_items(read(parcels/'models.json')['models'],parcels,'concept-models-r3',av,an),
+              url('concept-models-r3','GentleHill-preview.png'),av,url('concept-models-r3','review.html'))
+        current=(parcels/'review.html').read_text().replace('<head>','<head><base href="/concept-models-r3/">',1)
+        (out/'concept-models/review.html').write_text(current)
+
     concept=out/'concept-models'
     if (concept/'models.json').is_file():
         av,an=add_view('concept',concept,'concept-models')
@@ -165,7 +175,7 @@ def build(out, history_root):
             files={'Source GLB':url(r['glb']),'Source GR2':url(name,name+'-uncompressed.gr2')}))
     group('sources','Original Civ V source imports','Local reference assets',
           'Eleven imported source files, including the regular Farm variants and Terrace Farm construction states. The two unsuffixed Farm references are the earlier wheat-resource props.',native)
-    groups.sort(key=lambda g: {'concept-r2':0,'concept':1,'v3':2}.get(g['key'],3))
+    groups.sort(key=lambda g: {'concept-r3':0,'concept-r2':1,'concept':2,'v3':3}.get(g['key'],4))
     data={'groups':groups,'concepts':sheets,'viewer_models':viewers,
           'native_game_acceptance':False,'scope':'Saved irrigation work; revisions and states are separate entries, not unique completed game assets.'}
     (library/'catalog.json').write_text(json.dumps(data,indent=2)+'\n')

@@ -8,8 +8,8 @@ from build_concept_models import OUT, ROOT, digest, read_glb
 from validate_concept_models import validate as validate_exports
 
 
-def validate(out):
-    report=validate_exports(out,revision=True);folder=out/'concept-models-r2'
+def validate(out,revision=2):
+    report=validate_exports(out,revision=revision);folder=out/f'concept-models-r{revision}'
     manifest=json.loads((folder/'models.json').read_text());span_count=0;max_grade=0;max_turn=0;vertex_checks=0;junction_checks=0
     assert manifest['aqueduct_max_grade']==.02 and manifest['aqueduct_max_turn_degrees']==15.
     for rec in manifest['models']:

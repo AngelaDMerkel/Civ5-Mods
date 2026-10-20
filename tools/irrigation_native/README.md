@@ -436,3 +436,37 @@ the user's existing `concept-models/review.html` URL display the latest revision
 review records stay intact. Browser automation remains unavailable under the
 local URL policy, so use offline renders, local link checks and JS syntax checks;
 none establishes browser rendering or in-game acceptance.
+
+
+### Straight gentle terraces and shared parcel channels (2026-10-20)
+
+R3 is a separate offline revision for the user's next review. Keep R1/R2 frozen:
+
+```sh
+python3 tools/irrigation_native/build_concept_revision.py --revision 3
+python3 tools/irrigation_native/validate_concept_parcels.py
+python3 tools/irrigation_native/build_review_library.py --history-root /path/to/checkout-with-earlier-outputs
+```
+
+`concept_parcel_geometry.py` replaces the gentle hill with three staggered straight
+benches and a cultivated top, without a radial crown. A common global partition
+creates flat crop cutouts and all intervening ditches. Row carriers are wider than
+column ditches; T junctions remain open, isolated corner seams connect around the
+field margin, and exposed endpoints have stone caps. Neighboring flat tiles use
+the same partition. Props move clear of the new water corridors. Crop triangles
+are cut around receiving channels, including the low connector around the gentle
+terrace shoulder. Steep/rocky geometry and the source atlas remain from R2.
+
+The R2 exporter and validator keep their original default behavior. `--revision 3`
+uses a separate output folder and source-only GLB/OBJ/BR2 files. The parcel
+validator reuses export parity, provenance, gravity, terrain-clearance, crop-seam
+and shallow-aqueduct checks. It also measures actual exported crop triangles for
+canal clearance and crops on both sides, verifies plot boundary coordinates,
+checks native farm building clearance, requires three straight retaining fronts
+and a planted upper bench, and verifies every frozen R1/R2 export hash.
+
+`concept-models-r3/review.html` adds a near-overhead parcel render and keeps the
+previous revisions accessible. The library exposes it only after its parcel
+validation report exists. `model-review-r3.json` records unapproved hashes;
+no original art-selection or prior review checkpoint is replaced. Mesh approval,
+native conversion, in-game testing and integration remain separate pending states.

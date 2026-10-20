@@ -223,7 +223,7 @@ segments. These normalized source limits do not establish native terrain fit.
 The previous 71 recorded GLB/BR2/GR2 hashes remain unchanged. No GR2, DDS or
 FXSXML was generated for this revision, and no game/user-data files changed.
 
-The current review is `concept-models-r2/review.html`; the old
+The R2 review is `concept-models-r2/review.html`; the old
 `concept-models/review.html` URL also shows the revision after rebuilding the
 library. `concept-models/previous-review.html` preserves the previous review.
 Close, map-scale and low-angle GLB renders accompany the selected concept and
@@ -231,3 +231,31 @@ real game references. `shared/art/irrigated-farm/v3-civ5-direction/model-review-
 records this unapproved revision separately. Native conversion, testing and
 integration remain on hold; previous floodplain and other transition studies
 remain available but have not been rebuilt in this pass.
+
+
+The next review revision (2026-10-20) addresses the rounded gentle hill and missing
+channels between flat crop textures. R3 replaces the radial gentle-hill crown
+with three staggered, mostly straight retaining fronts, broad cultivated benches
+and a planted upper terrace. Flat crop polygons and ditches now share one rotated,
+staggered parcel partition: every shared plot boundary has a narrow ditch, with
+wider row carriers. Clipped corner seams join along field margins, exposed ends
+are capped, and neighboring flat plots retain matching open connections. Regular
+Farm1 props and tree trunks are moved clear of these channels. The district's
+low connector skirts the new terrace shoulder; high aqueducts retain shallow
+approaches and separate receiving drops.
+
+Build with `build_concept_revision.py --revision 3`; validate with
+`validate_concept_parcels.py`. The 24 editable GLB/OBJ/BR2 candidates reuse the
+native-pixel atlas and native regular Farm1 building. Steep and rocky forms stay
+at R2 geometry. The validator checks the actual crop triangles, plot-edge ditch
+alignment, building clearance, cultivated upper bench, flow and export parity;
+all 71 R1 and 72 R2 recorded export hashes remain unchanged. This is an authored
+terrain fixture, not proof of native Civ V terrain fit or hydraulic behavior.
+
+`concept-models-r3/review.html` is the current review; rebuilding the library also
+updates the existing `concept-models/review.html` URL. It includes a near-overhead
+parcel view, close and reduced-size renders, and the connected assembly. R3 hashes
+and verification are recorded separately in
+`shared/art/irrigated-farm/v3-civ5-direction/model-review-r3.json` as **unapproved**.
+Native conversion, game testing and runtime integration remain on hold. No game,
+user-data, playable-art or runtime-source files were changed.

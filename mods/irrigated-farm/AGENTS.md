@@ -20,7 +20,10 @@ terrain and masonry. Native source geometry may be modified; original references
 remain available for comparison. Do not present authored parcels as captured
 engine-generated desert farms or regional crop families as desert-specific.
 
-Keep irrigation sparse and legible between crop parcels, with most seams dry.
+Keep irrigation legible between crop parcels. The latest review request places
+channels between each flat-field plot texture: use narrow dividing ditches and
+wider carriers, derived from the same parcel map, rather than extra crop-interior
+channels. The earlier mostly-dry-seam layout remains design history.
 Preserve terraces, consistent tile seams, finished exposed edges, height
 transitions and source-connected, level or descending water flow. Reuse the
 selected aqueduct design. V1/v2 and earlier selections remain historical records;
@@ -41,3 +44,10 @@ Use `tools/irrigation_native/build_concept_revision.py` for revision 2; it expor
 only GLB/OBJ/BR2 into a separate folder. Keep the original checkpoint unchanged
 and record the new unapproved hashes in `model-review-r2.json`. This request does
 not lift the hold on native conversion, testing or integration.
+
+The next 2026-10-20 review rejects the rounded gentle hill and requests ground
+channels between the plot textures. R3 uses staggered straight retaining fronts,
+a planted upper bench, and a common crop/ditch parcel partition. Run
+`build_concept_revision.py --revision 3` and `validate_concept_parcels.py`.
+Keep R1/R2 outputs and checkpoints intact. R3 remains an offline, unapproved
+candidate; its review record is `model-review-r3.json`.
