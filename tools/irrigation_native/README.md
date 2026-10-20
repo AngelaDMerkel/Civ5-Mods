@@ -470,3 +470,38 @@ previous revisions accessible. The library exposes it only after its parcel
 validation report exists. `model-review-r3.json` records unapproved hashes;
 no original art-selection or prior review checkpoint is replaced. Mesh approval,
 native conversion, in-game testing and integration remain separate pending states.
+
+
+### Angular tiers, fitted plots and cascades (R4)
+
+The user's next review applies angular geometry, fitted crops and cascading
+irrigation to every hill form. Keep R1-R3 intact and use:
+
+```sh
+python3 tools/irrigation_native/build_concept_revision.py --revision 4
+python3 tools/irrigation_native/validate_concept_cascades.py
+python3 tools/irrigation_native/build_review_library.py --history-root /path/to/checkout-with-earlier-outputs
+```
+
+`concept_cascade_geometry.py` defines three straight trapezoidal benches for each
+hill type. Every bench holds two inset crop parcels with texture rows aligned to
+its front. Parcels end inside their own tier instead of inheriting a world-grid
+cut across the risers. A central dividing channel feeds front headers and a
+sequence of short level treads and falling water faces through an actual notch
+in each retaining wall. These static water meshes connect to the next tier and
+ground collector. High aqueducts retain the shallow R2 approach geometry. Ground
+crop seams and flat model buffers retain R3 layout and native pixels.
+
+The source-only exporter keeps R2 as its default and produces 24 R4 GLB/OBJ/BR2
+candidates. The new validator checks actual crop vertices against tier boundaries,
+water strips against the declared step centerlines, physical wall openings, crop
+and farmstead clearance, export parity, source connections, shallow spans, terrain
+clearance and recorded R1-R3 hashes. It compares Flat vertex/normal/UV buffers
+against R3 exactly. All elevations are normalized fixture units, not engine-fit
+calibration. No new native conversion or animated water effect is provided.
+
+`concept-models-r4/review.html` includes front and overhead renders to inspect
+the cascades and parcel fit, alongside the other terrain views, earlier models,
+selected concept and genuine game references. Its separate unapproved hash record
+is `model-review-r4.json`; native conversion, testing and integration remain held
+for user model review. The shared native test environment is untouched.

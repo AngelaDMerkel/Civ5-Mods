@@ -1,0 +1,248 @@
+{
+  "date": "2026-10-20",
+  "revision": 4,
+  "status": "unapproved; awaiting user model review",
+  "user_request": "The hills should be clearly geometric and angular, and the irrigation should cascade from one step to the next. As in the flat land, the plot should fit inside each of the tiers of the elevated farmland",
+  "scope": "Offline source mesh revision: angular trapezoidal tiers on all hill forms, crops fitted inside each bench, and central stepped irrigation through retaining-wall notches. Preserve R1-R3 and hold native conversion, testing and integration.",
+  "previous_checkpoints": [
+    "shared/art/irrigated-farm/v3-civ5-direction/model-review.json",
+    "shared/art/irrigated-farm/v3-civ5-direction/model-review-r2.json",
+    "shared/art/irrigated-farm/v3-civ5-direction/model-review-r3.json"
+  ],
+  "output": "output/models/irrigated-farm-native-fit/concept-models-r4",
+  "review": "concept-models-r4/review.html",
+  "native_game_started": false,
+  "game_or_user_data_changed": false,
+  "playable_art_changed": false,
+  "native_exports": 0,
+  "water_animation": false,
+  "verification": {
+    "models": 24,
+    "native_gr2_readbacks": 0,
+    "triangles": 88603,
+    "routes": 437,
+    "terrain_clearance_samples": 16563,
+    "shared_crop_seam_samples": 226,
+    "provenance_verified": true,
+    "engine_test": false,
+    "dynamic_placement_test": false,
+    "aqueduct_spans": 12,
+    "max_aqueduct_grade_percent": 0.8000000000002564,
+    "max_aqueduct_slope_degrees": 0.4583564580005784,
+    "max_span_turn_degrees": 6.285337140127143,
+    "measured_water_vertices": 2304,
+    "aligned_receiver_junctions": 12,
+    "preserved_previous_exports": 71,
+    "native_exports": 0,
+    "model_approval": "unapproved",
+    "tier_fitted_crop_plots": 54,
+    "stepped_cascades": 27,
+    "measured_cascade_steps": 138,
+    "measured_cascade_water_vertices": 1212,
+    "open_retaining_notches": 27,
+    "hill_crop_channel_clearance_samples": 6300,
+    "unchanged_flat_buffers": 9,
+    "farm_prop_clearance_samples": 24474,
+    "preserved_r2_exports": 72,
+    "preserved_r3_exports": 72,
+    "review_links": 1165,
+    "javascript_syntax_checks": 3,
+    "offline_previews_inspected": true,
+    "browser_visual_verification": false
+  },
+  "atlas_sha256": "5341bf58fb6f8ed11be9d47d7eb6b38150aa0ae54e3f108b3676b23098e3510e",
+  "candidates": [
+    {
+      "name": "RT_IF_ConceptR4_Flat_Wet",
+      "sha256": {
+        "glb": "1be5d4c4c8db346aefbde00983fc23b483e506604557680f10b6d720ea4d9183",
+        "obj": "2bc643ff44f84fdcee8973e8d83750c43d2a0055603586358571f77d59ef9a34",
+        "br2": "5eb5be655d207d59c76ec4287f261d3ba24704f2e141c2d6f41056ad8476efc3"
+      }
+    },
+    {
+      "name": "RT_IF_ConceptR4_Flat_Dry",
+      "sha256": {
+        "glb": "d459c298a3dae54a156c58058cee845fa61b8229904018f51e11ce2fe45bbced",
+        "obj": "8deb213ac526275535f50ecfe5a1d52cd47e2c997ac376afdab89f5707a638a0",
+        "br2": "fbba50185f2a28c60699994880b9085f01a0237c226020dc4fe4c6ab9924f4d0"
+      }
+    },
+    {
+      "name": "RT_IF_ConceptR4_GentleHill_Wet",
+      "sha256": {
+        "glb": "a74c4a26c83f3c46bd8d566fde301e626c5c1fbf0aba396a4ecc0d26a41d1a35",
+        "obj": "5cfbec802bce8ac128415f7c23583813bb4d42cfc93982529aae7a7c10bfe8da",
+        "br2": "e52a252df898d13ba0dddd7a65dadc74ffea10219c5fe43b509598c23273a612"
+      }
+    },
+    {
+      "name": "RT_IF_ConceptR4_GentleHill_Dry",
+      "sha256": {
+        "glb": "aacdc5921b2e6fcd4c7db8ed91bdc33060528eea4d5940138b80f12368825c0d",
+        "obj": "23b9bd7bdae0fd15cb0ffd3cf0fa6c5386d16ab1a2dbf646ca8017636e0058d8",
+        "br2": "d1880e4ef64c7b769037e69ceef94a27e2171c87a7fcee6b36442feb26304a2f"
+      }
+    },
+    {
+      "name": "RT_IF_ConceptR4_SteepHill_Wet",
+      "sha256": {
+        "glb": "555319ad45c7620394f891e791188c7dc99e948284fd29344885dd512dbda0bc",
+        "obj": "896e3a7dcc7fa194bcd9714de30030b2659892d52bdffb124fa1853625c9e462",
+        "br2": "5e3449e398def8b8a20530b83bb471b4724a3701125c9eb17a4fbdc10689b3ee"
+      }
+    },
+    {
+      "name": "RT_IF_ConceptR4_SteepHill_Dry",
+      "sha256": {
+        "glb": "53910f776144d28b8dc7aa8af606f1d1ef4277675ab22f96360444fc338e3f05",
+        "obj": "b058ee2a2c52b9e2bb95c783fb8a581f3339a403deb0cb9bfb4416d55b1f6f5f",
+        "br2": "335ce01c4f26611c8a10e34cc7b06ca228aba82b3a17aeb43eb165ed34382187"
+      }
+    },
+    {
+      "name": "RT_IF_ConceptR4_RockyFoothill_Wet",
+      "sha256": {
+        "glb": "c2a29d2cbc1b9e845db2c0032fddf612711ccce7216e22b70f9e52595b2e47f2",
+        "obj": "64e16db427796028d61859d6042aa565d04e18d64d9c24c02f5c4b69561cc082",
+        "br2": "9ab8c0654004193650bff056ab597a47e5cec1ef762d6eacab13613693686d09"
+      }
+    },
+    {
+      "name": "RT_IF_ConceptR4_RockyFoothill_Dry",
+      "sha256": {
+        "glb": "1df8ba4e4cb10f9c3f032f7bca836f4c4ff85fb5c127d3f023aed032a6df8d11",
+        "obj": "5540b44519d994b8d134b54f5f8ccab43e8c12c9fb28eb2ad3154153fd0b3b1a",
+        "br2": "41fa8bd7b18e13bb6e5d1d7b247d32d7c56542e7974c1d9025a589e335d3cb01"
+      }
+    },
+    {
+      "name": "RT_IF_ConceptR4_Flat_Wet_LOD1",
+      "sha256": {
+        "glb": "7e10129db562a1febe3a4ccf93f7ede12a20e132d85707c81d6436e2c96a249f",
+        "obj": "2b6da23eba7d55b36bbaf9cfc9b8f892bdb84ca257cb2c6ca9abf90267fa865e",
+        "br2": "01d6ff54d8f7159849e7ea5e28ae265ca516348c6ee29c5fdd901ab01b837f0b"
+      }
+    },
+    {
+      "name": "RT_IF_ConceptR4_GentleHill_Wet_LOD1",
+      "sha256": {
+        "glb": "1ee28ccc4d64aa674375641e0d14707483ddacd3c72c83b68a039e469039828e",
+        "obj": "62442eded90e52dc21992b4df9eaf9387aca1f041d93f9f7bcde95dcd96ff6de",
+        "br2": "ea24bc9c1e512033de52edd5bb7b6e08470b1eea3d43a93ce6c6f59edc7f9632"
+      }
+    },
+    {
+      "name": "RT_IF_ConceptR4_SteepHill_Wet_LOD1",
+      "sha256": {
+        "glb": "9e676c4fd69e334050c090a5ea9e50c538be7f8a0d97825db38befd0956684c7",
+        "obj": "44243978eff283423e6dabea361ea6593f3dbd5637b2a1607caf0ac498780c81",
+        "br2": "12984b1504b3ec484053d1337ac922006f61778a5b4bd4c8227c06e2573db8c1"
+      }
+    },
+    {
+      "name": "RT_IF_ConceptR4_RockyFoothill_Wet_LOD1",
+      "sha256": {
+        "glb": "60591be47e38edeff09a0b30a3a0cfece6457f30bcb4ac3ec50d7b9ef80e6a68",
+        "obj": "1922476afe3dd762cf06757d89fac6ca46e9095120d84e50eae95ade47a223f6",
+        "br2": "1bf2a078eab12b2c31a589c4494954540faa3e55d28a072c0eda6e4e6e55142f"
+      }
+    },
+    {
+      "name": "RT_IF_ConceptR4_Channel_Straight",
+      "sha256": {
+        "glb": "495faafa9207a204aa77bdc7be453c5e9a7213119dd1a7e87182d83fd96eb7bf",
+        "obj": "9e8eff1fb103738e3aef7dee5858c7ed0c7e65d39b612070b0408c1ba137f308",
+        "br2": "387e481d7c655f989e86a09977845e747b665436812ff71c525a039ef37476e1"
+      }
+    },
+    {
+      "name": "RT_IF_ConceptR4_Channel_Bend60",
+      "sha256": {
+        "glb": "d024e9f57cf239947ae901ee2087ca7b5ee623eef35537943989b658d7b943c5",
+        "obj": "dfd1e510db35fd10a77ba0e0f5037d3fa2128397ebcc4fa2bc2dd0391b57fdc6",
+        "br2": "e1651b64d609136bae18cf7990d654bbd4f78304f6568e855c83694d9dc67910"
+      }
+    },
+    {
+      "name": "RT_IF_ConceptR4_Channel_Drop",
+      "sha256": {
+        "glb": "78eb2c882f34d0c84d6631901919cd507c2dec5f20a5e18d6b8edc01fa226181",
+        "obj": "3b5735a25096170d245e97410b885280fcfd090aca2e778b64cdddc1d9805164",
+        "br2": "0066535df752b667c79c9dd6dcc1fa2d1810cf5c7523a43bc38d3fe7e53c47ce"
+      }
+    },
+    {
+      "name": "RT_IF_ConceptR4_Channel_Fork",
+      "sha256": {
+        "glb": "10f484aeff2064db8ecfef5430285c6f43dedae09a48854bf6ca218b4868d979",
+        "obj": "fa9670907d3b2b6bdc97c7268f4a402f341e4eaa1228dad8612e5cb96f8ed596",
+        "br2": "ab9193a952a1fea94aec9c626d3f48d2d1b38b3f6aed98c8fd8dc7315c075007"
+      }
+    },
+    {
+      "name": "RT_IF_ConceptR4_MountainIntake",
+      "sha256": {
+        "glb": "b34e3474b3f7be64798bee8005121fe97a2de29b6a8c8e830142307fb643a48d",
+        "obj": "59de7c624394dcd058e246008260c9ffceaafd7bc233649a1c2c3a0b639fff1f",
+        "br2": "456422106c873a7d2ce703b8cafa7b7031614941e5ab87d1c5319b676f1fc14b"
+      }
+    },
+    {
+      "name": "RT_IF_ConceptR4_Aqueduct_Short",
+      "sha256": {
+        "glb": "956718d58cf1eb4174dea2ed412f711a0432e2afd10af8740f142b7e6d051b98",
+        "obj": "b199087fe41ef258981ebd2c8e4f51a55ffce49d6105419ac2a63cafc8d93b37",
+        "br2": "2b499de051761a14e707c0cf92c1f89923a0d0f556b5ed773979c9c88aec24c9"
+      }
+    },
+    {
+      "name": "RT_IF_ConceptR4_Aqueduct_Short_LOD1",
+      "sha256": {
+        "glb": "56639580d9efedb8feba0fc2f208502793af100a3454dd51d793522a2da377b8",
+        "obj": "20308e094e5b2e71af3b291508153079904e2fec2241d061182a783825930afd",
+        "br2": "6e7e1a8f3ce5206e44405141165d4534c8883df1093b56df28ce005e55451bf7"
+      }
+    },
+    {
+      "name": "RT_IF_ConceptR4_Aqueduct_Long",
+      "sha256": {
+        "glb": "ca087dbd98ec685ebe5bd10f4795720749c7e5d35058500e4cdac3d816a80c52",
+        "obj": "6a683e3241fce99060713970b3312b3bc3e98e64f5ef8bf39a6a44a31705e3b9",
+        "br2": "80bd7d1cc51c3a489a77f4c4ef7fdafdc2aa8f66e7cd29c7f0508005de8477df"
+      }
+    },
+    {
+      "name": "RT_IF_ConceptR4_Aqueduct_Long_LOD1",
+      "sha256": {
+        "glb": "9608ed5d2bc3cc24f817164ed6005fe72b9b773d8b2b65d727f69e61323617d1",
+        "obj": "6f54c9ce9efcfa1a763d6f4de97afc5bc2d46823fb4e003703483fc72a22210c",
+        "br2": "ef1217cef789058ae35f95c891ed3d2c3b06fd8690248f3d39d59078a6cce0b5"
+      }
+    },
+    {
+      "name": "RT_IF_ConceptR4_Aqueduct_Mountain",
+      "sha256": {
+        "glb": "5dc32e9a1dac5e6384db28cde2f86344274ba864724c6eb8362bacb5b6529100",
+        "obj": "cee4e2f75f51de42fe51de590b0009a71c2210f4a4f4ef6376e1d0433b3f9a74",
+        "br2": "9635223747bc3acda058fe0ea9db8e87394008e9dbad7215e56153f57cf156fa"
+      }
+    },
+    {
+      "name": "RT_IF_ConceptR4_Aqueduct_Mountain_LOD1",
+      "sha256": {
+        "glb": "6041a4b04e9d169fceeea2d7dd993d8509749cf6d3575a376dc2a938cd66dea5",
+        "obj": "4d94d42f5580cca879f72c1075a0030bcb46d7a64d402addb6eaa78da449955d",
+        "br2": "eb6ae4e80ca56e63d4f4575662bf0a07b567577afb14c498f73da65a50a961a6"
+      }
+    },
+    {
+      "name": "RT_IF_ConceptR4_ConnectedDistrict",
+      "sha256": {
+        "glb": "3c6d1eefd2754f930d4a5507c9148e39ba18ef4588cea83d4d9bebdce7112aea",
+        "obj": "8e17e3cc61f1a4b2e8215ad28c52c3db5c010214b1caff1218f9db71cc199a7e",
+        "br2": "f66da2f303bc663686dc8065b412f1d4305d5197346394eba4a22dbb00224923"
+      }
+    }
+  ]
+}

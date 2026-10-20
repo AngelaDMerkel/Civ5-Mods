@@ -252,10 +252,37 @@ alignment, building clearance, cultivated upper bench, flow and export parity;
 all 71 R1 and 72 R2 recorded export hashes remain unchanged. This is an authored
 terrain fixture, not proof of native Civ V terrain fit or hydraulic behavior.
 
-`concept-models-r3/review.html` is the current review; rebuilding the library also
+`concept-models-r3/review.html` preserves the R3 review; rebuilding the library also
 updates the existing `concept-models/review.html` URL. It includes a near-overhead
 parcel view, close and reduced-size renders, and the connected assembly. R3 hashes
 and verification are recorded separately in
 `shared/art/irrigated-farm/v3-civ5-direction/model-review-r3.json` as **unapproved**.
 Native conversion, game testing and runtime integration remain on hold. No game,
 user-data, playable-art or runtime-source files were changed.
+
+
+The following R4 review implements angular geometry and cascading water across
+**all three hill forms**, rather than leaving the steep and rocky hills at R2.
+Three straight trapezoidal benches rise at different heights for gentle, steep
+and rocky terrain. Each has two crop plots shaped and textured within that bench,
+with a central dividing channel and a front header. The water descends through
+actual gaps in the retaining walls over short supported masonry steps, feeding
+the next tier and finally the ground collector. There is no radial crown, and no
+crop polygon spans a terrace riser. The regular Farm1 building remains genuine
+source geometry; hill farmsteads are placed clear of connecting channels.
+
+`build_concept_revision.py --revision 4` writes 24 separate GLB/OBJ/BR2 review
+candidates. R3 flat model vertex/normal/UV buffers are unchanged. The new
+`validate_concept_cascades.py` measures actual tier-crop containment, exported
+cascade water vertices, level treads and falling steps, open wall notches, crop
+and building clearance, and the inherited flow/terrain/export checks. It verifies
+all recorded R1-R3 exports are unchanged. Close, overhead, front and reduced-size
+renders of the actual GLBs were inspected; browser rendering remains unverified.
+
+The current review is `concept-models-r4/review.html`, also available through the
+existing `concept-models/review.html` alias after the library rebuild. The R4 hash
+record is `shared/art/irrigated-farm/v3-civ5-direction/model-review-r4.json`.
+These models remain **unapproved**. Cascades are static modeled water surfaces,
+not an in-game fluid simulation or animated effect. Native conversion, terrain
+placement, dynamic connections and game acceptance remain pending. This pass
+makes no native/game/user-data or runtime changes.

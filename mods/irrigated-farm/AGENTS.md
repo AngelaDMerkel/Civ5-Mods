@@ -51,3 +51,13 @@ a planted upper bench, and a common crop/ditch parcel partition. Run
 `build_concept_revision.py --revision 3` and `validate_concept_parcels.py`.
 Keep R1/R2 outputs and checkpoints intact. R3 remains an offline, unapproved
 candidate; its review record is `model-review-r3.json`.
+
+
+The subsequent review requests clearly geometric, angular hills, irrigation that
+cascades down each step, and crops fitted within each elevated tier. R4 applies
+this to GentleHill, SteepHill and RockyFoothill with straight trapezoidal benches,
+two fitted crop parcels per tier and a central stepped channel through real
+retaining-wall notches. R3 flat geometry stays unchanged. Build with
+`build_concept_revision.py --revision 4`; run `validate_concept_cascades.py`.
+Preserve R1-R3 checkpoints. Record R4 as unapproved in `model-review-r4.json`;
+the native conversion/testing/integration hold still applies.

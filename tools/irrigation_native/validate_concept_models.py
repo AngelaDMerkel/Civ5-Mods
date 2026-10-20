@@ -21,7 +21,7 @@ def point_segment_distance(p,a,b):
 
 def validate(out, revision=False):
     revision=2 if revision is True else int(revision or 0)
-    if revision not in (0,2,3):raise ValueError('Unsupported mesh revision')
+    if revision not in (0,2,3,4):raise ValueError('Unsupported mesh revision')
     folder=out/(f'concept-models-r{revision}' if revision else 'concept-models'); manifest=json.loads((folder/'models.json').read_text())
     assert manifest['native_game_validation'] is False and manifest['redistributable'] is False
     for source in manifest['material_sources']:
@@ -97,7 +97,7 @@ def validate(out, revision=False):
                                 assert point[2]>=z+.045,(name,route['name'],'terrain clearance',point[2]-z)
                                 clearance_count+=1
         if rec.get('terrain')=='Flat':
-            if revision==3:
+            if revision>=3:
                 assert len(routes)>8 and all(r['kind']=='parcel_canal' for r in routes.values())
             else:
                 assert len(routes)==(2 if revision else 3)
