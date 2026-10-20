@@ -22,7 +22,8 @@ states are now packaged, replacing the Fort placeholders. They passed independen
 conversion checks and [native visual review](docs/NATIVE-ART-REVIEW.md) for all
 eight eras, plus Ancient/Information terrain and fog scenes. The public build uses
 one shared Ancient scaffold; completed and pillaged sites use their claimant's era.
-Full campaign, UI and save/load acceptance remains separate. Implementation,
+Focused native [gameplay and save/load checks](docs/NATIVE-GAMEPLAY-TESTS.md) now
+pass; broader campaign and UI acceptance remains separate. Implementation,
 compatibility and conversion handoff: [docs/ERA-VISUALS.md](docs/ERA-VISUALS.md).
 
 The user-selected **Guarded storehouse B** emblem and construction glyph are

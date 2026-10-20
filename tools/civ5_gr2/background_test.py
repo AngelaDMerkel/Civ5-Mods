@@ -16,6 +16,7 @@ import shutil
 import subprocess
 import sys
 import time
+import xml.etree.ElementTree as ET
 
 from tools.civ5_test_lock import native_test_lock
 
@@ -24,7 +25,8 @@ HARNESS_REVISION = '181b7232160a5661424c275f2a62deb5c56a7a34'
 APP = Path.home() / "Library/Application Support/Steam/steamapps/common/Sid Meier's Civilization V/Civilization V.app"
 DATA = Path.home() / 'Library/Application Support/Sid Meier\'s Civilization 5'
 DOMAIN = 'com.aspyr.civ5xp.steam'
-DATA_FOLDERS = ('Saves', 'ModdedSaves', 'cache', 'Logs')
+LEGACY_DATA_FOLDERS = ('Saves', 'ModdedSaves', 'cache', 'Logs')
+DATA_FOLDERS = (*LEGACY_DATA_FOLDERS, 'ModUserData')
 SETTINGS = ('config.ini', 'UserSettings.ini', 'GraphicsSettingsDX9.ini')
 
 
@@ -57,9 +59,9 @@ def load_harness(checkout):
     return module
 
 
-def start_parameters():
+def start_parameters(load_save=None):
     return {
-        '__TEST_LOAD_PATH__': 'nil', '__TEST_WORLD_SIZE__': 'WORLDSIZE_DUEL',
+        '__TEST_LOAD_PATH__': json.dumps(str(load_save)) if load_save else 'nil', '__TEST_WORLD_SIZE__': 'WORLDSIZE_DUEL',
         '__TEST_MINORS__': '0', '__TEST_MAP_SCRIPT__': 'CG2_StaticTest.lua',
         '__TEST_GAME_SPEED__': 'GAMESPEED_QUICK', '__TEST_START_ERA__': 'ERA_ANCIENT',
         '__TEST_GAME_TURN_LIMIT__': '0', '__TEST_GAME_OPTIONS__': '{}',
@@ -71,13 +73,57 @@ def start_parameters():
     }
 
 
-def render_template(source):
+def render_template(source, load_save=None):
     text = source.read_text()
-    for key, value in start_parameters().items():
+    for key, value in start_parameters(load_save).items():
         text = text.replace(key, value)
     if re.search(r'__TEST_\w+__', text):
         raise ValueError('Unresolved external harness parameter')
     return text.encode()
+
+
+def mod_payloads(stages, data):
+    """Only add new, uniquely identified diagnostic mod folders; never replace."""
+    existing = {}
+    for path in (data / 'MODS').rglob('*.modinfo'):
+        root = ET.parse(path).getroot()
+        existing[root.get('id', '').lower()] = str(path)
+    result = []
+    for stage in stages:
+        source = stage.resolve()
+        manifests = list(source.glob('*.modinfo'))
+        if len(manifests) != 1:
+            raise ValueError('A diagnostic mod stage needs exactly one manifest')
+        root = ET.parse(manifests[0]).getroot()
+        mod_id, version = root.get('id', '').lower(), root.get('version', '')
+        if not re.fullmatch(r'[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}', mod_id) or not version.isdigit():
+            raise ValueError('Invalid diagnostic mod identity')
+        target = data / 'MODS' / ('CG2_Native_' + mod_id)
+        if mod_id in existing or target.exists():
+            raise ValueError('Refusing an existing mod identity or test folder: ' + mod_id)
+        existing[mod_id] = str(source)
+        result.append(dict(id=mod_id, version=int(version), source=str(source),
+                           target=str(target), payload=inventory(source)))
+    return result
+
+
+def activate_mods(code, mods):
+    if not mods:
+        return code
+    marker = b'print("[LEKMOD_TEST] starting unattended match")'
+    if code.count(marker) != 1:
+        raise ValueError('External fresh-game activation hook changed')
+    lines = ['-- Activate only the temporary diagnostic stages; cache is restored afterward.',
+             'for _,m in pairs(Modding.GetModBrowserInstalledListings()) do',
+             '  Modding.DisableMod(m.ModId, m.Version)', 'end']
+    for mod in mods:
+        lines.append(f'Modding.EnableMod("{mod["id"]}", {mod["version"]})')
+    lines += ['Modding.ActivateEnabledMods()', 'local active={}',
+              'for _,m in pairs(Modding.GetActivatedMods()) do active[string.lower(m.ID)]=true end']
+    for mod in mods:
+        lines.append(f'assert(active["{mod["id"]}"], "[ROTEST] FAIL ordinary mod activation {mod["id"]}")')
+    lines.append('print("[ROTEST] ordinary mod activation verified")')
+    return code.replace(marker, marker + b'\n' + '\n'.join(lines).encode())
 
 
 def restore(output, report, harness):
@@ -96,13 +142,17 @@ def restore(output, report, harness):
             raise RuntimeError('UI changed during test: ' + rel)
     if target.exists() and inventory(target) != report['payload']:
         raise RuntimeError('Test DLC changed during test; retained recovery journal')
+    for mod in report.get('temporary_mods', []):
+        path = Path(mod['target'])
+        if path.exists() and inventory(path) != mod['payload']:
+            raise RuntimeError('Diagnostic mod changed during test; retained recovery journal')
     for rel, sha in report['originals'].items():
         if digest(output / 'backup' / rel) != sha:
             raise RuntimeError('Recovery backup changed: ' + rel)
     for rel, sha in report['ui_originals'].items():
         if sha is not None and digest(output / 'ui-original' / rel) != sha:
             raise RuntimeError('UI backup changed: ' + rel)
-    for folder in DATA_FOLDERS:
+    for folder in report.get('data_folders', LEGACY_DATA_FOLDERS):
         for path in list((data / folder).rglob('*')):
             if not path.is_file():
                 continue
@@ -125,6 +175,10 @@ def restore(output, report, harness):
             shutil.copy2(output / 'ui-original' / rel, path)
     if target.exists():
         shutil.rmtree(target)
+    for mod in report.get('temporary_mods', []):
+        path = Path(mod['target'])
+        if path.exists():
+            shutil.rmtree(path)
     display = report['display_before']
     command = ['defaults', 'write', DOMAIN, 'DisplayFullScreen', '-bool', display['value']]
     if not display['existed']:
@@ -146,6 +200,9 @@ def run(args, harness):
     harness.require_unlocked_desktop()
     harness.require_existing_steam_session()
     source = args.dlc.resolve()
+    load_save = args.load_save.resolve() if args.load_save else None
+    if load_save and (not load_save.is_file() or load_save.suffix.lower() != '.civ5save'):
+        raise ValueError('Load requires an existing diagnostic .Civ5Save file')
     if not (source / 'Maps/CG2_StaticTest.lua').is_file() or not (source / 'Files/CG2_Scene.lua').is_file():
         raise ValueError('Expected the WSDLC-packaged CG2 render fixture')
     assets = APP / 'Contents/Assets/Assets'
@@ -153,6 +210,7 @@ def run(args, harness):
     map_path = assets / 'Maps/CG2_StaticTest.lua'
     if target.exists() or map_path.exists():
         raise ValueError('Refusing an existing CG2 test installation')
+    mods = mod_payloads(args.mod_stage, DATA)
     output.mkdir(parents=True)
     external = Path(harness.__file__).parent
     lib = output / 'background-playtest.dylib'
@@ -168,7 +226,7 @@ def run(args, harness):
     frontend = assets / 'UI/FrontEnd'
     # Register the guarded scene in the loading context before its completion
     # callback. This also covers stock UI skins that ignore DLC InGame overrides.
-    hooks = {frontend / 'MainMenu.lua': render_template(external / 'playtest-start.lua'),
+    hooks = {frontend / 'MainMenu.lua': activate_mods(render_template(external / 'playtest-start.lua', load_save), mods),
              frontend / 'LoadScreen.lua': (source / 'Files/CG2_Scene.lua').read_bytes() + b'\n' + render_template(external / 'playtest-loaded.lua'),
              # Only this disposable launch. No global input or window activation.
              frontend / 'LegalScreen.lua': b'\ndo local elapsed=0; ContextPtr:SetUpdate(function(dt) if not ContextPtr:IsHidden() then elapsed=elapsed+dt; if elapsed>1 then UIManager:DequeuePopup(ContextPtr); ContextPtr:ClearUpdate() end end end) end\n',
@@ -177,8 +235,12 @@ def run(args, harness):
               'started_utc': datetime.now(timezone.utc).isoformat(),
               'harness_revision': HARNESS_REVISION, 'background': True,
               'activation_only': args.activation_only,
+              'data_folders': DATA_FOLDERS,
               'native_rendering': 'unverified', 'status': 'prepared', 'restored': False,
               'payload': inventory(source), 'originals': {}, 'ui_originals': {}, 'binaries': {}}
+    report['temporary_mods'] = mods
+    if load_save:
+        report['load_save'] = {'path': str(load_save), 'sha256': digest(load_save)}
     display = subprocess.run(['defaults', 'read', DOMAIN, 'DisplayFullScreen'], capture_output=True, text=True)
     report['display_before'] = {'existed': display.returncode == 0,
                                'value': 'true' if display.stdout.strip() == '1' else 'false'}
@@ -203,6 +265,8 @@ def run(args, harness):
     process = None
     try:
         shutil.copytree(source, target)
+        for mod in mods:
+            shutil.copytree(mod['source'], mod['target'])
         config = DATA / 'config.ini'
         config.write_text(harness.edit_ini(config.read_text(), {
             ('CONFIG', 'QuickStart'): 0, ('CONFIG', 'SyncRandSeed'): 12345,
@@ -237,6 +301,11 @@ def run(args, harness):
                 break
             lua = DATA / 'Logs/Lua.log'
             text = lua.read_text(errors='replace') if lua.exists() else ''
+            failure = next((marker for marker in args.fail_marker if marker in text), None)
+            if failure:
+                report.update(status='native-check-failed', failure_marker=failure)
+                print(json.dumps({'event': 'native-check-failed', 'marker': failure}), flush=True)
+                break
             if '[CG2] scene-ready' in text and ready is None:
                 ready = elapsed
                 print(json.dumps({'event': 'scene-placed', 'elapsed': round(elapsed)}), flush=True)
@@ -283,6 +352,10 @@ def main():
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--timeout', type=int, default=600)
     parser.add_argument('--activation-only', action='store_true', help='Disable upstream diagnostic interposers, retain background guard')
+    parser.add_argument('--load-save', type=Path, help='Reload a retained disposable fixture save; scene guards still apply')
+    parser.add_argument('--fail-marker', action='append', default=[], help='Stop and restore when this diagnostic log marker appears')
+    parser.add_argument('--mod-stage', type=Path, action='append', default=[],
+                        help='Temporarily install and normally activate a diagnostic mod stage')
     parser.add_argument('--restore', action='store_true', help='Recover an interrupted session with Civ V closed')
     args = parser.parse_args()
     if not args.restore and (args.dlc is None or not 60 <= args.timeout <= 1200):

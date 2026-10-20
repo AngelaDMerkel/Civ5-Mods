@@ -6,7 +6,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-from tools.civ5_gr2.background_test import digest, inventory, render_template, restore
+from tools.civ5_gr2.background_test import activate_mods, digest, inventory, mod_payloads, render_template, restore
 from tools.civ5_test_lock import native_test_lock
 
 
@@ -48,6 +48,9 @@ class BackgroundRecoveryTests(unittest.TestCase):
         path.write_bytes(value)
 
     def test_restore_retains_evidence_and_original_bytes(self):
+        mod = self.data / 'MODS/CG2_test'
+        self.put(mod / 'test.lua', b'diagnostic fixture')
+        self.report['temporary_mods'] = [dict(target=str(mod), payload=inventory(mod))]
         with patch('tools.civ5_gr2.background_test.subprocess.run') as command:
             restore(self.out, self.report, self.harness)
         self.assertEqual((self.data / 'cache/db').read_bytes(), b'original cache')
@@ -55,6 +58,7 @@ class BackgroundRecoveryTests(unittest.TestCase):
         self.assertEqual((self.app / 'UI.lua').read_bytes(), b'original UI')
         self.assertFalse((self.app / 'Map.lua').exists())
         self.assertFalse(self.target.exists())
+        self.assertFalse(mod.exists())
         self.assertFalse((self.data / 'Saves/auto/test.Civ5Save').exists())
         self.assertEqual((self.out / 'after/Saves/auto/test.Civ5Save').read_bytes(), b'test autosave')
         self.assertEqual((self.out / 'after/Logs/Lua.log').read_bytes(), b'scene log')
@@ -68,6 +72,12 @@ class BackgroundRecoveryTests(unittest.TestCase):
             restore(self.out, self.report, self.harness)
         self.assertEqual((self.data / 'cache/db').read_bytes(), b'changed cache')
         self.assertTrue(self.target.exists())
+
+    def test_legacy_journal_does_not_touch_unbacked_mod_userdata(self):
+        self.put(self.data / 'ModUserData/existing.db', b'user data absent from old journal')
+        with patch('tools.civ5_gr2.background_test.subprocess.run'):
+            restore(self.out, self.report, self.harness)
+        self.assertEqual((self.data / 'ModUserData/existing.db').read_bytes(), b'user data absent from old journal')
 
     def test_changed_backup_cannot_overwrite_original(self):
         (self.out / 'backup/Saves/campaign.Civ5Save').write_bytes(b'corrupt')
@@ -98,6 +108,44 @@ class BackgroundRecoveryTests(unittest.TestCase):
         path.write_text('__TEST_NEW_PARAMETER__')
         with self.assertRaisesRegex(ValueError, 'Unresolved'):
             render_template(path)
+
+    def test_reload_uses_explicit_save_without_changing_default(self):
+        path = self.root / 'load.lua'
+        path.write_text('local load = __TEST_LOAD_PATH__')
+        self.assertEqual(render_template(path), b'local load = nil')
+        save = Path('/tmp/test "quoted" save.Civ5Save')
+        self.assertEqual(render_template(path, save).decode(),
+                         'local load = ' + json.dumps(str(save)))
+
+    def test_mod_identity_collision_is_refused(self):
+        stage = self.root / 'stage'
+        name = '12345678-1234-1234-1234-123456789abc'
+        self.put(stage / 'test.modinfo', f'<Mod id="{name}" version="1"/>'.encode())
+        mods = mod_payloads([stage], self.data)
+        self.assertEqual(mods[0]['id'], name)
+        with self.assertRaisesRegex(ValueError, 'existing mod'):
+            mod_payloads([stage, stage], self.data)
+        self.put(self.data / 'MODS/real/test.modinfo', (stage / 'test.modinfo').read_bytes())
+        with self.assertRaisesRegex(ValueError, 'existing mod'):
+            mod_payloads([stage], self.data)
+
+    def test_changed_mod_is_never_deleted(self):
+        target = self.data / 'MODS/CG2_test'
+        self.put(target / 'test.lua', b'original fixture')
+        self.report['temporary_mods'] = [dict(target=str(target), payload=inventory(target))]
+        (target / 'test.lua').write_bytes(b'changed by another editor')
+        with self.assertRaisesRegex(RuntimeError, 'Diagnostic mod changed'):
+            restore(self.out, self.report, self.harness)
+        self.assertTrue(target.exists())
+        self.assertEqual((self.data / 'cache/db').read_bytes(), b'changed cache')
+
+    def test_mod_hook_requires_real_activation_and_known_template(self):
+        mods = [dict(id='12345678-1234-1234-1234-123456789abc', version=1)]
+        with self.assertRaisesRegex(ValueError, 'activation hook changed'):
+            activate_mods(b'unknown template', mods)
+        code = activate_mods(b'print("[LEKMOD_TEST] starting unattended match")', mods)
+        self.assertIn(b'Modding.ActivateEnabledMods()', code)
+        self.assertIn(b'assert(active[', code)
 
 
 if __name__ == '__main__':

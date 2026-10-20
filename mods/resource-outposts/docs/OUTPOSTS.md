@@ -2,8 +2,10 @@
 
 An independent stock Brave New World Lua/database mod. Source: `mods/resource-outposts/src/`.
 Release: `dist/Resource-Outposts-v1.zip`. Requires a new single-player game.
-Automated tests and installed-database checks pass. Native engine execution,
-UI layout and long-game AI balance remain unverified.
+Automated tests and installed-database checks pass. Focused native construction,
+resource/upkeep lifecycle and save/reload checks also pass; see
+[native gameplay evidence](NATIVE-GAMEPLAY-TESTS.md). Broader UI interaction and
+long-game AI balance remain separate acceptance work.
 
 ## Independence and optional shelter
 
@@ -31,8 +33,9 @@ or Caravansary supply services. Installed but disabled mods have no effect.
 Select a worker on an unimproved neutral land strategic/luxury deposit and choose
 Build Resource Outpost. Engineering, visibility and the resource's ordinary
 extraction technology are required. No Ministry, road, agreement or garrison is
-required. Uses stock fort work time, +50% defense, graphics and feature prerequisites;
-normal worker speed and game-speed modifiers apply. Forest/jungle/marsh are retained.
+required. Uses stock fort work time, +50% defense and feature prerequisites;
+approved custom models follow the claimant's era. Normal worker speed and
+game-speed modifiers apply. Forest/jungle/marsh are retained.
 
 An outpost replaces the mine/plantation/etc. on that deposit. A military unit
 occupies and fortifies on the ordinary tile. It is not a city and grants no city
