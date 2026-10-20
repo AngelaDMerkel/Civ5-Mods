@@ -1,5 +1,11 @@
 # Terrain completion branch
 
+Update, 2026-10-20: shared native work continues on `core/shared-gamecore` in its
+own worktree. A full Mac core is built and passed a native BNW startup test with
+verified temporary installation/restoration. See [the validation record](../../../gamecore/VALIDATION.md).
+The Terrain trade provider, native saves and broader gameplay/art acceptance are
+still incomplete. The earlier completion-branch milestones below remain valid.
+
 Work is isolated on `codex/terrain-trade-completion` in a separate worktree.
 Native GR2 conversion/rigging and in-game acceptance are deferred at the user's
 request. This branch addresses route presentation, stock-Lua trade integration,
@@ -65,5 +71,6 @@ publication, engine installation or cross-repository change was made.
 The later user decision makes standalone Workshop distribution primary and
 WSDLC optional. The integration plan now scopes unavoidable native work to a
 Terrain-owned BNW extension with direct installation, without an overhaul or
-WSDLC prerequisite. `NATIVE-TRADE-CONTRACT.md` records that work; no native binary
-has been implemented or added to the standard release.
+WSDLC prerequisite. `NATIVE-TRADE-CONTRACT.md` records that work. The shared core
+now has a native developer binary; it is not included in the standard release and
+does not yet implement that trade contract.

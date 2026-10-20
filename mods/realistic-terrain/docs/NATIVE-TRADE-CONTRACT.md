@@ -91,5 +91,7 @@ and normal mod installation should not be conflated with engine replacement.
 5. Confirm ordinary civilian capture remains unchanged; garrison protection must
    neither apply to workers nor depend on a decorative map unit.
 6. Test the direct player installation, version mismatch, restoration and save
-   boundary without WSDLC installed. Native acceptance remains deferred under the
-   current task's earlier item-3 instruction; specification is not acceptance.
+   boundary without WSDLC installed. The user subsequently authorized native
+   tests when the shared game slot is free. The baseline startup and temporary
+   restoration test passed on 2026-10-20; the remaining trade/save acceptance
+   above is still pending. Specification is not acceptance.

@@ -8,8 +8,10 @@ This supersedes the earlier proposal to make WSDLC the full-integration path.
 The user subsequently requested one shared GameCore for the four repository
 mods, with modular features and reuse of existing porting work. That decision
 supersedes a Terrain-only native binary; see [SHARED-GAMECORE.md](../../../docs/SHARED-GAMECORE.md).
-Terrain retains ownership of its trade rules. The first compiled module-registry
-foundation exists, but native trade and a loadable core are still unimplemented.
+Terrain retains ownership of its trade rules. The full shared Mac core now builds
+and has passed a native BNW startup test with temporary direct activation and
+verified restoration (2026-10-20). Native trade remains unimplemented; see the
+[exact evidence](../../../gamecore/VALIDATION.md).
 
 ## Confirmed distribution requirements
 
@@ -107,5 +109,7 @@ multiplayer support for this currently single-player mod.
 | Standard mod package | Existing ModBuddy/`.modinfo` staging and ZIP; BNW is the only required dependency |
 | WSDLC packaging of Terrain | Optional, not implemented or required for the standard release |
 
-No external repository was modified, no GameCore installed, and no new dependency
-added during this assessment.
+The original distribution assessment changed no external repository, installation
+or dependency. The subsequent explicit GameCore baseline test temporarily
+activated the new core and restored the stock installation; it added no required
+dependency to the Workshop package.

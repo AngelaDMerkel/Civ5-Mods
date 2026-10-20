@@ -44,11 +44,14 @@ host's SHA-256. None of those checks starts Civ V or proves native gameplay.
 All of these binary/host checks passed for the first build; see
 [VALIDATION.md](../../VALIDATION.md).
 
-Native launch, save/load, mod combinations and direct installation/restoration
-remain a separate acceptance stage deferred by the user. The existing port's
+The first explicit native test passed on 2026-10-20: temporary direct activation,
+new BNW game initialization and verified restoration. Save/load, mod combinations,
+ordinary Steam launch and a permanent player installer remain unverified. See
+[the test procedure](../../tests/native/README.md). The existing port's
 experimental host SQLite stat-ABI correction acts **before** GameCore loading.
 It is not transplanted into this dylib and cannot be fixed by a late-loading
-GameCore constructor. If native acceptance reproduces that issue, a separately
+GameCore constructor. The first baseline test passed with that correction disabled.
+If later native acceptance reproduces that issue, a separately
 verified direct startup correction is needed; WSDLC must remain optional.
 
 The current core introduces no new serialized simulation state or native trade

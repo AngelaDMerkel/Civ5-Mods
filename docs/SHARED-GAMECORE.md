@@ -112,14 +112,16 @@ and a direct install/restore path. WSDLC is optional, not an activation requirem
 `gamecore/` now contains the pinned BNW 1.0.3.279 engine/SDK source, the adapted Mac
 ABI layer, a full native build entry point, database lifecycle integration, and
 Lua capability queries backed by the compiled registry. It has its own DLL GUID.
-The first native artifact is a developer build; launch and gameplay acceptance
-are still deferred. No mod simulation provider is advertised, no new gameplay
+The first native artifact is a developer build. Its bounded native startup and
+temporary activation/restoration passed on 2026-10-20; broader gameplay/save
+acceptance remains open. No mod simulation provider is advertised, no new gameplay
 state is serialized, and current Lua packages have not switched backends.
 
 Remaining implementation order:
 
-1. Complete the separately deferred native launch/acceptance of the BNW baseline
-   and direct install/restore path. Do not inherit acceptance from another port.
+1. Extend the completed BNW startup/temporary restoration test to gameplay and
+   save/load, and develop the direct player install/restore path. See the exact
+   [baseline evidence](../gamecore/VALIDATION.md); other ports' acceptance is not inherited.
 2. Add versioned gameplay/save state before enabling simulation providers.
    Configuration and discovery are implemented; save migration/rejection for
    additional module state is not. Add feature calls only with implementations.

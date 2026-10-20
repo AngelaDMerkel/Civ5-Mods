@@ -3,7 +3,8 @@
 This project contains the full BNW 1.0.3.279 gameplay source, Mac host adaptations,
 a native build, and a versioned module/capability layer. It targets the four
 repository mods without adopting Lekmod/VP gameplay or requiring WSDLC.
-The first full Mac build and strict ABI/installed-host checks have passed;
+The first full Mac build, strict ABI/installed-host checks and a native BNW
+startup test with verified temporary activation/restoration have passed;
 see the [validation record](VALIDATION.md) for evidence and limits.
 
 **Version 0.1.0 is a developer core, not a feature-complete native edition of the
@@ -43,8 +44,9 @@ python3 gamecore/tools/package.py
 That produces `dist/native/C5M-GameCore-macos-developer.zip` with file hashes,
 source/compatibility revisions, ABI validation and explicit acceptance status.
 Use `--app '/path/to/Civilization V.app'` for read-only host hash verification.
-The archive is not an installer or Workshop content package. Native activation,
-startup, save/load and gameplay acceptance remain unverified. The explicit
+The archive is not an installer or Workshop content package. The first temporary
+native activation/startup/restoration test passed; save/load and gameplay
+acceptance remain unverified. The explicit
 [baseline test runner](tests/native/README.md) prepares temporary activation and
 verified restoration when the shared game slot is available. Windows has no
 validated build yet; see [its target notes](platforms/windows/README.md).
