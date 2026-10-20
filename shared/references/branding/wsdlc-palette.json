@@ -1,0 +1,19 @@
+{
+  "source_repository": "https://github.com/AngelaDMerkel/Wir-Schaffen-DLC",
+  "reference_svg": "assets/wir-schaffen-dlc-main.svg",
+  "reference_blob": "2ec3ad0e1569ec2184cd905ace3da863df15c17a",
+  "installer_blob": "6d65c279a2616f2f3b4b8c35323016947f4ee50e",
+  "verified_on": "2026-10-09",
+  "colours": {
+    "background": "#fbf4dd",
+    "foreground": "#1f263c",
+    "muted": "#56617f",
+    "wordmark": "#8c6900",
+    "highlight": "#ffdd45",
+    "highlight_foreground": "#151720",
+    "teal": "#216f82",
+    "coral": "#d64b40"
+  },
+  "font_stack": "Menlo, DejaVu Sans Mono, monospace",
+  "source_commit": "950a329f57074dfd762e9c32aea7a67a3704b643"
+}

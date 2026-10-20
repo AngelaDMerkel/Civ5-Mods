@@ -1,55 +1,88 @@
-# Civilization V mod projects
+<img src="shared/art/collection-identity/masthead.svg" alt="AngelaDMerkel's Mods — custom mods for Civilization V" width="1280">
 
-Four projects for Civilization V: Brave New World share this repository. Start
-with [AGENTS.md](AGENTS.md) and the [development guide](docs/DEVELOPMENT.md).
+Custom mods by **AngelaDMerkel** for **Civilization V: Brave New World**.
 
-| Project | Directory | Current state |
-| --- | --- | --- |
-| Realistic Terrain | [mods/realistic-terrain](mods/realistic-terrain/README.md) | Exposure, Caravansaries and replacement trade; v2 alpha |
-| Resource Outposts | [mods/resource-outposts](mods/resource-outposts/README.md) | Independent outpost package; v1 alpha |
-| Irrigated Farm | [mods/irrigated-farm](mods/irrigated-farm/README.md) | Own gameplay source and art work; currently packaged inside Terrain v2 |
-| Climate Change | [mods/climate-change](mods/climate-change/README.md) | Requirements and research; no playable package yet |
+**In development.** The current builds target new single-player games; in-game
+testing is still pending. Images below are project artwork or diagrams.
 
-```text
-mods/          Per-mod source, documentation, tests and agent instructions
-tools/         Shared packaging, mesh builders, exporters and validators
-shared/        Common requirements, reference indexes and approved art sources
-docs/          Repository workflow, current gameplay guide, testing and release notes
-tests/         Shared Python test dependency and repository checks
-build/         Generated complete ModBuddy projects (ignored)
-dist/          Generated installable folders and ZIPs (ignored)
-output/        Local mesh exports, previews and research caches (ignored)
-```
+## Realistic Terrain
 
-Build and validate the two current releases using Python's standard library:
+<img src="shared/art/terrain-icons-round-3/wonder-a.png" width="560" alt="A merchant caravan arriving at the Ministry of Coin beneath a mountain range">
 
-```sh
-python3 tools/build.py
-python3 tools/validate.py
-```
+*Ministry of Coin completion artwork included with the mod.*
 
-Run the existing gameplay tests in Lua 5.1:
+Make the journey matter as much as the battle. Armies that spend too long in
+desert, snow, tundra or jungle suffer exposure. Plan safe stopping points, use
+freshwater for heat relief, and build roadside **Caravansaries** to shelter troops
+beyond your borders.
 
-```sh
-python3 -m venv .venv
-.venv/bin/python -m pip install -r tests/requirements.txt
-.venv/bin/python tools/test.py
-python3 -m unittest discover -s tests -p 'test_*.py'
-```
+The **Ministry of Coin** opens up your Caravansary network. Connect stations by
+road, patrol the trade corridors, and use **Trade and logistics** to arrange
+commercial agreements and compare Caravan, Motorized Caravan and Cargo Ship routes.
 
-The build combines Terrain and Irrigated Farm source without duplicating it.
-It preserves existing package UUIDs, versions, filenames, database actions and
-save keys. Splitting irrigation into its own playable mod remains a separate
-implementation task. ModBuddy projects are generated under `build/`; edit the
-authoritative files under `mods/*/src/`.
+**Status:** experimental v2 build; includes Irrigated Farm.
 
-See the [current gameplay and installation guide](docs/GAMEPLAY.md),
-[shared requirements and references](shared/README.md),
-[tool catalog](tools/README.md), [native testing checklist](docs/TESTING.md), and
-[Workshop preparation](docs/WORKSHOP.md). Automated checks do not establish native
-UI rendering, model conversion or in-game behavior; those checks remain pending.
+**[Realistic Terrain guide](mods/realistic-terrain/docs/GUIDE.md)**
 
-The configured GitHub remote is [Civ5-Mods](https://github.com/AngelaDMerkel/Civ5-Mods).
-Use semantic commits as work progresses, with per-mod branches in separate
-worktrees; the [development guide](docs/DEVELOPMENT.md) describes the transition
-from the currently shared checkout.
+## Resource Outposts
+
+<img src="shared/art/outpost-era-concepts-v1/03-medieval-b.png" width="560" alt="Medieval Resource Outpost concept with a fortified courtyard and corner towers">
+
+*Approved Medieval outpost concept. The current build uses Civ V's Fort graphics.*
+
+Secure distant iron, horses or luxuries without founding another city. Send a
+worker to an unclaimed deposit and build a **Resource Outpost** to gain access to
+its resources. Each site costs **2 gold per turn** and gives a defending unit a
+**+50% defensive bonus**.
+
+Manage your sites from one overview: locate a claim, abandon one you no longer
+need, or convert it into a normal resource improvement after your borders expand.
+Roads and garrisons are optional; an isolated claim still needs protection.
+
+**Status:** experimental v1 build; works independently or alongside Realistic Terrain.
+
+**[Resource Outposts guide](mods/resource-outposts/docs/GUIDE.md)**
+
+## Irrigated Farm
+
+<img src="shared/art/irrigated-farm/irrigated-farm-adjacency-v6.png" width="560" alt="Irrigated Farm concept showing connected fields, hillside terraces and mountain-fed water channels">
+
+*Approved farm and terrace concept. Current gameplay supports flat desert;
+terraced hills and these custom graphics are still planned.*
+
+Turn dry land into a connected farming network. At **Engineering**, build
+**Irrigation Works**, then extend farms from rivers or nearby mountains, lakes
+and oases. A supplied farm adds **+3 food** from its improvement; a disconnected
+farm adds only **+1**.
+
+Protect the links between fields. Pillaging one farm can cut off those farther
+from the water, while repairing it or opening another connection restores supply.
+
+**Status:** included with Realistic Terrain v2; no separate installation.
+
+**[Irrigated Farm guide](mods/irrigated-farm/docs/GUIDE.md)**
+
+## Climate Change
+
+<img src="docs/images/climate-direction.svg" width="560" alt="Diagram showing that each game follows one lasting climate direction: either warming or cooling">
+
+*Diagram of the planned climate direction; not a gameplay screenshot.*
+
+A changing landscape could reshape the choices you made when settling your
+empire. Climate Change is planned around one lasting direction per game:
+**warming or cooling**. Natural change, industrial activity and city populations
+will influence how conditions develop over time.
+
+Terrain changes, pacing and player responses are still being designed.
+
+**Status:** in planning; no playable build yet.
+
+**[Climate Change guide](mods/climate-change/docs/GUIDE.md)**
+
+## Getting started
+
+Read the **[installation and compatibility guide](docs/GAMEPLAY.md#install-a-packaged-test-build)**
+before starting a test game. Terrain and Outposts can be enabled separately or
+together; Irrigated Farm currently comes with Terrain.
+
+[All player guides](docs/GAMEPLAY.md) · [Development and contributions](docs/DEVELOPMENT.md)

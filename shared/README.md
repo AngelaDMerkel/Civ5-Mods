@@ -4,6 +4,8 @@
 | --- | --- |
 | [Runtime requirements](requirements/RUNTIME.md) | Compatibility, state, optional integrations and package boundaries |
 | [UI requirements](requirements/UI.md) | Common native appearance, behavior and acceptance checks |
+| [Player documentation](requirements/DOCUMENTATION.md) | Brief player READMEs and illustrated guides explaining the gameplay |
+| [Collection identity](requirements/BRANDING.md) | Masthead, pictorial icon and wordmark for AngelaDMerkel's Mods, using WSDLC tone and colours |
 | [Art requirements](requirements/ART.md) | Selection process, mesh fidelity, provenance and approval scope |
 | [Reference index](references/README.md) | Where source evidence and local comparison material live |
 | [UI reference index](references/ui/README.md) | Current controls, styles, icons and integration points |

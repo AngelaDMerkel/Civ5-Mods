@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-labelledby="title"><title id="title">Living map icon</title><path d="M128 14 230 73V185L128 244 26 185V73Z" fill="#fbf4dd"/>
+ <clipPath id="tile-0"><path d="M128 14 230 73V185L128 244 26 185V73Z"/></clipPath>
+ <g clip-path="url(#tile-0)">
+ <circle cx="172" cy="79" r="22" fill="#d64b40"/>
+ <path d="M12 144 91 56 166 144Z" fill="#1f263c"/>
+ <path d="m72 78 19-22 19 22-19-6Z" fill="#fbf4dd"/>
+ <path d="M-4 150Q68 126 125 152T260 157V264H-4Z" fill="#ffdd45"/>
+ <path d="M157 131C110 159 161 163 120 192S94 222 110 254" fill="none" stroke="#fbf4dd" stroke-width="33"/>
+ <path d="M157 131C110 159 161 163 120 192S94 222 110 254" fill="none" stroke="#216f82" stroke-width="22"/>
+ <path d="m152 197 59-35m-49 50 66-39" stroke="#8c6900" stroke-width="8"/>
+ </g><path d="M128 14 230 73V185L128 244 26 185V73Z" fill="none" stroke="#1f263c" stroke-width="10" stroke-linejoin="round"/></svg>

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="300" viewBox="0 0 840 300" role="img" aria-labelledby="title desc">
+  <title id="title">One climate direction per game</title>
+  <desc id="desc">A game follows either a warming direction or a cooling direction. These are alternative plans for the Climate Change mod, not repeated changes between the two.</desc>
+  <defs>
+    <marker id="warm-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0 8 4 0 8Z" fill="#ac592e"/></marker>
+    <marker id="cool-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0 8 4 0 8Z" fill="#346879"/></marker>
+  </defs>
+  <rect width="840" height="300" rx="12" fill="#f5f1e7"/>
+  <rect x="1" y="1" width="838" height="298" rx="11" fill="none" stroke="#cfc5b2" stroke-width="2"/>
+  <g font-family="Georgia, 'Times New Roman', serif" fill="#273c40">
+    <text x="36" y="48" font-size="28">One climate direction per game</text>
+    <text x="36" y="79" font-family="Arial, sans-serif" font-size="16" fill="#53636a">A lasting trend through history</text>
+    <rect x="36" y="143" width="188" height="72" rx="7" fill="#e4e7dd" stroke="#a9b3a4"/>
+    <text x="130" y="187" text-anchor="middle" font-size="24">Your game</text>
+    <path d="M224 179H283Q309 179 309 151V140Q309 123 340 123H449" fill="none" stroke="#ac592e" stroke-width="3" marker-end="url(#warm-arrow)"/>
+    <path d="M224 179H283Q309 179 309 207V218Q309 235 340 235H449" fill="none" stroke="#346879" stroke-width="3" marker-end="url(#cool-arrow)"/>
+    <text x="387" y="185" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#53636a">or</text>
+    <rect x="476" y="92" width="325" height="62" rx="7" fill="#f0dcc6"/>
+    <circle cx="510" cy="123" r="12" fill="#ac592e"/>
+    <text x="540" y="132" font-size="28" fill="#753a1d">Warming</text>
+    <rect x="476" y="204" width="325" height="62" rx="7" fill="#dce9ee"/>
+    <path d="m510 220 15 15-15 15-15-15Z" fill="#346879"/>
+    <text x="540" y="244" font-size="28" fill="#244b5b">Cooling</text>
+  </g>
+</svg>

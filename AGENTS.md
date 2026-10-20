@@ -2,8 +2,9 @@
 
 ## Read before working
 
-Read this file, `docs/DEVELOPMENT.md`, the owning mod's `README.md` and `AGENTS.md`,
-and relevant files in `shared/requirements/`. User instructions take precedence.
+Read this file and the root `docs/DEVELOPMENT.md`, then the owning mod's
+`README.md`, `AGENTS.md` and `docs/DEVELOPMENT.md`. Also read relevant files in
+`shared/requirements/`. User instructions take precedence.
 Keep established decisions in the repository so another chat can continue without
 reconstructing conversation history. Separate confirmed requirements from proposals.
 
@@ -97,6 +98,22 @@ Keep proprietary reference extracts in ignored local caches. Record their origin
 and intended use in `shared/references/`; do not distribute those extracts as mod
 assets. Mesh design approval, export validation, native conversion and in-game
 visual acceptance are distinct states.
+
+## Player documentation
+
+Present the root README as AngelaDMerkel's custom mod collection, with a brief
+illustrated overview of each mod and a direct link to its detailed guide. Keep
+individual mod READMEs brief and player-facing. Follow
+`shared/requirements/DOCUMENTATION.md`. Each mod has one public documentation
+page at `mods/<mod>/docs/GUIDE.md`, beginning with goals, then what the mod adds,
+then how its features work. Terrain's trade rules belong in that same guide.
+`docs/GAMEPLAY.md` covers shared installation and links to the four mod guides.
+
+Explain game purpose, requirements, units, buildings, worker actions and results
+in Civilization V terms. Update the guides alongside gameplay changes. Label
+concept art and model previews, and distinguish current features from planned
+ones. Keep development commands, chat ownership, source identifiers, mesh formats
+and validation reports in contributor/technical notes, not the player READMEs.
 
 ## Validation and completion
 

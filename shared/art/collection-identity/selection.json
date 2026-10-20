@@ -1,0 +1,55 @@
+{
+  "date": "2026-10-09",
+  "direction": "E — Living Map",
+  "selection_basis": "User: I think the E - Living Map is closer to the intended direciton",
+  "scope": "Preferred direction for the current collection masthead, icon and wordmark; not a blanket approval of later redesigns or game artwork.",
+  "source_changes": "None. The three SVG designs are the original reviewed E assets.",
+  "method": "Original SVG geometry and typography; no image generation model used.",
+  "palette_reference": "../../references/branding/wsdlc-palette.json",
+  "source_files": [
+    {
+      "file": "source/icon.svg",
+      "review_file": "round-3/e-icon.svg",
+      "sha256": "b0e750ed8cc22c386453a36732bdf721701367541202e109166cd2e7950ff21e"
+    },
+    {
+      "file": "source/masthead.svg",
+      "review_file": "round-3/e-masthead.svg",
+      "sha256": "0284d58fea7de74af7a121b44eba129d534b4d664e0c3a8ed613f7ced4fc396e"
+    },
+    {
+      "file": "source/wordmark.svg",
+      "review_file": "round-3/e-wordmark.svg",
+      "sha256": "18b6c58210f22c191080ac00ee1eaa341e4cca759e51a28f2bcfba1b378094e4"
+    }
+  ],
+  "exports": [
+    {
+      "file": "icon.svg",
+      "sha256": "e1f7649865b3a0661b60130a7f8ac87b52edc2dc8fc4ea28b80cb9156b96f2ae"
+    },
+    {
+      "file": "icon.png",
+      "sha256": "6a393bb2d4b73b71431d6a702cae44614558cfdff9717924163e28aec0a0a515"
+    },
+    {
+      "file": "masthead.svg",
+      "sha256": "b5750dc137788b5ddcfe8283ed938701702f48ea00397f222e39147c3d6aeac9"
+    },
+    {
+      "file": "masthead.png",
+      "sha256": "bd46fddfabf3a331fd6381da8d0ba0266a689386180c777d0e942471926208b2"
+    },
+    {
+      "file": "wordmark.svg",
+      "sha256": "7bf5579e78c7809856a63af707c6bf10d9500d96f4965695d144fb9513c1d9f0"
+    },
+    {
+      "file": "wordmark.png",
+      "sha256": "1a6c757cebf75e0d0e967d159b849d142495b808b477a7176618984931739a50"
+    }
+  ],
+  "renderer": "rsvg-convert version 2.62.3\n\nlibraries used:\n  cairo 1.18.4\n  pango 1.57.1\n  harfbuzz 14.2.1\n  fontconfig 2.18.1",
+  "svg_export": "rsvg-convert --format svg source/<asset>.svg --output <asset>.svg; add an accessible title. Text becomes embedded vector glyphs.",
+  "png_export": "rsvg-convert --zoom 2 source/<asset>.svg --output <asset>.png"
+}

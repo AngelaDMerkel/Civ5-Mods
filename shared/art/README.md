@@ -1,5 +1,9 @@
 # Original art and approvals
 
+- [Collection identity](collection-identity/README.md): the current Living Map
+  masthead, icon and wordmark, unchanged reviewed sources, reusable exports and
+  the user's scoped directional preference. Documentation assets only.
+
 - `terrain-icons-round-3/`: selected original sheets/images, prompts, crop choices
   and DDS export hashes. This is now the authoritative input to `tools/export_art.py`.
 - `rt-models/approved.json`: exact hashes for the nine approved Terrain source
