@@ -420,7 +420,8 @@ function A.OnTurn(owner)
             u:FinishMoves(); -- wait for protection, do not send a civilian alone
         elseif u:GetPlot() == plot then
             if plot:GetImprovementType() == O.improvement then
-                if u:GetMoves() > 0 and u:CanBuild(plot, I.BUILD_REPAIR, false, true) then u:PushMission(MissionTypes.MISSION_BUILD, I.BUILD_REPAIR); end
+                -- CvLuaUnit reads these optional flags as integers on stock BNW.
+                if u:GetMoves() > 0 and u:CanBuild(plot, I.BUILD_REPAIR, 0, 1) then u:PushMission(MissionTypes.MISSION_BUILD, I.BUILD_REPAIR); end
             elseif not RO_Orders.IsOrdered(u, "outpost") then RO_Orders.Start(u, "outpost", true); end
             if escort then escort:FinishMoves(); end
         elseif escort then
