@@ -23,7 +23,7 @@ REPO = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPO))
 from tools.civ5_test_lock import LOCK_PATH, native_test_lock
 from native_session import Session, digest, DATA_FOLDERS
-from native_mods import prepare_mods, install_mods, verify_mods, activate_mods
+from native_mods import prepare_mods, install_mods, verify_mods, activate_mods, validate_load
 
 HARNESS_REVISION = '181b7232160a5661424c275f2a62deb5c56a7a34'
 APP = Path.home() / "Library/Application Support/Steam/steamapps/common/Sid Meier's Civilization V/Civilization V.app"
@@ -79,9 +79,20 @@ def validate_build(binary, app):
     return {'validation': result, 'build': report, 'host_sha256': digest(app / HOST)}
 
 
-def startup(source):
+def validate_stock(app):
+    lock = json.loads((REPO / 'gamecore/compat.lock.json').read_text())
+    abi = json.loads((REPO / 'gamecore/.compat' / lock['commit'] / 'abi/aspyr-bnw.json').read_text())
+    host, core = digest(app / HOST), digest(app / CORE)
+    if host not in abi['host_executable_sha256'] or core not in abi['stock_gamecore_sha256']:
+        raise ValueError('Stock control requires the pinned original host and core')
+    return {'validation': {'validated': True, 'sha256': core, 'mode': 'stock'},
+            'host_sha256': host}
+
+
+def startup(source, load_save=None):
     values = {
-        '__TEST_LOAD_PATH__': 'nil', '__TEST_WORLD_SIZE__': 'WORLDSIZE_DUEL',
+        '__TEST_LOAD_PATH__': json.dumps(str(load_save), ensure_ascii=False) if load_save else 'nil',
+        '__TEST_WORLD_SIZE__': 'WORLDSIZE_DUEL',
         '__TEST_MINORS__': '0', '__TEST_MAP_SCRIPT__': 'Continents.lua',
         '__TEST_GAME_SPEED__': 'GAMESPEED_QUICK', '__TEST_START_ERA__': 'ERA_ANCIENT',
         '__TEST_GAME_TURN_LIMIT__': '0', '__TEST_GAME_OPTIONS__': '{}',
@@ -122,6 +133,8 @@ def restore(session, harness):
         raise RuntimeError('Close Civ V before restoring the journal')
     if digest(Path(session.report['app']) / HOST) != session.report['host_sha256']:
         raise RuntimeError('Host executable changed independently; retain recovery evidence')
+    if session.report.get('core_mode') == 'stock' and digest(Path(session.report['app']) / CORE) != session.report['validation']['sha256']:
+        raise RuntimeError('Stock control library changed independently; retain recovery evidence')
     verify_mods(session.report.get('temporary_mods', []), Path(session.report['data']))
     session.restore_files()
     before = session.report['display_before']
@@ -161,7 +174,7 @@ def compile_helpers(harness, directory, host_stat):
 
 def run(args, harness, helper_dir):
     readiness(harness)
-    provenance = validate_build(args.binary, APP)
+    provenance = validate_stock(APP) if args.stock_core else validate_build(args.binary, APP)
     output = args.output.resolve()
     if output.exists():
         raise ValueError('Use a new evidence directory')
@@ -173,17 +186,29 @@ def run(args, harness, helper_dir):
         raise ValueError('Unexpected installed DLC directory; baseline test requires stock content')
     run_id = uuid.uuid4().hex
     mods = prepare_mods(args.mod_stage, DATA)
+    load_save = args.load_save.resolve() if args.load_save else None
+    if load_save and (not load_save.is_file() or load_save.suffix.lower() != '.civ5save'):
+        raise ValueError('Load requires an existing diagnostic .Civ5Save file')
     external = Path(harness.__file__).parent
     libraries = compile_helpers(harness, helper_dir, args.host_stat_compat)
     frontend = 'Contents/Assets/Assets/UI/FrontEnd/'
+    start_code = activate_mods(startup(external / 'playtest-start.lua', load_save), mods, loading=bool(load_save))
+    if load_save:
+        start_code = validate_load(start_code)
+    start_code = start_code.replace(
+        b'print("[LEKMOD_TEST] startup failed: " .. tostring(err))',
+        ('print("[C5M_NATIVE] run=' + run_id + ' status=FAIL error=startup " .. tostring(err))').encode())
     additions = {
-        frontend + 'MainMenu.lua': activate_mods(startup(external / 'playtest-start.lua'), mods),
+        frontend + 'MainMenu.lua': start_code,
         frontend + 'LoadScreen.lua': (REPO / 'gamecore/tests/native/baseline.lua').read_text()
-            .replace('__C5M_RUN__', run_id).replace('__C5M_PROBE__', args.probe_event or '').encode(),
+            .replace('__C5M_RUN__', run_id).replace('__C5M_PROBE__', args.probe_event or '')
+            .replace('__C5M_LOADING__', 'true' if load_save else 'false')
+            .replace('__C5M_STOCK__', 'true' if args.stock_core else 'false').encode(),
         frontend + 'LegalScreen.lua': b'\ndo local elapsed=0; ContextPtr:SetUpdate(function(dt) if not ContextPtr:IsHidden() then elapsed=elapsed+dt; if elapsed>1 then UIManager:DequeuePopup(ContextPtr); ContextPtr:ClearUpdate() end end end) end\n',
     }
     mutations = {name: (APP / name).read_bytes() + b'\n' + code for name, code in additions.items()}
-    mutations[CORE] = args.binary.read_bytes()
+    if not args.stock_core:
+        mutations[CORE] = args.binary.read_bytes()
     # Ensure settings edits are possible before creating a journal/installing.
     config = harness.edit_ini((DATA / 'config.ini').read_text(), {
         ('CONFIG', 'QuickStart'): 0, ('CONFIG', 'SyncRandSeed'): 12345,
@@ -194,6 +219,9 @@ def run(args, harness, helper_dir):
         provenance, run=run_id, harness_revision=HARNESS_REVISION,
         display_before=display_state(), host_stat_compat=args.host_stat_compat,
         temporary_mods=mods, probe_event=args.probe_event,
+        load_save=str(load_save) if load_save else None,
+        load_save_sha256=digest(load_save) if load_save else None,
+        core_mode='stock' if args.stock_core else 'shared',
         started_utc=datetime.now(timezone.utc).isoformat(), native_baseline='unverified'),
         data_folders=(*DATA_FOLDERS, *(mod['relative'] for mod in mods)))
     process = None
@@ -261,6 +289,8 @@ def main():
     parser.add_argument('--mod-stage', type=Path, action='append', default=[],
                         help='Temporarily activate a staged ordinary mod; existing identities are refused')
     parser.add_argument('--probe-event', help='C5M Lua event that receives the run ID and must emit the final PASS/FAIL')
+    parser.add_argument('--load-save', type=Path, help='Load a retained diagnostic save in a separate process')
+    parser.add_argument('--stock-core', action='store_true', help='Diagnostic control: keep the pinned stock library active')
     action = parser.add_mutually_exclusive_group(required=True)
     action.add_argument('--check', action='store_true', help='Read-only readiness/binary check')
     action.add_argument('--run', action='store_true', help='Explicit temporary activation and bounded game launch')
@@ -274,7 +304,8 @@ def main():
     if args.check:
         readiness(harness)
         prepare_mods(args.mod_stage, DATA)
-        print(json.dumps(validate_build(args.binary, APP)['validation'], indent=2))
+        validation = validate_stock(APP) if args.stock_core else validate_build(args.binary, APP)
+        print(json.dumps(validation['validation'], indent=2))
         return 0
     previous = json.loads(LOCK_PATH.read_text()).get('evidence') if LOCK_PATH.exists() else None
     if previous and not args.restore:

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Exercise restoration with disposable directories; never touches Civ V."""
 from pathlib import Path
+import json
 import subprocess
 import sys
 import tempfile
@@ -11,8 +12,8 @@ sys.dont_write_bytecode = True
 REPO = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPO / 'gamecore/tools'))
 from native_session import Session, data_inventory, digest, plain_path, DATA_FOLDERS
-from native_test import outcome, prior_recovery, startup
-from native_mods import prepare_mods, install_mods, verify_mods, activate_mods
+from native_test import outcome, prior_recovery, startup, validate_stock, CORE, HOST
+from native_mods import prepare_mods, install_mods, verify_mods, activate_mods, validate_load
 from tools.civ5_test_lock import native_test_lock
 
 
@@ -101,9 +102,11 @@ class NativeSessionTests(unittest.TestCase):
         install_mods(mods, self.data)
         verify_mods(mods, self.data)
         self.assertEqual((self.data / mods[0]['relative'] / 'test.lua').read_text(), 'return true')
-        code = activate_mods(b'print("[LEKMOD_TEST] starting unattended match")', mods)
+        code = activate_mods(b'local loadPath = "save"\nif loadPath then return end\n'
+                             b'print("[LEKMOD_TEST] starting unattended match")', mods)
         self.assertIn(b'Modding.EnableMod("d571e16c-bb58-40bf-a81f-a919249e7995", 2)', code)
         self.assertLess(code.index(b'DisableMod'), code.index(b'EnableMod'))
+        self.assertLess(code.index(b'if loadPath then return end'), code.index(b'ActivateEnabledMods'))
         session.restore_files()
         self.assertFalse((self.data / mods[0]['relative']).exists())
         self.assert_restored()
@@ -156,6 +159,22 @@ class NativeSessionTests(unittest.TestCase):
     def test_changed_activation_hook_refused(self):
         with self.assertRaisesRegex(ValueError, 'hook changed'):
             activate_mods(b'unknown startup', [{'id': 'unused'}])
+
+    def test_saved_mod_load_activates_then_checks_header_before_loading(self):
+        code = b'''local function startMatch()
+local loadPath = "fixture.Civ5Save"
+if loadPath then
+Events.PlayerChoseToLoadGame(loadPath)
+return
+end
+end'''
+        stage = self.staged_mod()
+        result = validate_load(activate_mods(code, prepare_mods([stage], self.data), loading=True))
+        self.assertLess(result.index(b'ActivateEnabledMods'), result.index(b'GetFileHeader'))
+        self.assertLess(result.index(b'CanLoadSavedGame'), result.index(b'PlayerChoseToLoadGame'))
+        self.assertIn(b'assert(compatible == 0', result)
+        with self.assertRaisesRegex(ValueError, 'hook changed'):
+            validate_load(b'changed hook')
 
     def test_recovery_before_install(self):
         self.prepare().restore_files()
@@ -258,6 +277,33 @@ class NativeSessionTests(unittest.TestCase):
         path.write_text('__TEST_MAJORS__ __TEST_NEW_PARAMETER__')
         with self.assertRaisesRegex(ValueError, 'Unresolved'):
             startup(path)
+
+    def test_diagnostic_save_path_is_a_lua_string(self):
+        path = self.root / 'template.lua'
+        path.write_text('local loadPath = __TEST_LOAD_PATH__')
+        saved = self.root / 'test "route".Civ5Save'
+        text = startup(path, saved)
+        self.assertIn(b'\\"route\\".Civ5Save"', text)
+        self.assertNotIn(b'__TEST_', text)
+        self.assertEqual(startup(path), b'local loadPath = nil')
+
+    def test_stock_control_refuses_an_unrecognized_core(self):
+        for relative, contents in ((CORE, b'stock core'), (HOST, b'pinned host')):
+            path = self.app / relative
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_bytes(contents)
+        config = self.root / 'gamecore'
+        abi_path = config / '.compat/pin/abi'
+        abi_path.mkdir(parents=True)
+        (config / 'compat.lock.json').write_text(json.dumps({'commit': 'pin'}))
+        (abi_path / 'aspyr-bnw.json').write_text(json.dumps({
+            'stock_gamecore_sha256': [digest(self.app / CORE)],
+            'host_executable_sha256': [digest(self.app / HOST)]}))
+        with patch('native_test.REPO', self.root):
+            self.assertEqual(validate_stock(self.app)['validation']['mode'], 'stock')
+            (self.app / CORE).write_bytes(b'unrecognized core')
+            with self.assertRaisesRegex(ValueError, 'pinned original'):
+                validate_stock(self.app)
 
     def test_native_lease_excludes_other_process(self):
         lease = self.root / 'lease'

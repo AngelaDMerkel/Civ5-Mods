@@ -40,6 +40,10 @@ compile its local desktop helper. Each run needs a fresh output directory.
 The optional `--host-stat-compat` uses the existing verified-host SQLite stat ABI
 correction in the **test process only**. First reproduce and inspect the startup
 failure without it; never claim that a corrected test proves unassisted launch.
+`--stock-core` runs a diagnostic control with the pinned original host and core;
+it never replaces the core library. Both hashes are checked, including the core
+again before restoration. Use the same mode for save creation and reload when
+isolating a failure. A stock control does not validate the shared binary.
 
 ## Restoration and evidence
 
@@ -89,6 +93,23 @@ production Terrain UI/Lua on the shared core, including native API calls, route
 launch/recall, markers and worker AI. The fixture appends a diagnostic include to
 a staged UI copy, constructs a disposable corridor and invokes production
 functions; it is not a campaign or proof of the future engine-owned trade system.
-It writes a diagnostic save for later process-restart testing. Writing and
-reading mod save data within one process does not establish save/load acceptance.
+It writes a diagnostic save with a state fingerprint. After restoration, load it
+in a separate process with the same staged content:
+
+```sh
+python3 gamecore/tools/native_test.py --run --harness /path/to/Lekmod \
+  --output output/native-tests/terrain-reload-01 \
+  --mod-stage output/native-tests/terrain-stage-01 --probe-event C5M_TerrainReload \
+  --load-save output/native-tests/terrain-01/after/ModdedSaves/single/C5M_Terrain_Acceptance.Civ5Save
+```
+
+The reload probe compares route identity/position/age, agreement, station
+ownership/connectivity, game turn, native treasury, fractional balance and the
+payment guard. Duplicate turn calls must not pay or move the route again.
+Only a separate successful reload run establishes this bounded persistence
+result. It does not exercise future native simulation saves or cross-version
+save compatibility.
+The runner records the save hash and performs the stock Load menu's header and
+mod-compatibility checks before requesting the load. Passing that preflight is
+not a successful reload; the in-game probe must still complete.
 See the owning mod's [native integration record](../../../mods/realistic-terrain/docs/NATIVE-INTEGRATION.md).

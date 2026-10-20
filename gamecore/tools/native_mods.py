@@ -78,10 +78,10 @@ def verify_mods(mods, data):
                     raise RuntimeError('Temporary mod changed independently: ' + relative)
 
 
-def activate_mods(code, mods):
+def activate_mods(code, mods, loading=False):
     if not mods:
         return code
-    marker = b'print("[LEKMOD_TEST] starting unattended match")'
+    marker = b'local function startMatch()' if loading else b'print("[LEKMOD_TEST] starting unattended match")'
     if code.count(marker) != 1:
         raise ValueError('External startup activation hook changed')
     lines = ['for _,m in pairs(Modding.GetModBrowserInstalledListings()) do',
@@ -93,3 +93,21 @@ def activate_mods(code, mods):
     for mod in mods:
         lines.append('assert(active["%s"], "C5M ordinary mod activation failed")' % mod['id'])
     return code.replace(marker, marker + b'\n' + '\n'.join(lines).encode())
+
+
+def validate_load(code):
+    """Perform the same header/compatibility preflight as the stock Load menu."""
+    marker = b'if loadPath then'
+    if code.count(marker) != 1:
+        raise ValueError('External saved-game hook changed')
+    checks = b'''
+            local header = PreGame.GetFileHeader(loadPath)
+            assert(header, "C5M saved-game header is unreadable")
+            local compatible = Modding.CanLoadSavedGame(loadPath)
+            print("[C5M_LOAD] world=" .. tostring(header.WorldSize) ..
+                  " civilization=" .. tostring(header.PlayerCivilization) ..
+                  " turn=" .. tostring(header.TurnNumber) ..
+                  " compatible=" .. tostring(compatible))
+            assert(compatible == 0, "C5M saved-game compatibility check failed: " .. tostring(compatible))
+'''
+    return code.replace(marker, marker + checks)

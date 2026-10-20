@@ -31,7 +31,7 @@ def stage(output):
         source_hashes=hashes,
         scope='Current Terrain ordinary-mod entrypoint and Lua runtime on the shared Mac GameCore',
         instrumentation='One test include appended to the staged UI copy; diagnostic update delegates to the production marker update',
-        limits='No engine-owned trade, full campaign, custom models or process-restart persistence acceptance',
+        limits='No engine-owned trade, full campaign or custom-model acceptance; persistence requires a separate reload run',
     ), indent=2) + '\n')
 
 
