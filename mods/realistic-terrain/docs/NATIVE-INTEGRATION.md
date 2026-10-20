@@ -70,8 +70,9 @@ Both affected Lua tests failed under stricter unit mocks before the correction
 and passed afterward. The full Lua 5.1 suite, eight Python package tests, package
 build and all four database combinations passed against the preserved stock
 cache at `output/native-tests/baseline-01/data-backup/cache`. This verifies the
-calling convention and existing AI decisions offline; a native Terrain worker
-construction/repair run remains necessary.
+calling convention and existing AI decisions offline. The current-content probe
+below subsequently verified both production AI functions issuing native worker
+missions; sustained AI construction/repair across real turns is a separate test.
 
 Ownership handoff: only `RT_IrrigationAI.lua` and its worker mock changed in
 Irrigated Farm. The Terrain change is in `RT_TradeAI.lua` and its worker mock.
@@ -83,9 +84,60 @@ The current-content native fixture is `tests/native/C5M_TerrainChecks.lua`,
 staged by `tools/terrain_native_gameplay.py` through the ordinary mod manifest.
 Its guarded launch/restore procedure is in the
 [native runner guide](../../../gamecore/tests/native/README.md#current-terrain-package-probe).
-It checks native API use and current UI/runtime with the shared core; it does
-not enable native trade or replace the required longer gameplay/save-load tests.
-Native execution of this new fixture is pending.
+It checks native API use and current UI/runtime through the actual ordinary mod
+UUID, SQL and UI entrypoint. It does not enable native trade.
+
+Final accepted evidence under `output/native-tests/` in the GameCore worktree:
+
+| Run | Core | Result |
+| --- | --- | --- |
+| `terrain-06` | Shared 0.1.0 | 32 fresh-game assertions passed |
+| `terrain-reload-04` | Same shared binary, separate process | 12 persistence assertions and 18 assertions across three actual turns passed |
+| `terrain-stock-02` / `terrain-stock-reload-04` | Original stock core | 31 fresh-game and 12 persistence assertions passed |
+
+The final shared-core pair used **no optional host-stat correction**. Its
+production sources match between stages 09 and 10; only the diagnostic probe
+gained the three-turn mode. Coverage includes agreements, road-connected
+Caravansaries and disconnection, native trade quotes, production road/irrigation
+AI worker calls, Caravan launch/slot/recall, Accounts forecasts and marker updates.
+Restart preserved the same route, invested unit type, position, age, agreement,
+station builder/connectivity, game turn, treasury, fractional balance and payment
+guard. Native turn events then advanced the same Caravan once per turn; duplicate
+callbacks neither moved nor paid it again.
+
+Run IDs: `6be4ffc95d4842b2838c4220386afd36` (fresh) and
+`be626baa4ab7401abb53603acbb27a68` (reload/turns). Save SHA-256:
+`aa678eb0436c86e813adcdc31f1d361d8aa337129787c8801e0bb601ebc1f596`.
+Both journals verify restoration of 156 original data entries, temporary mod
+folders, core/UI files and display preferences. Civ V is closed and the lease
+is free. The stock pair used the process-only correction after a separate stock
+startup logged a database failure; it does not prove unassisted Steam startup.
+
+The native widescreen screenshots exposed and verified fixes to the trade row's
+frame, text padding, unsupported arrow glyph and duration line break. The final
+reload screenshot shows the route at age three and turn three. Other tabs,
+1024×768 layouts, companion overlap and custom models remain separate acceptance.
+
+Earlier failed reloads were diagnostic-fixture failures, not evidence of a
+production save defect. The first corridor converted water to land without map
+recalculation; the host crashed in coastline generation. Correcting those flags
+and recalculating areas made the stock reload pass. The final fixture instead
+finds existing land and preserves coastlines. Production map rules, manifests,
+save keys and the core binary were not changed to resolve this.
+
+The supposed untouched control `terrain-initial-load-01` was **invalid**:
+the autosave and manual save were byte-for-byte identical, including the trade
+fingerprint (SHA-256
+`fa8d8c3155739e58c9fbdf05f3bd716711bd66052c2a4ff6e3a91a87ebb05f4f`).
+An actual unmodded save/reload control passed. Disabling landmark reloading did
+not fix the defective fixture and was not applied to production. Early runs
+also corrected an unsupported test-only `SetRoutePillaged` call; `terrain-01`
+was stopped before the fixture ran and is not evidence of a host-stat fault.
+
+These bounded results do not establish a full campaign, every agreement/raid/
+sanction scenario, cross-version migration or native-engine trade parity.
+The portable suite, nine packaging tests and 30 recovery tests also pass; those
+checks complement the native evidence rather than replace it.
 
 ## Confirmed distribution requirements
 

@@ -76,12 +76,54 @@ The restored stock core SHA-256 is
 the unchanged host SHA-256 is
 `d56d6bfbc0ef517fcb7cbaff46c42d1bdfab809c084684045761bd9d85807ee9`.
 
+## Current Terrain content — 2026-10-20
+
+The same developer binary initialized the current Terrain package through the
+ordinary mod loader, then loaded its save in a separate process and advanced
+three real turns. Final evidence under `output/native-tests/`:
+
+| Run | Accepted checks |
+| --- | --- |
+| `terrain-06` | 32 fresh-game assertions |
+| `terrain-reload-04` | 12 process-restart assertions plus 18 assertions through turns 1–3 |
+
+Both used the background helper but **no optional host-stat correction**.
+The test code is outside playable source roots; only its staged UI copy includes
+the probe. Production payload hashes match across the two stages.
+
+The checks exercise real agreements, city trade quotes, road/Caravansary
+connectivity, native worker build and repair calls from production AI functions,
+Caravan launch/recall, slot accounting, income forecasts and marker API updates.
+Reload retained route identity, position/age, agreement, station supply and
+native/custom balances. Native turn events then advanced the route and recorded
+payment once per turn; duplicate callbacks neither moved nor paid it again.
+These are Lua-owned routes on the shared core, not a native trade provider.
+The [Terrain integration record](../mods/realistic-terrain/docs/NATIVE-INTEGRATION.md)
+records exact scope, fixture corrections and UI findings.
+
+Fresh run ID: `6be4ffc95d4842b2838c4220386afd36`.
+Reload run ID: `be626baa4ab7401abb53603acbb27a68`.
+Input save SHA-256:
+`aa678eb0436c86e813adcdc31f1d361d8aa337129787c8801e0bb601ebc1f596`.
+The final screenshot was inspected at turn three, with the active route at age
+three; its SHA-256 is
+`c28b40b9e0baff145591ab7d0a3977d128e07afb8c12ba64fa6dee219cef0d45`.
+Both journals verify restoration of 156 original data entries, core/UI files,
+temporary mod directories and display preferences. The game is closed.
+
+The earlier reload crashes came from an invalid fixture that changed coastlines
+without recalculation. An initial-autosave “control” was invalid too: it was
+identical to the modified save. Correcting the fixture made the stock control
+pass; the final shared-core fixture preserves existing coastlines. No production
+manifest, save format or engine change was needed. Full details and the separate
+stock-core controls are in the Terrain integration record.
+
 ## Not established by these checks
 
-Gameplay over multiple turns, save/load compatibility, each playable mod
-combination, a permanent player installation, ordinary Steam launch, and custom
-art/UI acceptance remain unverified. Temporary developer activation, startup and
-restoration now have the specific passing evidence above.
+Long campaigns, broader save/migration scenarios, each playable mod combination,
+a permanent player installation, ordinary Steam launch, and full custom art/UI
+acceptance remain unverified. Temporary developer activation, startup, bounded
+Terrain save/reload/turn checks and restoration have the evidence above.
 Windows has no compiled/validated target. The module-selector fixtures and SDK
 adapter tests do not substitute for running the game.
 

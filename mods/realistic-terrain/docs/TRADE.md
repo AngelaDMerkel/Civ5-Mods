@@ -157,9 +157,12 @@ functions and credits research progress, with fractional beakers retained.
   functions preserve many baseline bonuses but cannot provide complete parity.
 - Recall returns a trade unit immediately to the origin, or its capital if the
   origin was lost. This is an initial balance rule, not a simulated return trip.
-- AI planning, native event ordering, tech-tree placement, UI layout, turn time,
-  and economic balance have not been tested inside the game. Automated tests use
-  real Lua 5.1 with mocked engine boundaries. Publication remains deferred.
+- Bounded native checks cover trade launch/recall, agreements, road connectivity,
+  worker AI calls, Accounts and a widescreen active-routes panel. The
+  [native integration record](NATIVE-INTEGRATION.md) distinguishes these from
+  mocked tests and records save/reload evidence. Sustained AI planning, tech-tree
+  placement, the full UI matrix, campaign performance and economic balance still
+  need acceptance. Publication remains deferred.
 - No migration from old alpha/native-route saves; no multiplayer or overhaul
   compatibility is claimed. English UI text only.
 

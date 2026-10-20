@@ -16,7 +16,9 @@ parity remains incomplete; necessary engine support will be a Terrain module in
 the project-owned [shared GameCore](../../docs/SHARED-GAMECORE.md), as described
 in [the integration plan](docs/NATIVE-INTEGRATION.md). A full Mac developer core
 has compiled, passed ABI checks and initialized a native BNW game with verified
-restoration. Terrain's native trade implementation remains pending. See the
+restoration. The current Lua package also passed 32 fresh-game checks and 30
+checks covering a process restart and three actual turns on that core.
+Terrain's native trade implementation remains pending. See the
 [core validation record](../../gamecore/VALIDATION.md).
 
 The combined worker UI, construction-order infrastructure and irrigation text
@@ -40,4 +42,4 @@ Terrain and bundled irrigation AI. See the [save-data handoff](docs/SAVE-DATA-HA
 for unchanged save contracts, regression evidence and companion integration.
 Worker build checks also use the native API's integer flags; the
 [binding follow-up](docs/NATIVE-INTEGRATION.md#worker-build-binding-follow-up--2026-10-20)
-records the trade/irrigation fix and remaining native test.
+records the trade/irrigation fix and its bounded native acceptance.

@@ -44,9 +44,10 @@ python3 gamecore/tools/package.py
 That produces `dist/native/C5M-GameCore-macos-developer.zip` with file hashes,
 source/compatibility revisions, ABI validation and explicit acceptance status.
 Use `--app '/path/to/Civilization V.app'` for read-only host hash verification.
-The archive is not an installer or Workshop content package. The first temporary
-native activation/startup/restoration test passed; save/load and gameplay
-acceptance remain unverified. The explicit
+The archive is not an installer or Workshop content package. Temporary native
+startup/restoration and a bounded Terrain save/reload test with three actual
+turns passed; broader gameplay and save compatibility remain unverified. See the
+[exact evidence](VALIDATION.md). The explicit
 [baseline test runner](tests/native/README.md) prepares temporary activation and
 verified restoration when the shared game slot is available. Windows has no
 validated build yet; see [its target notes](platforms/windows/README.md).

@@ -93,6 +93,8 @@ production Terrain UI/Lua on the shared core, including native API calls, route
 launch/recall, markers and worker AI. The fixture appends a diagnostic include to
 a staged UI copy, constructs a disposable corridor and invokes production
 functions; it is not a campaign or proof of the future engine-owned trade system.
+The fixture finds an existing land corridor and preserves coastline topology.
+It deliberately fails if the pinned map has no suitable corridor.
 It writes a diagnostic save with a state fingerprint. After restoration, load it
 in a separate process with the same staged content:
 
@@ -106,10 +108,17 @@ python3 gamecore/tools/native_test.py --run --harness /path/to/Lekmod \
 The reload probe compares route identity/position/age, agreement, station
 ownership/connectivity, game turn, native treasury, fractional balance and the
 payment guard. Duplicate turn calls must not pay or move the route again.
+Use `--probe-event C5M_TerrainTurns` instead to run those reload checks followed
+by three actual engine turns. It resolves unrelated research/production choices
+with native commands, then checks the production event handlers' route movement,
+age and payment guards. Duplicate callbacks must remain harmless each turn.
 Only a separate successful reload run establishes this bounded persistence
 result. It does not exercise future native simulation saves or cross-version
 save compatibility.
 The runner records the save hash and performs the stock Load menu's header and
 mod-compatibility checks before requesting the load. Passing that preflight is
 not a successful reload; the in-game probe must still complete.
+Do not assume the initial autosave predates the fixture. In this runner's first
+scenario it was byte-for-byte identical to the later manual save. A pristine
+control needs a fresh run without a probe event, with its retained state checked.
 See the owning mod's [native integration record](../../../mods/realistic-terrain/docs/NATIVE-INTEGRATION.md).
