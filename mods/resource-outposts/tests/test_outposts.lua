@@ -236,7 +236,11 @@ local function unit(id, owner, p, worker)
     function u:FinishMoves() self.moves = 0; end
     function u:CanFortify() return true; end
     function u:CanMoveThrough(p) return not p.water and not p.mountain and not self.cannotMove; end
-    function u:CanBuild(p, build) return build == I.BUILD_REPAIR and p.pillaged; end
+    function u:CanBuild(p, build, testVisible, testGold)
+        assert(type(testVisible) == "number" and type(testGold) == "number", "native Unit.CanBuild flags must be integers");
+        assert(testVisible == 0 and testGold == 1, "repair checks actual eligibility and gold");
+        return build == I.BUILD_REPAIR and p.pillaged;
+    end
     function u:PushMission(mission, x, y)
         self.missions[#self.missions + 1] = { mission, x, y };
         if mission == MissionTypes.MISSION_MOVE_TO then
