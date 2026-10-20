@@ -17,7 +17,7 @@ assert(ids.PROMOTION_RT_STRAINED and ids.PROMOTION_RT_EXHAUSTED,
 local function loadPlayer(playerID)
     if cache[playerID] then return cache[playerID]; end
     local states = {};
-    local raw = saved:GetValue(PREFIX .. playerID);
+    local raw = saved.GetValue(PREFIX .. playerID);
     if type(raw) == "string" then
         for id, value in string.gmatch(raw, "(%d+):([^;]+)") do
             local state = R.Decode(value);
@@ -33,7 +33,7 @@ local function flush(playerID)
     for id in pairs(states) do keys[#keys + 1] = id; end
     table.sort(keys);
     for _, id in ipairs(keys) do rows[#rows + 1] = id .. ":" .. R.Encode(states[id]); end
-    saved:SetValue(PREFIX .. playerID, table.concat(rows, ";"));
+    saved.SetValue(PREFIX .. playerID, table.concat(rows, ";"));
 end
 
 function G.Eligible(unit)

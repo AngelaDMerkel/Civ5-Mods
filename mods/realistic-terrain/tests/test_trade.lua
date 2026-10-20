@@ -14,7 +14,10 @@ I.TECH_COMBUSTION=101;I.UNIT_RT_MOTORIZED_CARAVAN=102;I.UNITCLASS_RT_MOTORIZED_C
 CommandTypes={COMMAND_UPGRADE=1};
 GameInfo={GameSpeeds={[0]={DealDuration=4}},Routes={[I.ROUTE_ROAD]={GoldMaintenance=1},[I.ROUTE_RAILROAD]={GoldMaintenance=2}},
     Improvements={[I.IMPROVEMENT_RT_RELIEF_STATION]={GoldMaintenance=0}}};
-Modding={OpenSaveData=function()return{GetValue=function(_,k)return values[k];end,SetValue=function(_,k,v)values[k]=v;end};end};
+Modding={OpenSaveData=function()return{
+    GetValue=function(k)assert(type(k)=="string","GetValue expects a string key, no self");return values[k];end,
+    SetValue=function(k,v)assert(type(k)=="string","SetValue expects a string key, no self");values[k]=v;end,
+};end};
 local eventMeta={__index=function(t,k)local callbacks={};local event={Add=function(f)callbacks[#callbacks+1]=f;end,Fire=function(...)for _,f in ipairs(callbacks)do f(...);end;end};rawset(t,k,event);return event;end};
 GameEvents=setmetatable({},eventMeta);Events=setmetatable({},eventMeta);
 Teams={};local techs={};

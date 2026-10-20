@@ -13,7 +13,7 @@ end
 local function load(playerID)
     if rosters[playerID] then return rosters[playerID]; end
     local jobs = {};
-    local record = saved:GetValue(PREFIX .. playerID) or "";
+    local record = saved.GetValue(PREFIX .. playerID) or "";
     for entry in string.gmatch(record, "[^;]+") do
         local base, construction = string.match(entry, "^(.-),([a-z]+)$");
         local id, birth, owner, kind, x, y = string.match(base or entry, "^(%d+),(%d+),(%d+),(%d+),(%d+),(%d+)$");
@@ -33,7 +33,7 @@ local function flush(playerID)
         local job = jobs[id];
         encoded[#encoded + 1] = id .. "," .. job.identity .. "," .. job.x .. "," .. job.y .. "," .. (job.kind or "station");
     end
-    saved:SetValue(PREFIX .. playerID, table.concat(encoded, ";"));
+    saved.SetValue(PREFIX .. playerID, table.concat(encoded, ";"));
 end
 
 local function stampKey(unit)
@@ -44,7 +44,7 @@ local function stamp(unit)
     return identity(unit) .. "," .. Game.GetGameTurn();
 end
 
-function O.HasWorked(unit) return saved:GetValue(stampKey(unit)) == stamp(unit); end
+function O.HasWorked(unit) return saved.GetValue(stampKey(unit)) == stamp(unit); end
 
 function O.IsOrdered(unit, kind)
     if not B.IsWorker(unit) then return false; end
@@ -61,13 +61,13 @@ function O.Cancel(unit)
 end
 
 local function advance(unit)
-    if saved:GetValue(stampKey(unit)) == stamp(unit) then return false; end
+    if saved.GetValue(stampKey(unit)) == stamp(unit) then return false; end
     if RT_OutpostBridge and RT_OutpostBridge.OtherOrder(unit, "worked") then return false; end
     local kind = load(unit:GetOwner())[unit:GetID()].kind;
     local allowed = B.Status(unit, true, kind);
     if not allowed then return false; end
     -- Save the guard before any engine mutation that may trigger callbacks.
-    saved:SetValue(stampKey(unit), stamp(unit));
+    saved.SetValue(stampKey(unit), stamp(unit));
     local worked, finished = B.Work(unit, true, kind);
     if finished then O.Cancel(unit); end
     return worked;
@@ -77,7 +77,7 @@ function O.Start(unit, kind, scheduled)
     kind = kind or "station";
     if kind ~= "station" and kind ~= "irrigation" then return false; end
     local allowed = B.Status(unit, scheduled, kind);
-    if not allowed or saved:GetValue(stampKey(unit)) == stamp(unit) then return false; end
+    if not allowed or saved.GetValue(stampKey(unit)) == stamp(unit) then return false; end
     if RT_OutpostBridge then
         if RT_OutpostBridge.OtherOrder(unit, "worked") then return false; end
         RT_OutpostBridge.OtherOrder(unit, "cancel");

@@ -21,7 +21,8 @@ for i, name in ipairs({ 'IMPROVEMENT_RT_IRRIGATED_FARM', 'IMPROVEMENT_RT_DRY_FAR
 local I = GameInfoTypes;
 local values, turn = {}, 1;
 Modding = { OpenSaveData = function() return {
-    GetValue = function(_, k) return values[k]; end, SetValue = function(_, k, v) values[k] = v; end }; end };
+    GetValue = function(k) assert(type(k) == "string", "GetValue expects a string key, no self"); return values[k]; end,
+    SetValue = function(k, v) assert(type(k) == "string", "SetValue expects a string key, no self"); values[k] = v; end }; end };
 Game = { GetGameTurn = function() return turn; end, GetActivePlayer = function() return 0; end };
 DomainTypes = { DOMAIN_LAND = 0 }; MissionTypes = { MISSION_MOVE_TO = 1, MISSION_BUILD = 2 };
 OrderTypes = { ORDER_CONSTRUCT = 1 };

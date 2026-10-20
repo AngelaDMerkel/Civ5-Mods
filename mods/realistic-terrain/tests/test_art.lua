@@ -12,8 +12,8 @@ local city = { GetNumRealBuilding = function() return owns and 1 or 0; end };
 Players = { [0] = { IsHuman = function() return human; end,
     GetCityByID = function(_, id) if id == 3 then return city; end end } };
 Modding = { OpenSaveData = function() return {
-    GetValue = function(k) return values[k]; end,
-    SetValue = function(k, v) values[k] = v; end,
+    GetValue = function(k) assert(type(k) == "string", "GetValue expects a string key, no self"); return values[k]; end,
+    SetValue = function(k, v) assert(type(k) == "string", "SetValue expects a string key, no self"); values[k] = v; end,
 }; end };
 Events = { SerialEventGameMessagePopup = function(info) popups[#popups + 1] = info; end };
 GameEvents = { CityConstructed = { Add = function(fn) callbacks[#callbacks + 1] = fn; end } };

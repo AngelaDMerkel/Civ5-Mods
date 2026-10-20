@@ -125,8 +125,8 @@ print("Caravansary construction: " .. count .. " assertions passed");
 local turn, values = 0, {};
 Game.GetGameTurn = function() return turn; end;
 Modding = { OpenSaveData = function() return {
-    GetValue = function(_, key) return values[key]; end,
-    SetValue = function(_, key, value) values[key] = value; end,
+    GetValue = function(key) assert(type(key) == "string", "GetValue expects a string key, no self"); return values[key]; end,
+    SetValue = function(key, value) assert(type(key) == "string", "SetValue expects a string key, no self"); values[key] = value; end,
 }; end };
 function worker:GetID() return 1; end
 function worker:GetGameTurnCreated() return self.birth or 0; end
