@@ -87,8 +87,8 @@ def build(out, history_root):
             name=item['name']
             if (concept/name/(name+'.fxsxml')).is_file():
                 item['files']['FXSXML']=url('concept-models',name+'/'+name+'.fxsxml')
-        group('concept','Selected concept → actual models','Civ V style refinement · review candidates',
-              'Four terrain forms, wet/dry and lower-detail variants, channels, aqueducts and a connected district. Actual native crop/masonry textures and regular Farm1 geometry. Individual experimental GR2 exports; native game loading and placement remain unverified.',
+        group('concept','Selected concept → actual models','Unapproved models · awaiting your review',
+              'These new meshes have not been approved. Review the shapes, materials and irrigation treatment before further conversion, native testing or integration. The collection contains four terrain forms, wet/dry and lower-detail variants, components and a connected district.',
               concept_items,
               url('concept-models','connected-district-preview.png'),av,
               url('concept-models','review.html'))

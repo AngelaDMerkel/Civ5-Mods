@@ -1,0 +1,203 @@
+{
+  "date": "2026-10-20",
+  "status": "unapproved; awaiting user review",
+  "user_statement": "I haven't had the chance to approve these models",
+  "scope": "The selected concept and v3 approach do not approve the newly generated models. Hold further conversion, native testing and runtime integration until the user has reviewed these candidates.",
+  "native_game_started": false,
+  "game_or_user_data_changed": false,
+  "playable_art_changed": false,
+  "mesh_commit": "3b183e8",
+  "candidates": [
+    {
+      "name": "RT_IF_Concept_Flat_Wet",
+      "sha256": {
+        "glb": "383cf92b6aee3597d26eed53bc9f757c212ba977423e4e311ca9fb9f52ac238e",
+        "br2": "0bca2e6afa2dca058da75b131ff9ba23104d6ae8a5b3b51bad6f45d9d404c331",
+        "gr2": "a394d91288c2b67c1ea4d97943f06bd4df6763d89af441edad53ca74ae7da8c8"
+      }
+    },
+    {
+      "name": "RT_IF_Concept_Flat_Dry",
+      "sha256": {
+        "glb": "1fa9dd60d9fe85a7505873c4d972f1b872072c26b958fa02b7c135bd02eb93b8",
+        "br2": "f5b7902fa541cfdc373c18794774e34722e7298f0adb696edd86107fec7fdedc",
+        "gr2": "7770444746949723eac75fafa277c773f65dfbfd3c0622cf257e6fba8ef6642e"
+      }
+    },
+    {
+      "name": "RT_IF_Concept_GentleHill_Wet",
+      "sha256": {
+        "glb": "e7d02b11b2638ebc620ea35bf0421c9b4641e7e8366b139ec47e66d9f5353c0f",
+        "br2": "cc67f64ae56048e1f941b2a4ce93116b0a815a4ee7852d9d464aa189ff2d0f6c",
+        "gr2": "cba2b4c4796b39e776dc7bcdc48ff06d14e0d2f68aaaa0b7ee4fecb4a861803b"
+      }
+    },
+    {
+      "name": "RT_IF_Concept_GentleHill_Dry",
+      "sha256": {
+        "glb": "da06ca0562108ffcc1a90e04a1fa790ed28b554ffd866786a99496fe00bdcb4f",
+        "br2": "c55cd5da70b192e6c6a69cac548d66cee68a4476a663705d2b23d63ab58029d5",
+        "gr2": "5efd95f0ab98127f24094e323e2787d7f0ea4f4ab9b4a401e7e825bdf4327389"
+      }
+    },
+    {
+      "name": "RT_IF_Concept_SteepHill_Wet",
+      "sha256": {
+        "glb": "a7d532381497f176584f91fc652536a3f42b3fbed79db98b358d4c2fee45111d",
+        "br2": "ec67557105d44d12390b015021c9d642f16c76be0d6d567aee31e461bbf15701",
+        "gr2": "9f087bc0542a452ca5e9feb2359d9c53b100427fd1cbeaa71d66b92208f89240"
+      }
+    },
+    {
+      "name": "RT_IF_Concept_SteepHill_Dry",
+      "sha256": {
+        "glb": "667326604271ab8a91cb9871327c275cee2238ff4c9dbb59b582705916fd43e5",
+        "br2": "41ead700f3c7be209a5e4426ff474dbf6f5d8a7e68f4fdf5e6f07861602d5abb",
+        "gr2": "b8d8c9b3f0d4902f3d442129d75a90d23185eb9a016c73cd441cb8aff9328fdc"
+      }
+    },
+    {
+      "name": "RT_IF_Concept_RockyFoothill_Wet",
+      "sha256": {
+        "glb": "580dd81648d12f89eb6f894b66dcd2d4081974d19c292e1f12cfc3b259701031",
+        "br2": "c45f198c4101f058952c21dab1c9988c8f1e829f48d1c35f2939c3cea4cb2f85",
+        "gr2": "0a3c6f05849bec127ce06e19131942641d9f90d8cef499028a885bed692bf872"
+      }
+    },
+    {
+      "name": "RT_IF_Concept_RockyFoothill_Dry",
+      "sha256": {
+        "glb": "72b5da1f73aee01d39726fb3e20e4cd0fc275607bb87ea79cb87b62033dee063",
+        "br2": "593ddebfece10b70d1ae3649aa81062e560d5bfc84a951c28a5efb56de3f5de4",
+        "gr2": "3d70406a8e506b78ac8c2220fe4dbe54c6586807f4126d3459630f4d13569695"
+      }
+    },
+    {
+      "name": "RT_IF_Concept_Flat_Wet_LOD1",
+      "sha256": {
+        "glb": "3f6693534ccdd96b0d16db40230c909f61aea2b370fdc7c5a3eeb5c194caf108",
+        "br2": "59d66f95eb306662de5dbab61c3f484db9e13bca14e72f92aa7f9949e0ef2b77",
+        "gr2": "a075b46f9d225c7aafce725b8e5d2ac725d22935548d9bfb6bd0508e3d55a5b1"
+      }
+    },
+    {
+      "name": "RT_IF_Concept_GentleHill_Wet_LOD1",
+      "sha256": {
+        "glb": "e0999b5d576f065cc68bc2233e5ae42c57f032935e7b4f8806750f0ef371d47c",
+        "br2": "6f12b43727943926bf76a3ad82a31eab95d56c29da20920a3bff071724da50f4",
+        "gr2": "0face0f04118c2964660047a5e1cd53d286dfda12a3aa94dadd1ed7af7b68d25"
+      }
+    },
+    {
+      "name": "RT_IF_Concept_SteepHill_Wet_LOD1",
+      "sha256": {
+        "glb": "bc1988584d562d97d7fd3b0ee5e201bed6ad1502ad37988158fffb742adf484d",
+        "br2": "e213e363e9fc2098aa8b3c39c2c2da02b0a22c33d84920aa3b18616a20f934cd",
+        "gr2": "79c50c5c78acdbe09ff3ec0255d9670cfd4cf35d842470767e5e38e3b6c339e2"
+      }
+    },
+    {
+      "name": "RT_IF_Concept_RockyFoothill_Wet_LOD1",
+      "sha256": {
+        "glb": "4ec576d02da1ad48eb8fbfc77b0a2fd5900371a41ecff9319c484ff8a2036231",
+        "br2": "b29c0addb97d05d29b886e758b658a2685a25fc25239ffb48ab1875f10892aae",
+        "gr2": "f871a33e206574fe2cd45b292f4900c0766dd1a3021abc91d816fdde914bb92d"
+      }
+    },
+    {
+      "name": "RT_IF_Concept_Channel_Straight",
+      "sha256": {
+        "glb": "62ee5df3b643255b8c19653ae36e9411566c9d3a30df00a6306dd92f394f5afd",
+        "br2": "4753743260d433ff37e7d3480fb84bdfe75e818cce9f75f4d87431f121ff01b0",
+        "gr2": "b9266818fee7c2005f2cdf15da053e832095d673cba47a214c2ac2fb70cd8372"
+      }
+    },
+    {
+      "name": "RT_IF_Concept_Channel_Bend60",
+      "sha256": {
+        "glb": "8d0bf5d99e84a398d36e6becd45c14bedb5d2b0d7049b8bf717bd968ee2ba756",
+        "br2": "4f25e38dc3e385fddb3753042658f292038574501cede6efa0816f6881b61d07",
+        "gr2": "840fa73c600d5967e5e4d5b133a21b2e0ddaffe05aa579463b242bdb77670baa"
+      }
+    },
+    {
+      "name": "RT_IF_Concept_Channel_Drop",
+      "sha256": {
+        "glb": "53b283ccbfc7049602e75be4374c0db79f8775279d165077f47862606f719053",
+        "br2": "4dd713667b7974e0b8bdd445cc5dffdbeaaf0c6680dee71411eb870f89b63815",
+        "gr2": "c3bec6bb819213c22d175eb9dd5bb13b3fe77b84f9a8509e6dfb56375e3f749c"
+      }
+    },
+    {
+      "name": "RT_IF_Concept_Channel_Fork",
+      "sha256": {
+        "glb": "306192d607e3c2138c59ae4350918f3e4354ab37a604a5ab20f31a2f6c0e49da",
+        "br2": "2831434ea0b78c8e1d2aab6ac0a325f40e22e6a77224877f9d911c8c01830bff",
+        "gr2": "280d2d77503dab6aa55af0a1f065783ecba77d8a4c2bee408d9a7d3e1a53750f"
+      }
+    },
+    {
+      "name": "RT_IF_Concept_Aqueduct_Short",
+      "sha256": {
+        "glb": "0c1935ddfbea828f0f7980e6eb8032bcdfb2783ab348784c040617c93c5e910c",
+        "br2": "3a5040c30151daa9c723c6ed15005afe2ee6faf8d8ca829e36b6dad900675fd2",
+        "gr2": "813d3c575f5392608d4d2b005534853b81b70981f82cf5105173e493ae745019"
+      }
+    },
+    {
+      "name": "RT_IF_Concept_Aqueduct_Short_LOD1",
+      "sha256": {
+        "glb": "b72de2ac1ccd08b9d64f74f1229d45d600116177312a9bcd19de2117b8ee44b7",
+        "br2": "75e97c87b587bffff375d50338c014268ff0e67fb999804110b97946a1a5b7c8",
+        "gr2": "7d4b68092d17329913acc193bfe95e42898dc76c5c0e8ff2190a2ef0ae18d8c8"
+      }
+    },
+    {
+      "name": "RT_IF_Concept_Aqueduct_Long",
+      "sha256": {
+        "glb": "cad2c64f3b839deba1f1ca24b8e7d1aa3e3530252f746841942d3ff0c1f4a13c",
+        "br2": "046284f9d5401b1c39d8e6a0140e28fa30b7bd807ab823151592f52725de8e13",
+        "gr2": "af1652c3d19fb47b04d90b0fa3fadf47183019f91c4b75ef57b5984ed8cfe1e5"
+      }
+    },
+    {
+      "name": "RT_IF_Concept_Aqueduct_Long_LOD1",
+      "sha256": {
+        "glb": "d71c1841e74fd41f7adf487536f96b10234fecb86da54c61702adb3249978593",
+        "br2": "ac21b2719b82d40b3437bcfb44cbcfad21496fbef6cac4101e470bb0271a3ed2",
+        "gr2": "0befe24d941eaf1574f8e34d25736119fda2536ef14f35eeae4070e0a4dcc2c5"
+      }
+    },
+    {
+      "name": "RT_IF_Concept_Aqueduct_Mountain",
+      "sha256": {
+        "glb": "4029100218521fefa35a39d580d80759bf7826346a4b1fa7430b0de5881d16b1",
+        "br2": "45418f9fd7937614829c5be994316e60ef5d42364f8a2f3b98cd3300c9ac4ca8",
+        "gr2": "5aea1475b3cb68fec3aff479bd3bb4a9eb8f266cd4c129e799920b95fc5c34b5"
+      }
+    },
+    {
+      "name": "RT_IF_Concept_Aqueduct_Mountain_LOD1",
+      "sha256": {
+        "glb": "2da24a6d050d352017b5ec098b7b92d05e78607c9c0370f6187a785243c1cf97",
+        "br2": "50d3e1cf843f609a0a1923af1921e835f56620a850881364e224eb3fe4729aa2",
+        "gr2": "6ef4da065ea759063d07615d68bb84c0b1d8ca2f508f1eceb0f4ba10488a8d86"
+      }
+    },
+    {
+      "name": "RT_IF_Concept_MountainIntake",
+      "sha256": {
+        "glb": "f8fd93438828ba9ee8d3627ef41c169f1d2146a665adee46d588500761ae54f5",
+        "br2": "d7e0b7f9ba3e91784d59d2c9b66fc84d88eca4799fd3a7c88f01c3e7acd20eb5",
+        "gr2": "e041c19f1c3a23bb801876faa4bcb50af36a2307abf49cb27a3d92afa7f7ddbf"
+      }
+    },
+    {
+      "name": "RT_IF_Concept_ConnectedDistrict",
+      "sha256": {
+        "glb": "6292227bab9d54e7d62ad25f2e05889f7143aeaad57858edbd4b920091b47008",
+        "br2": "fd3b7632faeca8f7dbed0389054ea6fb7afc032aeb683e7c34b0b1b6249d7899"
+      }
+    }
+  ]
+}

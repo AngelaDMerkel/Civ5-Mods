@@ -193,3 +193,13 @@ floodplain transition updates, dynamic adjacency and native loading/terrain test
 remain unfinished. Production gameplay and Farm-art fallback remain unchanged.
 See the native tooling README for reproducible commands and format/scale limits.
 No game or user-data files were changed; Irrigation holds no native-test session.
+
+
+User review checkpoint (2026-10-20): the user explicitly reminded us that the new
+models have not been approved. The concept/direction selection does not approve
+these candidates. Further conversion, native testing and runtime integration are
+on hold pending user model review. `shared/art/irrigated-farm/v3-civ5-direction/model-review.json`
+records their exact hashes. Native probe preparation failed at an import before
+creating a fixture; no game launch, installation or user-data change occurred.
+The unused preparation script was removed. The existing library now prominently
+labels the candidates as unapproved and links to the visual review first.

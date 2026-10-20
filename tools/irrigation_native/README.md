@@ -383,3 +383,13 @@ derived outputs are ignored local candidates, outside playable package roots.
 The review library includes this ninth collection when its manifest exists,
 bringing the current inventory to 187 export entries. Earlier recovery counts
 above describe the library before these actual concept-model candidates.
+
+
+User review checkpoint (2026-10-20): the user explicitly reminded us that the new
+models have not been approved. The concept/direction selection does not approve
+these candidates. Further conversion, native testing and runtime integration are
+on hold pending user model review. `shared/art/irrigated-farm/v3-civ5-direction/model-review.json`
+records their exact hashes. Native probe preparation failed at an import before
+creating a fixture; no game launch, installation or user-data change occurred.
+The unused preparation script was removed. The existing library now prominently
+labels the candidates as unapproved and links to the visual review first.

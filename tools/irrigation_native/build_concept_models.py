@@ -218,7 +218,7 @@ def build(out, quick):
                 key=route['name'];seen[key]=seen.get(key,0)+1
                 if seen[key]>1:route['name']=key+'_'+str(seen[key])
         remap(mesh)
-        mesh.meta.update(native_game_validation=False,design_status='review candidate from selected concept',source_geometry='v3 terrain and authored fields; actual regular Farm1 building')
+        mesh.meta.update(native_game_validation=False,design_status='unapproved; awaiting user model review',source_geometry='v3 terrain and authored fields; actual regular Farm1 building')
         record=export(mesh,folder)
         if record['category']!='assembly':export_native(mesh,record,folder,reader,source)
         records.append(record)
@@ -227,10 +227,10 @@ def build(out, quick):
         print(mesh.name,record['triangles'],'triangles',flush=True)
     cards.sort(key=lambda c:0 if c['category']=='assembly' else 1)
     html=(HERE.parent/'irrigation_v3/irrigation_viewer.html').read_text().replace('__ASSET_DATA__',json.dumps(cards,separators=(',',':'))).replace('__ATLAS_DATA__','data:image/png;base64,'+base64.b64encode((folder/'RT_IF_Diffuse.png').read_bytes()).decode())
-    html=html.replace('Original source meshes','Actual mesh review · native-derived local candidates').replace('Irrigated farm · v3','Selected concept · models').replace('Source kit only. Native GR2 conversion, terrain fitting and game placement remain pending.','GLB/OBJ/BR2 and experimental GR2 exports. Native game loading, terrain fit and dynamic placement remain unverified.')
+    html=html.replace('Original source meshes','Unapproved models · awaiting your review').replace('Irrigated farm · v3','Selected concept · models').replace('Source kit only. Native GR2 conversion, terrain fitting and game placement remain pending.','GLB/OBJ/BR2 and experimental GR2 exports. Native game loading, terrain fit and dynamic placement remain unverified.')
     (folder/'index.html').write_text(html)
     (folder/'review.html').write_text((HERE/'concept_model_review.html').read_text())
-    manifest={'models':records,'native_game_validation':False,'redistributable':False,'material_sources':sources,'regular_farm_source_sha256':digest(out/'native-local/medieval_farm1.gr2'),'stock_uv_note':'Degenerate solid-colour cap UVs offset by 0.0001 for defined export tangents; source geometry preserved under uniform scale/translation.','crop_family_note':'Actual Crops_Africa pixels; exact desert regional selection unverified. Parcel geometry remains authored.','original_materials_retained':['foliage','wood'],'source_units':'v3 radius 6; native candidates scaled to 30-unit apothem; in-game fit unverified'}
+    manifest={'models':records,'native_game_validation':False,'redistributable':False,'model_approval':'unapproved; user review required before further conversion or native testing','material_sources':sources,'regular_farm_source_sha256':digest(out/'native-local/medieval_farm1.gr2'),'stock_uv_note':'Degenerate solid-colour cap UVs offset by 0.0001 for defined export tangents; source geometry preserved under uniform scale/translation.','crop_family_note':'Actual Crops_Africa pixels; exact desert regional selection unverified. Parcel geometry remains authored.','original_materials_retained':['foliage','wood'],'source_units':'v3 radius 6; native candidates scaled to 30-unit apothem; in-game fit unverified'}
     (folder/'models.json').write_text(json.dumps(manifest,indent=2)+'\n')
     (folder/'TECHNICAL_NOTES.txt').write_text('Selected concept: actual meshes with native crop/masonry/terrain pixels and regular Farm1 geometry.\nV3 partial terraces and spans; sparse connected carriers, closed exposed ends.\nLocal reference-derived candidates only. No engine acceptance or runtime adjacency.\nGLB/OBJ/BR2 use normalized source units. GR2 uses 30-unit-apothem native fixture scale.\nThe connected district is an assembly review, not one native tile asset.\nConstruction/pillaged variants and floodplain transitions remain in the earlier library; this pass covers four terrain families wet/dry plus LOD and components.\n')
     if not quick:

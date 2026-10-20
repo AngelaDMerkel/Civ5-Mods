@@ -29,3 +29,8 @@ Keep mesh tools in `tools/` and generated previews under `output/`. Proprietary
 reference-derived candidates remain local. Design selection, geometry/export
 checks, native conversion and in-game acceptance are separate states. Preserve
 the current runtime Farm-art fallback until replacements pass native tests.
+
+The user has not approved the new concept-model candidates. The 2026-10-20
+checkpoint in `shared/art/irrigated-farm/v3-civ5-direction/model-review.json`
+freezes their hashes. Hold further conversion, native testing and integration
+until the user reviews them. Do not interpret concept approval as model approval.
