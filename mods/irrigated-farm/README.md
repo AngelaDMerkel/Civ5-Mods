@@ -23,6 +23,13 @@ preserves both statements and their scope. The chronology below records earlier
 decisions; statements that v3 was superseded are historical, not current policy.
 This selection does not certify revised exports or in-game behavior.
 
+**Current model approval (2026-10-20):** the user approved the R5 source-model
+collection. [The approval record](../../shared/art/irrigated-farm/v3-civ5-direction/model-approval-r5.json)
+fixes all 24 models at 72 GLB/OBJ/BR2 hashes and the existing atlas hash. The model
+review prerequisite is satisfied; native conversion, terrain fit, dynamic
+connections and game acceptance remain pending. Earlier hold statements below
+record the review history. The runtime Farm-art fallback remains in place.
+
 The approved v6 concept and prompts are versioned in
 `shared/art/irrigated-farm/`. Mesh support is in `tools/build_irrigation_meshes.py`
 and the newer `tools/irrigation_v2/`; generated kits and previews stay in
@@ -308,7 +315,10 @@ approved historic reconstruction. [Reference notes](../../shared/references/irri
 record the native Civ V comparison and a real-world gravity-irrigation reference.
 The current review is `concept-models-r5/review.html`, also shown by the existing
 `concept-models/review.html` alias after rebuilding the library. Close, distance,
-front, overhead and assembly renders show actual exported geometry. R5 remains
-**unapproved** in `shared/art/irrigated-farm/v3-civ5-direction/model-review-r5.json`.
-Native conversion, game testing and integration remain held; no game, user-data
-or runtime files changed. The modeled water surfaces are static.
+front, overhead and assembly renders show actual exported geometry. The initial
+unapproved checkpoint remains in
+`shared/art/irrigated-farm/v3-civ5-direction/model-review-r5.json`. The subsequent
+“Approved.” response is recorded separately in `model-approval-r5.json`, lifting
+the model-review hold for those exact R5 exports. Native conversion and game
+validation are pending; no game, user-data or runtime files changed while recording
+this approval. The modeled water surfaces are static.

@@ -3,6 +3,7 @@
 from pathlib import Path
 import argparse
 import html
+import hashlib
 import json
 import re
 from urllib.parse import quote, unquote, urlsplit
@@ -18,6 +19,20 @@ selectLibraryAsset();window.addEventListener('hashchange',selectLibraryAsset);
 
 def read(path):
     return json.loads(path.read_text())
+
+
+def verified_r5_approval(folder):
+    """Apply later user approval only to the exact reviewed source exports."""
+    record=ROOT/'shared/art/irrigated-farm/v3-civ5-direction/model-approval-r5.json'
+    if not record.is_file():return None
+    approval=read(record)
+    if approval.get('revision')!=5 or approval.get('status')!='source model design approved':return None
+    candidates=approval['candidates']
+    if {r['name'] for r in candidates}!={r['name'] for r in read(folder/'models.json')['models']}:return None
+    expected=[(folder/'RT_IF_Diffuse.png',approval['atlas_sha256'])]
+    expected += [(folder/r['name']/(r['name']+'.'+ext),sha) for r in candidates for ext,sha in r['sha256'].items()]
+    if any(not path.is_file() or hashlib.sha256(path.read_bytes()).hexdigest()!=sha for path,sha in expected):return None
+    return approval
 
 
 def url(prefix, filename=''):
@@ -116,8 +131,21 @@ def build(out, history_root):
 
     hillsides=out/'concept-models-r5'
     if (hillsides/'hillside-validation.json').is_file():
+        approval=verified_r5_approval(hillsides)
+        status='Revision 5 · source design approved' if approval else 'Revision 5 · unapproved models'
+        # Approval is presentation metadata; preserve every reviewed mesh byte.
+        page=Path(__file__).with_name('concept_hillside_review.html').read_text()
+        source_view=(hillsides/'index.html').read_text().replace('Revision 5 · source design approved','Revision 5 · unapproved models').replace('Approved source design. Native conversion and game validation remain pending.','Offline mesh review. Native conversion, game testing and integration remain on hold.')
+        if approval:
+            (hillsides/'model-approval.json').write_text(json.dumps(approval,indent=2)+'\n')
+            page=page.replace('Unapproved models · awaiting your review','Source model design approved · 20 October 2026')
+            page=page.replace('The concept and design approach were selected; these new models have not been approved. Further conversion, native testing and integration are on hold.','You approved this R5 source-model design. Native conversion, terrain fit, dynamic placement and in-game validation remain pending.')
+            page=page.replace('<a href="hillside-validation.json">Export and water-route checks</a>','<a href="model-approval.json">Recorded model approval</a> · <a href="hillside-validation.json">Export and water-route checks</a>')
+            source_view=source_view.replace('Revision 5 · unapproved models',status).replace('Offline mesh review. Native conversion, game testing and integration remain on hold.','Approved source design. Native conversion and game validation remain pending.')
+        (hillsides/'review.html').write_text(page)
+        (hillsides/'index.html').write_text(source_view)
         av,an=add_view('concept-r5',hillsides,'concept-models-r5')
-        group('concept-r5','Unequal hillside terraces & offset water drops','Revision 5 · unapproved models',
+        group('concept-r5','Unequal hillside terraces & offset water drops',status,
               'Lower angular benches, unequal fitted parcels, finer native masonry and channels closer to the soil. Drops move between parcel boundaries instead of lining up on a central axis. Flat geometry stays at revision 3.',
               standard_items(read(hillsides/'models.json')['models'],hillsides,'concept-models-r5',av,an),
               url('concept-models-r5','GentleHill-preview.png'),av,url('concept-models-r5','review.html'))

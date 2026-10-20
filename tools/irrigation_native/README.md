@@ -531,3 +531,11 @@ triangles, masonry openings, actual cascade water geometry, crop/building/terrai
 clearance, downhill connections, shallow spans, R3 flat buffers and all R1-R4
 recorded hashes. No native exporter runs. `concept-models-r5/review.html` and
 `model-review-r5.json` preserve the new unapproved review separately.
+
+The user subsequently approved R5 on 2026-10-20. `model-approval-r5.json` fixes
+the exact source exports and atlas separately from the historical review record.
+`build_review_library.py` verifies every approved hash before labeling the R5
+review and viewers approved. Export metadata describes the status at generation;
+the separate approval record is authoritative for the later design decision.
+Changed or missing exports cannot inherit the approved gallery label. Native
+conversion, terrain fitting and game acceptance remain pending.

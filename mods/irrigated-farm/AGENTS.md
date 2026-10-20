@@ -33,7 +33,8 @@ reference-derived candidates remain local. Design selection, geometry/export
 checks, native conversion and in-game acceptance are separate states. Preserve
 the current runtime Farm-art fallback until replacements pass native tests.
 
-The user has not approved the new concept-model candidates. The 2026-10-20
+Historical R1 review hold (superseded for the exact R5 models by the approval below):
+the user had not approved the new concept-model candidates. The 2026-10-20
 checkpoint in `shared/art/irrigated-farm/v3-civ5-direction/model-review.json`
 freezes their hashes. Hold further conversion, native testing and integration
 until the user reviews them. Do not interpret concept approval as model approval.
@@ -70,3 +71,12 @@ narrower bare margins, and staggered drops on parcel divisions. These are design
 proposals in response to the feedback, not new user approval. Build with
 `build_concept_revision.py --revision 5`; validate with `validate_concept_hillsides.py`.
 Preserve R1-R4 exports; record R5 as unapproved in `model-review-r5.json`.
+
+
+On 2026-10-20 the user explicitly replied “Approved.” to the R5 review.
+`shared/art/irrigated-farm/v3-civ5-direction/model-approval-r5.json` records the
+approved source design and its exact 72 export hashes plus atlas hash. Preserve
+`model-review-r5.json` and R1-R4 checkpoints as historical review records. The
+model-review hold is lifted for these R5 models; native conversion, terrain fit,
+dynamic placement and in-game acceptance remain pending. Keep the runtime Farm
+fallback until native checks pass. Changed source geometry needs its own review.

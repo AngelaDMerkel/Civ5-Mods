@@ -2,8 +2,9 @@
 
 Reviewed 2026-10-20 for the user's feedback that R4 was improved but unnatural.
 The prior requirements for angular tiers, crops fitting each tier and downhill
-cascades still apply. R5 is an unapproved design response, not an authenticated
-reconstruction or a claim of native Civ V terrain fit.
+cascades still apply. R5 was subsequently approved as a source design; see
+[the approval record](../art/irrigated-farm/v3-civ5-direction/model-approval-r5.json).
+It is not an authenticated reconstruction or a claim of native Civ V terrain fit.
 
 ## Game and selected-art comparisons
 
