@@ -375,7 +375,15 @@ ContextPtr:SetUpdate(function(dt)
     local ok, err = pcall(function()
         if "__RO_SCENARIO__" == "persistence" then persistence();
         elseif "__RO_SCENARIO__" == "ai" then ai();
-        elseif "__RO_SCENARIO__" == "integration" then integration(); else run(); end
+        elseif "__RO_SCENARIO__" == "integration" then integration();
+        elseif "__RO_SCENARIO__" == "recovery" or "__RO_SCENARIO__" == "threat"
+            or "__RO_SCENARIO__" == "ui" or "__RO_SCENARIO__" == "ui_terrain" then
+            include("RO_AdvancedChecks.lua");
+            local kind = "__RO_SCENARIO__" == "ui_terrain" and "ui" or "__RO_SCENARIO__";
+            local step = RO_NativeAdvanced[kind]({setup=setup,tech=technologies,ready=readyTurns,
+                deposit=deposit,finish=finish,check=check,equal=equal,complete=complete});
+            later = function(dt) if step(dt) then later = nil; end end;
+        else run(); end
     end);
     if not ok then print("[ROTEST] FAIL runtime " .. tostring(err)); end
     if not later then ContextPtr:ClearUpdate(); end

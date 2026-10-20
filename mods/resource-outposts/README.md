@@ -23,8 +23,9 @@ conversion checks and [native visual review](docs/NATIVE-ART-REVIEW.md) for all
 eight eras, plus Ancient/Information terrain and fog scenes. The public build uses
 one shared Ancient scaffold; completed and pillaged sites use their claimant's era.
 Focused native [gameplay and save/load checks](docs/NATIVE-GAMEPLAY-TESTS.md),
-AI construction/guard/repair/retreat and optional roadless Terrain shelter now
-pass; broader campaign and UI acceptance remains separate. Implementation,
+AI construction/guard/repair, healing and reassignment, controlled escort loss
+and resumption, and optional roadless Terrain shelter now pass. Broader campaign
+and mouse-driven UI acceptance remain separate. Implementation,
 compatibility and conversion handoff: [docs/ERA-VISUALS.md](docs/ERA-VISUALS.md).
 
 The user-selected **Guarded storehouse B** emblem and construction glyph are

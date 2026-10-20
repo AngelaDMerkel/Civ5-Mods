@@ -17,6 +17,13 @@ except ImportError:
 
 class GameplayFixtureTests(unittest.TestCase):
     @unittest.skipIf(LuaRuntime is None, 'install tests/requirements.txt')
+    def test_all_native_scenarios_compile_as_lua51(self):
+        lua = LuaRuntime()
+        for path in (ROOT / 'mods/resource-outposts/tests/native').glob('*.lua'):
+            with self.subTest(source=path.name):
+                lua.execute('assert(loadstring(...))', path.read_text())
+
+    @unittest.skipIf(LuaRuntime is None, 'install tests/requirements.txt')
     def test_checks_never_mutate_unrelated_campaigns(self):
         source = (ROOT / 'mods/resource-outposts/tests/native/RO_GameplayChecks.lua').read_text()
         cases = [('', 0, False, 24, 16, 0), ('CG2_STATIC_TEST_V1', 1, False, 24, 16, 0),

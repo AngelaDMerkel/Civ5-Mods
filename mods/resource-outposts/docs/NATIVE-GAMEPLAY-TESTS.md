@@ -18,6 +18,8 @@ local evidence, not package contents. Design and native art acceptance remain in
 | `outpost-integration-native-04` | 43 native assertions passed across nine real turns; restored | Both real mod UUIDs and ordinary UI entrypoints; roadless garrison shelter prevents heat damage, adjacent units remain exposed, pillage removes shelter, repair restores it, and extraction/upkeep remain independent |
 | `outpost-ai-native-07` | 37 native assertions passed through turn 22; restored | Production AI reserves an expedition worker while retaining a domestic worker, completes and claims the site on turn seven, places a guard by turn 13, repairs and reconnects by turn 21, and withdraws a wounded guard on turn 22 |
 | `outpost-integration-native-05` | 43 native assertions passed again; screenshots inspected; restored | Final UI revision through ordinary mod activation: selected-site header has no pink background, B emblem displays, before/after abandonment quantities are readable, and nine-turn shelter sequence still passes |
+| `outpost-recovery-native-02` | 23 native assertions passed through turn nine; restored | Ordinary activation; production AI withdraws a wounded guard, excludes it from active duty during recovery, heals it in friendly territory, releases it above 75 percent health, and returns it to the outpost without changing the claim or resource credit |
+| `outpost-threat-native-01` | 22 native assertions passed through turn eight; restored | Ordinary activation; an unescorted route rejects a visible hostile unit, an escorted worker reaches the site and builds, controlled escort loss stops progress, and removal of the threat allows completion with exactly one resource/upkeep entry |
 
 The first two types of fixture load unchanged production Lua and UI XML through a
 temporary DLC transport. Their SQL results are serialized from an in-memory BNW
@@ -34,8 +36,21 @@ ownership setters. These focused checks are not full campaigns or combat balance
 tests. Human research/production choices are supplied by the fixture to allow
 bounded unattended turns. Informational technology, era and ranking popups are
 dequeued through their normal UI path so their turn semaphore cannot stall the
-driver. The AI scenario disables wars and barbarians to isolate its planner
-lifecycle; it does not establish contested-expedition or campaign balance.
+driver. The original AI and recovery scenarios disable wars and barbarians to
+isolate the planner lifecycle. Recovery starts with one explicit damage setter;
+subsequent healing, withdrawal and return use actual native turns. The threat
+scenario declares war and places a visible hostile unit, then explicitly kills
+the escort and later removes the enemy and makes peace. It verifies the planner's
+reaction to those controlled conditions, not combat outcomes or campaign balance.
+
+The foreground UI attempt, `outpost-ui-native-01`, reached its setup at a native
+1408 by 881 viewport and completed 32 setup assertions. Coordinate clicks failed
+with the computer-control error `-10005: noWindowsAvailable`, including after
+refreshing the app binding. F1 opened Civilopedia and Escape closed it, but no
+construction or management mouse workflow assertion ran. The session was
+interrupted through the supervisor and restored. Its setup assertions and
+screenshots are not mouse interaction acceptance. Re-run the `ui` fixture once
+coordinate input is available; `ui_terrain` also stages the companion mod.
 
 ## Native defects found and fixed
 
@@ -82,6 +97,10 @@ before retrying. An incomplete temporary shelter transport was stopped and
 restored before using a newly packed fixture. None of these failed/interrupted
 runs are counted as passing evidence.
 
+The first recovery launch also exited before map initialization; its restoration
+was verified before the passing second launch. Neither new AI scenario required
+a production gameplay change.
+
 ## Reproducing the checks
 
 Coordinate the shared game reservation first. Use a clean pinned harness and
@@ -99,7 +118,8 @@ For persistence, retain the generated `after/Saves/single/
 RO_NativeGameplay_Persistence.Civ5Save`, then use `--load-save <retained-save>` in
 a new runner launch. Each launch restores user data before the next begins.
 
-For ordinary activation, stage with `--ordinary-mods --scenario core|integration`.
+For ordinary activation, stage with `--ordinary-mods --scenario
+core|integration|ai|recovery|threat|ui|ui_terrain`.
 Pack only its `transport/` directory as DLC. Pass each staged `mods/<package>`
 directory to the runner with `--mod-stage`. The runner refuses existing mod UUIDs
 and existing diagnostic destinations, enables only those temporary stages, checks
@@ -109,23 +129,35 @@ imports the other's Lua. File entries are sorted exactly as in the production
 builder. The separate include-comparison probe runs in its own context and does
 not initialize Terrain or register its gameplay hooks.
 
+The recovery and threat scenarios advance real turns automatically. The UI
+scenario instead waits for actual interaction and prints its next step in
+`Lua.log`: build, cancel, resume after a native turn, open the overview, cancel an
+abandonment confirmation, explicitly abandon Silk, and convert the annexed Iron
+site. It observes production state and controls without calling their click
+callbacks. Use runner options `--foreground-ui --window-size 1408 881
+--timeout 1200` for this interactive attempt; the original graphics settings
+are restored with the rest of user data. Select the worker on the unfinished
+three-Iron site at `(8, 8)` before starting. Stop an incomplete session with
+SIGINT to its verified supervisor so the restoration path runs.
+
 ## Validation and remaining acceptance
 
 The final source/UI changes pass `python3 tools/build.py`, `python3 tools/validate.py`
 with the clean stock BNW cache snapshot, the complete Lua suite (including 382
-Outpost assertions), and all 44 Python tests. Database validation covers each mod
+Outpost assertions), and all 45 Python tests. Database validation covers each mod
 alone and both load orders. No diagnostic scripts enter either playable package.
 
 Final restoration audit verified all 156 original user-data files against their
 saved hashes, both stock executable/library hashes and original UI files. The
 temporary DLC and mod stages are absent, no extra diagnostic files remain in
 the backed-up user-data folders, Civ V is closed, and the native lease is free.
-All 20 gameplay test journals, including failed and interrupted attempts, report
+All 24 gameplay/production test journals, including failed and interrupted attempts, report
 restoration. The pinned external harness remains clean. Passing runs above have
 neither a Lua runtime error nor a failed assertion in their retained logs.
 
-Long campaigns, varied maps, contested AI expeditions, guard healing through
-release/reassignment, competitive AI balance, full mouse-driven UI interaction,
-diplomatic exports and all cultural annexation triggers still need broader
-playtesting. Native retreat is verified; full recovery is not. A fixture success
-marker never substitutes for inspecting errors and restoration records.
+Long campaigns, varied maps, uncontrolled combat during AI expeditions,
+competitive AI balance, full mouse-driven UI interaction, diplomatic exports and
+all cultural annexation triggers still need broader playtesting. Native healing
+through release/reassignment and the controlled escort-loss sequence now pass.
+A fixture success marker never substitutes for inspecting errors and restoration
+records.

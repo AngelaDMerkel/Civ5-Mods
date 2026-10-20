@@ -23,6 +23,7 @@ def stage(database, output, scenario='core'):
         shutil.copyfile(path, output / 'Lua' / path.name)
     shutil.copytree(SOURCE / 'UI', output / 'UI')
     checks = ROOT / 'mods/resource-outposts/tests/native'
+    shutil.copyfile(checks / 'RO_AdvancedChecks.lua', output / 'Lua/RO_AdvancedChecks.lua')
     shutil.copyfile(checks / 'RO_GameplayScene.lua', output / 'Lua/CG2_Scene.lua')
     (output / 'Lua/RO_GameplayChecks.lua').write_text(
         (checks / 'RO_GameplayChecks.lua').read_text().replace('__RO_SCENARIO__', scenario))
@@ -79,7 +80,7 @@ def ordinary(output, scenario):
     write_xml(mod, source / 'Outpost Ordinary Loader Probe.modinfo')
     hashes = {}
     for package in PACKAGES:
-        if scenario != 'integration' and package['id'] != RO_ID:
+        if scenario not in ('integration', 'ui_terrain') and package['id'] != RO_ID:
             continue
         target = output / 'mods' / package['slug']
         original = package_files(package)
@@ -88,6 +89,7 @@ def ordinary(output, scenario):
             dest = target / name; dest.parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(path, dest)
         if package['id'] == RO_ID:
+            shutil.copyfile(checks / 'RO_AdvancedChecks.lua', target / 'Lua/RO_AdvancedChecks.lua')
             (target / 'Lua/RO_GameplayChecks.lua').write_text(
                 (checks / 'RO_GameplayChecks.lua').read_text().replace('__RO_SCENARIO__', scenario))
             with (target / 'UI/RO_UI.lua').open('a') as ui:
@@ -106,12 +108,12 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--database', type=Path)
     parser.add_argument('--output', type=Path, required=True)
-    parser.add_argument('--scenario', choices=('core', 'persistence', 'ai', 'integration'), default='core')
+    parser.add_argument('--scenario', choices=('core', 'persistence', 'ai', 'integration', 'recovery', 'threat', 'ui', 'ui_terrain'), default='core')
     parser.add_argument('--ordinary-mods', action='store_true')
     args = parser.parse_args()
     if args.ordinary_mods:
         ordinary(args.output, args.scenario)
     else:
-        if not args.database or args.scenario == 'integration':
+        if not args.database or args.scenario in ('integration', 'ui_terrain'):
             parser.error('DLC fixture needs --database; integration requires --ordinary-mods')
         stage(args.database, args.output, args.scenario)
