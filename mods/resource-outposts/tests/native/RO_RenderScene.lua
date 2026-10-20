@@ -14,17 +14,12 @@ local function createScene()
     local plot=Map.GetPlotByIndex(i)
     if plot:IsGoody() then plot:SetImprovementType(-1) end
     -- Reveal only the review area. Revealing the opponent's start opens diplomacy.
-    if plot:GetX()>=6 and plot:GetX()<=12 and plot:GetY()>=6 and plot:GetY()<=12 then
+    local fogSite="__TERRAIN__"=="mixed" and plot:GetX()==12 and plot:GetY()==10
+    if not fogSite and plot:GetX()>=6 and plot:GetX()<=12 and plot:GetY()>=6 and plot:GetY()<=12 then
       plot:ChangeVisibilityCount(player:GetTeam(),1,-1,true,true)
     end
   end
   local kind=assert(GameInfoTypes.IMPROVEMENT_CG2_STATIC)
-  if "__TERRAIN__"=="mixed" then
-    -- Check a raised site, dry construction ground, and preserved trees.
-    Map.GetPlot(8,8):SetPlotType(PlotTypes.PLOT_HILLS,true,true)
-    Map.GetPlot(10,8):SetTerrainType(GameInfoTypes.TERRAIN_DESERT,true,true)
-    Map.GetPlot(8,10):SetFeatureType(GameInfoTypes.FEATURE_FOREST,-1)
-  end
   local intact=Map.GetPlot(8,8)
   intact:SetImprovementType(kind)
   local construction=Map.GetPlot(10,8)
@@ -36,6 +31,15 @@ local function createScene()
   ruined:SetImprovementPillaged(true)
   Map.GetPlot(10,10):SetImprovementType(GameInfoTypes.IMPROVEMENT_FORT)
   player:InitUnit(GameInfoTypes.UNIT_WARRIOR,8,8)
+  if "__TERRAIN__"=="mixed" then
+    local remembered=Map.GetPlot(12,10)
+    remembered:SetImprovementType(kind)
+    -- Stock Lua converts ChangeVisibilityCount's delta to a boolean, so -1
+    -- increases sight. Let a disposable unit reveal/leave this tile naturally.
+    local observer=player:InitUnit(GameInfoTypes.UNIT_WARRIOR,12,10)
+    observer:Kill(false,-1)
+    assert(remembered:IsRevealed(player:GetTeam()) and not remembered:IsVisible(player:GetTeam()),"CG2 expected a remembered fogged site")
+  end
   UI.SetYieldVisibleMode(false)
   Events.RequestYieldDisplay(YieldDisplayTypes.AREA,0)
   UI.LookAt(Map.GetPlot(9,9))

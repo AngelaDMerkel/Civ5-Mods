@@ -6,7 +6,6 @@ after WSDLC packaging. Source designs and production assets are not modified.
 """
 import argparse
 import json
-import shutil
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
@@ -48,7 +47,12 @@ def prepare(batch, sources, output, era, scale=6, terrain='grass'):
                            Description='TXT_KEY_CG2_STATIC', Time=1000).items():
         ET.SubElement(row, key).text = str(value)
     write_xml(xml, output/'XML/CG2_Art.xml')
-    shutil.copyfile(FIXTURES/'CG2_StaticTest.lua', output/'Maps/CG2_StaticTest.lua')
+    map_source=(FIXTURES/'CG2_StaticTest.lua').read_text()
+    if terrain=='mixed':
+        map_source=map_source.replace('  SetPlotTypes(plots)', '  plots[1+8+8*24]=PlotTypes.PLOT_HILLS\n  SetPlotTypes(plots)')
+        map_source=map_source.replace('  SetTerrainTypes(terrain)', '  terrain[1+10+8*24]=GameInfoTypes.TERRAIN_DESERT\n  SetTerrainTypes(terrain)')
+        map_source=map_source.replace('function AddFeatures() end', 'function AddFeatures()\n  Map.GetPlot(8,10):SetFeatureType(GameInfoTypes.FEATURE_FOREST,-1)\nend')
+    (output/'Maps/CG2_StaticTest.lua').write_text(map_source)
     scene = (ROOT/'mods/resource-outposts/tests/native/RO_RenderScene.lua').read_text().replace('__ERA__', era).replace('__SCALE__', str(scale)).replace('__TERRAIN__', terrain)
     (output/'Lua/CG2_Scene.lua').write_text(scene)
     files = {p.relative_to(output).as_posix(): p for p in sorted(output.rglob('*')) if p.is_file()}
