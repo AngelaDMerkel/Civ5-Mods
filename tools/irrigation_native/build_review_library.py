@@ -117,8 +117,8 @@ def build(out, history_root):
         folder=history_root/'output/models'/('irrigated-farm-v'+str(version))
         mount(assets/('v'+str(version)),folder);prefix='library/assets/v'+str(version)
         hv,hn=add_view('v'+str(version),folder,prefix)
-        group('v'+str(version),'Earlier mesh study · v'+str(version),'Historical designs',
-              'Complete connected district, four terrain families, wet/dry/construction/pillaged states, channels, aqueducts, palms, fruit trees and lower-detail variants. The later native-art direction superseded these replacement fields.',
+        group('v'+str(version),('Selected structural study · v3' if version==3 else 'Earlier mesh study · v'+str(version)),('Selected approach · Civ V refinement required' if version==3 else 'Historical designs'),
+              'Complete connected district, four terrain families, wet/dry/construction/pillaged states, channels, aqueducts, palms, fruit trees and lower-detail variants. '+('Selected as the structural approach on 20 October; materials and buildings must follow Civ V and the selected concept.' if version==3 else 'Retained as design history.'),
               standard_items(read(folder/'models.json')['models'],folder,prefix,hv,hn),
               url(prefix,'connected-district-preview.png'),hv+'#RT_IF_ConnectedDistrict')
 
@@ -128,7 +128,7 @@ def build(out, history_root):
               ('Gentle hill','plot-channel-samples-v1/gentle-hill.png','Illustrative plot-channel sample'),
               ('Steep hill','plot-channel-samples-v1/steep-hill.png','Illustrative plot-channel sample'),
               ('Rocky foothill','plot-channel-samples-v1/rocky-foothill.png','Illustrative plot-channel sample'),
-              ('Earlier v6 adjacency concept','irrigated-farm-adjacency-v6.png','Approved concept · later direction superseded replacement fields')]
+              ('Earlier v6 adjacency concept','irrigated-farm-adjacency-v6.png','Earlier approved concept · retained history')]
     sheets=[dict(title=t,image=url(ap,f),status=s) for t,f,s in concepts]
     native=[]
     for r in read(out/'native-import.json')['models']:
@@ -136,6 +136,7 @@ def build(out, history_root):
             files={'Source GLB':url(r['glb']),'Source GR2':url(name,name+'-uncompressed.gr2')}))
     group('sources','Original Civ V source imports','Local reference assets',
           'Eleven imported source files, including the regular Farm variants and Terrace Farm construction states. The two unsuffixed Farm references are the earlier wheat-resource props.',native)
+    groups.sort(key=lambda g: 0 if g['key']=='v3' else 1)
     data={'groups':groups,'concepts':sheets,'viewer_models':viewers,
           'native_game_acceptance':False,'scope':'Saved irrigation work; revisions and states are separate entries, not unique completed game assets.'}
     (library/'catalog.json').write_text(json.dumps(data,indent=2)+'\n')

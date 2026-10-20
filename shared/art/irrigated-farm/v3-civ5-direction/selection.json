@@ -1,0 +1,19 @@
+{
+  "date": "2026-10-20",
+  "status": "design approach selected; revised meshes require review",
+  "user_statements": [
+    "The v3 mesh study is the correct design approach, but should rely on the Civ5 art style",
+    "This concept was very good, but should have been made into real worakble models"
+  ],
+  "concept": "../native-overlay-study/native-farm-irrigation-study.png",
+  "concept_sha256": "be835ba22314b1af98e084239a5407dbb3e7a449384f32f0f80cf4e33edb5910",
+  "scope": "Use v3 terrain, terrace and connection work to realize the selected flat-farm/native-terrace concept as editable geometry and native export candidates, with recognizable Civ V materials and regular resource-free farm buildings.",
+  "requirements": [
+    "Sparse legible irrigation between crop parcels; most seams remain dry.",
+    "Regular farm buildings and genuine game-art references, with provenance.",
+    "Terraced slopes, rigid aqueduct spans, downhill source connections and finished exposed ends.",
+    "Inspect actual exported models at close and map scale; illustrations are not model evidence."
+  ],
+  "supersedes": "The blanket classification of v3 as rejected historical work. Prior native-art studies remain reference material, not a requirement to preserve all source geometry unchanged.",
+  "limits": "Does not approve a specific revised mesh, native engine loading, terrain fitting, dynamic adjacency or new gameplay eligibility."
+}

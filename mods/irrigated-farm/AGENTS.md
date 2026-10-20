@@ -11,20 +11,21 @@ tests. Do not create a second copy of the feature or claim a standalone release.
 
 Distinguish current flat-desert gameplay eligibility from approved terraced-hill
 and tile-compatibility visual requirements. Record unimplemented differences.
-Use the user-selected native-art approach: retain default Farm and Incan Terrace
-Farm textures, parcels and boundaries, then add a few readable irrigation features
-and the existing aqueduct design. Place channels in selected gaps between crop
-plots, following their existing texture/parcel boundaries and terrace contours;
-keep most plot seams dry. The 2026-10-09 direction selection is recorded
-in `shared/art/irrigated-farm/native-overlay-study/direction-selection.json`.
-The user's later clarification allows modifications to the native terrace mesh
-where needed to make irrigation obvious. An unchanged source is a comparison
-reference, not a constraint on the finished irrigated model. Preserve recognizable
-Civ V farm character and sparse, readable routes; do not enforce byte-identical
-native geometry as an art requirement. This does not approve a particular revised
-mesh or invented flat-field layout.
-Earlier replacement-field meshes are historical studies. Preserve consistent
-tile seams, finished exposed edges, height transitions and source-connected,
-level or descending water flow. Keep mesh tools in `tools/` and
-generated previews under `output/`. Do not treat concept approval as acceptance
-of later mesh revisions or native terrain fitting.
+Use the 2026-10-20 selected direction in
+`shared/art/irrigated-farm/v3-civ5-direction/selection.json`: the v3 mesh study is
+the structural baseline, and the selected native-overlay concept defines the
+Civ V visual treatment. Realize these as editable geometry and native export
+candidates. Use recognizable regular Farm buildings, crop materials, subdued
+terrain and masonry. Native source geometry may be modified; original references
+remain available for comparison. Do not present authored parcels as captured
+engine-generated desert farms or regional crop families as desert-specific.
+
+Keep irrigation sparse and legible between crop parcels, with most seams dry.
+Preserve terraces, consistent tile seams, finished exposed edges, height
+transitions and source-connected, level or descending water flow. Reuse the
+selected aqueduct design. V1/v2 and earlier selections remain historical records;
+v3 is now selected as an approach, not a final accepted model.
+Keep mesh tools in `tools/` and generated previews under `output/`. Proprietary
+reference-derived candidates remain local. Design selection, geometry/export
+checks, native conversion and in-game acceptance are separate states. Preserve
+the current runtime Farm-art fallback until replacements pass native tests.

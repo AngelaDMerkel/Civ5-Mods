@@ -14,6 +14,15 @@ desert irrigation rules. The user's newer design direction includes terraced
 hills and compatible tile transitions; those visual requirements must not be
 mistaken for completed expansion of the gameplay eligibility rules.
 
+**Current art direction (2026-10-20):** the user selected the v3 mesh study as
+the structural approach and reaffirmed the native-overlay concept as the visual
+target, asking for real workable models. Use v3's terrain and hydraulic work
+with recognizable Civ V fields, regular Farm buildings and sparse irrigation.
+The [selection record](../../shared/art/irrigated-farm/v3-civ5-direction/selection.json)
+preserves both statements and their scope. The chronology below records earlier
+decisions; statements that v3 was superseded are historical, not current policy.
+This selection does not certify revised exports or in-game behavior.
+
 The approved v6 concept and prompts are versioned in
 `shared/art/irrigated-farm/`. Mesh support is in `tools/build_irrigation_meshes.py`
 and the newer `tools/irrigation_v2/`; generated kits and previews stay in
@@ -21,7 +30,7 @@ and the newer `tools/irrigation_v2/`; generated kits and previews stay in
 Current detail/density refinement, native conversion and in-game terrain fitting
 require their own verification and acceptance.
 
-The historical **unapproved v3 mesh review** is built by
+The **v3 mesh review, now selected as the structural approach,** is built by
 `tools/irrigation_v3/build_irrigation_meshes.py`. It replaces complete terrace
 rings with partial benches and sloping shoulders, adds original painted alpha
 foliage, and models a source-connected distribution network with contour
@@ -118,7 +127,7 @@ Exact farm texture selection and placement on a desert tile remain unverified
 in-game; do not infer that `Crops_Africa` means a desert-specific farm asset.
 
 
-The latest user instruction explicitly selects the **regular resource-free farm
+An earlier user instruction explicitly selected the **regular resource-free farm
 building variant and the regular farm texture used on desert**. The importer now
 includes all six stock Farm1/2/3 files (Ancient and Industrial bindings). It retains
 the full three-state native graphs, while its visible exports select only the
