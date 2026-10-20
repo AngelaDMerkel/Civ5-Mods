@@ -34,8 +34,28 @@ shows the same startup failure, followed by a separate diagnostic context:
 `include-prefix RT_Irrigation=nil RT_IrrigationAI=table`, then
 `include-exact RT_Irrigation=table`. The Outposts owner also corrected the fixture
 to use the builder's sorted file order before that run. The exact-filename fix
-is commit `4f94732`; the full production-context startup and shelter rerun remains
-separate acceptance work. No installation files were changed by this branch's fix.
+is commit `4f94732`. No installation files were changed by this branch's fix.
+
+The follow-up `outpost-integration-native-04` passed **43 assertions through nine
+real turns** on the stock GameCore. Its retained Lua log and restored session
+journal were inspected. Both ordinary mod UUIDs/entrypoints loaded; the real
+Terrain context initialized exposure and replacement trade and answered the
+Outposts shelter queries. On desert tiles:
+
+- An intact, owned, roadless outpost protected its stationed garrison from heat
+  and damage; an adjacent unsheltered unit accumulated heat and took damage.
+- Pillage removed shelter and the garrison began accumulating heat. Native
+  repair restored shelter and cleared its heat counter over subsequent turns.
+- Terrain introduced no extraction prerequisite or additional Outposts upkeep;
+  repair restored the independent resource extraction at the original upkeep.
+
+This tests the Outposts branch's older Terrain content with `cb1c7cd` integrated
+as `c079adb` and the exact-include fix adapted as `8fd67da`. That branch lacks
+the newer trade markers, so this is **not** full validation of this branch's
+current Terrain package. It also does not establish native-engine trade parity,
+Terrain trade save/load, other exposure environments, UI layout or custom art.
+The evidence directory is `output/gr2-research/outpost-integration-native-04/`
+in the Outposts worktree; `session.json` reports restored originals.
 
 ## Confirmed distribution requirements
 
@@ -128,6 +148,7 @@ multiplayer support for this currently single-player mod.
 | Gold, science, domestic cargo | Existing Lua settlement/delivery system |
 | Congress embargoes | Implemented from active stock resolutions; tested with engine mocks |
 | Combined income projection | Implemented in Accounts; stock top bar unchanged |
+| Optional Outposts shelter | Bounded stock-native desert exposure/pillage/repair test passed on the older combined content described above |
 | Moving convoy presentation | Native UI portrait anchors; 3D conversion/rigging deferred |
 | Religion, tourism, native trade-route quests | Not implemented; requires the native integration above for true parity |
 | Standard mod package | Existing ModBuddy/`.modinfo` staging and ZIP; BNW is the only required dependency |

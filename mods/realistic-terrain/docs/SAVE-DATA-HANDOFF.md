@@ -43,3 +43,8 @@ a dual-convention fallback to accommodate obsolete fixtures.
 - The corrected Terrain package has not been run natively in this pass; Outposts
   retains the shared test reservation. The prior core-only startup acceptance
   does not validate Terrain's saved gameplay.
+
+Subsequent evidence: the Outposts owner's ordinary-mod shelter run applied this
+fix to its older Terrain content and passed 43 native assertions through nine
+real turns. See [the scoped native record](NATIVE-INTEGRATION.md). It does not
+establish trade save/load or acceptance of this branch's entire newer package.
