@@ -33,3 +33,6 @@ Terrain content; [the integration record](docs/NATIVE-INTEGRATION.md) defines it
 The native-test-discovered SaveData calling convention has been corrected in
 Terrain and bundled irrigation AI. See the [save-data handoff](docs/SAVE-DATA-HANDOFF.md)
 for unchanged save contracts, regression evidence and companion integration.
+Worker build checks also use the native API's integer flags; the
+[binding follow-up](docs/NATIVE-INTEGRATION.md#worker-build-binding-follow-up--2026-10-20)
+records the trade/irrigation fix and remaining native test.

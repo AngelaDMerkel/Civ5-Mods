@@ -116,7 +116,11 @@ local function unit(owner,tile,kind,combat)
     function u:IsEmbarked()return false;end;function u:IsDelayedDeath()return self.dead or false;end
     function u:IsAutomated()return false;end;function u:GetBuildType()return -1;end
     function u:GetMoves()return self.moves;end;function u:FinishMoves()self.moves=0;end
-    function u:CanBuild()return true;end;function u:PushMission(kind,a,b)self.mission={kind,a,b};end
+    function u:CanBuild(plot,build,testVisible,testGold)
+        assert(testVisible==0 and testGold==1,"native Unit.CanBuild requires integer eligibility/gold flags");
+        return true;
+    end
+    function u:PushMission(kind,a,b)self.mission={kind,a,b};end
     function u:Kill()self.dead=true;Players[self.owner].units[self.id]=nil;for i,v in ipairs(plots[self.tile].units)do if v==self then table.remove(plots[self.tile].units,i);break;end;end;end
     return u;
 end

@@ -182,7 +182,10 @@ function worker:GetMoves() return self.moves; end
 function worker:WorkRate() return self.moves>0 and self.rate or 0; end
 function worker:FinishMoves() self.moves=0; end
 function worker:CanMoveThrough() return true; end
-function worker:CanBuild() return true; end
+function worker:CanBuild(plot,build,testVisible,testGold)
+    assert(testVisible==0 and testGold==1,"native Unit.CanBuild requires integer eligibility/gold flags");
+    return true;
+end
 function worker:PushMission(kind, x, y)
     self.mission={kind,x,y}; if kind==MissionTypes.MISSION_BUILD then self:FinishMoves(); end
 end

@@ -183,7 +183,8 @@ function A.OnTurn(owner)
                 assigned[best] = true; local job = jobs[best];
                 if u:GetPlot() == job.plot then
                     if job.station then RT_Construction.Work(u, true);
-                    elseif u:CanBuild(job.plot, job.build, false, true) then u:PushMission(MissionTypes.MISSION_BUILD, job.build); end
+                    -- CvLuaUnit reads these flags with luaL_optint.
+                    elseif u:CanBuild(job.plot, job.build, 0, 1) then u:PushMission(MissionTypes.MISSION_BUILD, job.build); end
                 else u:PushMission(MissionTypes.MISSION_MOVE_TO, job.plot:GetX(), job.plot:GetY()); end
             end
         end

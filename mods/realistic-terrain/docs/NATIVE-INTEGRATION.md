@@ -57,6 +57,28 @@ Terrain trade save/load, other exposure environments, UI layout or custom art.
 The evidence directory is `output/gr2-research/outpost-integration-native-04/`
 in the Outposts worktree; `session.json` reports restored originals.
 
+## Worker build binding follow-up — 2026-10-20
+
+Outposts' native AI repair test exposed another stock binding mismatch.
+`CvLuaUnit::lCanBuild` reads its optional visibility and gold flags with
+`luaL_optint`, so callers must pass `0, 1` for actual eligibility with a gold
+check. Terrain's trade infrastructure AI and bundled irrigation repair AI now
+use those numeric flags. `Plot:CanBuild` has a different binding; its existing
+boolean arguments remain unchanged.
+
+Both affected Lua tests failed under stricter unit mocks before the correction
+and passed afterward. The full Lua 5.1 suite, eight Python package tests, package
+build and all four database combinations passed against the preserved stock
+cache at `output/native-tests/baseline-01/data-backup/cache`. This verifies the
+calling convention and existing AI decisions offline; a native Terrain worker
+construction/repair run remains necessary.
+
+Ownership handoff: only `RT_IrrigationAI.lua` and its worker mock changed in
+Irrigated Farm. The Terrain change is in `RT_TradeAI.lua` and its worker mock.
+Eligibility policy, save keys, database IDs and package versions are unchanged.
+The Outposts owner supplied its independent equivalent fix as `4d316c6`.
+No installed game files or user data were changed for this correction.
+
 ## Confirmed distribution requirements
 
 - The standard package uses Civ V's ordinary mod format and requires BNW only.

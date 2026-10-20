@@ -107,7 +107,8 @@ function A.OnTurn(owner)
             bestUnit:FinishMoves();
         end
     elseif bestJob.repair then
-        if bestUnit:CanBuild(bestJob.plot, I.BUILD_REPAIR, false, true) then
+        -- CvLuaUnit reads these flags with luaL_optint.
+        if bestUnit:CanBuild(bestJob.plot, I.BUILD_REPAIR, 0, 1) then
             bestUnit:PushMission(MissionTypes.MISSION_BUILD, I.BUILD_REPAIR);
         end
     else RT_ConstructionOrders.Start(bestUnit, "irrigation", true); end
